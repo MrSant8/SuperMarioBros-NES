@@ -9,9 +9,16 @@ The player controls Mario through levels filled with enemies and obstacles. Play
 For now, only level 1 has been implemented, but the levels include different types of terrain, such as grasslands, underground caves, aquatic worlds, and castles filled with traps.
 
 ## Controls
-* Move left/right: A/D
-* Jump: Space/W
+- **Move Left:** `A`
+- **Move Right:** `D`
+- **Jump:** `Space` or `W`
 
 ## Team Members
-### Jana Puig, Sergi Santiago & Toni Llovera
+### Jana Puig
+- **Jana Puig**: [GitHub Profile](https://github.com/JanaPuig)
+### Toni Llovera
+- **Toni Llovera**: [GitHub Profile](https://github.com/ToniLlovera)
+### Sergi Santiago
+- **Sergi Santiago**: [GitHub Profile](https://github.com/MrSant8)
+
 ## Our Latest Release & Wiki:
