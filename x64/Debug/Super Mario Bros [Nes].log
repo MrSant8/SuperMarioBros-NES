@@ -1,0 +1,3 @@
+﻿  main.cpp
+LINK : warning LNK4098: la biblioteca predeterminada'MSVCRT' entra en conflicto con otras bibliotecas; use la biblioteca /NODEFAULTLIB:biblioteca
+  Super Mario Bros [Nes].vcxproj -> C:\Users\janaps\Documents\GitHub\SuperMarioBros-NES\Super Mario Bros [Nes]\x64\Debug\Super Mario Bros [Nes].exe
