@@ -1,127 +1,182 @@
 #include "Game.h"
 #include "Globals.h"
+#include "ResourceManager.h"
 #include <stdio.h>
 
 Game::Game()
 {
     state = GameState::MAIN_MENU;
-    
-    level = nullptr;
-    img_menu = {};
+    scene = nullptr;
+    img_menu = nullptr;
+
+    target = {};
+    src = {};
+    dst = {};
 }
 Game::~Game()
 {
-    if (level != nullptr)
+    if (scene != nullptr)
     {
-        level->Release();
-        delete level;
-        level = nullptr;
+        scene->Release();
+        delete scene;
+        scene = nullptr;
     }
 }
-bool Game::Initialise()
+AppStatus Game::Initialise(float scale)
 {
-    //Initialise windows
-    InitWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "Spaceship: arrow keys + space, f1: god mode");
+    float w, h;
+    w = WINDOW_WIDTH * scale;
+    h = WINDOW_HEIGHT * scale;
+
+    //Initialise window
+    InitWindow((int)w, (int)h, "Vikings");
+
+    //Render texture initialisation, used to hold the rendering result so we can easily resize it
+    target = LoadRenderTexture(WINDOW_WIDTH, WINDOW_HEIGHT);
+    if (target.id == 0)
+    {
+        LOG("Failed to create render texture");
+        return AppStatus::ERROR;
+    }
+    SetTextureFilter(target.texture, TEXTURE_FILTER_POINT);
+    src = { 0, 0, WINDOW_WIDTH, -WINDOW_HEIGHT };
+    dst = { 0, 0, w, h };
 
     //Load resources
-    if (!LoadTextures())
+    if (LoadResources() != AppStatus::OK)
     {
-        LOG("Failed to load textures");
-        return false;
+        LOG("Failed to load resources");
+        return AppStatus::ERROR;
     }
+
+    //Initialise the fade in effect
+    fade_transition.Set(GameState::MAIN_MENU, 60, dst);
 
     //Set the target frame rate for the application
     SetTargetFPS(60);
+    //Disable the escape key to quit functionality
+    SetExitKey(0);
 
-    return true;
+    return AppStatus::OK;
 }
-bool Game::LoadTextures()
+AppStatus Game::LoadResources()
 {
-    img_menu = LoadTexture("Assets/Textures/Hud/Start game.png");
-    if(img_menu.id == 0)  
+    ResourceManager& data = ResourceManager::Instance();
+    
+    if (data.LoadTexture(Resource::IMG_MENU, "images/menu.png") != AppStatus::OK)
     {
-        LOG("Failed to load texture Assets/Textures/Hud/Start game.png");
-        return false;
+        return AppStatus::ERROR;
     }
-    return true;
+    img_menu = data.GetTexture(Resource::IMG_MENU);
+    
+    return AppStatus::OK;
 }
-bool Game::BeginPlay()
+AppStatus Game::BeginPlay()
 {
-    level = new Level(WINDOW_WIDTH, WINDOW_HEIGHT);
-    if (level == nullptr)
+    scene = new Scene();
+    if (scene == nullptr)
     {
-        LOG("Failed to allocate memory for Level");
-        return false;
+        LOG("Failed to allocate memory for Scene");
+        return AppStatus::ERROR;
     }
-    if (!level->Init())
+    if (scene->Init() != AppStatus::OK)
     {
-        LOG("Failed to initialise Level");
-        return false;
+        LOG("Failed to initialise Scene");
+        return AppStatus::ERROR;
     }
 
-    return true;
+    return AppStatus::OK;
 }
 void Game::FinishPlay()
 {
-    level->Release();
-    delete level;
-    level = nullptr;
+    scene->Release();
+    delete scene;
+    scene = nullptr;
 }
-bool Game::Update()
+AppStatus Game::Update()
 {
-    switch (state)
-    {
-        case GameState::MAIN_MENU: 
-            if (IsKeyPressed(KEY_ESCAPE)) return false;
-            if (IsKeyPressed(KEY_SPACE))
-            {
-                if(!BeginPlay()) return false;
-                state = GameState::PLAYING;
-            }
-            break;
+    //Check if user attempts to close the window, either by clicking the close button or by pressing Alt+F4
+    if(WindowShouldClose()) return AppStatus::QUIT;
 
-        case GameState::PLAYING:  
-            if (IsKeyPressed(KEY_ESCAPE))
-            {
-                FinishPlay();
-                state = GameState::MAIN_MENU;
-            }
-            else
-            {
-                //Process Input
-                level->HandleInputPlayer();
-                //Game logic
-                level->Update();
-            }
-            break;
+    if (fade_transition.IsActive())
+    {
+        GameState prev_frame = state;
+        state = fade_transition.Update();
+
+        //Begin play and finish play are delayed due to the fading transition effect
+        if (prev_frame == GameState::MAIN_MENU && state == GameState::PLAYING)
+        {
+            if (BeginPlay() != AppStatus::OK) return AppStatus::ERROR;
+        }
+        else if (prev_frame == GameState::PLAYING && state == GameState::MAIN_MENU)
+        {
+            FinishPlay();
+        }
     }
-    return true;
+    else
+    {
+        switch (state)
+        {
+            case GameState::MAIN_MENU: 
+                if (IsKeyPressed(KEY_ESCAPE)) return AppStatus::QUIT;
+                if (IsKeyPressed(KEY_SPACE))
+                {
+                    //"state = GameState::PLAYING;" but not until halfway through the transition
+                    fade_transition.Set(GameState::MAIN_MENU, 60, GameState::PLAYING, 60, dst);
+                }
+                break;
+
+            case GameState::PLAYING:  
+                if (IsKeyPressed(KEY_ESCAPE))
+                {
+                    //"state = GameState::MAIN_MENU;" but not until halfway through the transition
+                    fade_transition.Set(GameState::PLAYING, 60, GameState::MAIN_MENU, 60, dst);
+                }
+                else
+                {
+                    //Game logic
+                    scene->Update();
+                }
+                break;
+        }
+    }
+
+    return AppStatus::OK;
 }
 void Game::Render()
 {
-    BeginDrawing();
+    //Draw everything in the render texture, note this will not be rendered on screen, yet
+    BeginTextureMode(target);
     ClearBackground(BLACK);
-  
+    
     switch (state)
     {
         case GameState::MAIN_MENU:
-            //Background image
-            DrawTextureEx(img_menu, { 0, 0 }, 0.0f, scale, WHITE);
+            DrawTexture(*img_menu, 0, 0, WHITE);
             break;
 
         case GameState::PLAYING:
-            level->Render();
+            scene->Render();
             break;
     }
     
+    EndTextureMode();
+
+    //Draw render texture to screen, properly scaled
+    BeginDrawing();
+    DrawTexturePro(target.texture, src, dst, { 0, 0 }, 0.0f, WHITE);
+    if (fade_transition.IsActive()) fade_transition.Render();
     EndDrawing();
 }
 void Game::Cleanup()
 {
-    UnloadTextures();
+    UnloadResources();
     CloseWindow();
 }
-void Game::UnloadTextures()
+void Game::UnloadResources()
 {
-    UnloadTexture(img_menu);
+    ResourceManager& data = ResourceManager::Instance();
+    data.ReleaseTexture(Resource::IMG_MENU);
+
+    UnloadRenderTexture(target);
 }

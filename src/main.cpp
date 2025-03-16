@@ -1,4 +1,3 @@
-
 #include "Game.h"
 #include "MemLeaks.h"
 #include "Globals.h"
@@ -8,19 +7,27 @@ int main()
     ReportMemoryLeaks();
 
     Game *game;
-    bool end = false;
+    AppStatus status;
+    int main_return = EXIT_SUCCESS;
 
     LOG("Application start");
     game = new Game();
-    if (!game->Initialise())
+    status = game->Initialise(GAME_SCALE_FACTOR);
+    if (status != AppStatus::OK)
     {
         LOG("Failed to initialise game");
-        end = true;
+        main_return = EXIT_FAILURE;
     }
         
-    while (!end)
+    while (status == AppStatus::OK)
     {
-        if(!game->Update()) break;
+        status = game->Update();
+        if(status != AppStatus::OK)
+        {
+            if(status == AppStatus::ERROR)      main_return = EXIT_FAILURE;
+            else if(status == AppStatus::QUIT)  main_return = EXIT_SUCCESS;
+            break;
+        }
         game->Render();
     }
 
@@ -28,5 +35,7 @@ int main()
     game->Cleanup();
  
     LOG("Bye :)");
-    return 0;
+    delete game;
+
+    return main_return;
 }

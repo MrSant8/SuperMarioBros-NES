@@ -1,7 +1,7 @@
 #pragma once
-#include "Level.h"
-
-enum class GameState { MAIN_MENU, PLAYING, SETTINGS, CREDITS };
+#include "Globals.h"
+#include "Scene.h"
+#include "FadeTransition.h"
 
 class Game
 {
@@ -9,22 +9,26 @@ public:
     Game();
     ~Game();
 
-    bool Initialise();
-    bool Update();
+    AppStatus Initialise(float scale);
+    AppStatus Update();
     void Render();
     void Cleanup();
 
 private:
-    bool BeginPlay();
+    AppStatus BeginPlay();
     void FinishPlay();
 
-    bool LoadTextures();
-    void UnloadTextures();
+    AppStatus LoadResources();
+    void UnloadResources();
 
     GameState state;
-    Level *level;
-    Texture2D img_menu;
+    Scene *scene;
+    const Texture2D *img_menu;
 
+    //To work with original game units and then scale the result
+    RenderTexture2D target;
+    Rectangle src, dst;
 
-    float scale = 2.0f;
+    //To make fade out/in transitions effects
+    FadeTransition fade_transition;
 };

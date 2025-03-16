@@ -1,36 +1,50 @@
+
 #pragma once
-#include "raylib.h"
+#include <raylib.h>
+#include "Point.h"
+#include "ResourceManager.h"
+#include "RenderComponent.h"
+#include "AABB.h"
+
+enum class Look { RIGHT, LEFT };
 
 class Entity
 {
 public:
-    Entity();
-    Entity(const Vector2& p, const Vector2& dir, int w, int h, int s);
-    ~Entity();
+	Entity();
+	Entity(const Point& p, int width, int height);
+	Entity(const Point& p, int width, int height, int frame_width, int frame_height);
+	virtual ~Entity();
 
-    void Init(const Vector2& p, const Vector2& dir, int w, int h, int s);
-    void SetPosition(const Vector2& p);
-    void SetDirection(const Vector2& dir);
-    void SetAlive(bool b);
-    
-    //Update position based on direction and speed
-    void Update();
-    
-    //Update position within the given limits
-    void ClampPosition(int x1, int y1, int x2, int y2);
-    
-    Vector2 GetPosition() const;
-    int GetWidth() const;
-    int GetHeight() const;
-    bool IsAlive() const;
+	void Set(const Point& p, const Point& d, int w, int h, int framew, int frameh);
+	void SetPos(const Point& p);
+	void Update();
+	AABB GetHitbox() const;
 
-    void Render(const Texture& img) const;
-    void Render(const Texture& img, const Vector2& offset) const;
-    void RenderDebug(const Color& col) const;
+	void SetAlive(bool b);
+	bool IsAlive() const;
 
-private:
-    Vector2 pos, dir;
-    int width, height;
-    int speed;
-    bool is_alive;
+	//Draw representation model
+	void Draw() const;
+	void DrawTint(const Color& col) const;
+	
+	//Draw logical/physical model (hitbox)
+	void DrawHitbox(const Color& col) const;
+	void DrawHitbox(int x, int y, int w, int h, const Color& col) const;
+
+protected:
+	Point GetRenderingPosition() const;
+
+	//Logical/physical model
+	Point pos, dir;
+	int width, height;				
+
+	//Representation model
+	int frame_width, frame_height;
+
+	RenderComponent *render;
+	
+	//Flag to mark wether an entity is active or inactive. Trick to manage dynamic arrays of
+	//entities with static arrays without new/delete operations
+	bool alive;
 };
