@@ -63,6 +63,9 @@ public:
 	void DrawDebug(const Color& col) const;
 	void Release();
 
+	Vector2 GetPosition() const {
+		return Vector2{ (float)pos.x, (float)0.0 };
+	}
 private:
 	bool IsLookingRight() const;
 	bool IsLookingLeft() const;
@@ -104,5 +107,7 @@ private:
 	TileMap *map;
 
 	int score;
+
+	bool move_camera = false;
 };
 

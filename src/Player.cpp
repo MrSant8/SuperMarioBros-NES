@@ -219,23 +219,29 @@ void Player::MoveX()
 	int prev_x = pos.x;
 
 	//We can only go up and down while climbing
-	if (state == State::CLIMBING)	return;
+	if (state == State::CLIMBING)			return;
 
 	if (IsKeyDown(KEY_LEFT) && !IsKeyDown(KEY_RIGHT))
 	{
-		pos.x += -PLAYER_SPEED;
-		if (state == State::IDLE) StartWalkingLeft();
-		else
-		{
-			if (IsLookingRight()) ChangeAnimLeft();
-		}
+		if ((pos.x - PLAYER_SPEED) > 0) {
+			pos.x += -PLAYER_SPEED;
+			if (state == State::IDLE) StartWalkingLeft();
+			else
+			{
+				if (IsLookingRight()) ChangeAnimLeft();
+			}
 
-		box = GetHitbox();
-		if (map->TestCollisionWallLeft(box))
-		{
-			pos.x = prev_x;
-			if (state == State::WALKING) Stop();
+			box = GetHitbox();
+			if (map->TestCollisionWallLeft(box))
+			{
+				pos.x = prev_x;
+				if (state == State::WALKING) Stop();
+			}
 		}
+		else {
+			Stop();
+		}
+		
 	}
 	else if (IsKeyDown(KEY_RIGHT))
 	{
@@ -252,11 +258,16 @@ void Player::MoveX()
 			pos.x = prev_x;
 			if (state == State::WALKING) Stop();
 		}
+
+
 	}
 	else
 	{
 		if (state == State::WALKING) Stop();
+
 	}
+
+
 }
 void Player::MoveY()
 {
