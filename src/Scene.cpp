@@ -17,7 +17,7 @@ Scene::Scene()
 	camera.target = { 0,0};				//Center of the screen
 	camera.offset = { 0, MARGIN_GUI_Y };	//Offset from the target (center of the screen)
 	camera.rotation = 0.0f;					//No rotation
-	camera.zoom = 1.0f;
+	camera.zoom = 0.95f;
 
 
 	debug = DebugMode::OFF;
@@ -76,7 +76,7 @@ Scene::~Scene()
 AppStatus Scene::Init()
 {
 	//Create player
-	player = new Player({ 0,0 }, State::IDLE, Look::RIGHT);
+	player = new Player({ 0,191 }, State::IDLE, Look::RIGHT);
 	if (player == nullptr)
 	{
 		LOG("Failed to allocate memory for Player");
