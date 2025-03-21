@@ -1,36 +1,5 @@
-﻿  AABB.cpp
-  Enemy.cpp
-  EnemyManager.cpp
-  Entity.cpp
-  FadeTransition.cpp
-  Game.cpp
-C:\Users\janaps\Documents\GitHub\SuperMarioBros-NES\src\FadeTransition.cpp(89,59): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
-C:\Users\janaps\Documents\GitHub\SuperMarioBros-NES\src\FadeTransition.cpp(89,47): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
-C:\Users\janaps\Documents\GitHub\SuperMarioBros-NES\src\FadeTransition.cpp(89,39): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
-C:\Users\janaps\Documents\GitHub\SuperMarioBros-NES\src\FadeTransition.cpp(89,31): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
-C:\Users\janaps\Documents\GitHub\SuperMarioBros-NES\src\FadeTransition.cpp(97,59): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
-C:\Users\janaps\Documents\GitHub\SuperMarioBros-NES\src\FadeTransition.cpp(97,47): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
-C:\Users\janaps\Documents\GitHub\SuperMarioBros-NES\src\FadeTransition.cpp(97,39): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
-C:\Users\janaps\Documents\GitHub\SuperMarioBros-NES\src\FadeTransition.cpp(97,31): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
-  Object.cpp
-  Particle.cpp
-  ParticleManager.cpp
-  Player.cpp
-  RenderComponent.cpp
-  ResourceManager.cpp
+﻿  Game.cpp
   Scene.cpp
-  Shot.cpp
-  ShotManager.cpp
-  Slime.cpp
-  Sprite.cpp
-  StaticImage.cpp
-  Text.cpp
-  TileMap.cpp
-  Generando código...
-  Compilando...
-  Turret.cpp
   main.cpp
   Generando código...
-  LINK : no se encontró C:\Users\janaps\Documents\GitHub\SuperMarioBros-NES\x64\Debug\MarioBrosNES_NES.exe o no lo generó el último vínculo incremental; ejecutando vínculo completo
-LINK : warning LNK4098: la biblioteca predeterminada'MSVCRT' entra en conflicto con otras bibliotecas; use la biblioteca /NODEFAULTLIB:biblioteca
   Vikings.vcxproj -> C:\Users\janaps\Documents\GitHub\SuperMarioBros-NES\x64\Debug\MarioBrosNES_NES.exe
