@@ -1,5 +1,9 @@
-﻿  Game.cpp
-  Scene.cpp
+﻿  EnemyManager.cpp
+  Game.cpp
   main.cpp
-  Generando código...
-  Vikings.vcxproj -> C:\Users\janaps\Documents\GitHub\SuperMarioBros-NES\x64\Debug\MarioBrosNES_NES.exe
+  Player.cpp
+  Scene.cpp
+  ShotManager.cpp
+  TileMap.cpp
+  Generating Code...
+  Vikings.vcxproj -> C:\Users\Usuari\Documents\GitHub\SuperMarioBros-NES\x64\Debug\MarioBrosNES_NES.exe

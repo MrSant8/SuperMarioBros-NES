@@ -144,11 +144,43 @@ bool TileMap::IsTileEntity(Tile tile) const
 }
 bool TileMap::IsTileSolid(Tile tile) const
 {
-	return Tile::SOLID_FIRST <= tile && tile <= Tile::SOLID_LAST;
+	switch (tile)
+	{
+	case Tile::BLOCK_SQUARE1_TL:
+	case Tile::BLOCK_SQUARE1_TR:
+	case Tile::BLOCK_SQUARE1_BL:
+	case Tile::BLOCK_SQUARE1_BR:
+	case Tile::BLOCK_SQUARE2_TR:
+	case Tile::BLOCK_SQUARE2_BL:
+	case Tile::BLOCK_SQUARE2_BR:
+		return true;
+	default:
+		return false;
+	}
+
+	//return Tile::SOLID_FIRST <= tile && tile <= Tile::SOLID_LAST;
 }
 bool TileMap::IsTileLadderTop(Tile tile) const
 {
-	return tile == Tile::LADDER_TOP_L || tile == Tile::LADDER_TOP_R;
+	switch (tile)
+	{
+	case Tile::BLOCK_SQUARE2_TL:
+	case Tile::BLOCK_VERT2_T:
+	case Tile::BLOCK_VERT2_B:
+	case Tile::BLOCK_HORIZ2_L:
+	case Tile::BLOCK_HORIZ2_R:
+	case Tile::BLOCK_BLUE:
+	case Tile::BLOCK_HORIZ3_L:
+	case Tile::BLOCK_HORIZ3_M:
+	case Tile::BLOCK_HORIZ3_R:
+	case Tile::BLOCK_BEAM_L:
+	case Tile::BLOCK_BEAM_R:
+		return true;
+	default:
+		return false;
+	}
+
+	//return tile == Tile::LADDER_TOP_L || tile == Tile::LADDER_TOP_R;
 }
 bool TileMap::IsTileLadder(Tile tile) const
 {
