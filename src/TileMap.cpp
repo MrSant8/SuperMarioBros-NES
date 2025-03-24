@@ -146,13 +146,15 @@ bool TileMap::IsTileSolid(Tile tile) const
 {
 	switch (tile)
 	{
-	case Tile::BLOCK_SQUARE1_TL:
 	case Tile::BLOCK_SQUARE1_TR:
-	case Tile::BLOCK_SQUARE1_BL:
-	case Tile::BLOCK_SQUARE1_BR:
-	case Tile::BLOCK_SQUARE2_TR:
-	case Tile::BLOCK_SQUARE2_BL:
-	case Tile::BLOCK_SQUARE2_BR:
+
+	//case Tile::BLOCK_SQUARE1_TL:
+	//case Tile::BLOCK_SQUARE1_TR:
+	//case Tile::BLOCK_SQUARE1_BL:
+	//case Tile::BLOCK_SQUARE1_BR:
+	//case Tile::BLOCK_SQUARE2_TR:
+	//case Tile::BLOCK_SQUARE2_BL:
+	//case Tile::BLOCK_SQUARE2_BR:
 		return true;
 	default:
 		return false;
@@ -379,17 +381,17 @@ AABB TileMap::GetSweptAreaX(const AABB& hitbox) const
 void TileMap::Render()
 {
 	Tile tile;
-	Rectangle rc;
-	Vector2 pos;
+	//Rectangle rc;
+	//Vector2 pos;
 
 	for (int i = 0; i < height; ++i)
 	{
 		for (int j = 0; j < width; ++j)
 		{
 			tile = map[i * width + j];
-			if (tile != Tile::AIR)
+			if (IsTileSolid(tile))
 			{
-				pos.x = (float)j * TILE_SIZE;
+				/*pos.x = (float)j * TILE_SIZE;
 				pos.y = (float)i * TILE_SIZE;
 
 				if (tile != Tile::LASER)
@@ -400,7 +402,7 @@ void TileMap::Render()
 				else
 				{
 					laser->Draw((int)pos.x, (int)pos.y);
-				}
+				}*/
 			}
 		}
 	}

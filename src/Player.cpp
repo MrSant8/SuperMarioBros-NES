@@ -331,6 +331,7 @@ void Player::LogicJumping()
 		prev_box = GetHitbox();
 
 		pos.y += dir.y;
+		pos.y -= 3;
 		dir.y += GRAVITY_FORCE;
 		jump_delay = PLAYER_JUMP_DELAY;
 

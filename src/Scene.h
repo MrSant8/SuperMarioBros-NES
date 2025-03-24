@@ -54,5 +54,8 @@ private:
 
     Text* font1, * font2, * font3;
 
+    const Texture2D* backgroundImage;
+
+
 };
 
