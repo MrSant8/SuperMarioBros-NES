@@ -276,6 +276,15 @@ void Player::MoveY()
 	if (state == State::JUMPING)
 	{
 		LogicJumping();
+
+		box = GetHitbox();
+		box.pos.y--;
+
+		if (map->CollisionY(box.pos, box.width))
+		{
+			pos.y = (pos.y / TILE_SIZE) * TILE_SIZE;
+			StartFalling(); // Stop jump and start falling
+		}
 	}
 	else if (state == State::CLIMBING)
 	{

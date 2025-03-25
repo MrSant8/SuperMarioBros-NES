@@ -147,14 +147,6 @@ bool TileMap::IsTileSolid(Tile tile) const
 	switch (tile)
 	{
 	case Tile::BLOCK_SQUARE1_TR:
-
-	//case Tile::BLOCK_SQUARE1_TL:
-	//case Tile::BLOCK_SQUARE1_TR:
-	//case Tile::BLOCK_SQUARE1_BL:
-	//case Tile::BLOCK_SQUARE1_BR:
-	//case Tile::BLOCK_SQUARE2_TR:
-	//case Tile::BLOCK_SQUARE2_BL:
-	//case Tile::BLOCK_SQUARE2_BR:
 		return true;
 	default:
 		return false;
@@ -204,7 +196,7 @@ bool TileMap::TestCollisionGround(const AABB& box, int *py) const
 {
 	Point p(box.pos.x, *py);	//control point
 	int tile_y;
-
+	
 	if (CollisionY(p, box.width))
 	{
 		tile_y = p.y / TILE_SIZE;
@@ -212,6 +204,8 @@ bool TileMap::TestCollisionGround(const AABB& box, int *py) const
 		*py = tile_y * TILE_SIZE - 1;
 		return true;
 	}
+
+
 	return false;
 }
 bool TileMap::TestFalling(const AABB& box) const
@@ -246,14 +240,16 @@ bool TileMap::CollisionY(const Point& p, int distance) const
 	x0 = p.x / TILE_SIZE;
 	x1 = (p.x + distance - 1) / TILE_SIZE;
 
+
 	//Iterate over the tiles within the horizontal range
 	for (x = x0; x <= x1; ++x)
 	{
 		tile = GetTileIndex(x, y);
 
-		//One solid or laddertop tile is sufficient
-		if (IsTileSolid(tile) || IsTileLadderTop(tile))
+		////One solid tile is sufficient
+		if (IsTileSolid(tile)) // También verificará `BLOCK_SQUARE1_TR`
 			return true;
+
 	}
 	return false;
 }

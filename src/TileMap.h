@@ -35,8 +35,8 @@ enum class Tile {
 	TURRET_LEFT = 301, TURRET_RIGHT = 302,
 
 	//Intervals
-	SOLID_FIRST = BLOCK_SQUARE1_TL,
-	SOLID_LAST = BLOCK_SQUARE1_BR,
+	SOLID_FIRST = BLOCK_SQUARE1_TR,
+	SOLID_LAST = BLOCK_SQUARE1_TR,
 	OBJECT_FIRST = KEY_RED,
 	OBJECT_LAST = ITEM_CHILI,
 	ENTITY_FIRST = PLAYER,
@@ -81,6 +81,8 @@ public:
 	//Given a hitbox, computes the maximum swept box model along the X-axis without solid tiles
 	AABB GetSweptAreaX(const AABB& hitboxbox) const;
 
+	bool CollisionY(const Point& p, int distance) const;
+
 private:
 	void InitTileDictionary();
 
@@ -90,7 +92,6 @@ private:
 	bool IsTileLadder(Tile tile) const;
 	bool IsTileLaser(Tile tile) const;
 	bool CollisionX(const Point& p, int distance) const;
-	bool CollisionY(const Point& p, int distance) const;
 	int GetLadderCenterPos(int pixel_x, int pixel_y) const;
 
 	//Tile map
