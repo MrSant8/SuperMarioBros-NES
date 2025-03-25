@@ -19,7 +19,7 @@ void log(const char file[], int line, const char* text, ...);
 
 //Window size
 #define WINDOW_WIDTH    256
-#define WINDOW_HEIGHT   240
+#define WINDOW_HEIGHT   500
 
 //Game constants
 #define MARGIN_GUI_Y	28

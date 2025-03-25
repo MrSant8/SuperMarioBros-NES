@@ -376,9 +376,9 @@ AABB TileMap::GetSweptAreaX(const AABB& hitbox) const
 }
 void TileMap::Render()
 {
-	Tile tile;
-	//Rectangle rc;
-	//Vector2 pos;
+	/*Tile tile;
+	Rectangle rc;
+	Vector2 pos;
 
 	for (int i = 0; i < height; ++i)
 	{
@@ -387,7 +387,7 @@ void TileMap::Render()
 			tile = map[i * width + j];
 			if (IsTileSolid(tile))
 			{
-				/*pos.x = (float)j * TILE_SIZE;
+				pos.x = (float)j * TILE_SIZE;
 				pos.y = (float)i * TILE_SIZE;
 
 				if (tile != Tile::LASER)
@@ -398,10 +398,10 @@ void TileMap::Render()
 				else
 				{
 					laser->Draw((int)pos.x, (int)pos.y);
-				}*/
+				}
 			}
 		}
-	}
+	}*/
 }
 void TileMap::Release()
 {
