@@ -77,6 +77,9 @@ AppStatus Player::Initialise()
 		
 	sprite->SetAnimation((int)PlayerAnim::IDLE_RIGHT);
 
+
+	//Sound Effects
+	jumpSound = LoadSound("Assets/Audio/Fx/Jump.wav");
 	return AppStatus::OK;
 }
 void Player::InitScore()
@@ -154,10 +157,10 @@ void Player::StartWalkingRight()
 }
 void Player::StartFalling()
 {
-	dir.y = PLAYER_SPEED;
+	dir.y = PLAYER_SPEED * 1.5f;
 	state = State::FALLING;
-	if (IsLookingRight())	SetAnimation((int)PlayerAnim::FALLING_RIGHT);
-	else					SetAnimation((int)PlayerAnim::FALLING_LEFT);
+	if (IsLookingRight()) SetAnimation((int)PlayerAnim::FALLING_RIGHT);
+	else                  SetAnimation((int)PlayerAnim::FALLING_LEFT);
 }
 void Player::StartJumping()
 {
@@ -166,6 +169,9 @@ void Player::StartJumping()
 	if (IsLookingRight())	SetAnimation((int)PlayerAnim::JUMPING_RIGHT);
 	else					SetAnimation((int)PlayerAnim::JUMPING_LEFT);
 	jump_delay = PLAYER_JUMP_DELAY;
+
+	//Jump Sound
+	PlaySound(jumpSound);
 }
 void Player::StartClimbingUp()
 {
@@ -292,7 +298,7 @@ void Player::MoveY()
 	}
 	else //idle, walking, falling
 	{
-		pos.y += PLAYER_SPEED;
+		pos.y += PLAYER_SPEED*1.5f;
 		box = GetHitbox();
 		if (map->TestCollisionGround(box, &pos.y))
 		{
@@ -340,8 +346,9 @@ void Player::LogicJumping()
 		prev_box = GetHitbox();
 
 		pos.y += dir.y;
-		pos.y -= 3;
-		dir.y += GRAVITY_FORCE;
+		pos.y -= 5;  
+		dir.y += GRAVITY_FORCE*1.25;  
+
 		jump_delay = PLAYER_JUMP_DELAY;
 
 		//Is the jump finished?
@@ -442,6 +449,5 @@ void Player::Release()
 {
 	ResourceManager& data = ResourceManager::Instance();
 	data.ReleaseTexture(Resource::IMG_PLAYER);
-
 	render->Release();
 }

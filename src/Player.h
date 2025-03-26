@@ -109,5 +109,7 @@ private:
 	int score;
 
 	bool move_camera = false;
+
+	Sound jumpSound;
 };
 
