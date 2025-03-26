@@ -3,6 +3,7 @@
 #include "Scene.h"
 #include "FadeTransition.h"
 
+
 class Game
 {
 public:
@@ -31,4 +32,7 @@ private:
 
     //To make fade out/in transitions effects
     FadeTransition fade_transition;
+
+    //Music
+    Music GroundMusic;
 };

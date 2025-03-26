@@ -12,6 +12,8 @@ Game::Game()
     target = {};
     src = {};
     dst = {};
+
+    GroundMusic = { 0 }; 
 }
 Game::~Game()
 {
@@ -30,6 +32,8 @@ AppStatus Game::Initialise(float scale)
 
     //Initialise window
     InitWindow((int)w, (int)h, "Vikings");
+
+    InitAudioDevice(); // Initialize Audio System
 
     //Render texture initialisation, used to hold the rendering result so we can easily resize it
     target = LoadRenderTexture(WINDOW_WIDTH, WINDOW_HEIGHT);
@@ -62,18 +66,27 @@ AppStatus Game::Initialise(float scale)
 AppStatus Game::LoadResources()
 {
     ResourceManager& data = ResourceManager::Instance();
-    
+
     if (data.LoadTexture(Resource::IMG_MENU, "images/menu.png") != AppStatus::OK)
     {
         return AppStatus::ERROR;
     }
     img_menu = data.GetTexture(Resource::IMG_MENU);
-    
+
+    // Load Music
+    GroundMusic = LoadMusicStream("Assets/Audio/Music/GroundTheme.mp3");
+    if (GroundMusic.stream.buffer == nullptr)
+    {
+        LOG("Failed to load game music");
+        return AppStatus::ERROR;
+    }
+
     return AppStatus::OK;
 }
 AppStatus Game::BeginPlay()
 {
     scene = new Scene();
+
     if (scene == nullptr)
     {
         LOG("Failed to allocate memory for Scene");
@@ -84,6 +97,9 @@ AppStatus Game::BeginPlay()
         LOG("Failed to initialise Scene");
         return AppStatus::ERROR;
     }
+    //Reestart Music
+    SeekMusicStream(GroundMusic, 0.0f); 
+    PlayMusicStream(GroundMusic);      
 
     return AppStatus::OK;
 }
@@ -92,6 +108,8 @@ void Game::FinishPlay()
     scene->Release();
     delete scene;
     scene = nullptr;
+
+    StopMusicStream(GroundMusic); // Stop Music
 }
 AppStatus Game::Update()
 {
@@ -121,6 +139,9 @@ AppStatus Game::Update()
                 if (IsKeyPressed(KEY_ESCAPE)) return AppStatus::QUIT;
                 if (IsKeyPressed(KEY_SPACE))
                 {
+                    StopMusicStream(GroundMusic); //Music Stops
+                    PlayMusicStream(GroundMusic);  //Music Plays
+                    SetMusicVolume(GroundMusic, 1.0f);
                     //"state = GameState::PLAYING;" but not until halfway through the transition
                     fade_transition.Set(GameState::MAIN_MENU, 60, GameState::PLAYING, 60, dst);
                 }
@@ -136,6 +157,7 @@ AppStatus Game::Update()
                 {
                     //Game logic
                     scene->Update();
+                    UpdateMusicStream(GroundMusic);
                 }
                 break;
         }
@@ -171,6 +193,7 @@ void Game::Render()
 void Game::Cleanup()
 {
     UnloadResources();
+    CloseAudioDevice();
     CloseWindow();
 }
 void Game::UnloadResources()
@@ -178,5 +201,6 @@ void Game::UnloadResources()
     ResourceManager& data = ResourceManager::Instance();
     data.ReleaseTexture(Resource::IMG_MENU);
 
+    UnloadMusicStream(GroundMusic);
     UnloadRenderTexture(target);
 }
