@@ -376,7 +376,7 @@ AABB TileMap::GetSweptAreaX(const AABB& hitbox) const
 }
 void TileMap::Render()
 {
-	/*Tile tile;
+	Tile tile;
 	Rectangle rc;
 	Vector2 pos;
 
@@ -401,7 +401,7 @@ void TileMap::Render()
 				}
 			}
 		}
-	}*/
+	}
 }
 void TileMap::Release()
 {
