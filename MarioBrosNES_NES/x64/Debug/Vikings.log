@@ -1,2 +1,7 @@
-﻿  Scene.cpp
-  Vikings.vcxproj -> C:\Users\sergi\Desktop\GITHub\SuperMarioBros-NES\x64\Debug\MarioBrosNES_NES.exe
+﻿  EnemyManager.cpp
+  Slime.cpp
+C:\Users\janaps\Documents\GitHub\SuperMarioBros-NES\src\Slime.cpp(105,13): warning C4244: '-=': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\janaps\Documents\GitHub\SuperMarioBros-NES\src\Slime.cpp(108,13): warning C4244: '+=': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\janaps\Documents\GitHub\SuperMarioBros-NES\src\Slime.cpp(87,6): warning C4101: 'anim_id': variable local sin referencia
+  Generando código...
+  Vikings.vcxproj -> C:\Users\janaps\Documents\GitHub\SuperMarioBros-NES\x64\Debug\MarioBrosNES_NES.exe

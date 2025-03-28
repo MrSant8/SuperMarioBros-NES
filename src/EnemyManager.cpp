@@ -76,11 +76,11 @@ void EnemyManager::Update(const AABB& player_hitbox)
 	for (Enemy* enemy : enemies)
 	{
 		shoot = enemy->Update(player_hitbox);
-		if (shoot)
+		/*if (shoot)
 		{
 			enemy->GetShootingPosDir(&p, &d);
 			shots->Add(p, d);
-		}
+		}*/
 	}
 }
 void EnemyManager::Draw() const

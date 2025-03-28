@@ -49,5 +49,8 @@ private:
 	int current_step;	//current step of the pattern
 	int current_frames;	//number of frames in the current step
 	std::vector<Step> pattern;
+
+	int limit_left = 288;
+	int limit_right = 416;
 };
 

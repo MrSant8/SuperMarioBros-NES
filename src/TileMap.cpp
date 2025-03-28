@@ -390,7 +390,7 @@ void TileMap::Render()
 				pos.x = (float)j * TILE_SIZE;
 				pos.y = (float)i * TILE_SIZE;
 
-				if (tile != Tile::LASER)
+				/*if (tile != Tile::LASER)
 				{
 					rc = dict_rect[(int)tile];
 					DrawTextureRec(*img_tiles, rc, pos, WHITE);
@@ -398,7 +398,7 @@ void TileMap::Render()
 				else
 				{
 					laser->Draw((int)pos.x, (int)pos.y);
-				}
+				}*/
 			}
 		}
 	}
