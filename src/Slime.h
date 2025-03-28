@@ -10,6 +10,9 @@
 
 #define SLIME_SHOT_SPEED	4
 
+#define GRAVITY_FORCE  1
+
+
 enum class SlimeState { ROAMING, ATTACK };
 enum class SlimeAnim {  IDLE_LEFT, IDLE_RIGHT, WALKING_LEFT, WALKING_RIGHT,
 						ATTACK_LEFT, ATTACK_RIGHT, NUM_ANIMATIONS };
@@ -52,5 +55,9 @@ private:
 
 	int limit_left = 288;
 	int limit_right = 416;
+
+	float vertical_speed = 0;
+	float MAX_FALL_SPEED = 5.0f;
+	float position_foor = 208;
 };
 

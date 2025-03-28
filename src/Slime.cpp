@@ -1,6 +1,7 @@
 #include "Slime.h"
 #include "Sprite.h"
 
+
 Slime::Slime(const Point& p, int width, int height, int frame_width, int frame_height) :
 	Enemy(p, width, height, frame_width, frame_height)
 {
@@ -41,12 +42,6 @@ AppStatus Slime::Initialise(Look look, const AABB& area)
 	for (i = 0; i < 3; ++i)
 		sprite->AddKeyFrame((int)SlimeAnim::WALKING_LEFT, { (float)i*n, 2*n, -n, n });
 
-	//sprite->SetAnimationDelay((int)SlimeAnim::ATTACK_RIGHT, SLIME_ANIM_DELAY);
-	//sprite->AddKeyFrame((int)SlimeAnim::ATTACK_RIGHT, { 0, 3*n, n, n });
-	//sprite->AddKeyFrame((int)SlimeAnim::ATTACK_RIGHT, { n, 3*n, n, n });
-	//sprite->SetAnimationDelay((int)SlimeAnim::ATTACK_LEFT, SLIME_ANIM_DELAY);
-	//sprite->AddKeyFrame((int)SlimeAnim::ATTACK_LEFT, { 0, 3*n, -n, n });
-	//sprite->AddKeyFrame((int)SlimeAnim::ATTACK_LEFT, { n, 3*n, -n, n });
 
 	this->look = look;
 	if(look == Look::LEFT)        sprite->SetAnimation((int)SlimeAnim::IDLE_LEFT);
@@ -98,8 +93,18 @@ bool Slime::Update(const AABB& box)
 			if (look == Look::LEFT)	sprite->SetAnimation((int)SlimeAnim::WALKING_LEFT);
 			else					sprite->SetAnimation((int)SlimeAnim::WALKING_RIGHT);
 		}
+		
+		if (pos.y == position_foor) {
+			pos.y = position_foor; // Aplicar la caída al Slime
 
+		}
+		else {
+			pos.y++;
+
+		}
+	
 		float speed = 1;
+
 		if (look == Look::LEFT)
 		{
 			pos.x -= speed;
