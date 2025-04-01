@@ -1,6 +1,9 @@
-﻿  Slime.cpp
-C:\Users\janaps\Documents\GitHub\SuperMarioBros-NES\src\Slime.cpp(98,12): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
-C:\Users\janaps\Documents\GitHub\SuperMarioBros-NES\src\Slime.cpp(110,13): warning C4244: '-=': conversión de 'float' a 'int'; posible pérdida de datos
-C:\Users\janaps\Documents\GitHub\SuperMarioBros-NES\src\Slime.cpp(113,13): warning C4244: '+=': conversión de 'float' a 'int'; posible pérdida de datos
-C:\Users\janaps\Documents\GitHub\SuperMarioBros-NES\src\Slime.cpp(82,6): warning C4101: 'anim_id': variable local sin referencia
-  Vikings.vcxproj -> C:\Users\janaps\Documents\GitHub\SuperMarioBros-NES\x64\Debug\MarioBrosNES_NES.exe
+﻿  Game.cpp
+  Player.cpp
+C:\Users\Usuari\Documents\GitHub\SuperMarioBros-NES\src\Player.cpp(160,23): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Usuari\Documents\GitHub\SuperMarioBros-NES\src\Player.cpp(301,24): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Usuari\Documents\GitHub\SuperMarioBros-NES\src\Player.cpp(350,25): warning C4244: '+=': conversion from 'double' to 'int', possible loss of data
+  Scene.cpp
+  main.cpp
+  Generating Code...
+  Vikings.vcxproj -> C:\Users\Usuari\Documents\GitHub\SuperMarioBros-NES\x64\Debug\MarioBrosNES_NES.exe

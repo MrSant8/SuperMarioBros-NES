@@ -94,23 +94,23 @@ bool Slime::Update(const AABB& box)
 			else					sprite->SetAnimation((int)SlimeAnim::WALKING_RIGHT);
 		}
 		
-		if (pos.y == position_foor) {
-			pos.y = position_foor; // Aplicar la caída al Slime
-
-		}
-		else {
-			pos.y++;
-
-		}
+		
 	
 		float speed = 1;
 
-		if (look == Look::LEFT)
-		{
-			pos.x -= speed;
+		if (pos.y == position_foor) {
+			pos.y = position_foor; // Aplicar la caída al Slime
+			if (look == Look::LEFT)
+			{
+				pos.x -= speed;
+			}
+			else {
+				pos.x += speed;
+
+			}
 		}
 		else {
-			pos.x += speed;
+			pos.y++;
 
 		}
 
