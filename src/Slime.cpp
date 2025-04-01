@@ -148,3 +148,14 @@ void Slime::GetShootingPosDir(Point* p, Point* d) const
 	}
 	p->y = pos.y + SLIME_SHOT_OFFSET_Y;*/
 } 
+
+void Slime::Kill()
+{
+	Enemy::Kill();  // Llamamos al método base para cambiar el estado a muerto
+	// Aquí puedes poner la lógica específica de Slime cuando muere, como cambiar la animación
+	Sprite* sprite = dynamic_cast<Sprite*>(render);
+	if (sprite)
+	{
+		sprite->SetAnimation((int)SlimeAnim::IDLE_LEFT); // Cambiar la animación del Slime
+	}
+}

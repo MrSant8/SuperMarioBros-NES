@@ -1,6 +1,9 @@
 #pragma once
 #include "Entity.h"
+#include "EnemyManager.h"
+#include "Enemy.h"
 #include "TileMap.h"
+#include <Vector>
 
 //Representation model size: 32x32
 #define PLAYER_FRAME_SIZE		32
@@ -66,6 +69,8 @@ public:
 	Vector2 GetPosition() const {
 		return Vector2{ (float)pos.x, (float)0.0 };
 	}
+
+	void CheckEnemyCollisions();
 private:
 	bool IsLookingRight() const;
 	bool IsLookingLeft() const;
@@ -111,5 +116,9 @@ private:
 	bool move_camera = false;
 
 	Sound jumpSound;
+
+	EnemyManager* enemyManager = new EnemyManager();
+	std::vector <Enemy*>enemyList;
+
 };
 

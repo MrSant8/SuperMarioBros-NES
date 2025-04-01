@@ -1,9 +1,10 @@
 ﻿  Game.cpp
   Player.cpp
-C:\Users\Usuari\Documents\GitHub\SuperMarioBros-NES\src\Player.cpp(160,23): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\Usuari\Documents\GitHub\SuperMarioBros-NES\src\Player.cpp(301,24): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
-C:\Users\Usuari\Documents\GitHub\SuperMarioBros-NES\src\Player.cpp(350,25): warning C4244: '+=': conversion from 'double' to 'int', possible loss of data
+C:\Users\Usuari\Documents\GitHub\SuperMarioBros-NES\src\Player.cpp(162,23): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Usuari\Documents\GitHub\SuperMarioBros-NES\src\Player.cpp(304,24): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Usuari\Documents\GitHub\SuperMarioBros-NES\src\Player.cpp(353,25): warning C4244: '+=': conversion from 'double' to 'int', possible loss of data
   Scene.cpp
   main.cpp
   Generating Code...
+LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
   Vikings.vcxproj -> C:\Users\Usuari\Documents\GitHub\SuperMarioBros-NES\x64\Debug\MarioBrosNES_NES.exe

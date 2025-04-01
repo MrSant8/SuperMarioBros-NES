@@ -15,6 +15,7 @@
 
 enum class EnemyType { SLIME, TURRET };
 
+enum class StateEntity {	ALIVE,	DEAD };
 class Enemy :  public Entity
 {
 public:
@@ -35,11 +36,16 @@ public:
 	//Retrieve the position and direction of the shot to be thrown
 	virtual void GetShootingPosDir(Point* pos, Point* dir) const = 0;
 
+	virtual void Kill();
+	bool IsDead() const;
+
 protected:
 	//Return true if the given hitbox is within the visibility area and the enemy is facing it
 	bool IsVisible(const AABB& hitbox);
 
 	Look look;
 	AABB visibility_area;
+	StateEntity stateEntity;
+
 };
 

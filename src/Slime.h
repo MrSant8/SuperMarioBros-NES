@@ -13,7 +13,7 @@
 #define GRAVITY_FORCE  1
 
 
-enum class SlimeState { ROAMING, ATTACK };
+enum class SlimeState { ROAMING, ATTACK};
 enum class SlimeAnim {  IDLE_LEFT, IDLE_RIGHT, WALKING_LEFT, WALKING_RIGHT,
 						ATTACK_LEFT, ATTACK_RIGHT, NUM_ANIMATIONS };
 
@@ -38,6 +38,8 @@ public:
 
 	//Retrieve the position and direction of the shot to be thrown
 	void GetShootingPosDir(Point* pos, Point* dir) const override;
+
+	void Kill() override;
 
 private:
 	//Create the pattern behaviour

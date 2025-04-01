@@ -73,14 +73,19 @@ void EnemyManager::Update(const AABB& player_hitbox)
 	bool shoot;
 	Point p, d;
 
-	for (Enemy* enemy : enemies)
+	for (auto it = enemies.begin(); it != enemies.end();)
 	{
+		Enemy* enemy = *it;
 		shoot = enemy->Update(player_hitbox);
-		/*if (shoot)
-		{
-			enemy->GetShootingPosDir(&p, &d);
-			shots->Add(p, d);
-		}*/
+
+		if (enemy->IsDead()) {
+			// Si el enemigo está muerto, lo eliminamos de la lista
+			delete enemy;
+			it = enemies.erase(it);  // Borra el enemigo muerto de la lista y mueve el iterador
+		}
+		else {
+			++it;  // Si no está muerto, seguimos con el siguiente enemigo
+		}
 	}
 }
 void EnemyManager::Draw() const

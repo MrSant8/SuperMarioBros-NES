@@ -3,6 +3,8 @@
 #include "Sprite.h"
 #include "TileMap.h"
 #include "Globals.h"
+#include "Enemy.h"
+#include "EnemyManager.h"
 #include <raymath.h>
 
 Player::Player(const Point& p, State s, Look view) :
@@ -215,6 +217,7 @@ void Player::Update()
 	//Instead, uses an independent behaviour for each axis.
 	MoveX();
 	MoveY();
+	CheckEnemyCollisions();
 
 	Sprite* sprite = dynamic_cast<Sprite*>(render);
 	sprite->Update();
@@ -450,4 +453,24 @@ void Player::Release()
 	ResourceManager& data = ResourceManager::Instance();
 	data.ReleaseTexture(Resource::IMG_PLAYER);
 	render->Release();
+}
+
+
+void Player::CheckEnemyCollisions()
+{
+	AABB playerBox = GetHitbox();
+	
+	for (Enemy* enemy : enemyManager->GetEnemies()) 
+	{
+		AABB enemyBox = enemy->GetHitbox();
+
+		if (playerBox.TestAABB(enemyBox))
+		{
+			if (playerBox.pos.y + playerBox.height - 5 <= enemyBox.pos.y)
+			{
+				enemy->Kill();  // Matar goomba
+			}
+		}
+	}
+	
 }
