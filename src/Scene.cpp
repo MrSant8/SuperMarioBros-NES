@@ -441,13 +441,6 @@ void Scene::RenderGUI() const
 	static int frame;
 	frame++;
 	frame %= 1000;
-	//font1->Draw(10, 5, TextFormat("SCORE:%d", player->GetScore()));
-	//font1->Draw(10, 20, TextFormat("FRAME:%d", frame), RED);
-	//font2->Draw(100, 5, TextFormat("SCORE:%d", player->GetScore()));
-	//font2->Draw(100, 20, TextFormat("FRAME:%d", frame), YELLOW);
-	//font3->Draw(260, 5, TextFormat("SCORE:%d", player->GetScore()));
-	//font3->Draw(260, 20, TextFormat("FRAME:%d", frame), GREEN);
 
-	//Temporal approach
-	//DrawText(TextFormat("SCORE : %d", player->GetScore()), 10, 10, 8, LIGHTGRAY);
+	
 }

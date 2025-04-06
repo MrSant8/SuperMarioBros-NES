@@ -11,9 +11,11 @@ FadeTransition::FadeTransition()
     rect = {};
     state = FadeState::IN;
 }
+
 FadeTransition::~FadeTransition()
 {
 }
+
 void FadeTransition::Set(GameState to, int frames_to, const Rectangle& rect)
 {
     is_active = true;
@@ -25,6 +27,7 @@ void FadeTransition::Set(GameState to, int frames_to, const Rectangle& rect)
 
     state = FadeState::IN;
 }
+
 void FadeTransition::Set(GameState from, int frames_from, GameState to, int frames_to, const Rectangle& rect)
 {
     is_active = true;
@@ -38,20 +41,22 @@ void FadeTransition::Set(GameState from, int frames_from, GameState to, int fram
 
     state = FadeState::OUT;
 }
+
 bool FadeTransition::IsActive()
 {
     return is_active;
 }
+
 GameState FadeTransition::Update()
 {
     if (is_active)
     {
         frames_counter++;
 
-        //Update the fade state based on the current state
+        // Update the fade state based on the current state
         if (state == FadeState::OUT)
         {
-            //Check if it has reached the end
+            // Check if it has reached the end
             if (frames_counter >= frames_from)
             {
                 state = FadeState::IN;
@@ -60,17 +65,18 @@ GameState FadeTransition::Update()
         }
         else if (state == FadeState::IN)
         {
-            //Check if it has reached the end
+            // Check if it has reached the end
             if (frames_counter >= frames_to)
-            {   
+            {
                 is_active = false; // Transition complete
             }
         }
     }
-    //If the fade effect is currently in the "fade-out" state,
-    //return the source state (from), otherwise return the target state (to).
+    // If the fade effect is currently in the "fade-out" state,
+    // return the source state (from), otherwise return the target state (to).
     return state == FadeState::OUT ? from : to;
 }
+
 void FadeTransition::Render()
 {
     float alpha;
@@ -79,22 +85,20 @@ void FadeTransition::Render()
     {
         if (state == FadeState::OUT)
         {
-            //Calculate the alpha value based on the current frame and total frames
-            alpha = (float)frames_counter / (float)frames_from;
+            // Calculate the alpha value based on the current frame and total frames
+            alpha = static_cast<float>(frames_counter) / static_cast<float>(frames_from);
 
-            //Black rectangle with alpha value from 0 to 1
-            //DrawRectangle(rect.x, rect.y, rect.width, rect.height, Fade(BLACK, alpha));
-            //Color color = { 0,0,0,(unsigned char)(alpha * 255.0f) };
+            // Black rectangle with alpha value from 0 to 1
             Color color = Fade(BLACK, alpha);
             DrawRectangle(rect.x, rect.y, rect.width, rect.height, color);
         }
         else if (state == FadeState::IN)
         {
-            //Calculate the alpha value based on the current frame and total frames
-            alpha = (float)frames_counter / (float)frames_to;
+            // Calculate the alpha value based on the current frame and total frames
+            alpha = static_cast<float>(frames_counter) / static_cast<float>(frames_to);
 
-            //Black rectangle with alpha value from 1 to 0
-            DrawRectangle(rect.x, rect.y, rect.width, rect.height, Fade(BLACK, 1-alpha));
+            // Black rectangle with alpha value from 1 to 0
+            DrawRectangle(rect.x, rect.y, rect.width, rect.height, Fade(BLACK, 1 - alpha));
         }
     }
 }
