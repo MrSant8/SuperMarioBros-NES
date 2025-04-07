@@ -45,6 +45,7 @@ void EnemyManager::Add(const Point& pos, EnemyType type, const AABB& area, Look 
 		
 	enemy->Initialise(look, area);
 	enemies.push_back(enemy);
+	updatelist();
 }
 AABB EnemyManager::GetEnemyHitBox(const Point& pos, EnemyType type) const
 {
@@ -71,17 +72,29 @@ AABB EnemyManager::GetEnemyHitBox(const Point& pos, EnemyType type) const
 void EnemyManager::Update(const AABB& player_hitbox)
 {
 	bool shoot;
-	Point p, d;
+	//Point p, d;
 
-	for (Enemy* enemy : enemies)
+	//for (Enemy* enemy : enemies)
+	//{
+	//	shoot = enemy->Update(player_hitbox);
+	//}
+	for (auto it = enemies.begin(); it != enemies.end(); )
 	{
+		Enemy* enemy = *it;
+
+		// Si está muerto, lo eliminamos del vector y de memoria
+		if (enemy->isDead()) {
+			delete enemy;
+			it = enemies.erase(it);
+			continue;
+		}
+
+		// Si no está muerto, lo actualizamos
 		shoot = enemy->Update(player_hitbox);
-		/*if (shoot)
-		{
-			enemy->GetShootingPosDir(&p, &d);
-			shots->Add(p, d);
-		}*/
+
+		++it;
 	}
+	
 }
 void EnemyManager::Draw() const
 {
@@ -112,3 +125,31 @@ void EnemyManager::Release()
 //		return Vector2(pos.x, pos.y);
 //	}
 //}
+void EnemyManager::CheckPlayerCollision(const AABB& playerHitbox, const Point& playerDir)
+{
+	updatelist();
+
+	LOG("%d", enemies.size());
+	for (Enemy* enemy : enemies)
+	{
+		AABB enemyHitbox = enemy->GetHitbox();
+		Rectangle playerRect = { (float)playerHitbox.pos.x, (float)playerHitbox.pos.y, (float)playerHitbox.width, (float)playerHitbox.height };
+		Rectangle enemyRect = { (float)enemyHitbox.pos.x, (float)enemyHitbox.pos.y, (float)enemyHitbox.width, (float)enemyHitbox.height };
+
+		// Check vertical collision, solo si el jugador está bajando
+		if (CheckCollisionRecs(playerRect, enemyRect) && playerDir.x == enemyHitbox.pos.x)
+		{
+
+			if (enemy->StateSlime())
+			{
+				enemy->isDead();
+			}
+		}
+
+		if (enemy->isDead())
+		{
+			delete enemy;
+
+		}
+	}
+}

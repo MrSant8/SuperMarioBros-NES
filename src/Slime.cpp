@@ -123,6 +123,10 @@ bool Slime::Update(const AABB& box)
 			sprite->SetAnimation((int)SlimeAnim::WALKING_LEFT);
 		}
 	}
+	if (isDead()) 
+	{
+		return false;
+	}
 	sprite->Update();
 
 	return shoot;

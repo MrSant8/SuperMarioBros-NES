@@ -1,8 +1,8 @@
 #pragma once
 #include "Entity.h"
 #include "TileMap.h"
+#include "Enemy.h"
 #include "EnemyManager.h"
-
 //Representation model size: 32x32
 #define PLAYER_FRAME_SIZE		32
 
@@ -114,6 +114,8 @@ private:
 	bool move_camera = false;
 
 	Sound jumpSound;
-	EnemyManager* enemy;
+	Enemy* enemy;
+
+	EnemyManager* enemyManager;
 };
 

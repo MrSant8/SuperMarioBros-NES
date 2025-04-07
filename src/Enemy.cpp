@@ -32,3 +32,12 @@ void Enemy::DrawVisibilityArea(const Color& col) const
 {
 	DrawRectangleLines(visibility_area.pos.x, visibility_area.pos.y, visibility_area.width, visibility_area.height, col);
 }
+
+bool Enemy::isDead()
+{
+	return state == EnemyState::DEAD;
+}
+
+EnemyState  Enemy:: GetState() const { 
+	return state; 
+}

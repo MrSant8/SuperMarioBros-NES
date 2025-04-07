@@ -158,7 +158,8 @@ bool TileMap::IsTileLadderTop(Tile tile) const
 {
 	switch (tile)
 	{
-	case Tile::BLOCK_SQUARE2_TL:
+	case Tile::SLIME:
+	/*case Tile::BLOCK_SQUARE2_TL:
 	case Tile::BLOCK_VERT2_T:
 	case Tile::BLOCK_VERT2_B:
 	case Tile::BLOCK_HORIZ2_L:
@@ -168,7 +169,7 @@ bool TileMap::IsTileLadderTop(Tile tile) const
 	case Tile::BLOCK_HORIZ3_M:
 	case Tile::BLOCK_HORIZ3_R:
 	case Tile::BLOCK_BEAM_L:
-	case Tile::BLOCK_BEAM_R:
+	case Tile::BLOCK_BEAM_R:*/
 		return true;
 	default:
 		return false;

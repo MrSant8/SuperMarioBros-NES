@@ -4,6 +4,7 @@
 #include "TileMap.h"
 #include "Globals.h"
 #include <raymath.h>
+#include "Enemy.h"
 #include "EnemyManager.h"
 
 Player::Player(const Point& p, State s, Look view) :
@@ -219,6 +220,8 @@ void Player::Update()
 
 	Sprite* sprite = dynamic_cast<Sprite*>(render);
 	sprite->Update();
+
+	//enemyManager->CheckPlayerCollision(GetHitbox(), dir);
 }
 void Player::MoveX()
 {
@@ -425,6 +428,8 @@ void Player::LogicClimbing()
 		//Case leaving the ladder descending.
 		Stop();
 		sprite->SetAutomaticMode();
+
+		enemy->isDead();
 	}
 	else if (!map->TestOnLadder(box, &tmp))
 	{

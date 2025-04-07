@@ -14,7 +14,7 @@
 #define TURRET_PHYSICAL_HEIGHT	26
 
 enum class EnemyType { SLIME, TURRET };
-
+enum class EnemyState{ALIVE,DEAD};
 class Enemy :  public Entity
 {
 public:
@@ -35,10 +35,17 @@ public:
 	//Retrieve the position and direction of the shot to be thrown
 	virtual void GetShootingPosDir(Point* pos, Point* dir) const = 0;
 
+	virtual EnemyState GetState() const;
+	virtual bool isDead();
+	bool StateSlime() {
+		return type == EnemyType::SLIME;
+	}
+
 protected:
 	//Return true if the given hitbox is within the visibility area and the enemy is facing it
 	bool IsVisible(const AABB& hitbox);
-
+	EnemyState state = EnemyState::ALIVE;
+	EnemyType type;
 	Look look;
 	AABB visibility_area;
 };
