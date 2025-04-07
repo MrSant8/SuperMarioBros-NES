@@ -1,6 +1,7 @@
 #include "Slime.h"
 #include "Sprite.h"
 
+
 Slime::Slime(const Point& p, int width, int height, int frame_width, int frame_height) :
 	Enemy(p, width, height, frame_width, frame_height)
 {
@@ -10,11 +11,9 @@ Slime::Slime(const Point& p, int width, int height, int frame_width, int frame_h
 	current_step = 0;
 	current_frames = 0;
 }
-
 Slime::~Slime()
 {
 }
-
 AppStatus Slime::Initialise(Look look, const AABB& area)
 {
 	int i;
@@ -43,12 +42,6 @@ AppStatus Slime::Initialise(Look look, const AABB& area)
 	for (i = 0; i < 3; ++i)
 		sprite->AddKeyFrame((int)SlimeAnim::WALKING_LEFT, { (float)i * n, 2 * n, -n, n });
 
-	sprite->SetAnimationDelay((int)SlimeAnim::ATTACK_RIGHT, SLIME_ANIM_DELAY);
-	sprite->AddKeyFrame((int)SlimeAnim::ATTACK_RIGHT, { 0, 3 * n, n, n });
-	sprite->AddKeyFrame((int)SlimeAnim::ATTACK_RIGHT, { n, 3 * n, n, n });
-	sprite->SetAnimationDelay((int)SlimeAnim::ATTACK_LEFT, SLIME_ANIM_DELAY);
-	sprite->AddKeyFrame((int)SlimeAnim::ATTACK_LEFT, { 0, 3 * n, -n, n });
-	sprite->AddKeyFrame((int)SlimeAnim::ATTACK_LEFT, { n, 3 * n, -n, n });
 
 	this->look = look;
 	if (look == Look::LEFT)        sprite->SetAnimation((int)SlimeAnim::IDLE_LEFT);
@@ -60,21 +53,28 @@ AppStatus Slime::Initialise(Look look, const AABB& area)
 
 	return AppStatus::OK;
 }
-
 void Slime::InitPattern()
 {
-    const int n = SLIME_ANIM_DELAY * 2; // Animación rápida
+	//Multiplying by 3 ensures sufficient time for displaying all 3 frames of the
+	//walking animation, resulting in smoother transitions and preventing the animation
+	//from appearing rushed or incomplete
+	const int n = SLIME_ANIM_DELAY * 3;
 
-    // Asegúrate de convertir explícitamente a 'int' si estás utilizando 'int' en 'Point'
-    pattern.push_back({ Point{ static_cast<int>(-SLIME_SPEED), 0 }, n, (int)SlimeAnim::WALKING_LEFT });
-    pattern.push_back({ Point{ static_cast<int>(-SLIME_SPEED), 0 }, n, (int)SlimeAnim::WALKING_LEFT });
-    pattern.push_back({ Point{ static_cast<int>(-SLIME_SPEED), 0 }, n, (int)SlimeAnim::WALKING_LEFT });
+	pattern.push_back({ {0, 0}, 2 * n, (int)SlimeAnim::IDLE_RIGHT });
+	pattern.push_back({ {SLIME_SPEED, 0}, n, (int)SlimeAnim::WALKING_RIGHT });
+	pattern.push_back({ {0, 0}, n, (int)SlimeAnim::IDLE_RIGHT });
+	pattern.push_back({ {SLIME_SPEED, 0}, n, (int)SlimeAnim::WALKING_RIGHT });
+	pattern.push_back({ {0, 0}, n, (int)SlimeAnim::IDLE_RIGHT });
 
-    current_step = 0;
-    current_frames = 0;
+	pattern.push_back({ {0, 0}, 2 * n, (int)SlimeAnim::IDLE_LEFT });
+	pattern.push_back({ {-SLIME_SPEED, 0}, n, (int)SlimeAnim::WALKING_LEFT });
+	pattern.push_back({ {0, 0}, n, (int)SlimeAnim::IDLE_LEFT });
+	pattern.push_back({ {-SLIME_SPEED, 0}, n, (int)SlimeAnim::WALKING_LEFT });
+	pattern.push_back({ {0, 0}, n, (int)SlimeAnim::IDLE_LEFT });
+
+	current_step = 0;
+	current_frames = 0;
 }
-
-
 bool Slime::Update(const AABB& box)
 {
 	Sprite* sprite = dynamic_cast<Sprite*>(render);
@@ -83,46 +83,60 @@ bool Slime::Update(const AABB& box)
 
 	if (state == SlimeState::ROAMING)
 	{
-		pos += pattern[current_step].speed;
-		current_frames++;
-
-		if (current_frames == pattern[current_step].frames)
+		if (IsVisible(box))
 		{
-			current_step++;
-			current_step %= pattern.size();
-			current_frames = 0;
+			//state = SlimeState::ATTACK;
+			//The attack animation consists of 2 frames, with the second one being when
+			//we throw the shot. Wait for a frame before initiating the attack.
+			//attack_delay = SLIME_ANIM_DELAY;
 
-			anim_id = pattern[current_step].anim;
-			sprite->SetAnimation(anim_id);
-			UpdateLook(anim_id);
+			if (look == Look::LEFT)	sprite->SetAnimation((int)SlimeAnim::WALKING_LEFT);
+			else					sprite->SetAnimation((int)SlimeAnim::WALKING_RIGHT);
+		}
+
+	
+		float speed = 1;
+
+		if (pos.y == position_foor) {
+			pos.y = position_foor; // Aplicar la caída al Slime
+			if (look == Look::LEFT)
+			{
+				pos.x -= speed;
+			}
+			else {
+				pos.x += speed;
+
+			}
+		}
+		else {
+			pos.y++;
+
+		}
+	
+
+		if (pos.x <= limit_left) {
+			look = Look::RIGHT;
+			sprite->SetAnimation((int)SlimeAnim::WALKING_RIGHT);
+		}
+		else if (pos.x >= limit_right) {
+			look = Look::LEFT;
+			sprite->SetAnimation((int)SlimeAnim::WALKING_LEFT);
 		}
 	}
-	else if (state == SlimeState::ATTACK)
-	{
-		attack_delay--;
-		if (attack_delay == 0)
-		{
-			shoot = true;
-			attack_delay = 2 * SLIME_ANIM_DELAY;
-		}
-	}
-
 	sprite->Update();
 
 	return shoot;
 }
-
 void Slime::UpdateLook(int anim_id)
 {
 	SlimeAnim anim = (SlimeAnim)anim_id;
 	look = (anim == SlimeAnim::IDLE_LEFT ||
 		anim == SlimeAnim::WALKING_LEFT ||
-		anim == SlimeAnim::ATTACK_LEFT) ? Look::LEFT : Look::RIGHT;
+		anim == SlimeAnim::WALKING_LEFT) ? Look::LEFT : Look::RIGHT;
 }
-
 void Slime::GetShootingPosDir(Point* p, Point* d) const
 {
-	if (look == Look::LEFT)
+	/*if (look == Look::LEFT)
 	{
 		p->x = pos.x + SLIME_SHOT_OFFSET_X_LEFT;
 		*d = { -SLIME_SHOT_SPEED, 0 };
@@ -132,5 +146,5 @@ void Slime::GetShootingPosDir(Point* p, Point* d) const
 		p->x = pos.x + SLIME_SHOT_OFFSET_X_RIGHT;
 		*d = { SLIME_SHOT_SPEED, 0 };
 	}
-	p->y = pos.y + SLIME_SHOT_OFFSET_Y;
+	p->y = pos.y + SLIME_SHOT_OFFSET_Y;*/
 }

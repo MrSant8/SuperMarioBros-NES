@@ -1,13 +1,14 @@
 #pragma once
 #include "Entity.h"
 #include "TileMap.h"
+#include "EnemyManager.h"
 
 //Representation model size: 32x32
 #define PLAYER_FRAME_SIZE		32
 
 //Logical model size: 12x28
-#define PLAYER_PHYSICAL_WIDTH	12
-#define PLAYER_PHYSICAL_HEIGHT	28
+#define PLAYER_PHYSICAL_WIDTH	16
+#define PLAYER_PHYSICAL_HEIGHT	16
 
 //Horizontal speed and vertical speed while falling down
 #define PLAYER_SPEED			2
@@ -66,6 +67,8 @@ public:
 	Vector2 GetPosition() const {
 		return Vector2{ (float)pos.x, (float)0.0 };
 	}
+
+	void onColision();
 private:
 	bool IsLookingRight() const;
 	bool IsLookingLeft() const;
@@ -111,5 +114,6 @@ private:
 	bool move_camera = false;
 
 	Sound jumpSound;
+	EnemyManager* enemy;
 };
 

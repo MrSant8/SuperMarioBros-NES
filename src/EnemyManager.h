@@ -32,6 +32,7 @@ public:
 	//Delete all enemies and clear the enemy vector
 	void Release();
 
+	Vector2 GetPosition();
 private:
 	std::vector<Enemy*> enemies;
 	

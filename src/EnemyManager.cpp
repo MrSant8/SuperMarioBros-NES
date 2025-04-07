@@ -102,3 +102,13 @@ void EnemyManager::Release()
 		delete enemy;
 	enemies.clear();
 }
+
+//Vector2 EnemyManager::GetPosition()
+//{
+//	EnemyType type;
+//
+//	if (type == EnemyType::SLIME)
+//	{
+//		return Vector2(pos.x, pos.y);
+//	}
+//}

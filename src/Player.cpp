@@ -4,6 +4,7 @@
 #include "TileMap.h"
 #include "Globals.h"
 #include <raymath.h>
+#include "EnemyManager.h"
 
 Player::Player(const Point& p, State s, Look view) :
 	Entity(p, PLAYER_PHYSICAL_WIDTH, PLAYER_PHYSICAL_HEIGHT, PLAYER_FRAME_SIZE, PLAYER_FRAME_SIZE)
@@ -451,3 +452,12 @@ void Player::Release()
 	data.ReleaseTexture(Resource::IMG_PLAYER);
 	render->Release();
 }
+
+//void Player::onColision() 
+//{
+//	if (pos.y < enemy->GetPosition().y && pos.x < enemy->GetPosition().x)
+//	{
+//
+//	}
+//
+//}
