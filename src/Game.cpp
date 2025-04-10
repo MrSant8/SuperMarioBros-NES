@@ -31,7 +31,7 @@ AppStatus Game::Initialise(float scale)
     h = WINDOW_HEIGHT * scale;
 
     //Initialise window
-    InitWindow((int)w, (int)h, "Vikings");
+    InitWindow((int)w, (int)h, "Mario Bros NES");
 
     InitAudioDevice(); // Initialize Audio System
 
@@ -39,7 +39,7 @@ AppStatus Game::Initialise(float scale)
     target = LoadRenderTexture(WINDOW_WIDTH, WINDOW_HEIGHT);
     if (target.id == 0)
     {
-        LOG("Failed to create render texture");
+        LOG("Error al cargar las texturas");
         return AppStatus::ERROR;
     }
     SetTextureFilter(target.texture, TEXTURE_FILTER_POINT);
@@ -49,12 +49,12 @@ AppStatus Game::Initialise(float scale)
     //Load resources
     if (LoadResources() != AppStatus::OK)
     {
-        LOG("Failed to load resources");
+        LOG("Error al cargar los resources");
         return AppStatus::ERROR;
     }
 
     //Initialise the fade in effect
-    fade_transition.Set(GameState::MAIN_MENU, 60, dst);
+    fade_transition.Set(GameState::INTRO, 60, dst); // modificar esto ma costao encontrarlo este es para el inicio del juego
 
     //Set the target frame rate for the application
     SetTargetFPS(60);
@@ -67,13 +67,23 @@ AppStatus Game::LoadResources()
 {
     ResourceManager& data = ResourceManager::Instance();
 
+    // Primero cargamos la textura para el intro
+    if (data.LoadTexture(Resource::IMG_MENU_INTRO, "images/menuFinalIntroNames.png") != AppStatus::OK)
+    {
+        return AppStatus::ERROR;
+    }
+    img_menu2 = data.GetTexture(Resource::IMG_MENU_INTRO);
+
+
+
+    // Luego cargamos la textura para el menú
     if (data.LoadTexture(Resource::IMG_MENU, "images/menu.png") != AppStatus::OK)
     {
         return AppStatus::ERROR;
     }
     img_menu = data.GetTexture(Resource::IMG_MENU);
 
-    // Load Music
+    // Cargar música
     GroundMusic = LoadMusicStream("Assets/Audio/Music/GroundTheme.mp3");
     if (GroundMusic.stream.buffer == nullptr)
     {
@@ -83,6 +93,7 @@ AppStatus Game::LoadResources()
 
     return AppStatus::OK;
 }
+
 AppStatus Game::BeginPlay()
 {
     scene = new Scene();
@@ -135,7 +146,14 @@ AppStatus Game::Update()
     {
         switch (state)
         {
-            case GameState::MAIN_MENU: 
+        case GameState::INTRO:
+            if (IsKeyPressed(KEY_SPACE))
+            {
+                fade_transition.Set(GameState::INTRO, 60, GameState::MAIN_MENU, 60, dst);
+            }
+            break;
+
+        case GameState::MAIN_MENU: 
                 if (IsKeyPressed(KEY_ESCAPE)) return AppStatus::QUIT;
                 if (IsKeyPressed(KEY_SPACE))
                 {
@@ -173,6 +191,11 @@ void Game::Render()
     
     switch (state)
     {
+        
+        case GameState::INTRO:
+            DrawTexture(*img_menu2, 0, 0, WHITE);
+            break;
+    
         case GameState::MAIN_MENU:
             DrawTexture(*img_menu, 0, 0, WHITE);
             break;
@@ -200,6 +223,7 @@ void Game::UnloadResources()
 {
     ResourceManager& data = ResourceManager::Instance();
     data.ReleaseTexture(Resource::IMG_MENU);
+    data.ReleaseTexture(Resource::IMG_MENU_INTRO);
 
     UnloadMusicStream(GroundMusic);
     UnloadRenderTexture(target);

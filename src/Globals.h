@@ -7,7 +7,7 @@
 enum class AppStatus { OK = 0, ERROR, QUIT };
 
 //Game states
-enum class GameState { MAIN_MENU, PLAYING, SETTINGS, CREDITS };
+enum class GameState { INTRO, MAIN_MENU, PLAYING, SETTINGS, CREDITS };
 
 //Main return values
 #define EXIT_SUCCESS	0
@@ -19,7 +19,7 @@ void log(const char file[], int line, const char* text, ...);
 
 //Window size
 #define WINDOW_WIDTH    256
-#define WINDOW_HEIGHT   500
+#define WINDOW_HEIGHT   300
 
 //Game constants
 #define MARGIN_GUI_Y	28

@@ -3,9 +3,9 @@
 #include "Sprite.h"
 #include "TileMap.h"
 #include "Globals.h"
+#include <raymath.h>
 #include "Enemy.h"
 #include "EnemyManager.h"
-#include <raymath.h>
 
 Player::Player(const Point& p, State s, Look view) :
 	Entity(p, PLAYER_PHYSICAL_WIDTH, PLAYER_PHYSICAL_HEIGHT, PLAYER_FRAME_SIZE, PLAYER_FRAME_SIZE)
@@ -217,10 +217,11 @@ void Player::Update()
 	//Instead, uses an independent behaviour for each axis.
 	MoveX();
 	MoveY();
-	CheckEnemyCollisions();
 
 	Sprite* sprite = dynamic_cast<Sprite*>(render);
 	sprite->Update();
+
+	//enemyManager->CheckPlayerCollision(GetHitbox(), dir);
 }
 void Player::MoveX()
 {
@@ -427,6 +428,8 @@ void Player::LogicClimbing()
 		//Case leaving the ladder descending.
 		Stop();
 		sprite->SetAutomaticMode();
+
+		enemy->isDead();
 	}
 	else if (!map->TestOnLadder(box, &tmp))
 	{
@@ -455,22 +458,11 @@ void Player::Release()
 	render->Release();
 }
 
-
-void Player::CheckEnemyCollisions()
-{
-	AABB playerBox = GetHitbox();
-	
-	for (Enemy* enemy : enemyManager->GetEnemies()) 
-	{
-		AABB enemyBox = enemy->GetHitbox();
-
-		if (playerBox.TestAABB(enemyBox))
-		{
-			if (playerBox.pos.y + playerBox.height - 5 <= enemyBox.pos.y)
-			{
-				enemy->Kill();  // Matar goomba
-			}
-		}
-	}
-	
-}
+//void Player::onColision() 
+//{
+//	if (pos.y < enemy->GetPosition().y && pos.x < enemy->GetPosition().x)
+//	{
+//
+//	}
+//
+//}

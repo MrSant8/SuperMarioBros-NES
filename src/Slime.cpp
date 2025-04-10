@@ -31,22 +31,22 @@ AppStatus Slime::Initialise(Look look, const AABB& area)
 	sprite->SetNumberAnimations((int)SlimeAnim::NUM_ANIMATIONS);
 
 	sprite->SetAnimationDelay((int)SlimeAnim::IDLE_RIGHT, SLIME_ANIM_DELAY);
-	sprite->AddKeyFrame((int)SlimeAnim::IDLE_RIGHT, { 0, 2*n, n, n });
+	sprite->AddKeyFrame((int)SlimeAnim::IDLE_RIGHT, { 0, 2 * n, n, n });
 	sprite->SetAnimationDelay((int)SlimeAnim::IDLE_LEFT, SLIME_ANIM_DELAY);
-	sprite->AddKeyFrame((int)SlimeAnim::IDLE_LEFT, { 0, 2*n, -n, n });
+	sprite->AddKeyFrame((int)SlimeAnim::IDLE_LEFT, { 0, 2 * n, -n, n });
 
 	sprite->SetAnimationDelay((int)SlimeAnim::WALKING_RIGHT, SLIME_ANIM_DELAY);
 	for (i = 0; i < 3; ++i)
-		sprite->AddKeyFrame((int)SlimeAnim::WALKING_RIGHT, { (float)i*n, 2*n, n, n });
+		sprite->AddKeyFrame((int)SlimeAnim::WALKING_RIGHT, { (float)i * n, 2 * n, n, n });
 	sprite->SetAnimationDelay((int)SlimeAnim::WALKING_LEFT, SLIME_ANIM_DELAY);
 	for (i = 0; i < 3; ++i)
-		sprite->AddKeyFrame((int)SlimeAnim::WALKING_LEFT, { (float)i*n, 2*n, -n, n });
+		sprite->AddKeyFrame((int)SlimeAnim::WALKING_LEFT, { (float)i * n, 2 * n, -n, n });
 
 
 	this->look = look;
-	if(look == Look::LEFT)        sprite->SetAnimation((int)SlimeAnim::IDLE_LEFT);
+	if (look == Look::LEFT)        sprite->SetAnimation((int)SlimeAnim::IDLE_LEFT);
 	else if (look == Look::RIGHT) sprite->SetAnimation((int)SlimeAnim::IDLE_RIGHT);
-	
+
 	visibility_area = area;
 
 	InitPattern();
@@ -58,20 +58,20 @@ void Slime::InitPattern()
 	//Multiplying by 3 ensures sufficient time for displaying all 3 frames of the
 	//walking animation, resulting in smoother transitions and preventing the animation
 	//from appearing rushed or incomplete
-	const int n = SLIME_ANIM_DELAY*3;
+	const int n = SLIME_ANIM_DELAY * 3;
 
-	pattern.push_back({ {0, 0}, 2*n, (int)SlimeAnim::IDLE_RIGHT });
+	pattern.push_back({ {0, 0}, 2 * n, (int)SlimeAnim::IDLE_RIGHT });
 	pattern.push_back({ {SLIME_SPEED, 0}, n, (int)SlimeAnim::WALKING_RIGHT });
 	pattern.push_back({ {0, 0}, n, (int)SlimeAnim::IDLE_RIGHT });
 	pattern.push_back({ {SLIME_SPEED, 0}, n, (int)SlimeAnim::WALKING_RIGHT });
 	pattern.push_back({ {0, 0}, n, (int)SlimeAnim::IDLE_RIGHT });
-	
-	pattern.push_back({ {0, 0}, 2*n, (int)SlimeAnim::IDLE_LEFT });
+
+	pattern.push_back({ {0, 0}, 2 * n, (int)SlimeAnim::IDLE_LEFT });
 	pattern.push_back({ {-SLIME_SPEED, 0}, n, (int)SlimeAnim::WALKING_LEFT });
 	pattern.push_back({ {0, 0}, n, (int)SlimeAnim::IDLE_LEFT });
 	pattern.push_back({ {-SLIME_SPEED, 0}, n, (int)SlimeAnim::WALKING_LEFT });
 	pattern.push_back({ {0, 0}, n, (int)SlimeAnim::IDLE_LEFT });
-	
+
 	current_step = 0;
 	current_frames = 0;
 }
@@ -93,8 +93,7 @@ bool Slime::Update(const AABB& box)
 			if (look == Look::LEFT)	sprite->SetAnimation((int)SlimeAnim::WALKING_LEFT);
 			else					sprite->SetAnimation((int)SlimeAnim::WALKING_RIGHT);
 		}
-		
-		
+
 	
 		float speed = 1;
 
@@ -113,6 +112,7 @@ bool Slime::Update(const AABB& box)
 			pos.y++;
 
 		}
+	
 
 		if (pos.x <= limit_left) {
 			look = Look::RIGHT;
@@ -123,6 +123,10 @@ bool Slime::Update(const AABB& box)
 			sprite->SetAnimation((int)SlimeAnim::WALKING_LEFT);
 		}
 	}
+	if (isDead()) 
+	{
+		return false;
+	}
 	sprite->Update();
 
 	return shoot;
@@ -130,9 +134,9 @@ bool Slime::Update(const AABB& box)
 void Slime::UpdateLook(int anim_id)
 {
 	SlimeAnim anim = (SlimeAnim)anim_id;
-	look = (anim == SlimeAnim::IDLE_LEFT || 
-			anim == SlimeAnim::WALKING_LEFT || 
-			anim == SlimeAnim::WALKING_LEFT) ? Look::LEFT : Look::RIGHT;
+	look = (anim == SlimeAnim::IDLE_LEFT ||
+		anim == SlimeAnim::WALKING_LEFT ||
+		anim == SlimeAnim::WALKING_LEFT) ? Look::LEFT : Look::RIGHT;
 }
 void Slime::GetShootingPosDir(Point* p, Point* d) const
 {
@@ -147,15 +151,4 @@ void Slime::GetShootingPosDir(Point* p, Point* d) const
 		*d = { SLIME_SHOT_SPEED, 0 };
 	}
 	p->y = pos.y + SLIME_SHOT_OFFSET_Y;*/
-} 
-
-void Slime::Kill()
-{
-	Enemy::Kill();  // Llamamos al método base para cambiar el estado a muerto
-	// Aquí puedes poner la lógica específica de Slime cuando muere, como cambiar la animación
-	Sprite* sprite = dynamic_cast<Sprite*>(render);
-	if (sprite)
-	{
-		sprite->SetAnimation((int)SlimeAnim::IDLE_LEFT); // Cambiar la animación del Slime
-	}
 }

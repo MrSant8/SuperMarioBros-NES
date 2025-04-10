@@ -1,14 +1,11 @@
 #include "Enemy.h"
 #include "Sprite.h"
 
-
 Enemy::Enemy(const Point& p, int width, int height, int frame_width, int frame_height) : 
 	Entity(p, width, height, frame_width, frame_height)
 {
 	visibility_area = {};
 	look = Look::LEFT;
-	stateEntity = StateEntity::ALIVE;
-
 }
 Enemy::~Enemy()
 {
@@ -36,12 +33,11 @@ void Enemy::DrawVisibilityArea(const Color& col) const
 	DrawRectangleLines(visibility_area.pos.x, visibility_area.pos.y, visibility_area.width, visibility_area.height, col);
 }
 
-void Enemy::Kill()
+bool Enemy::isDead()
 {
-	stateEntity = StateEntity::DEAD;  // Cambia el estado a muerto
+	return state == EnemyState::DEAD;
 }
 
-bool Enemy::IsDead() const
-{
-	return stateEntity == StateEntity::DEAD;  // Devuelve si el enemigo está muerto
+EnemyState  Enemy:: GetState() const { 
+	return state; 
 }

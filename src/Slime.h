@@ -1,7 +1,7 @@
 #pragma once
 #include "Enemy.h"
 
-#define SLIME_SPEED			1
+#define SLIME_SPEED			1 // Asegúrate de que esto sea un valor flotante (float)
 #define SLIME_ANIM_DELAY	(4*ANIM_DELAY)
 
 #define SLIME_SHOT_OFFSET_X_LEFT	-14
@@ -13,15 +13,17 @@
 #define GRAVITY_FORCE  1
 
 
-enum class SlimeState { ROAMING, ATTACK};
-enum class SlimeAnim {  IDLE_LEFT, IDLE_RIGHT, WALKING_LEFT, WALKING_RIGHT,
-						ATTACK_LEFT, ATTACK_RIGHT, NUM_ANIMATIONS };
+enum class SlimeState { ROAMING, ATTACK };
+enum class SlimeAnim {
+	IDLE_LEFT, IDLE_RIGHT, WALKING_LEFT, WALKING_RIGHT,
+	ATTACK_LEFT, ATTACK_RIGHT, NUM_ANIMATIONS
+};
 
 struct Step
 {
-	Point speed;	//direction
-	int frames;		//duration in number of frames
-	int anim;		//graphical representation
+	Point speed;	// Dirección de movimiento
+	int frames;		// Duración en número de frames
+	int anim;		// Representación gráfica
 };
 
 class Slime : public Enemy
@@ -30,29 +32,27 @@ public:
 	Slime(const Point& p, int width, int height, int frame_width, int frame_height);
 	~Slime();
 
-	//Initialize the enemy with the specified look and area
+	// Inicializa al enemigo con la dirección y área especificada
 	AppStatus Initialise(Look look, const AABB& area) override;
 
-	//Update the enemy according to its logic, return true if the enemy must shoot
+	// Actualiza la lógica del enemigo, devuelve true si el enemigo debe disparar
 	bool Update(const AABB& box) override;
 
-	//Retrieve the position and direction of the shot to be thrown
+	// Recupera la posición y dirección del disparo
 	void GetShootingPosDir(Point* pos, Point* dir) const override;
 
-	void Kill() override;
-
 private:
-	//Create the pattern behaviour
+	// Crea el patrón de comportamiento
 	void InitPattern();
-	
-	//Update looking direction according to the current step of the pattern
+
+	// Actualiza la dirección de la vista según el paso actual del patrón
 	void UpdateLook(int anim_id);
 
-	int attack_delay;	//delay between attacks
+	int attack_delay;	// Retraso entre ataques
 	SlimeState state;
 
-	int current_step;	//current step of the pattern
-	int current_frames;	//number of frames in the current step
+	int current_step;	// Paso actual del patrón
+	int current_frames;	// Número de frames en el paso actual
 	std::vector<Step> pattern;
 
 	int limit_left = 288;
@@ -62,4 +62,3 @@ private:
 	float MAX_FALL_SPEED = 5.0f;
 	float position_foor = 208;
 };
-

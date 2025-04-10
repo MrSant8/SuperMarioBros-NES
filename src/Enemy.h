@@ -8,14 +8,13 @@
 #define SLIME_PHYSICAL_HEIGHT	16
 
 //Representation model size: 32x32
-#define TURRET_FRAME_SIZE		32
+#define TURRET_FRAME_SIZE		16
 //Logical model size: 0x0
 #define TURRET_PHYSICAL_WIDTH	32
 #define TURRET_PHYSICAL_HEIGHT	26
 
 enum class EnemyType { SLIME, TURRET };
-
-enum class StateEntity {	ALIVE,	DEAD };
+enum class EnemyState{ALIVE,DEAD};
 class Enemy :  public Entity
 {
 public:
@@ -36,16 +35,18 @@ public:
 	//Retrieve the position and direction of the shot to be thrown
 	virtual void GetShootingPosDir(Point* pos, Point* dir) const = 0;
 
-	virtual void Kill();
-	bool IsDead() const;
+	virtual EnemyState GetState() const;
+	virtual bool isDead();
+	bool StateSlime() {
+		return type == EnemyType::SLIME;
+	}
 
 protected:
 	//Return true if the given hitbox is within the visibility area and the enemy is facing it
 	bool IsVisible(const AABB& hitbox);
-
+	EnemyState state = EnemyState::ALIVE;
+	EnemyType type;
 	Look look;
 	AABB visibility_area;
-	StateEntity stateEntity;
-
 };
 

@@ -32,15 +32,19 @@ public:
 	//Delete all enemies and clear the enemy vector
 	void Release();
 
-	std::vector<Enemy*> GetEnemies() {
+	std::vector<Enemy*> updatelist()
+	{
 		return enemies;
-
 	}
+
+	void CheckPlayerCollision(const AABB& playerHitbox, const Point& playerDir);
 private:
 	std::vector<Enemy*> enemies;
 	
 	//Reference to the ShotManager object
 	//This class does not own the object, it only holds a reference to it
 	ShotManager *shots;
+
+	Enemy* enemy;
 };
 
