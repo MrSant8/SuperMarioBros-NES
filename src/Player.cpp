@@ -282,7 +282,6 @@ void Player::MoveX()
 void Player::MoveY()
 {
 	AABB box;
-
 	if (state == State::JUMPING)
 	{
 		LogicJumping();
@@ -292,7 +291,7 @@ void Player::MoveY()
 
 		if (map->CollisionY(box.pos, box.width))
 		{
-			pos.y = (pos.y / TILE_SIZE) * TILE_SIZE;
+			pos.y += 16;
 			StartFalling(); // Stop jump and start falling
 		}
 	}

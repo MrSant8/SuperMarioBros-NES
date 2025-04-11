@@ -1,4 +1,2 @@
-Project executed on 11-04-2025 at 11:12:27.
+Project executed on 11-04-2025 at 11:26:11.
 main.cpp(13): Application start
-EnemyManager.cpp(146): Player died from enemy collision
-EnemyManager.cpp(146): Player died from enemy collision

@@ -1,2 +1,5 @@
-﻿  Game.cpp
+﻿  Player.cpp
+C:\Users\janaps\Documents\GitHub\SuperMarioBros-NES\src\Player.cpp(162,23): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\janaps\Documents\GitHub\SuperMarioBros-NES\src\Player.cpp(305,24): warning C4244: '+=': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\janaps\Documents\GitHub\SuperMarioBros-NES\src\Player.cpp(354,25): warning C4244: '+=': conversión de 'double' a 'int'; posible pérdida de datos
   Vikings.vcxproj -> C:\Users\janaps\Documents\GitHub\SuperMarioBros-NES\x64\Debug\MarioBrosNES_NES.exe
