@@ -358,6 +358,17 @@ void Scene::Update()
 		return;
 	}
 
+	//Win
+	Rectangle playerRect = { (float)player->GetHitbox().pos.x, (float)player->GetHitbox().pos.y, (float)player->GetHitbox().width, (float)player->GetHitbox().height};
+	Rectangle winRect = { (float)3152, (float)176, (float)16, (float)16 };
+
+	// Check if there is a collision
+	if (CheckCollisionRecs(playerRect, winRect))
+	{
+		win = true;
+		return;
+	}
+
 }
 void Scene::Render()
 {

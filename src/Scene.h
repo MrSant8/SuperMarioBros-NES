@@ -25,6 +25,7 @@ public:
     static float Clamp(float value, float min, float max);
 
     bool gameOver = false;
+    bool win = false;
 
 private:
     AppStatus LoadLevel(int stage);

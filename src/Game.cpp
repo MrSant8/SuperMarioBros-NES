@@ -91,6 +91,12 @@ AppStatus Game::LoadResources()
     }
     img_gameOver = data.GetTexture(Resource::IMG_GAMEOVER);
 
+    //Imagen wikn
+    if (data.LoadTexture(Resource::IMG_WIN, "Assets/Textures/Hud/Finish game.png") != AppStatus::OK)
+    {
+        return AppStatus::ERROR;
+    }
+    img_win = data.GetTexture(Resource::IMG_WIN);
 
     // Cargar música
     GroundMusic = LoadMusicStream("Assets/Audio/Music/GroundTheme.mp3");
@@ -190,9 +196,19 @@ AppStatus Game::Update()
                     {
                         state = GameState::GAMEOVER;
                     }
+                    if (scene->win)
+                    {
+                        state = GameState::WIN;
+                    }
                 }
                 break;
             case GameState::GAMEOVER:
+                if (IsKeyPressed(KEY_SPACE))
+                {
+                    state = GameState::MAIN_MENU;
+                }
+                break;
+            case GameState::WIN:
                 if (IsKeyPressed(KEY_SPACE))
                 {
                     state = GameState::MAIN_MENU;
@@ -226,6 +242,9 @@ void Game::Render()
         case GameState::GAMEOVER:
             DrawTexture(*img_gameOver, 0, 0, WHITE);
             break;
+        case GameState::WIN:
+            DrawTexture(*img_win, 0, 0, WHITE);
+            break;
     }
     
     EndTextureMode();
@@ -248,6 +267,7 @@ void Game::UnloadResources()
     data.ReleaseTexture(Resource::IMG_MENU);
     data.ReleaseTexture(Resource::IMG_MENU_INTRO);
     data.ReleaseTexture(Resource::IMG_GAMEOVER);
+    data.ReleaseTexture(Resource::IMG_WIN);
 
     UnloadMusicStream(GroundMusic);
     UnloadRenderTexture(target);

@@ -14,6 +14,7 @@ enum class Resource {
     IMG_BACKGROUND,
     IMG_MENU_INTRO,
     IMG_GAMEOVER,
+    IMG_WIN,
     IMG_FONT1, IMG_FONT2, IMG_FONT3
 };
 
