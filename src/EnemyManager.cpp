@@ -72,12 +72,7 @@ AABB EnemyManager::GetEnemyHitBox(const Point& pos, EnemyType type) const
 void EnemyManager::Update(const AABB& player_hitbox)
 {
 	bool shoot;
-	//Point p, d;
 
-	//for (Enemy* enemy : enemies)
-	//{
-	//	shoot = enemy->Update(player_hitbox);
-	//}
 	for (auto it = enemies.begin(); it != enemies.end(); )
 	{
 		Enemy* enemy = *it;
@@ -116,15 +111,6 @@ void EnemyManager::Release()
 	enemies.clear();
 }
 
-//Vector2 EnemyManager::GetPosition()
-//{
-//	EnemyType type;
-//
-//	if (type == EnemyType::SLIME)
-//	{
-//		return Vector2(pos.x, pos.y);
-//	}
-//}
 void EnemyManager::CheckPlayerCollision(const AABB& playerHitbox, const Point& playerDir)
 {
 	updatelist();

@@ -220,8 +220,6 @@ void Player::Update()
 
 	Sprite* sprite = dynamic_cast<Sprite*>(render);
 	sprite->Update();
-
-	//enemyManager->CheckPlayerCollision(GetHitbox(), dir);
 }
 void Player::MoveX()
 {
@@ -457,12 +455,3 @@ void Player::Release()
 	data.ReleaseTexture(Resource::IMG_PLAYER);
 	render->Release();
 }
-
-//void Player::onColision() 
-//{
-//	if (pos.y < enemy->GetPosition().y && pos.x < enemy->GetPosition().x)
-//	{
-//
-//	}
-//
-//}

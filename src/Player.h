@@ -72,7 +72,6 @@ public:
 		return look == Look::RIGHT ? Point(1, 0) : Point(-1, 0);
 	}
 
-	void onColision();
 private:
 	bool IsLookingRight() const;
 	bool IsLookingLeft() const;
