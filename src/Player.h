@@ -59,6 +59,7 @@ public:
 	void InitScore();
 	void IncrScore(int n);
 	int GetScore();
+	int GetTime();
 
 	void Update();
 	void DrawDebug(const Color& col) const;
@@ -120,5 +121,8 @@ private:
 	Enemy* enemy;
 
 	EnemyManager* enemyManager;
+
+	int time = 400;
+	float timeCounter = 0.0f;
 };
 

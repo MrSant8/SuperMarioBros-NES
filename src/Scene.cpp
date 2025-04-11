@@ -353,7 +353,7 @@ void Scene::Update()
 	shots->Update(hitbox);
 	particles->Update();
 
-	if (enemies->playerDead) {
+	if (enemies->playerDead || player->GetTime()<=0) {
 		gameOver = true;
 		return;
 	}
@@ -458,6 +458,6 @@ void Scene::RenderGUI() const
 	static int frame;
 	frame++;
 	frame %= 1000;
-
+	font1->Draw(10, 5, TextFormat("TIME:%d", player->GetTime()));
 	
 }

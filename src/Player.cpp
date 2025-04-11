@@ -96,6 +96,22 @@ int Player::GetScore()
 {
 	return score;
 }
+int Player::GetTime()
+{
+	float delta = GetFrameTime(); // tiempo entre frames, en segundos
+	timeCounter += delta;
+
+	if (timeCounter >= 1.0f)
+	{
+		time--;           // Resta 1 segundo real
+		timeCounter = 0.0f;
+		if (time <= 0) {
+			time = 0;
+		}
+	}
+	return time;
+}
+
 void Player::SetTileMap(TileMap* tilemap)
 {
 	map = tilemap;
