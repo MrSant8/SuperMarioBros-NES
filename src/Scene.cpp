@@ -349,6 +349,7 @@ void Scene::Update()
 
 	hitbox = player->GetHitbox();
 	enemies->Update(hitbox);
+	enemies->CheckPlayerCollision(hitbox, player->GetDirection());
 	shots->Update(hitbox);
 	particles->Update();
 

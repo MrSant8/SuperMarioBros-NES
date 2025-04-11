@@ -68,6 +68,10 @@ public:
 		return Vector2{ (float)pos.x, (float)0.0 };
 	}
 
+	Point GetDirection() const {
+		return look == Look::RIGHT ? Point(1, 0) : Point(-1, 0);
+	}
+
 	void onColision();
 private:
 	bool IsLookingRight() const;

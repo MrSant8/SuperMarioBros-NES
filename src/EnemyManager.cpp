@@ -82,14 +82,14 @@ void EnemyManager::Update(const AABB& player_hitbox)
 	{
 		Enemy* enemy = *it;
 
-		// Si está muerto, lo eliminamos del vector y de memoria
+		// Si estï¿½ muerto, lo eliminamos del vector y de memoria
 		if (enemy->isDead()) {
 			delete enemy;
 			it = enemies.erase(it);
 			continue;
 		}
 
-		// Si no está muerto, lo actualizamos
+		// Si no estï¿½ muerto, lo actualizamos
 		shoot = enemy->Update(player_hitbox);
 
 		++it;
@@ -111,7 +111,7 @@ void EnemyManager::DrawDebug() const
 }
 void EnemyManager::Release()
 {
-	for (Enemy* enemy : enemies)
+ 	for (Enemy* enemy : enemies)
 		delete enemy;
 	enemies.clear();
 }
@@ -129,27 +129,35 @@ void EnemyManager::CheckPlayerCollision(const AABB& playerHitbox, const Point& p
 {
 	updatelist();
 
-	LOG("%d", enemies.size());
-	for (Enemy* enemy : enemies)
+	for (auto it = enemies.begin(); it != enemies.end(); )
 	{
+		Enemy* enemy = *it;
 		AABB enemyHitbox = enemy->GetHitbox();
 		Rectangle playerRect = { (float)playerHitbox.pos.x, (float)playerHitbox.pos.y, (float)playerHitbox.width, (float)playerHitbox.height };
 		Rectangle enemyRect = { (float)enemyHitbox.pos.x, (float)enemyHitbox.pos.y, (float)enemyHitbox.width, (float)enemyHitbox.height };
 
-		// Check vertical collision, solo si el jugador está bajando
-		if (CheckCollisionRecs(playerRect, enemyRect) && playerDir.x == enemyHitbox.pos.x)
+		// Check if there is a collision
+		if (CheckCollisionRecs(playerRect, enemyRect))
 		{
-
-			if (enemy->StateSlime())
+			// If player is above the enemy and moving downward, kill the enemy
+  			if (playerHitbox.pos.y + playerHitbox.height < (enemyHitbox.pos.y-1) + enemyHitbox.height)
 			{
-				enemy->isDead();
+				if (enemy->StateSlime())
+				{
+
+					enemy->isDead();
+    				delete enemy;
+					it = enemies.erase(it);
+					continue;
+				}
+			}
+			else
+			{
+				// Player collided with enemy from sides or below - player dies
+				// You'll need to implement player death logic here
+				LOG("Player died from enemy collision");
 			}
 		}
-
-		if (enemy->isDead())
-		{
-			delete enemy;
-
-		}
+		++it;
 	}
 }

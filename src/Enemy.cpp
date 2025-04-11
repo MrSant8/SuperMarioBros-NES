@@ -6,10 +6,13 @@ Enemy::Enemy(const Point& p, int width, int height, int frame_width, int frame_h
 {
 	visibility_area = {};
 	look = Look::LEFT;
+	state = EnemyState::ALIVE;
 }
+
 Enemy::~Enemy()
 {
 }
+
 bool Enemy::IsVisible(const AABB& hitbox)
 {
 	//Does the enemy's visibility area intersect with the hitbox?
@@ -28,6 +31,7 @@ bool Enemy::IsVisible(const AABB& hitbox)
 	}
 	return false;
 }
+
 void Enemy::DrawVisibilityArea(const Color& col) const
 {
 	DrawRectangleLines(visibility_area.pos.x, visibility_area.pos.y, visibility_area.width, visibility_area.height, col);
@@ -35,9 +39,15 @@ void Enemy::DrawVisibilityArea(const Color& col) const
 
 bool Enemy::isDead()
 {
+	
+
+	//if (state != EnemyState::DEAD) {
+	//	state = EnemyState::DEAD;
+	//	return true;
+	//}
 	return state == EnemyState::DEAD;
 }
 
-EnemyState  Enemy:: GetState() const { 
+EnemyState Enemy::GetState() const { 
 	return state; 
 }
