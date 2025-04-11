@@ -353,6 +353,11 @@ void Scene::Update()
 	shots->Update(hitbox);
 	particles->Update();
 
+	if (enemies->playerDead) {
+		gameOver = true;
+		return;
+	}
+
 }
 void Scene::Render()
 {

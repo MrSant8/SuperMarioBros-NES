@@ -1,7 +1,6 @@
 #pragma once
 #include "Enemy.h"
 #include "ShotManager.h"
-
 class EnemyManager
 {
 public:
@@ -38,13 +37,15 @@ public:
 	}
 
 	void CheckPlayerCollision(const AABB& playerHitbox, const Point& playerDir);
+
+public:
+	bool playerDead=false;
 private:
 	std::vector<Enemy*> enemies;
-	
+
 	//Reference to the ShotManager object
 	//This class does not own the object, it only holds a reference to it
 	ShotManager *shots;
-
 	Enemy* enemy;
 };
 

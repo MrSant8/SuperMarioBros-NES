@@ -83,6 +83,15 @@ AppStatus Game::LoadResources()
     }
     img_menu = data.GetTexture(Resource::IMG_MENU);
 
+
+    //Imagen game over
+    if (data.LoadTexture(Resource::IMG_GAMEOVER, "Assets/Textures/Hud/Game over.png") != AppStatus::OK)
+    {
+        return AppStatus::ERROR;
+    }
+    img_gameOver = data.GetTexture(Resource::IMG_GAMEOVER);
+
+
     // Cargar música
     GroundMusic = LoadMusicStream("Assets/Audio/Music/GroundTheme.mp3");
     if (GroundMusic.stream.buffer == nullptr)
@@ -176,6 +185,17 @@ AppStatus Game::Update()
                     //Game logic
                     scene->Update();
                     UpdateMusicStream(GroundMusic);
+
+                    if (scene->gameOver) 
+                    {
+                        state = GameState::GAMEOVER;
+                    }
+                }
+                break;
+            case GameState::GAMEOVER:
+                if (IsKeyPressed(KEY_SPACE))
+                {
+                    state = GameState::MAIN_MENU;
                 }
                 break;
         }
@@ -203,6 +223,9 @@ void Game::Render()
         case GameState::PLAYING:
             scene->Render();
             break;
+        case GameState::GAMEOVER:
+            DrawTexture(*img_gameOver, 0, 0, WHITE);
+            break;
     }
     
     EndTextureMode();
@@ -224,6 +247,7 @@ void Game::UnloadResources()
     ResourceManager& data = ResourceManager::Instance();
     data.ReleaseTexture(Resource::IMG_MENU);
     data.ReleaseTexture(Resource::IMG_MENU_INTRO);
+    data.ReleaseTexture(Resource::IMG_GAMEOVER);
 
     UnloadMusicStream(GroundMusic);
     UnloadRenderTexture(target);

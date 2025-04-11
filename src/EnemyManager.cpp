@@ -139,6 +139,8 @@ void EnemyManager::CheckPlayerCollision(const AABB& playerHitbox, const Point& p
 			}
 			else
 			{
+				
+				playerDead = true;
 				// Player collided with enemy from sides or below - player dies
 				// You'll need to implement player death logic here
 				LOG("Player died from enemy collision");

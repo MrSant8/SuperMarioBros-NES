@@ -24,6 +24,8 @@ public:
     // Función Clamp declarada aquí
     static float Clamp(float value, float min, float max);
 
+    bool gameOver = false;
+
 private:
     AppStatus LoadLevel(int stage);
 
@@ -57,4 +59,5 @@ private:
     Text* font1, * font2, * font3;
 
     const Texture2D* backgroundImage;
+
 };
