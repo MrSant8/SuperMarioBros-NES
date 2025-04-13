@@ -15,7 +15,9 @@ enum class Resource {
     IMG_MENU_INTRO,
     IMG_GAMEOVER,
     IMG_WIN,
-    IMG_FONT1, IMG_FONT2, IMG_FONT3
+    IMG_WORLD,
+    IMG_COINHUD,
+    IMG_FONT1
 };
 
 class ResourceManager {

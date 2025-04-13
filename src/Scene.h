@@ -57,8 +57,8 @@ private:
     Camera2D camera;
     DebugMode debug;
 
-    Text* font1, * font2, * font3;
+    Text* font1;
 
     const Texture2D* backgroundImage;
-
+    const Texture2D* coinnImage;
 };

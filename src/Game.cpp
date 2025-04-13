@@ -68,7 +68,7 @@ AppStatus Game::LoadResources()
     ResourceManager& data = ResourceManager::Instance();
 
     // Primero cargamos la textura para el intro
-    if (data.LoadTexture(Resource::IMG_MENU_INTRO, "images/menuFinalIntroNames.png") != AppStatus::OK)
+    if (data.LoadTexture(Resource::IMG_MENU_INTRO, "Assets/Textures/Hud/menuFinalIntroNames.png") != AppStatus::OK)
     {
         return AppStatus::ERROR;
     }
@@ -77,12 +77,17 @@ AppStatus Game::LoadResources()
 
 
     // Luego cargamos la textura para el menú
-    if (data.LoadTexture(Resource::IMG_MENU, "images/menu.png") != AppStatus::OK)
+    if (data.LoadTexture(Resource::IMG_MENU, "Assets/Textures/Hud/Start game.png") != AppStatus::OK)
     {
         return AppStatus::ERROR;
     }
     img_menu = data.GetTexture(Resource::IMG_MENU);
 
+    if (data.LoadTexture(Resource::IMG_WORLD, "Assets/Textures/Hud/World.png") != AppStatus::OK)
+    {
+        return AppStatus::ERROR;
+    }
+    img_world = data.GetTexture(Resource::IMG_WORLD);
 
     //Imagen game over
     if (data.LoadTexture(Resource::IMG_GAMEOVER, "Assets/Textures/Hud/Game over.png") != AppStatus::OK)
@@ -152,6 +157,10 @@ AppStatus Game::Update()
         {
             if (BeginPlay() != AppStatus::OK) return AppStatus::ERROR;
         }
+        else if (prev_frame == GameState::WORLD && state == GameState::PLAYING)
+        {
+            if (BeginPlay() != AppStatus::OK) return AppStatus::ERROR;
+        }
         else if (prev_frame == GameState::PLAYING && state == GameState::MAIN_MENU)
         {
             FinishPlay();
@@ -167,18 +176,31 @@ AppStatus Game::Update()
                 fade_transition.Set(GameState::INTRO, 60, GameState::MAIN_MENU, 60, dst);
             }
             break;
+       
+        case GameState::MAIN_MENU:
+            if (IsKeyPressed(KEY_ESCAPE)) return AppStatus::QUIT;
+            if (IsKeyPressed(KEY_SPACE))
+            {
+                StopMusicStream(GroundMusic); //Music Stops
+                PlayMusicStream(GroundMusic);  //Music Plays
+                SetMusicVolume(GroundMusic, 1.0f);
+                //"state = GameState::PLAYING;" but not until halfway through the transition
+                fade_transition.Set(GameState::MAIN_MENU, 60, GameState::WORLD, 60, dst);
+            }
+            break;
+        case GameState::WORLD:
+            if (!worldTimerStarted) {
+                worldTimer = 0.0f;
+                worldTimerStarted = true;
+            }
 
-        case GameState::MAIN_MENU: 
-                if (IsKeyPressed(KEY_ESCAPE)) return AppStatus::QUIT;
-                if (IsKeyPressed(KEY_SPACE))
-                {
-                    StopMusicStream(GroundMusic); //Music Stops
-                    PlayMusicStream(GroundMusic);  //Music Plays
-                    SetMusicVolume(GroundMusic, 1.0f);
-                    //"state = GameState::PLAYING;" but not until halfway through the transition
-                    fade_transition.Set(GameState::MAIN_MENU, 60, GameState::PLAYING, 60, dst);
-                }
-                break;
+            worldTimer += GetFrameTime();
+
+            if (worldTimer >= 2.0f) {
+                worldTimerStarted = false;
+                fade_transition.Set(GameState::WORLD, 60, GameState::PLAYING, 60, dst);
+            }
+            break;
 
             case GameState::PLAYING:  
                 if (IsKeyPressed(KEY_ESCAPE))
@@ -235,7 +257,9 @@ void Game::Render()
         case GameState::MAIN_MENU:
             DrawTexture(*img_menu, 0, 0, WHITE);
             break;
-
+        case GameState::WORLD:
+            DrawTexture(*img_world, 0, 0, WHITE);
+            break;
         case GameState::PLAYING:
             scene->Render();
             break;
@@ -268,6 +292,7 @@ void Game::UnloadResources()
     data.ReleaseTexture(Resource::IMG_MENU_INTRO);
     data.ReleaseTexture(Resource::IMG_GAMEOVER);
     data.ReleaseTexture(Resource::IMG_WIN);
+    data.ReleaseTexture(Resource::IMG_WORLD);
 
     UnloadMusicStream(GroundMusic);
     UnloadRenderTexture(target);

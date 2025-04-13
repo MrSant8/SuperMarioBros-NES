@@ -113,7 +113,7 @@ private:
 	//This class does not own the object, it only holds a reference to it
 	TileMap *map;
 
-	int score;
+	int score=000000;
 
 	bool move_camera = false;
 

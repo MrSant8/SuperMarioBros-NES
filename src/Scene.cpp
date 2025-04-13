@@ -11,8 +11,6 @@ Scene::Scene()
 	particles = nullptr;
 
 	font1 = nullptr;
-	font2 = nullptr;
-	font3 = nullptr;
 
 	camera.target = { 0,0};				//Center of the screen
 	camera.offset = { 0, MARGIN_GUI_Y };	//Offset from the target (center of the screen)
@@ -62,16 +60,6 @@ Scene::~Scene()
 		delete font1;
 		font1 = nullptr;
 	}
-	if (font2 != nullptr)
-	{
-		delete font2;
-		font2 = nullptr;
-	}
-	if (font3 != nullptr)
-	{
-		delete font3;
-		font3 = nullptr;
-	}
 }
 AppStatus Scene::Init()
 {
@@ -84,6 +72,11 @@ AppStatus Scene::Init()
 	}
 	backgroundImage = data.GetTexture(Resource::IMG_BACKGROUND);
 
+	if (data.LoadTexture(Resource::IMG_COINHUD, "Assets/Textures/Hud/coin.png") != AppStatus::OK)
+	{
+		return AppStatus::ERROR;
+	}
+	coinnImage = data.GetTexture(Resource::IMG_COINHUD);
 
 	//Create player
 	player = new Player({ 0,191 }, State::IDLE, Look::RIGHT);
@@ -183,33 +176,7 @@ AppStatus Scene::Init()
 		LOG("Failed to initialise Level");
 		return AppStatus::ERROR;
 	}
-	//Create text font 2
-	font2 = new Text();
-	if (font2 == nullptr)
-	{
-		LOG("Failed to allocate memory for font 2");
-		return AppStatus::ERROR;
-	}
-	//Initialise text font 2
-	if (font2->Initialise(Resource::IMG_FONT2, "images/font16x16.png", (char)0, 16) != AppStatus::OK)
-	{
-		LOG("Failed to initialise Level");
-		return AppStatus::ERROR;
-	}
-	//Create text font 3
-	font3 = new Text();
-	if (font3 == nullptr)
-	{
-		LOG("Failed to allocate memory for font 3");
-		return AppStatus::ERROR;
-	}
-	//Initialise text font 3
-	if (font3->Initialise(Resource::IMG_FONT3, "images/font12x12.png", ' ', 12) != AppStatus::OK)
-	{
-		LOG("Failed to initialise Level");
-		return AppStatus::ERROR;
-	}
-
+	
 	return AppStatus::OK;
 }
 AppStatus Scene::LoadLevel(int stage)
@@ -458,6 +425,17 @@ void Scene::RenderGUI() const
 	static int frame;
 	frame++;
 	frame %= 1000;
-	font1->Draw(10, 5, TextFormat("TIME:%d", player->GetTime()));
+	font1->Draw(200, 5, TextFormat("TIME"));
+	font1->Draw(208, 15, TextFormat("%d", player->GetTime()));
+
+	font1->Draw(130+10, 5, TextFormat("WORLD"));
+	font1->Draw(137+10, 15, TextFormat("1-1"));
 	
+	DrawTexture(*coinnImage, -5, -10, WHITE);
+	font1->Draw(93, 15, TextFormat("X"));
+	font1->Draw(103, 15, TextFormat("00"));
+
+	font1->Draw(15, 5, TextFormat("MARIO"));
+	font1->Draw(15, 15, TextFormat("%06d", player->GetScore()));
+
 }

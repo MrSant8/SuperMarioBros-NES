@@ -24,7 +24,7 @@ private:
 
     GameState state;
     Scene *scene;
-    const Texture2D *img_menu, *img_menu2, *img_gameOver, *img_win;
+    const Texture2D *img_menu, *img_menu2, *img_gameOver, *img_win, *img_world;
 
     //To work with original game units and then scale the result
     RenderTexture2D target;
@@ -35,4 +35,11 @@ private:
 
     //Music
     Music GroundMusic;
+
+
+    //Wold variables
+    int time;
+    float timeCounter;
+    float worldTimer = 0.0f;
+    bool worldTimerStarted = false;
 };
