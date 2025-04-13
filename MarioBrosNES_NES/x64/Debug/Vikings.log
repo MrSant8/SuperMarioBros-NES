@@ -1,2 +1,9 @@
-﻿  Game.cpp
+﻿  EnemyManager.cpp
+C:\Users\Usuari\Documents\GitHub\SuperMarioBros-NES\src\EnemyManager.cpp(40,18): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  Slime.cpp
+C:\Users\Usuari\Documents\GitHub\SuperMarioBros-NES\src\Slime.cpp(109,13): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Usuari\Documents\GitHub\SuperMarioBros-NES\src\Slime.cpp(112,15): warning C4244: '-=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Usuari\Documents\GitHub\SuperMarioBros-NES\src\Slime.cpp(115,15): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Usuari\Documents\GitHub\SuperMarioBros-NES\src\Slime.cpp(90,6): warning C4101: 'anim_id': unreferenced local variable
+  Generating Code...
   Vikings.vcxproj -> C:\Users\Usuari\Documents\GitHub\SuperMarioBros-NES\x64\Debug\MarioBrosNES_NES.exe

@@ -75,6 +75,14 @@ void Slime::InitPattern()
 	current_step = 0;
 	current_frames = 0;
 }
+
+void Slime::SetLimits(int left, int right, float floor)
+{
+	limit_left = left;
+	limit_right = right;
+	position_foor = floor;
+}
+
 bool Slime::Update(const AABB& box)
 {
 	Sprite* sprite = dynamic_cast<Sprite*>(render);
@@ -94,42 +102,43 @@ bool Slime::Update(const AABB& box)
 			else					sprite->SetAnimation((int)SlimeAnim::WALKING_RIGHT);
 		}
 
-	
+
 		float speed = 1;
 
-		if (pos.y == position_foor) {
-			pos.y = position_foor; // Aplicar la caída al Slime
-			if (look == Look::LEFT)
-			{
-				pos.x -= speed;
+			if (pos.y == position_foor) {
+				pos.y = position_foor; // Aplicar la caída al Slime
+				if (look == Look::LEFT)
+				{
+					pos.x -= speed;
+				}
+				else {
+					pos.x += speed;
+
+				}
 			}
 			else {
-				pos.x += speed;
+				pos.y++;
 
 			}
-		}
-		else {
-			pos.y++;
+		
 
+			if (pos.x <= limit_left) {
+				look = Look::RIGHT;
+				sprite->SetAnimation((int)SlimeAnim::WALKING_RIGHT);
+			}
+			else if (pos.x >= limit_right) {
+				look = Look::LEFT;
+				sprite->SetAnimation((int)SlimeAnim::WALKING_LEFT);
+			}
 		}
+		if (isDead())
+		{
+			return false;
+		}
+		sprite->Update();
+
+		return shoot;
 	
-
-		if (pos.x <= limit_left) {
-			look = Look::RIGHT;
-			sprite->SetAnimation((int)SlimeAnim::WALKING_RIGHT);
-		}
-		else if (pos.x >= limit_right) {
-			look = Look::LEFT;
-			sprite->SetAnimation((int)SlimeAnim::WALKING_LEFT);
-		}
-	}
-	if (isDead()) 
-	{
-		return false;
-	}
-	sprite->Update();
-
-	return shoot;
 }
 void Slime::UpdateLook(int anim_id)
 {

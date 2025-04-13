@@ -2,6 +2,11 @@
 #include "Slime.h"
 #include "Turret.h"
 
+SlimeLimits slime_limits[] = {
+	{288, 416, 208},
+};
+
+
 EnemyManager::EnemyManager()
 {
 	shots = nullptr;
@@ -32,6 +37,10 @@ void EnemyManager::Add(const Point& pos, EnemyType type, const AABB& area, Look 
 	if(type == EnemyType::SLIME)
 	{
 		enemy = new Slime(pos, SLIME_PHYSICAL_WIDTH, SLIME_PHYSICAL_HEIGHT, SLIME_FRAME_SIZE, SLIME_FRAME_SIZE);
+		int slimeIndex = enemies.size();
+		dynamic_cast<Slime*>(enemy)->SetLimits(slime_limits[slimeIndex].left,
+			slime_limits[slimeIndex].right,
+			slime_limits[slimeIndex].floor);
 	}
 	else if(type == EnemyType::TURRET)
 	{

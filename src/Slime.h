@@ -26,6 +26,14 @@ struct Step
 	int anim;		// Representación gráfica
 };
 
+struct SlimeLimits {
+	int left;      // Limite izquierdo
+	int right;     // Limite derecho
+	float floor;   // El nivel de piso
+};
+
+extern SlimeLimits slime_limits[];
+
 class Slime : public Enemy
 {
 public:
@@ -41,6 +49,8 @@ public:
 	// Recupera la posición y dirección del disparo
 	void GetShootingPosDir(Point* pos, Point* dir) const override;
 
+	void SetLimits(int left, int right, float floor);
+
 private:
 	// Crea el patrón de comportamiento
 	void InitPattern();
@@ -54,9 +64,8 @@ private:
 	int current_step;	// Paso actual del patrón
 	int current_frames;	// Número de frames en el paso actual
 	std::vector<Step> pattern;
-
-	int limit_left = 288;
-	int limit_right = 416;
+	int limit_left;
+	int limit_right;
 
 	float vertical_speed = 0;
 	float MAX_FALL_SPEED = 5.0f;

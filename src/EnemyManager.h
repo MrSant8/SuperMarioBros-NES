@@ -1,6 +1,8 @@
 #pragma once
 #include "Enemy.h"
 #include "ShotManager.h"
+
+
 class EnemyManager
 {
 public:
@@ -40,6 +42,9 @@ public:
 
 public:
 	bool playerDead=false;
+
+	
+
 private:
 	std::vector<Enemy*> enemies;
 
