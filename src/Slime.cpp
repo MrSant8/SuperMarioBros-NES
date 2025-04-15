@@ -105,40 +105,40 @@ bool Slime::Update(const AABB& box)
 
 		float speed = 1;
 
-			if (pos.y == position_foor) {
-				pos.y = position_foor; // Aplicar la caída al Slime
-				if (look == Look::LEFT)
-				{
-					pos.x -= speed;
-				}
-				else {
-					pos.x += speed;
-
-				}
+		if (pos.y == position_foor) {
+			pos.y = position_foor; // Aplicar la caï¿½da al Slime
+			if (look == Look::LEFT)
+			{
+				pos.x -= speed;
 			}
 			else {
-				pos.y++;
+				pos.x += speed;
 
-			}
-		
-
-			if (pos.x <= limit_left) {
-				look = Look::RIGHT;
-				sprite->SetAnimation((int)SlimeAnim::WALKING_RIGHT);
-			}
-			else if (pos.x >= limit_right) {
-				look = Look::LEFT;
-				sprite->SetAnimation((int)SlimeAnim::WALKING_LEFT);
 			}
 		}
-		if (isDead())
-		{
-			return false;
-		}
-		sprite->Update();
+		else {
+			pos.y++;
 
-		return shoot;
-	
+		}
+
+
+		if (pos.x <= limit_left) {
+			look = Look::RIGHT;
+			sprite->SetAnimation((int)SlimeAnim::WALKING_RIGHT);
+		}
+		else if (pos.x >= limit_right) {
+			look = Look::LEFT;
+			sprite->SetAnimation((int)SlimeAnim::WALKING_LEFT);
+		}
+	}
+	if (isDead())
+	{
+		return false;
+	}
+	sprite->Update();
+
+	return shoot;
+
 }
 void Slime::UpdateLook(int anim_id)
 {

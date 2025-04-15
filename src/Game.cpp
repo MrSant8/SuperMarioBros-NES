@@ -76,7 +76,7 @@ AppStatus Game::LoadResources()
 
 
 
-    // Luego cargamos la textura para el menú
+    // Luego cargamos la textura para el menï¿½
     if (data.LoadTexture(Resource::IMG_MENU, "Assets/Textures/Hud/Start game.png") != AppStatus::OK)
     {
         return AppStatus::ERROR;
@@ -103,7 +103,7 @@ AppStatus Game::LoadResources()
     }
     img_win = data.GetTexture(Resource::IMG_WIN);
 
-    // Cargar música
+    // Cargar mï¿½sica
     GroundMusic = LoadMusicStream("Assets/Audio/Music/GroundTheme.mp3");
     if (GroundMusic.stream.buffer == nullptr)
     {
@@ -171,8 +171,15 @@ AppStatus Game::Update()
         switch (state)
         {
         case GameState::INTRO:
-            if (IsKeyPressed(KEY_SPACE))
-            {
+            if (!introTimerStarted) {
+                introTimer = 0.0f;
+                introTimerStarted = true;
+            }
+
+            introTimer += GetFrameTime();
+
+            if (introTimer >= 5.0f) {
+                introTimerStarted = false;
                 fade_transition.Set(GameState::INTRO, 60, GameState::MAIN_MENU, 60, dst);
             }
             break;

@@ -132,8 +132,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\Users\sergi\Desktop\GITHub\SuperMarioBros-NES\raylib\include;C:\Users\Tonil\OneDrive\Documentos\GitHub\SuperMarioBros-NES\raylib\include;C:\Users\janaps\Documents\GitHub\SuperMarioBros-NES\raylib\include;C:\Users\Usuari\Downloads\SuperMarioBros-NES-main %281%29\SuperMarioBros-NES-main\raylib\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\sergi\Desktop\GITHub\SuperMarioBros-NES\raylib\lib;C:\Users\Tonil\OneDrive\Documentos\GitHub\SuperMarioBros-NES\raylib\lib;C:\Users\janaps\Documents\GitHub\SuperMarioBros-NES\raylib\lib;C:\Users\Usuari\Downloads\SuperMarioBros-NES-main %281%29\SuperMarioBros-NES-main\raylib\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Users\sergi\Desktop\Github Proyectos\Universidad\raylib\include;C:\Users\Tonil\OneDrive\Documentos\GitHub\SuperMarioBros-NES\raylib\include;C:\Users\janaps\Documents\GitHub\SuperMarioBros-NES\raylib\include;C:\Users\Usuari\Downloads\SuperMarioBros-NES-main %281%29\SuperMarioBros-NES-main\raylib\include;C:\Users\sergi\Desktop\GITHub\SuperMarioBros-NES\raylib\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\sergi\Desktop\Github Proyectos\Universidad\raylib\include;C:\Users\Tonil\OneDrive\Documentos\GitHub\SuperMarioBros-NES\raylib\include;C:\Users\janaps\Documents\GitHub\SuperMarioBros-NES\raylib\include;C:\Users\Usuari\Downloads\SuperMarioBros-NES-main %281%29\SuperMarioBros-NES-main\raylib\include;C:\Users\sergi\Desktop\GITHub\SuperMarioBros-NES\raylib\lib;C:\Users\sergi\Desktop\Github Proyectos\Universidad\raylib\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>

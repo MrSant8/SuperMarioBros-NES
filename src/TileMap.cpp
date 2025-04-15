@@ -248,7 +248,7 @@ bool TileMap::CollisionY(const Point& p, int distance) const
 		tile = GetTileIndex(x, y);
 
 		////One solid tile is sufficient
-		if (IsTileSolid(tile)) // También verificará `BLOCK_SQUARE1_TR`
+		if (IsTileSolid(tile)) // Tambiï¿½n verificarï¿½ `BLOCK_SQUARE1_TR`
 			return true;
 
 	}

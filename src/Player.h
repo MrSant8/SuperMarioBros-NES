@@ -12,6 +12,7 @@
 
 //Horizontal speed and vertical speed while falling down
 #define PLAYER_SPEED			2
+#define PLAYER_SPEED_BOOST		4  // Velocidad SHIFT
 
 //Vertical speed while on a ladder
 #define PLAYER_LADDER_SPEED		1

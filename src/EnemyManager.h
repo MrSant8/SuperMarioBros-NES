@@ -52,5 +52,8 @@ private:
 	//This class does not own the object, it only holds a reference to it
 	ShotManager *shots;
 	Enemy* enemy;
+
+	//Sound effects
+	Sound squishSound;
 };
 

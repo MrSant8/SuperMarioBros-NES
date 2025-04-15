@@ -14,6 +14,7 @@ EnemyManager::EnemyManager()
 EnemyManager::~EnemyManager()
 {
 	Release();
+	UnloadSound(squishSound);
 }
 AppStatus EnemyManager::Initialise()
 {
@@ -21,6 +22,14 @@ AppStatus EnemyManager::Initialise()
 	if (data.LoadTexture(Resource::IMG_ENEMIES, "images/enemies.png") != AppStatus::OK)
 	{
 		LOG("Failed to load enemies sprite texture");
+		return AppStatus::ERROR;
+	}
+
+	//Load sound effects
+	squishSound = LoadSound("Assets/Audio/Fx/Squish.wav");
+	if (squishSound.stream.buffer == nullptr)
+	{
+		LOG("Failed to load squish sound");
 		return AppStatus::ERROR;
 	}
 
@@ -139,7 +148,7 @@ void EnemyManager::CheckPlayerCollision(const AABB& playerHitbox, const Point& p
 			{
 				if (enemy->StateSlime())
 				{
-
+					PlaySound(squishSound);
 					enemy->isDead();
     				delete enemy;
 					it = enemies.erase(it);
@@ -148,7 +157,6 @@ void EnemyManager::CheckPlayerCollision(const AABB& playerHitbox, const Point& p
 			}
 			else
 			{
-				
 				playerDead = true;
 				// Player collided with enemy from sides or below - player dies
 				// You'll need to implement player death logic here

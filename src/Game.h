@@ -42,4 +42,8 @@ private:
     float timeCounter;
     float worldTimer = 0.0f;
     bool worldTimerStarted = false;
+
+    //Intro variables
+    float introTimer = 0.0f;
+    bool introTimerStarted = false;
 };
