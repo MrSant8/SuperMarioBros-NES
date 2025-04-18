@@ -243,14 +243,15 @@ void Player::MoveX()
 {
 	AABB box;
 	int prev_x = pos.x;
+	int current_speed = IsKeyDown(KEY_LEFT_SHIFT) || IsKeyDown(KEY_RIGHT_SHIFT) ? PLAYER_SPEED_BOOST : PLAYER_SPEED;
 
 	//We can only go up and down while climbing
 	if (state == State::CLIMBING)			return;
 
 	if (IsKeyDown(KEY_LEFT) && !IsKeyDown(KEY_RIGHT))
 	{
-		if ((pos.x - PLAYER_SPEED) > 0) {
-			pos.x += -PLAYER_SPEED;
+		if ((pos.x - current_speed) > 0) {
+			pos.x += -current_speed;
 			if (state == State::IDLE) StartWalkingLeft();
 			else
 			{
@@ -267,11 +268,11 @@ void Player::MoveX()
 		else {
 			Stop();
 		}
-		
+
 	}
 	else if (IsKeyDown(KEY_RIGHT))
 	{
-		pos.x += PLAYER_SPEED;
+		pos.x += current_speed;
 		if (state == State::IDLE) StartWalkingRight();
 		else
 		{

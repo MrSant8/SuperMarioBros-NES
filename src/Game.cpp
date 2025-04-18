@@ -183,8 +183,15 @@ AppStatus Game::Update()
         switch (state)
         {
         case GameState::INTRO:
-            if (IsKeyPressed(KEY_SPACE))
-            {
+            if (!introTimerStarted) {
+                introTimer = 0.0f;
+                introTimerStarted = true;
+            }
+
+            introTimer += GetFrameTime();
+
+            if (introTimer >= 5.0f) {
+                introTimerStarted = false;
                 fade_transition.Set(GameState::INTRO, 60, GameState::MAIN_MENU, 60, dst);
             }
             break;
