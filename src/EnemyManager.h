@@ -1,8 +1,8 @@
 #pragma once
 #include "Enemy.h"
 #include "ShotManager.h"
-
-
+#include "Player.h"
+class Player;
 class EnemyManager
 {
 public:
@@ -38,12 +38,10 @@ public:
 		return enemies;
 	}
 
-	void CheckPlayerCollision(const AABB& playerHitbox, const Point& playerDir);
+	void CheckPlayerCollision(const AABB& playerHitbox, const Point& playerDir, Player* player);
 
 public:
 	bool playerDead=false;
-
-	
 
 private:
 	Sound deadenemySound;

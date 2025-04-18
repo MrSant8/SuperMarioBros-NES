@@ -75,9 +75,10 @@ AppStatus Player::Initialise()
 	sprite->AddKeyFrame((int)PlayerAnim::CLIMBING_PRE_TOP, { 4 * n, 6 * n, n, n });
 	sprite->SetAnimationDelay((int)PlayerAnim::CLIMBING_TOP, ANIM_DELAY);
 	sprite->AddKeyFrame((int)PlayerAnim::CLIMBING_TOP, { 5 * n, 6 * n, n, n });
-		
-	sprite->SetAnimation((int)PlayerAnim::IDLE_RIGHT);
+	sprite->AddKeyFrame((int)PlayerAnim::DEAD, { 0, n, n, n });
+	sprite->SetAnimationDelay((int)PlayerAnim::DEAD, ANIM_DELAY);
 
+	sprite->SetAnimation((int)PlayerAnim::IDLE_RIGHT);
 
 	//Sound Effects
 	jumpSound = LoadSound("Assets/Audio/Fx/Jump.wav");
@@ -228,15 +229,19 @@ void Player::ChangeAnimLeft()
 }
 void Player::Update()
 {
-	//Player doesn't use the "Entity::Update() { pos += dir; }" default behaviour.
-	//Instead, uses an independent behaviour for each axis.
+	if (state == State::DEAD) {
+		pos.y += dir.y;
+		dir.y += GRAVITY_FORCE; // Simula la caída
+		Sprite* sprite = dynamic_cast<Sprite*>(render);
+		sprite->Update();
+		return;
+	}
+
+	// Movimiento normal
 	MoveX();
 	MoveY();
-
 	Sprite* sprite = dynamic_cast<Sprite*>(render);
 	sprite->Update();
-
-
 }
 void Player::MoveX()
 {
@@ -467,6 +472,12 @@ void Player::LogicClimbing()
 	{
 		if (GetAnimation() != PlayerAnim::CLIMBING)	SetAnimation((int)PlayerAnim::CLIMBING);
 	}
+}
+void Player::Die()
+{
+	state = State::DEAD;
+	SetAnimation((int)PlayerAnim::DEAD);
+	dir = { 0, -PLAYER_JUMP_FORCE }; // Para simular el pequeño salto de muerte
 }
 void Player::DrawDebug(const Color& col) const
 {	

@@ -1,6 +1,7 @@
-	#include "EnemyManager.h"
+#include "EnemyManager.h"
 #include "Slime.h"
 #include "Turret.h"
+#include "Player.h"
 
 SlimeLimits slime_limits[] = {
 	
@@ -145,13 +146,14 @@ void EnemyManager::Release()
 	enemies.clear();
 }
 
-void EnemyManager::CheckPlayerCollision(const AABB& playerHitbox, const Point& playerDir)
+void EnemyManager::CheckPlayerCollision(const AABB& playerHitbox, const Point& playerDir, Player* player)
 {
 	updatelist();
 
 	for (auto it = enemies.begin(); it != enemies.end(); )
 	{
 		Enemy* enemy = *it;
+
 		AABB enemyHitbox = enemy->GetHitbox();
 		Rectangle playerRect = { (float)playerHitbox.pos.x, (float)playerHitbox.pos.y, (float)playerHitbox.width, (float)playerHitbox.height };
 		Rectangle enemyRect = { (float)enemyHitbox.pos.x, (float)enemyHitbox.pos.y, (float)enemyHitbox.width, (float)enemyHitbox.height };
@@ -160,25 +162,22 @@ void EnemyManager::CheckPlayerCollision(const AABB& playerHitbox, const Point& p
 		if (CheckCollisionRecs(playerRect, enemyRect))
 		{
 			// If player is above the enemy and moving downward, kill the enemy
-  			if (playerHitbox.pos.y + playerHitbox.height < (enemyHitbox.pos.y-1) + enemyHitbox.height)
+			if (playerHitbox.pos.y + playerHitbox.height < (enemyHitbox.pos.y - 1) + enemyHitbox.height)
 			{
 				if (enemy->StateSlime())
 				{
-
 					enemy->isDead();
-    				delete enemy;
-					it = enemies.erase(it);
 					PlaySound(deadenemySound);
+					delete enemy;
+					it = enemies.erase(it);
 					continue;
 				}
 			}
 			else
 			{
-				
+				player->Die();
 				playerDead = true;
-				// Player collided with enemy from sides or below - player dies
-				// You'll need to implement player death logic here
-				LOG("Player died from enemy collision");
+				printf("Player died from enemy collision");
 			}
 		}
 		++it;

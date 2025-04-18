@@ -41,7 +41,7 @@ AppStatus Slime::Initialise(Look look, const AABB& area)
 	sprite->SetAnimationDelay((int)SlimeAnim::WALKING_LEFT, SLIME_ANIM_DELAY);
 	for (i = 0; i < 3; ++i)
 		sprite->AddKeyFrame((int)SlimeAnim::WALKING_LEFT, { (float)i * n, 2 * n, -n, n });
-
+	sprite->AddKeyFrame((int)SlimeAnim::DEAD, { (float)i * n, 3 * n, n, n });
 
 	this->look = look;
 	if (look == Look::LEFT)        sprite->SetAnimation((int)SlimeAnim::IDLE_LEFT);
@@ -71,8 +71,6 @@ void Slime::InitPattern()
 	pattern.push_back({ {0, 0}, n, (int)SlimeAnim::IDLE_LEFT });
 	pattern.push_back({ {-SLIME_SPEED, 0}, n, (int)SlimeAnim::WALKING_LEFT });
 	pattern.push_back({ {0, 0}, n, (int)SlimeAnim::IDLE_LEFT });
-
-
 
 	current_step = 0;
 	current_frames = 0;
@@ -135,7 +133,7 @@ bool Slime::Update(const AABB& box)
 		}
 		if (isDead())
 		{
-			sprite->SetAnimation((int)SlimeAnim::WALKING_LEFT);
+			sprite->SetAnimation((int)SlimeAnim::DEAD);
 			return false;
 		}
 		sprite->Update();

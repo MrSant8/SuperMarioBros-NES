@@ -58,7 +58,7 @@ private:
     DebugMode debug;
 
     Font marioFont;
-
+    float death_timer = 0;
     const Texture2D* backgroundImage;
     const Texture2D* coinnImage;
 };

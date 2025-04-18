@@ -44,10 +44,11 @@ enum class PlayerAnim {
 	FALLING_LEFT, FALLING_RIGHT,
 	CLIMBING, CLIMBING_PRE_TOP, CLIMBING_TOP,
 	SHOCK_LEFT, SHOCK_RIGHT,
+	DEAD,
 	TELEPORT_LEFT, TELEPORT_RIGHT,
 	NUM_ANIMATIONS
 };
-
+class EnemyManager;
 class Player: public Entity
 {
 public:
@@ -61,7 +62,7 @@ public:
 	void IncrScore(int n);
 	int GetScore();
 	int GetTime();
-
+	void Die();
 	void Update();
 	void DrawDebug(const Color& col) const;
 	void Release();
@@ -73,7 +74,10 @@ public:
 	Point GetDirection() const {
 		return look == Look::RIGHT ? Point(1, 0) : Point(-1, 0);
 	}
-
+	bool IsDead() const { return state == State::DEAD; }
+	PlayerAnim GetAnimation();
+	void SetAnimation(int id);
+	State state;
 private:
 	bool IsLookingRight() const;
 	bool IsLookingLeft() const;
@@ -85,8 +89,8 @@ private:
 	void LogicClimbing();
 
 	//Animation management
-	void SetAnimation(int id);
-	PlayerAnim GetAnimation();
+
+
 	void Stop();
 	void StartWalkingLeft();
 	void StartWalkingRight();
@@ -106,7 +110,7 @@ private:
 	bool IsInFirstHalfTile() const;
 	bool IsInSecondHalfTile() const;
 
-	State state;
+
 	Look look;
 	int jump_delay;
 

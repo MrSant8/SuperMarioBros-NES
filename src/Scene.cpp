@@ -9,7 +9,6 @@ Scene::Scene()
 	enemies = nullptr;
 	shots = nullptr;
 	particles = nullptr;
-
 	camera.target = { 0,0};				//Center of the screen
 	camera.offset = { 0, MARGIN_GUI_Y };	//Offset from the target (center of the screen)
 	camera.rotation = 0.0f;					//No rotation
@@ -298,13 +297,13 @@ void Scene::Update()
 
 	hitbox = player->GetHitbox();
 	enemies->Update(hitbox);
-	enemies->CheckPlayerCollision(hitbox, player->GetDirection());
+	enemies->CheckPlayerCollision(hitbox, player->GetDirection(), player); 
 	shots->Update(hitbox);
 	particles->Update();
 
 	if (enemies->playerDead || player->GetTime()<=0) {
-		gameOver = true;
-		return;
+		//gameOver = true;
+		//return;
 	}
 
 	//Win
