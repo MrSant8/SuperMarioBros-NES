@@ -110,6 +110,18 @@ AppStatus Game::LoadResources()
         LOG("Failed to load game music");
         return AppStatus::ERROR;
     }
+    GameOverMusic = LoadMusicStream("Assets/Audio/Music/Game Over.wav");
+    if (GameOverMusic.stream.buffer == nullptr)
+    {
+        LOG("Failed to load game music");
+        return AppStatus::ERROR;
+    }    
+    WinMusic = LoadMusicStream("Assets/Audio/Music/smb_stage_clear.wav");
+    if (WinMusic.stream.buffer == nullptr)
+    {
+        LOG("Failed to load game music");
+        return AppStatus::ERROR;
+    }
 
     return AppStatus::OK;
 }
@@ -182,6 +194,8 @@ AppStatus Game::Update()
             if (IsKeyPressed(KEY_SPACE))
             {
                 StopMusicStream(GroundMusic); //Music Stops
+                StopMusicStream(GameOverMusic);
+                StopMusicStream(WinMusic);
                 PlayMusicStream(GroundMusic);  //Music Plays
                 SetMusicVolume(GroundMusic, 1.0f);
                 //"state = GameState::PLAYING;" but not until halfway through the transition
@@ -225,14 +239,23 @@ AppStatus Game::Update()
                 }
                 break;
             case GameState::GAMEOVER:
+                StopMusicStream(GroundMusic);
+                PlayMusicStream(GameOverMusic);
+
+                UpdateMusicStream(GameOverMusic);
                 if (IsKeyPressed(KEY_SPACE))
                 {
+                    
                     state = GameState::MAIN_MENU;
                 }
                 break;
             case GameState::WIN:
+                StopMusicStream(GroundMusic);
+                PlayMusicStream(WinMusic);
+                UpdateMusicStream(WinMusic);
                 if (IsKeyPressed(KEY_SPACE))
                 {
+                    
                     state = GameState::MAIN_MENU;
                 }
                 break;
@@ -295,5 +318,7 @@ void Game::UnloadResources()
     data.ReleaseTexture(Resource::IMG_WORLD);
 
     UnloadMusicStream(GroundMusic);
+    UnloadMusicStream(GameOverMusic);
+    UnloadMusicStream(WinMusic);
     UnloadRenderTexture(target);
 }

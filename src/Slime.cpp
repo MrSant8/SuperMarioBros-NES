@@ -72,6 +72,8 @@ void Slime::InitPattern()
 	pattern.push_back({ {-SLIME_SPEED, 0}, n, (int)SlimeAnim::WALKING_LEFT });
 	pattern.push_back({ {0, 0}, n, (int)SlimeAnim::IDLE_LEFT });
 
+
+
 	current_step = 0;
 	current_frames = 0;
 }
@@ -133,6 +135,7 @@ bool Slime::Update(const AABB& box)
 		}
 		if (isDead())
 		{
+			sprite->SetAnimation((int)SlimeAnim::WALKING_LEFT);
 			return false;
 		}
 		sprite->Update();

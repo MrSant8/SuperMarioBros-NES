@@ -34,7 +34,7 @@ private:
     FadeTransition fade_transition;
 
     //Music
-    Music GroundMusic;
+    Music GroundMusic, GameOverMusic, WinMusic;
 
 
     //Wold variables

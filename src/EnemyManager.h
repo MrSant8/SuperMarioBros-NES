@@ -46,6 +46,7 @@ public:
 	
 
 private:
+	Sound deadenemySound;
 	std::vector<Enemy*> enemies;
 
 	//Reference to the ShotManager object

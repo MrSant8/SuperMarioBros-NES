@@ -46,6 +46,9 @@ AppStatus EnemyManager::Initialise()
 		return AppStatus::ERROR;
 	}
 
+	deadenemySound = LoadSound("Assets/Audio/Fx/Squish.wav");
+
+
 	return AppStatus::OK;
 }
 void EnemyManager::SetShotManager(ShotManager* shots)
@@ -165,6 +168,7 @@ void EnemyManager::CheckPlayerCollision(const AABB& playerHitbox, const Point& p
 					enemy->isDead();
     				delete enemy;
 					it = enemies.erase(it);
+					PlaySound(deadenemySound);
 					continue;
 				}
 			}
