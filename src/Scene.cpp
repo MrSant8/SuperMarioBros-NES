@@ -10,8 +10,6 @@ Scene::Scene()
 	shots = nullptr;
 	particles = nullptr;
 
-	font1 = nullptr;
-
 	camera.target = { 0,0};				//Center of the screen
 	camera.offset = { 0, MARGIN_GUI_Y };	//Offset from the target (center of the screen)
 	camera.rotation = 0.0f;					//No rotation
@@ -55,11 +53,7 @@ Scene::~Scene()
 		delete particles;
 		particles = nullptr;
 	}
-	if (font1 != nullptr)
-	{
-		delete font1;
-		font1 = nullptr;
-	}
+
 }
 AppStatus Scene::Init()
 {
@@ -163,19 +157,7 @@ AppStatus Scene::Init()
 	//Assign the shot manager reference to the enemy manager so enemies can add shots
 	enemies->SetShotManager(shots);
 
-	//Create text font 1
-	font1 = new Text();
-	if (font1 == nullptr)
-	{
-		LOG("Failed to allocate memory for font 1");
-		return AppStatus::ERROR;
-	}
-	//Initialise text font 1
-	if (font1->Initialise(Resource::IMG_FONT1, "images/font8x8.png", ' ', 8) != AppStatus::OK)
-	{
-		LOG("Failed to initialise Level");
-		return AppStatus::ERROR;
-	}
+	marioFont = LoadFont("Assets/Font/super-mario-bros-nes.ttf");
 	
 	return AppStatus::OK;
 }
@@ -425,17 +407,19 @@ void Scene::RenderGUI() const
 	static int frame;
 	frame++;
 	frame %= 1000;
-	font1->Draw(200, 5, TextFormat("TIME"));
-	font1->Draw(208, 15, TextFormat("%d", player->GetTime()));
 
-	font1->Draw(130+10, 5, TextFormat("WORLD"));
-	font1->Draw(137+10, 15, TextFormat("1-1"));
-	
+	DrawTextEx(marioFont, "TIME", { 200, 5 }, 9, 1, WHITE);
+	DrawTextEx(marioFont, TextFormat("%d", player->GetTime()), { 208, 15 }, 9, 1, WHITE);
+
+	DrawTextEx(marioFont, "WORLD", { 140, 5 }, 9, 1, WHITE);
+	DrawTextEx(marioFont, "1-1", { 147, 15 }, 9, 1, WHITE);
+
 	DrawTexture(*coinnImage, -5, -10, WHITE);
-	font1->Draw(93, 15, TextFormat("X"));
-	font1->Draw(103, 15, TextFormat("00"));
+	DrawTextEx(marioFont, "X", { 93, 15 }, 9, 1, WHITE);
+	DrawTextEx(marioFont, "00", { 103, 15 }, 9, 1, WHITE);
 
-	font1->Draw(15, 5, TextFormat("MARIO"));
-	font1->Draw(15, 15, TextFormat("%06d", player->GetScore()));
+	DrawTextEx(marioFont, "MARIO", { 15, 5 }, 9, 1, WHITE);
+	DrawTextEx(marioFont, TextFormat("%06d", player->GetScore()), { 15, 15 }, 9, 1, WHITE);
+
 
 }

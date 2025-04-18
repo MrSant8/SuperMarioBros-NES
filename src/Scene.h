@@ -57,7 +57,7 @@ private:
     Camera2D camera;
     DebugMode debug;
 
-    Text* font1;
+    Font marioFont;
 
     const Texture2D* backgroundImage;
     const Texture2D* coinnImage;

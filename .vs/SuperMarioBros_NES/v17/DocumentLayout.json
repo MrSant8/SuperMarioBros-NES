@@ -3,20 +3,36 @@
   "WorkspaceRootPath": "C:\\Users\\Usuari\\Documents\\GitHub\\SuperMarioBros-NES\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{3977A628-DA9D-4402-8F7A-65D0FDE48107}|Vikings.vcxproj|C:\\Users\\Usuari\\Documents\\GitHub\\SuperMarioBros-NES\\src\\Game.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{3977A628-DA9D-4402-8F7A-65D0FDE48107}|Vikings.vcxproj|solutionrelative:src\\Game.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3977A628-DA9D-4402-8F7A-65D0FDE48107}|Vikings.vcxproj|C:\\Users\\Usuari\\Documents\\GitHub\\SuperMarioBros-NES\\src\\EnemyManager.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{3977A628-DA9D-4402-8F7A-65D0FDE48107}|Vikings.vcxproj|solutionrelative:src\\EnemyManager.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{3977A628-DA9D-4402-8F7A-65D0FDE48107}|Vikings.vcxproj|C:\\Users\\Usuari\\Documents\\GitHub\\SuperMarioBros-NES\\src\\Scene.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{3977A628-DA9D-4402-8F7A-65D0FDE48107}|Vikings.vcxproj|solutionrelative:src\\Scene.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3977A628-DA9D-4402-8F7A-65D0FDE48107}|Vikings.vcxproj|C:\\Users\\Usuari\\Documents\\GitHub\\SuperMarioBros-NES\\src\\Scene.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{3977A628-DA9D-4402-8F7A-65D0FDE48107}|Vikings.vcxproj|solutionrelative:src\\Scene.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3977A628-DA9D-4402-8F7A-65D0FDE48107}|Vikings.vcxproj|C:\\Users\\Usuari\\Documents\\GitHub\\SuperMarioBros-NES\\src\\Game.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{3977A628-DA9D-4402-8F7A-65D0FDE48107}|Vikings.vcxproj|solutionrelative:src\\Game.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3977A628-DA9D-4402-8F7A-65D0FDE48107}|Vikings.vcxproj|C:\\Users\\Usuari\\Documents\\GitHub\\SuperMarioBros-NES\\src\\Globals.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{3977A628-DA9D-4402-8F7A-65D0FDE48107}|Vikings.vcxproj|solutionrelative:src\\Globals.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3977A628-DA9D-4402-8F7A-65D0FDE48107}|Vikings.vcxproj|C:\\Users\\Usuari\\Documents\\GitHub\\SuperMarioBros-NES\\src\\Globals.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{3977A628-DA9D-4402-8F7A-65D0FDE48107}|Vikings.vcxproj|solutionrelative:src\\Globals.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3977A628-DA9D-4402-8F7A-65D0FDE48107}|Vikings.vcxproj|C:\\Users\\Usuari\\Documents\\GitHub\\SuperMarioBros-NES\\src\\Text.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{3977A628-DA9D-4402-8F7A-65D0FDE48107}|Vikings.vcxproj|solutionrelative:src\\Text.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3977A628-DA9D-4402-8F7A-65D0FDE48107}|Vikings.vcxproj|C:\\Users\\Usuari\\Documents\\GitHub\\SuperMarioBros-NES\\src\\TileMap.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{3977A628-DA9D-4402-8F7A-65D0FDE48107}|Vikings.vcxproj|solutionrelative:src\\TileMap.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3977A628-DA9D-4402-8F7A-65D0FDE48107}|Vikings.vcxproj|C:\\Users\\Usuari\\Documents\\GitHub\\SuperMarioBros-NES\\src\\EnemyManager.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{3977A628-DA9D-4402-8F7A-65D0FDE48107}|Vikings.vcxproj|solutionrelative:src\\EnemyManager.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3977A628-DA9D-4402-8F7A-65D0FDE48107}|Vikings.vcxproj|C:\\Users\\Usuari\\Documents\\GitHub\\SuperMarioBros-NES\\src\\Slime.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
@@ -29,10 +45,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{3977A628-DA9D-4402-8F7A-65D0FDE48107}|Vikings.vcxproj|C:\\Users\\Usuari\\Documents\\GitHub\\SuperMarioBros-NES\\src\\EnemyManager.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{3977A628-DA9D-4402-8F7A-65D0FDE48107}|Vikings.vcxproj|solutionrelative:src\\EnemyManager.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3977A628-DA9D-4402-8F7A-65D0FDE48107}|Vikings.vcxproj|C:\\Users\\Usuari\\Documents\\GitHub\\SuperMarioBros-NES\\src\\Globals.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{3977A628-DA9D-4402-8F7A-65D0FDE48107}|Vikings.vcxproj|solutionrelative:src\\Globals.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3977A628-DA9D-4402-8F7A-65D0FDE48107}|Vikings.vcxproj|C:\\Users\\Usuari\\Documents\\GitHub\\SuperMarioBros-NES\\src\\Enemy.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
@@ -63,14 +75,6 @@
       "RelativeMoniker": "D:0:0:{3977A628-DA9D-4402-8F7A-65D0FDE48107}|Vikings.vcxproj|solutionrelative:src\\ResourceManager.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3977A628-DA9D-4402-8F7A-65D0FDE48107}|Vikings.vcxproj|C:\\Users\\Usuari\\Documents\\GitHub\\SuperMarioBros-NES\\src\\Text.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{3977A628-DA9D-4402-8F7A-65D0FDE48107}|Vikings.vcxproj|solutionrelative:src\\Text.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3977A628-DA9D-4402-8F7A-65D0FDE48107}|Vikings.vcxproj|C:\\Users\\Usuari\\Documents\\GitHub\\SuperMarioBros-NES\\src\\TileMap.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{3977A628-DA9D-4402-8F7A-65D0FDE48107}|Vikings.vcxproj|solutionrelative:src\\TileMap.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{3977A628-DA9D-4402-8F7A-65D0FDE48107}|Vikings.vcxproj|C:\\Users\\Usuari\\Documents\\GitHub\\SuperMarioBros-NES\\src\\Entity.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{3977A628-DA9D-4402-8F7A-65D0FDE48107}|Vikings.vcxproj|solutionrelative:src\\Entity.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
@@ -90,10 +94,6 @@
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.40.33807\\include\\vector||{3B902123-F8A7-4915-9F01-361F908088D0}|"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3977A628-DA9D-4402-8F7A-65D0FDE48107}|Vikings.vcxproj|C:\\Users\\Usuari\\Documents\\GitHub\\SuperMarioBros-NES\\src\\Globals.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{3977A628-DA9D-4402-8F7A-65D0FDE48107}|Vikings.vcxproj|solutionrelative:src\\Globals.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{3977A628-DA9D-4402-8F7A-65D0FDE48107}|Vikings.vcxproj|C:\\Users\\Usuari\\Documents\\GitHub\\SuperMarioBros-NES\\src\\FadeTransition.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{3977A628-DA9D-4402-8F7A-65D0FDE48107}|Vikings.vcxproj|solutionrelative:src\\FadeTransition.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
@@ -109,37 +109,39 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 6,
               "Title": "TileMap.cpp",
               "DocumentMoniker": "C:\\Users\\Usuari\\Documents\\GitHub\\SuperMarioBros-NES\\src\\TileMap.cpp",
               "RelativeDocumentMoniker": "src\\TileMap.cpp",
               "ToolTip": "C:\\Users\\Usuari\\Documents\\GitHub\\SuperMarioBros-NES\\src\\TileMap.cpp",
               "RelativeToolTip": "src\\TileMap.cpp",
-              "ViewState": "AQIAAGoBAAAAAAAAAAD4v8QAAAABAAAA",
+              "ViewState": "AgIAAGoBAAAAAAAAAAD4v8QAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-03-21T07:20:12.21Z",
-              "IsPinned": true
+              "IsPinned": true,
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "Scene.cpp",
               "DocumentMoniker": "C:\\Users\\Usuari\\Documents\\GitHub\\SuperMarioBros-NES\\src\\Scene.cpp",
               "RelativeDocumentMoniker": "src\\Scene.cpp",
               "ToolTip": "C:\\Users\\Usuari\\Documents\\GitHub\\SuperMarioBros-NES\\src\\Scene.cpp",
               "RelativeToolTip": "src\\Scene.cpp",
-              "ViewState": "AgIAALsAAAAAAAAAAAAvwNIAAAAWAgAAAAAAAA==",
+              "ViewState": "AgIAAI0BAAAAAAAAAAAAAKEBAAA1AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-03-17T07:34:28.01Z",
-              "IsPinned": true
+              "IsPinned": true,
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 19,
               "Title": "TileMap.h",
               "DocumentMoniker": "C:\\Users\\Usuari\\Documents\\GitHub\\SuperMarioBros-NES\\src\\TileMap.h",
               "RelativeDocumentMoniker": "src\\TileMap.h",
@@ -152,26 +154,27 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "Scene.h",
               "DocumentMoniker": "C:\\Users\\Usuari\\Documents\\GitHub\\SuperMarioBros-NES\\src\\Scene.h",
               "RelativeDocumentMoniker": "src\\Scene.h",
               "ToolTip": "C:\\Users\\Usuari\\Documents\\GitHub\\SuperMarioBros-NES\\src\\Scene.h",
               "RelativeToolTip": "src\\Scene.h",
-              "ViewState": "AgIAAC0AAAAAAAAAAAAAAD0AAAAlAAAAAAAAAA==",
+              "ViewState": "AgIAACcAAAAAAAAAAAAAADsAAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2025-03-17T07:48:07.395Z",
-              "IsPinned": true
+              "IsPinned": true,
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "Game.cpp",
               "DocumentMoniker": "C:\\Users\\Usuari\\Documents\\GitHub\\SuperMarioBros-NES\\src\\Game.cpp",
               "RelativeDocumentMoniker": "src\\Game.cpp",
               "ToolTip": "C:\\Users\\Usuari\\Documents\\GitHub\\SuperMarioBros-NES\\src\\Game.cpp",
               "RelativeToolTip": "src\\Game.cpp",
-              "ViewState": "AgIAAAQBAAAAAAAAAAAowBcBAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAOIAAAAAAAAAAAAAAPcAAAAkAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-03-17T07:43:37.722Z",
               "IsPinned": true,
@@ -179,7 +182,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 16,
               "Title": "ResourceManager.h",
               "DocumentMoniker": "C:\\Users\\Usuari\\Documents\\GitHub\\SuperMarioBros-NES\\src\\ResourceManager.h",
               "RelativeDocumentMoniker": "src\\ResourceManager.h",
@@ -192,7 +195,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 17,
               "Title": "ResourceManager.cpp",
               "DocumentMoniker": "C:\\Users\\Usuari\\Documents\\GitHub\\SuperMarioBros-NES\\src\\ResourceManager.cpp",
               "RelativeDocumentMoniker": "src\\ResourceManager.cpp",
@@ -205,7 +208,82 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 8,
+              "Title": "Slime.h",
+              "DocumentMoniker": "C:\\Users\\Usuari\\Documents\\GitHub\\SuperMarioBros-NES\\src\\Slime.h",
+              "RelativeDocumentMoniker": "src\\Slime.h",
+              "ToolTip": "C:\\Users\\Usuari\\Documents\\GitHub\\SuperMarioBros-NES\\src\\Slime.h",
+              "RelativeToolTip": "src\\Slime.h",
+              "ViewState": "AgIAAC4AAAAAAAAAAAAAwDUAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-03-27T21:38:04.153Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Globals.h",
+              "DocumentMoniker": "C:\\Users\\Usuari\\Documents\\GitHub\\SuperMarioBros-NES\\src\\Globals.h",
+              "RelativeDocumentMoniker": "src\\Globals.h",
+              "ToolTip": "C:\\Users\\Usuari\\Documents\\GitHub\\SuperMarioBros-NES\\src\\Globals.h",
+              "RelativeToolTip": "src\\Globals.h",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAABUAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-03-21T07:12:27.694Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "EnemyManager.h",
+              "DocumentMoniker": "C:\\Users\\Usuari\\Documents\\GitHub\\SuperMarioBros-NES\\src\\EnemyManager.h",
+              "RelativeDocumentMoniker": "src\\EnemyManager.h",
+              "ToolTip": "C:\\Users\\Usuari\\Documents\\GitHub\\SuperMarioBros-NES\\src\\EnemyManager.h",
+              "RelativeToolTip": "src\\EnemyManager.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-04-07T06:34:42.54Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Text.cpp",
+              "DocumentMoniker": "C:\\Users\\Usuari\\Documents\\GitHub\\SuperMarioBros-NES\\src\\Text.cpp",
+              "RelativeDocumentMoniker": "src\\Text.cpp",
+              "ToolTip": "C:\\Users\\Usuari\\Documents\\GitHub\\SuperMarioBros-NES\\src\\Text.cpp",
+              "RelativeToolTip": "src\\Text.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-04-13T08:03:55.937Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Globals.cpp",
+              "DocumentMoniker": "C:\\Users\\Usuari\\Documents\\GitHub\\SuperMarioBros-NES\\src\\Globals.cpp",
+              "RelativeDocumentMoniker": "src\\Globals.cpp",
+              "ToolTip": "C:\\Users\\Usuari\\Documents\\GitHub\\SuperMarioBros-NES\\src\\Globals.cpp",
+              "RelativeToolTip": "src\\Globals.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAD8AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-04-06T22:27:59.301Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Slime.cpp",
+              "DocumentMoniker": "C:\\Users\\Usuari\\Documents\\GitHub\\SuperMarioBros-NES\\src\\Slime.cpp",
+              "RelativeDocumentMoniker": "src\\Slime.cpp",
+              "ToolTip": "C:\\Users\\Usuari\\Documents\\GitHub\\SuperMarioBros-NES\\src\\Slime.cpp",
+              "RelativeToolTip": "src\\Slime.cpp",
+              "ViewState": "AgIAAD8AAAAAAAAAAAAAAEoAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-03-27T21:38:18.117Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
               "Title": "EnemyManager.cpp",
               "DocumentMoniker": "C:\\Users\\Usuari\\Documents\\GitHub\\SuperMarioBros-NES\\src\\EnemyManager.cpp",
               "RelativeDocumentMoniker": "src\\EnemyManager.cpp",
@@ -218,55 +296,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Slime.cpp",
-              "DocumentMoniker": "C:\\Users\\Usuari\\Documents\\GitHub\\SuperMarioBros-NES\\src\\Slime.cpp",
-              "RelativeDocumentMoniker": "src\\Slime.cpp",
-              "ToolTip": "C:\\Users\\Usuari\\Documents\\GitHub\\SuperMarioBros-NES\\src\\Slime.cpp",
-              "RelativeToolTip": "src\\Slime.cpp",
-              "ViewState": "AgIAAD8AAAAAAAAAAAAAAEoAAAASAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-03-27T21:38:18.117Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Slime.h",
-              "DocumentMoniker": "C:\\Users\\Usuari\\Documents\\GitHub\\SuperMarioBros-NES\\src\\Slime.h",
-              "RelativeDocumentMoniker": "src\\Slime.h",
-              "ToolTip": "C:\\Users\\Usuari\\Documents\\GitHub\\SuperMarioBros-NES\\src\\Slime.h",
-              "RelativeToolTip": "src\\Slime.h",
-              "ViewState": "AgIAAC4AAAAAAAAAAAAAwDUAAAAIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-03-27T21:38:04.153Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Globals.h",
-              "DocumentMoniker": "C:\\Users\\Usuari\\Documents\\GitHub\\SuperMarioBros-NES\\src\\Globals.h",
-              "RelativeDocumentMoniker": "src\\Globals.h",
-              "ToolTip": "C:\\Users\\Usuari\\Documents\\GitHub\\SuperMarioBros-NES\\src\\Globals.h",
-              "RelativeToolTip": "src\\Globals.h",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAABsAAAAXAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-03-21T07:12:27.694Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "EnemyManager.h",
-              "DocumentMoniker": "C:\\Users\\Usuari\\Documents\\GitHub\\SuperMarioBros-NES\\src\\EnemyManager.h",
-              "RelativeDocumentMoniker": "src\\EnemyManager.h",
-              "ToolTip": "C:\\Users\\Usuari\\Documents\\GitHub\\SuperMarioBros-NES\\src\\EnemyManager.h",
-              "RelativeToolTip": "src\\EnemyManager.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-04-07T06:34:42.54Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 11,
               "Title": "Enemy.cpp",
               "DocumentMoniker": "C:\\Users\\Usuari\\Documents\\GitHub\\SuperMarioBros-NES\\src\\Enemy.cpp",
               "RelativeDocumentMoniker": "src\\Enemy.cpp",
@@ -279,7 +309,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 12,
               "Title": "Enemy.h",
               "DocumentMoniker": "C:\\Users\\Usuari\\Documents\\GitHub\\SuperMarioBros-NES\\src\\Enemy.h",
               "RelativeDocumentMoniker": "src\\Enemy.h",
@@ -291,19 +321,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "Text.cpp",
-              "DocumentMoniker": "C:\\Users\\Usuari\\Documents\\GitHub\\SuperMarioBros-NES\\src\\Text.cpp",
-              "RelativeDocumentMoniker": "src\\Text.cpp",
-              "ToolTip": "C:\\Users\\Usuari\\Documents\\GitHub\\SuperMarioBros-NES\\src\\Text.cpp",
-              "RelativeToolTip": "src\\Text.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-04-13T08:03:55.937Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 14,
               "Title": "Game.h",
               "DocumentMoniker": "C:\\Users\\Usuari\\Documents\\GitHub\\SuperMarioBros-NES\\src\\Game.h",
               "RelativeDocumentMoniker": "src\\Game.h",
@@ -315,7 +333,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 13,
               "Title": "Player.h",
               "DocumentMoniker": "C:\\Users\\Usuari\\Documents\\GitHub\\SuperMarioBros-NES\\src\\Player.h",
               "RelativeDocumentMoniker": "src\\Player.h",
@@ -327,7 +345,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 15,
               "Title": "Player.cpp",
               "DocumentMoniker": "C:\\Users\\Usuari\\Documents\\GitHub\\SuperMarioBros-NES\\src\\Player.cpp",
               "RelativeDocumentMoniker": "src\\Player.cpp",
@@ -339,7 +357,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 18,
               "Title": "Entity.cpp",
               "DocumentMoniker": "C:\\Users\\Usuari\\Documents\\GitHub\\SuperMarioBros-NES\\src\\Entity.cpp",
               "RelativeDocumentMoniker": "src\\Entity.cpp",
@@ -351,7 +369,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 20,
               "Title": "Entity.h",
               "DocumentMoniker": "C:\\Users\\Usuari\\Documents\\GitHub\\SuperMarioBros-NES\\src\\Entity.h",
               "RelativeDocumentMoniker": "src\\Entity.h",
@@ -363,7 +381,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 21,
               "Title": "Turret.h",
               "DocumentMoniker": "C:\\Users\\Usuari\\Documents\\GitHub\\SuperMarioBros-NES\\src\\Turret.h",
               "RelativeDocumentMoniker": "src\\Turret.h",
@@ -375,7 +393,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 22,
               "Title": "vector",
               "DocumentMoniker": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.40.33807\\include\\vector",
               "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.40.33807\\include\\vector",
@@ -384,18 +402,6 @@
               "ViewState": "AQIAADUAAAAAAAAAAAAhwE4AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
               "WhenOpened": "2025-04-07T07:43:19.584Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 22,
-              "Title": "Globals.cpp",
-              "DocumentMoniker": "C:\\Users\\Usuari\\Documents\\GitHub\\SuperMarioBros-NES\\src\\Globals.cpp",
-              "RelativeDocumentMoniker": "src\\Globals.cpp",
-              "ToolTip": "C:\\Users\\Usuari\\Documents\\GitHub\\SuperMarioBros-NES\\src\\Globals.cpp",
-              "RelativeToolTip": "src\\Globals.cpp",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAD8AAAABAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-04-06T22:27:59.301Z"
             },
             {
               "$type": "Document",
