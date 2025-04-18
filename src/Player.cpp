@@ -1,4 +1,3 @@
-
 #include "Player.h"
 #include "Sprite.h"
 #include "TileMap.h"
@@ -332,6 +331,16 @@ void Player::MoveY()
 			}
 			else if (IsKeyDown(KEY_DOWN))
 			{
+				// Check for special teleportation positions
+				if ((pos.x == 740 && pos.y == 143) || (pos.x == 745 && pos.y == 143))
+				{
+					// Teleport to the specified position
+					pos.x = 770;
+					pos.y = 255;
+					Stop(); // Reset player state
+					return;
+				}
+				
 				//To climb up the ladder, we need to check the control point (x, y)
 				//To climb down the ladder, we need to check pixel below (x, y+1) instead
 				box = GetHitbox();
@@ -341,7 +350,6 @@ void Player::MoveY()
 					StartClimbingDown();
 					pos.y += PLAYER_LADDER_SPEED;
 				}
-					
 			}
 			else if (IsKeyPressed(KEY_SPACE))
 			{
@@ -464,7 +472,8 @@ void Player::DrawDebug(const Color& col) const
 {	
 	Entity::DrawHitbox(pos.x, pos.y, width, height, col);
 	
-	DrawText(TextFormat("Position: (%d,%d)\nSize: %dx%d\nFrame: %dx%d", pos.x, pos.y, width, height, frame_width, frame_height), 18*16, 0, 8, LIGHTGRAY);
+	// Draw debug info above the player
+	DrawText(TextFormat("Pos: (%d,%d)\nSize: %dx%d", pos.x, pos.y, width, height), pos.x, pos.y - 30, 8, LIGHTGRAY);
 	DrawPixel(pos.x, pos.y, WHITE);
 }
 void Player::Release()

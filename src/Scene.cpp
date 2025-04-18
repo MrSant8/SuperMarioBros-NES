@@ -13,8 +13,8 @@ Scene::Scene()
 	camera.target = { 0,0};				//Center of the screen
 	camera.offset = { 0, MARGIN_GUI_Y };	//Offset from the target (center of the screen)
 	camera.rotation = 0.0f;					//No rotation
-	camera.zoom = 0.89f;
-
+	camera.zoom = 0.95f;
+	
 
 	debug = DebugMode::OFF;
 }
