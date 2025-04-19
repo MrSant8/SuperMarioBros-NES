@@ -123,6 +123,7 @@ private:
 	bool move_camera = false;
 
 	Sound jumpSound;
+	Sound dieSound;
 	Enemy* enemy;
 
 	EnemyManager* enemyManager;

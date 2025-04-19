@@ -75,13 +75,14 @@ AppStatus Player::Initialise()
 	sprite->AddKeyFrame((int)PlayerAnim::CLIMBING_PRE_TOP, { 4 * n, 6 * n, n, n });
 	sprite->SetAnimationDelay((int)PlayerAnim::CLIMBING_TOP, ANIM_DELAY);
 	sprite->AddKeyFrame((int)PlayerAnim::CLIMBING_TOP, { 5 * n, 6 * n, n, n });
-	sprite->AddKeyFrame((int)PlayerAnim::DEAD, { 0, n, n, n });
 	sprite->SetAnimationDelay((int)PlayerAnim::DEAD, ANIM_DELAY);
+	sprite->AddKeyFrame((int)PlayerAnim::DEAD, { n, 0, n, n });
 
 	sprite->SetAnimation((int)PlayerAnim::IDLE_RIGHT);
 
 	//Sound Effects
 	jumpSound = LoadSound("Assets/Audio/Fx/Jump.wav");
+	dieSound = LoadSound("Assets/Audio/Fx/Die.wav");
 	return AppStatus::OK;
 }
 void Player::InitScore()
@@ -231,7 +232,7 @@ void Player::Update()
 {
 	if (state == State::DEAD) {
 		pos.y += dir.y;
-		dir.y += GRAVITY_FORCE; // Simula la caída
+		dir.y += GRAVITY_FORCE; // Simula la caÃ­da
 		Sprite* sprite = dynamic_cast<Sprite*>(render);
 		sprite->Update();
 		return;
@@ -477,7 +478,8 @@ void Player::Die()
 {
 	state = State::DEAD;
 	SetAnimation((int)PlayerAnim::DEAD);
-	dir = { 0, -PLAYER_JUMP_FORCE }; // Para simular el pequeño salto de muerte
+	dir = { 0, -PLAYER_JUMP_FORCE }; // Para simular el pequeÃ±o salto de muerte
+	PlaySound(dieSound); // Reproducir el sonido de muerte
 }
 void Player::DrawDebug(const Color& col) const
 {	

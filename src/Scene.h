@@ -21,7 +21,7 @@ public:
     void Render();
     void Release();
 
-    // Función Clamp declarada aquí
+    // Funciï¿½n Clamp declarada aquï¿½
     static float Clamp(float value, float min, float max);
 
     bool gameOver = false;
