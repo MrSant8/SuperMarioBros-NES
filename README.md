@@ -84,6 +84,6 @@ After completing the game, players can restart it to experience an increase in d
 - Teletransportation trough pipes
 
 ## Links
-Link to the github.com page of the project: [Project](https://github.com/MrSant8/SuperMarioBros-NES/wikilo)
+Link to the github.com page of the project: [Project](https://github.com/MrSant8/SuperMarioBros-NES/wiki)
 
 Link to a 1-minute maximum video (YouTube or Vimeo) showing all implemented features: [Video]()
