@@ -6,24 +6,19 @@
 #include "Enemy.h"
 #include "EnemyManager.h"
 
+// Constructor
 Player::Player(const Point& p, State s, Look view) :
-	Entity(p, PLAYER_PHYSICAL_WIDTH, PLAYER_PHYSICAL_HEIGHT, PLAYER_FRAME_SIZE, PLAYER_FRAME_SIZE)
-{
-	state = s;
-	look = view;
-	jump_delay = PLAYER_JUMP_DELAY;
-	map = nullptr;
-	score = 0;
-}
-Player::~Player()
-{
-}
+	Entity(p, PLAYER_PHYSICAL_WIDTH, PLAYER_PHYSICAL_HEIGHT, PLAYER_FRAME_SIZE, PLAYER_FRAME_SIZE),
+	state(s), look(view), jump_delay(PLAYER_JUMP_DELAY), map(nullptr), score(0) {}
+
+Player::~Player() {}
+
+// Inicialización
 AppStatus Player::Initialise()
 {
-	int i;
 	const int n = PLAYER_FRAME_SIZE;
-
 	ResourceManager& data = ResourceManager::Instance();
+
 	if (data.LoadTexture(Resource::IMG_PLAYER, "images/eric.png") != AppStatus::OK)
 	{
 		LOG("Failed to load player sprite texture");
@@ -31,7 +26,7 @@ AppStatus Player::Initialise()
 	}
 
 	render = new Sprite(data.GetTexture(Resource::IMG_PLAYER));
-	if (render == nullptr)
+	if (!render)
 	{
 		LOG("Failed to allocate memory for player sprite");
 		return AppStatus::ERROR;
@@ -39,210 +34,175 @@ AppStatus Player::Initialise()
 
 	Sprite* sprite = dynamic_cast<Sprite*>(render);
 	sprite->SetNumberAnimations((int)PlayerAnim::NUM_ANIMATIONS);
-	
+
+	// Animaciones básicas
 	sprite->SetAnimationDelay((int)PlayerAnim::IDLE_RIGHT, ANIM_DELAY);
 	sprite->AddKeyFrame((int)PlayerAnim::IDLE_RIGHT, { 0, 0, n, n });
 	sprite->SetAnimationDelay((int)PlayerAnim::IDLE_LEFT, ANIM_DELAY);
 	sprite->AddKeyFrame((int)PlayerAnim::IDLE_LEFT, { 0, 0, -n, n });
 
 	sprite->SetAnimationDelay((int)PlayerAnim::WALKING_RIGHT, ANIM_DELAY);
-	for (i = 0; i < 8; ++i)
-		sprite->AddKeyFrame((int)PlayerAnim::WALKING_RIGHT, { (float)i*n, 4*n, n, n });
+	for (int i = 0; i < 8; ++i)
+		sprite->AddKeyFrame((int)PlayerAnim::WALKING_RIGHT, { (float)i * n, 4 * n, n, n });
+
 	sprite->SetAnimationDelay((int)PlayerAnim::WALKING_LEFT, ANIM_DELAY);
-	for (i = 0; i < 8; ++i)
-		sprite->AddKeyFrame((int)PlayerAnim::WALKING_LEFT, { (float)i*n, 4*n, -n, n });
+	for (int i = 0; i < 8; ++i)
+		sprite->AddKeyFrame((int)PlayerAnim::WALKING_LEFT, { (float)i * n, 4 * n, -n, n });
 
 	sprite->SetAnimationDelay((int)PlayerAnim::FALLING_RIGHT, ANIM_DELAY);
-	sprite->AddKeyFrame((int)PlayerAnim::FALLING_RIGHT, { 2*n, 5*n, n, n });
-	sprite->AddKeyFrame((int)PlayerAnim::FALLING_RIGHT, { 3*n, 5*n, n, n });
+	sprite->AddKeyFrame((int)PlayerAnim::FALLING_RIGHT, { 2 * n, 5 * n, n, n });
+	sprite->AddKeyFrame((int)PlayerAnim::FALLING_RIGHT, { 3 * n, 5 * n, n, n });
+
 	sprite->SetAnimationDelay((int)PlayerAnim::FALLING_LEFT, ANIM_DELAY);
-	sprite->AddKeyFrame((int)PlayerAnim::FALLING_LEFT, { 2*n, 5*n, -n, n });
-	sprite->AddKeyFrame((int)PlayerAnim::FALLING_LEFT, { 3*n, 5*n, -n, n });
+	sprite->AddKeyFrame((int)PlayerAnim::FALLING_LEFT, { 2 * n, 5 * n, -n, n });
+	sprite->AddKeyFrame((int)PlayerAnim::FALLING_LEFT, { 3 * n, 5 * n, -n, n });
 
 	sprite->SetAnimationDelay((int)PlayerAnim::JUMPING_RIGHT, ANIM_DELAY);
-	sprite->AddKeyFrame((int)PlayerAnim::JUMPING_RIGHT, { 0, 5*n, n, n });
+	sprite->AddKeyFrame((int)PlayerAnim::JUMPING_RIGHT, { 0, 5 * n, n, n });
 	sprite->SetAnimationDelay((int)PlayerAnim::JUMPING_LEFT, ANIM_DELAY);
-	sprite->AddKeyFrame((int)PlayerAnim::JUMPING_LEFT, { 0, 5*n, -n, n });
+	sprite->AddKeyFrame((int)PlayerAnim::JUMPING_LEFT, { 0, 5 * n, -n, n });
+
 	sprite->SetAnimationDelay((int)PlayerAnim::LEVITATING_RIGHT, ANIM_DELAY);
-	sprite->AddKeyFrame((int)PlayerAnim::LEVITATING_RIGHT, { n, 5*n, n, n });
+	sprite->AddKeyFrame((int)PlayerAnim::LEVITATING_RIGHT, { n, 5 * n, n, n });
 	sprite->SetAnimationDelay((int)PlayerAnim::LEVITATING_LEFT, ANIM_DELAY);
-	sprite->AddKeyFrame((int)PlayerAnim::LEVITATING_LEFT, { n, 5*n, -n, n });
+	sprite->AddKeyFrame((int)PlayerAnim::LEVITATING_LEFT, { n, 5 * n, -n, n });
 
 	sprite->SetAnimationDelay((int)PlayerAnim::CLIMBING, ANIM_LADDER_DELAY);
-	for (i = 0; i < 4; ++i)
+	for (int i = 0; i < 4; ++i)
 		sprite->AddKeyFrame((int)PlayerAnim::CLIMBING, { (float)i * n, 6 * n, n, n });
+
 	sprite->SetAnimationDelay((int)PlayerAnim::CLIMBING_PRE_TOP, ANIM_DELAY);
 	sprite->AddKeyFrame((int)PlayerAnim::CLIMBING_PRE_TOP, { 4 * n, 6 * n, n, n });
+
 	sprite->SetAnimationDelay((int)PlayerAnim::CLIMBING_TOP, ANIM_DELAY);
 	sprite->AddKeyFrame((int)PlayerAnim::CLIMBING_TOP, { 5 * n, 6 * n, n, n });
+
 	sprite->SetAnimationDelay((int)PlayerAnim::DEAD, ANIM_DELAY);
 	sprite->AddKeyFrame((int)PlayerAnim::DEAD, { n, 0, n, n });
 
 	sprite->SetAnimation((int)PlayerAnim::IDLE_RIGHT);
 
-	//Sound Effects
 	jumpSound = LoadSound("Assets/Audio/Fx/Jump.wav");
 	dieSound = LoadSound("Assets/Audio/Fx/Die.wav");
+
 	return AppStatus::OK;
 }
-void Player::InitScore()
-{
-	score = 0;
-}
-void Player::IncrScore(int n)
-{
-	score += n;
-}
-int Player::GetScore()
-{
-	return score;
-}
+
+// Score y tiempo
+void Player::InitScore() { score = 0; }
+void Player::IncrScore(int n) { score += n; }
+int Player::GetScore() { return score; }
+
 int Player::GetTime()
 {
-	float delta = GetFrameTime(); // tiempo entre frames, en segundos
-	timeCounter += delta;
-
+	timeCounter += GetFrameTime();
 	if (timeCounter >= 1.0f)
 	{
-		time--;           // Resta 1 segundo real
+		time = std::max(0, time - 1);
 		timeCounter = 0.0f;
-		if (time <= 0) {
-			time = 0;
-		}
 	}
 	return time;
 }
 
-void Player::SetTileMap(TileMap* tilemap)
-{
-	map = tilemap;
-}
-bool Player::IsLookingRight() const
-{
-	return look == Look::RIGHT;
-}
-bool Player::IsLookingLeft() const
-{
-	return look == Look::LEFT;
-}
-bool Player::IsAscending() const
-{
-	return dir.y < -PLAYER_LEVITATING_SPEED;
-}
-bool Player::IsLevitating() const
-{
-	return abs(dir.y) <= PLAYER_LEVITATING_SPEED;
-}
-bool Player::IsDescending() const
-{
-	return dir.y > PLAYER_LEVITATING_SPEED;
-}
-bool Player::IsInFirstHalfTile() const
-{
-	return pos.y % TILE_SIZE < TILE_SIZE / 2;
-}
-bool Player::IsInSecondHalfTile() const
-{
-	return pos.y % TILE_SIZE >= TILE_SIZE/2;
-}
-void Player::SetAnimation(int id)
-{
-	Sprite* sprite = dynamic_cast<Sprite*>(render);
-	sprite->SetAnimation(id);
-}
-PlayerAnim Player::GetAnimation()
-{
-	Sprite* sprite = dynamic_cast<Sprite*>(render);
-	return (PlayerAnim)sprite->GetAnimation();
-}
+// Getters y Setters
+void Player::SetTileMap(TileMap* tilemap) { map = tilemap; }
+bool Player::IsLookingRight() const { return look == Look::RIGHT; }
+bool Player::IsLookingLeft() const { return look == Look::LEFT; }
+bool Player::IsAscending() const { return dir.y < -PLAYER_LEVITATING_SPEED; }
+bool Player::IsLevitating() const { return fabs(dir.y) <= PLAYER_LEVITATING_SPEED; }
+bool Player::IsDescending() const { return dir.y > PLAYER_LEVITATING_SPEED; }
+bool Player::IsInFirstHalfTile() const { return pos.y % TILE_SIZE < TILE_SIZE / 2; }
+bool Player::IsInSecondHalfTile() const { return pos.y % TILE_SIZE >= TILE_SIZE / 2; }
+
+void Player::SetAnimation(int id) { dynamic_cast<Sprite*>(render)->SetAnimation(id); }
+PlayerAnim Player::GetAnimation() { return (PlayerAnim)dynamic_cast<Sprite*>(render)->GetAnimation(); }
+
+// Cambios de estado y animación
 void Player::Stop()
 {
-	dir = { 0,0 };
+	dir = { 0, 0 };
 	state = State::IDLE;
-	if (IsLookingRight())	SetAnimation((int)PlayerAnim::IDLE_RIGHT);
-	else					SetAnimation((int)PlayerAnim::IDLE_LEFT);
+	SetAnimation(IsLookingRight() ? (int)PlayerAnim::IDLE_RIGHT : (int)PlayerAnim::IDLE_LEFT);
 }
+
 void Player::StartWalkingLeft()
 {
 	state = State::WALKING;
 	look = Look::LEFT;
 	SetAnimation((int)PlayerAnim::WALKING_LEFT);
 }
+
 void Player::StartWalkingRight()
 {
 	state = State::WALKING;
 	look = Look::RIGHT;
 	SetAnimation((int)PlayerAnim::WALKING_RIGHT);
 }
+
 void Player::StartFalling()
 {
 	dir.y = PLAYER_SPEED * 1.5f;
 	state = State::FALLING;
-	if (IsLookingRight()) SetAnimation((int)PlayerAnim::FALLING_RIGHT);
-	else                  SetAnimation((int)PlayerAnim::FALLING_LEFT);
+	SetAnimation(IsLookingRight() ? (int)PlayerAnim::FALLING_RIGHT : (int)PlayerAnim::FALLING_LEFT);
 }
+
 void Player::StartJumping()
 {
 	dir.y = -PLAYER_JUMP_FORCE;
 	state = State::JUMPING;
-	if (IsLookingRight())	SetAnimation((int)PlayerAnim::JUMPING_RIGHT);
-	else					SetAnimation((int)PlayerAnim::JUMPING_LEFT);
 	jump_delay = PLAYER_JUMP_DELAY;
-
-	//Jump Sound
+	SetAnimation(IsLookingRight() ? (int)PlayerAnim::JUMPING_RIGHT : (int)PlayerAnim::JUMPING_LEFT);
 	PlaySound(jumpSound);
 }
+
 void Player::StartClimbingUp()
 {
 	state = State::CLIMBING;
 	SetAnimation((int)PlayerAnim::CLIMBING);
-	Sprite* sprite = dynamic_cast<Sprite*>(render);
-	sprite->SetManualMode();
+	dynamic_cast<Sprite*>(render)->SetManualMode();
 }
+
 void Player::StartClimbingDown()
 {
 	state = State::CLIMBING;
 	SetAnimation((int)PlayerAnim::CLIMBING_TOP);
-	Sprite* sprite = dynamic_cast<Sprite*>(render);
-	sprite->SetManualMode();
+	dynamic_cast<Sprite*>(render)->SetManualMode();
 }
 void Player::ChangeAnimRight()
 {
 	look = Look::RIGHT;
 	switch (state)
 	{
-		case State::IDLE:	 SetAnimation((int)PlayerAnim::IDLE_RIGHT);    break; 
-		case State::WALKING: SetAnimation((int)PlayerAnim::WALKING_RIGHT); break;
-		case State::JUMPING: SetAnimation((int)PlayerAnim::JUMPING_RIGHT); break;
-		case State::FALLING: SetAnimation((int)PlayerAnim::FALLING_RIGHT); break;
+	case State::IDLE:	SetAnimation((int)PlayerAnim::IDLE_RIGHT); break;
+	case State::WALKING:	SetAnimation((int)PlayerAnim::WALKING_RIGHT); break;
+	case State::JUMPING:	SetAnimation((int)PlayerAnim::JUMPING_RIGHT); break;
+	case State::FALLING:	SetAnimation((int)PlayerAnim::FALLING_RIGHT); break;
 	}
 }
+
 void Player::ChangeAnimLeft()
 {
 	look = Look::LEFT;
 	switch (state)
 	{
-		case State::IDLE:	 SetAnimation((int)PlayerAnim::IDLE_LEFT);    break;
-		case State::WALKING: SetAnimation((int)PlayerAnim::WALKING_LEFT); break;
-		case State::JUMPING: SetAnimation((int)PlayerAnim::JUMPING_LEFT); break;
-		case State::FALLING: SetAnimation((int)PlayerAnim::FALLING_LEFT); break;
+	case State::IDLE:	SetAnimation((int)PlayerAnim::IDLE_LEFT); break;
+	case State::WALKING:	SetAnimation((int)PlayerAnim::WALKING_LEFT); break;
+	case State::JUMPING:	SetAnimation((int)PlayerAnim::JUMPING_LEFT); break;
+	case State::FALLING:	SetAnimation((int)PlayerAnim::FALLING_LEFT); break;
 	}
 }
 void Player::Update()
 {
-	if (state == State::DEAD) {
+	if (state == State::DEAD)
+	{
 		pos.y += dir.y;
-		dir.y += GRAVITY_FORCE; // Simula la caída
-		Sprite* sprite = dynamic_cast<Sprite*>(render);
-		sprite->Update();
+		dir.y += GRAVITY_FORCE;
+		dynamic_cast<Sprite*>(render)->Update();
 		return;
 	}
-
-	// Movimiento normal
 	MoveX();
 	MoveY();
-	Sprite* sprite = dynamic_cast<Sprite*>(render);
-	sprite->Update();
+	dynamic_cast<Sprite*>(render)->Update();
 }
 void Player::MoveX()
 {
@@ -415,10 +375,6 @@ void Player::LogicJumping()
 		{
 			box = GetHitbox();
 
-			//A ground collision occurs if we were not in a collision state previously.
-			//This prevents scenarios where, after levitating due to a previous jump, we found
-			//ourselves inside a tile, and the entity would otherwise be placed above the tile,
-			//crossing it.
 			if (!map->TestCollisionGround(prev_box, &prev_y) &&
 				map->TestCollisionGround(box, &pos.y))
 			{
@@ -463,9 +419,6 @@ void Player::LogicClimbing()
 	}
 	else if (!map->TestOnLadder(box, &tmp))
 	{
-		//Case leaving the ladder ascending.
-		//If we are not in a LadderTop, colliding ground or in the Ladder it means we are leaving
-		//ther ladder ascending.
 		Stop();
 		sprite->SetAutomaticMode();
 	}
@@ -478,14 +431,13 @@ void Player::Die()
 {
 	state = State::DEAD;
 	SetAnimation((int)PlayerAnim::DEAD);
-	dir = { 0, -PLAYER_JUMP_FORCE }; // Para simular el pequeño salto de muerte
-	PlaySound(dieSound); // Reproducir el sonido de muerte
+	dir = { 0, -PLAYER_JUMP_FORCE }; 
+	PlaySound(dieSound);
 }
 void Player::DrawDebug(const Color& col) const
 {	
 	Entity::DrawHitbox(pos.x, pos.y, width, height, col);
 	
-	// Draw debug info above the player
 	DrawText(TextFormat("Pos: (%d,%d)\nSize: %dx%d", pos.x, pos.y, width, height), pos.x, pos.y - 30, 8, LIGHTGRAY);
 	DrawPixel(pos.x, pos.y, WHITE);
 }

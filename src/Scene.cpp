@@ -2,166 +2,138 @@
 #include <stdio.h>
 #include "Globals.h"
 
-Scene::Scene()
+Scene::Scene() :player(nullptr), level(nullptr), enemies(nullptr), shots(nullptr), particles(nullptr)
 {
-	player = nullptr;
-	level = nullptr;
-	enemies = nullptr;
-	shots = nullptr;
-	particles = nullptr;
 	camera.target = { 0,0};				//Center of the screen
 	camera.offset = { 0, MARGIN_GUI_Y };	//Offset from the target (center of the screen)
 	camera.rotation = 0.0f;					//No rotation
 	camera.zoom = 0.95f;
-	
 
 	debug = DebugMode::OFF;
 }
-Scene::~Scene()
-{
-	if (player != nullptr)
-	{
+Scene::~Scene() {
+	if (player != nullptr) {
 		player->Release();
 		delete player;
 		player = nullptr;
 	}
-	if (level != nullptr)
-	{
+	if (level != nullptr) {
 		level->Release();
 		delete level;
 		level = nullptr;
 	}
-	for (Entity* obj : objects)
-	{
+	for (Entity* obj : objects) {
 		delete obj;
 	}
 	objects.clear();
-	if (enemies != nullptr)
-	{
+	if (enemies != nullptr) {
 		enemies->Release();
 		delete enemies;
 		enemies = nullptr;
 	}
-	if (shots != nullptr)
-	{
+	if (shots != nullptr) {
 		delete shots;
 		shots = nullptr;
 	}
-	if (particles != nullptr)
-	{
+	if (particles != nullptr) {
 		delete particles;
 		particles = nullptr;
 	}
-
 }
-AppStatus Scene::Init()
-{
 
+AppStatus Scene::Init() {
 	ResourceManager& data = ResourceManager::Instance();
 
-	if (data.LoadTexture(Resource::IMG_BACKGROUND, "Assets/Maps/Map.png") != AppStatus::OK)
-	{
+	if (data.LoadTexture(Resource::IMG_BACKGROUND, "Assets/Maps/Map.png") != AppStatus::OK) {
 		return AppStatus::ERROR;
 	}
 	backgroundImage = data.GetTexture(Resource::IMG_BACKGROUND);
 
-	if (data.LoadTexture(Resource::IMG_COINHUD, "Assets/Textures/Hud/coin.png") != AppStatus::OK)
-	{
+	if (data.LoadTexture(Resource::IMG_COINHUD, "Assets/Textures/Hud/coin.png") != AppStatus::OK) {
 		return AppStatus::ERROR;
 	}
 	coinnImage = data.GetTexture(Resource::IMG_COINHUD);
 
-	//Create player
-	player = new Player({ 0,191 }, State::IDLE, Look::RIGHT);
-	if (player == nullptr)
-	{
+	// Create player
+	player = new Player({ 0, 191 }, State::IDLE, Look::RIGHT);
+	if (player == nullptr) {
 		LOG("Failed to allocate memory for Player");
 		return AppStatus::ERROR;
 	}
-	//Initialise player
-	if (player->Initialise() != AppStatus::OK)
-	{
+	// Initialise player
+	if (player->Initialise() != AppStatus::OK) {
 		LOG("Failed to initialise Player");
 		return AppStatus::ERROR;
 	}
 
-	//Create enemy manager
+	// Create enemy manager
 	enemies = new EnemyManager();
-	if (enemies == nullptr)
-	{
+	if (enemies == nullptr) {
 		LOG("Failed to allocate memory for Enemy Manager");
 		return AppStatus::ERROR;
 	}
-	//Initialise enemy manager
-	if (enemies->Initialise() != AppStatus::OK)
-	{
+	// Initialise enemy manager
+	if (enemies->Initialise() != AppStatus::OK) {
 		LOG("Failed to initialise Enemy Manager");
 		return AppStatus::ERROR;
 	}
 
-	//Create shot manager 
+	// Create shot manager
 	shots = new ShotManager();
-	if (shots == nullptr)
-	{
+	if (shots == nullptr) {
 		LOG("Failed to allocate memory for Shot Manager");
 		return AppStatus::ERROR;
 	}
-	//Initialise shot manager
-	if (shots->Initialise() != AppStatus::OK)
-	{
+	// Initialise shot manager
+	if (shots->Initialise() != AppStatus::OK) {
 		LOG("Failed to initialise Shot Manager");
 		return AppStatus::ERROR;
 	}
 
-	//Create particle manager 
+	// Create particle manager
 	particles = new ParticleManager();
-	if (particles == nullptr)
-	{
+	if (particles == nullptr) {
 		LOG("Failed to allocate memory for Particle Manager");
 		return AppStatus::ERROR;
 	}
-	//Initialise particle manager
-	if (particles->Initialise() != AppStatus::OK)
-	{
+	// Initialise particle manager
+	if (particles->Initialise() != AppStatus::OK) {
 		LOG("Failed to initialise Particle Manager");
 		return AppStatus::ERROR;
 	}
 
-	//Create level 
+	// Create level
 	level = new TileMap();
-	if (level == nullptr)
-	{
+	if (level == nullptr) {
 		LOG("Failed to allocate memory for Level");
 		return AppStatus::ERROR;
 	}
-	//Initialise level
-	if (level->Initialise() != AppStatus::OK)
-	{
+	// Initialise level
+	if (level->Initialise() != AppStatus::OK) {
 		LOG("Failed to initialise Level");
 		return AppStatus::ERROR;
 	}
-	//Load level
-	if (LoadLevel(1) != AppStatus::OK)
-	{
+	// Load level
+	if (LoadLevel(1) != AppStatus::OK) {
 		LOG("Failed to load Level 1");
 		return AppStatus::ERROR;
 	}
 
-	//Assign the tile map reference to the player to check collisions while navigating
+	// Assign the tile map reference to the player to check collisions while navigating
 	player->SetTileMap(level);
-	//Assign the tile map reference to the shot manager to check collisions when shots are shot
+	// Assign the tile map reference to the shot manager to check collisions when shots are shot
 	shots->SetTileMap(level);
-	//Assign the particle manager reference to the shot manager to add particles when shots collide
+	// Assign the particle manager reference to the shot manager to add particles when shots collide
 	shots->SetParticleManager(particles);
-	//Assign the shot manager reference to the enemy manager so enemies can add shots
+	// Assign the shot manager reference to the enemy manager so enemies can add shots
 	enemies->SetShotManager(shots);
 
 	marioFont = LoadFont("Assets/Font/super-mario-bros-nes.ttf");
-	
+
 	return AppStatus::OK;
 }
-AppStatus Scene::LoadLevel(int stage)
-{
+
+AppStatus Scene::LoadLevel(int stage) {
 	int size;
 	int x, y, i;
 	Tile tile;
@@ -173,10 +145,8 @@ AppStatus Scene::LoadLevel(int stage)
 	ClearLevel();
 
 	size = LEVEL_WIDTH * LEVEL_HEIGHT;
-	if (stage == 1)
-	{
+	if (stage == 1) {
 		map = new int[size] {
-		
 			    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 				0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 				0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,

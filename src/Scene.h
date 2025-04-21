@@ -21,9 +21,6 @@ public:
     void Render();
     void Release();
 
-    // Funci�n Clamp declarada aqu�
-    static float Clamp(float value, float min, float max);
-
     bool gameOver = false;
     bool win = false;
 
