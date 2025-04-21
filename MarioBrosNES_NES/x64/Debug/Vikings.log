@@ -1,11 +1,45 @@
-﻿  EnemyManager.cpp
-C:\Users\sergi\Desktop\Github Proyectos\Universidad\SuperMarioBros-NES\src\EnemyManager.cpp(66,18): warning C4267: 'inicializando': conversión de 'size_t' a 'int'; posible pérdida de datos
+﻿  AABB.cpp
+  Enemy.cpp
+  EnemyManager.cpp
+C:\Users\Usuari\Documents\GitHub\SuperMarioBros-NES\src\EnemyManager.cpp(66,18): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  Entity.cpp
+  FadeTransition.cpp
+C:\Users\Usuari\Documents\GitHub\SuperMarioBros-NES\src\FadeTransition.cpp(93,59): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Usuari\Documents\GitHub\SuperMarioBros-NES\src\FadeTransition.cpp(93,47): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Usuari\Documents\GitHub\SuperMarioBros-NES\src\FadeTransition.cpp(93,39): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Usuari\Documents\GitHub\SuperMarioBros-NES\src\FadeTransition.cpp(93,31): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Usuari\Documents\GitHub\SuperMarioBros-NES\src\FadeTransition.cpp(101,59): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Usuari\Documents\GitHub\SuperMarioBros-NES\src\FadeTransition.cpp(101,47): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Usuari\Documents\GitHub\SuperMarioBros-NES\src\FadeTransition.cpp(101,39): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Usuari\Documents\GitHub\SuperMarioBros-NES\src\FadeTransition.cpp(101,31): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
   Game.cpp
-  Player.cpp
-C:\Users\sergi\Desktop\Github Proyectos\Universidad\SuperMarioBros-NES\src\Player.cpp(179,23): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
-C:\Users\sergi\Desktop\Github Proyectos\Universidad\SuperMarioBros-NES\src\Player.cpp(326,24): warning C4244: '+=': conversión de 'float' a 'int'; posible pérdida de datos
-C:\Users\sergi\Desktop\Github Proyectos\Universidad\SuperMarioBros-NES\src\Player.cpp(384,25): warning C4244: '+=': conversión de 'double' a 'int'; posible pérdida de datos
-  Scene.cpp
+  Globals.cpp
   main.cpp
-  Generando código...
-  Vikings.vcxproj -> C:\Users\sergi\Desktop\Github Proyectos\Universidad\SuperMarioBros-NES\x64\Debug\MarioBrosNES_NES.exe
+  Object.cpp
+  Particle.cpp
+  ParticleManager.cpp
+  Player.cpp
+C:\Users\Usuari\Documents\GitHub\SuperMarioBros-NES\src\Player.cpp(144,23): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Usuari\Documents\GitHub\SuperMarioBros-NES\src\Player.cpp(286,24): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Usuari\Documents\GitHub\SuperMarioBros-NES\src\Player.cpp(344,25): warning C4244: '+=': conversion from 'double' to 'int', possible loss of data
+  RenderComponent.cpp
+  ResourceManager.cpp
+  Scene.cpp
+  Shot.cpp
+  ShotManager.cpp
+  Slime.cpp
+C:\Users\Usuari\Documents\GitHub\SuperMarioBros-NES\src\Slime.cpp(109,13): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Usuari\Documents\GitHub\SuperMarioBros-NES\src\Slime.cpp(112,15): warning C4244: '-=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Usuari\Documents\GitHub\SuperMarioBros-NES\src\Slime.cpp(115,15): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Usuari\Documents\GitHub\SuperMarioBros-NES\src\Slime.cpp(90,6): warning C4101: 'anim_id': unreferenced local variable
+  Sprite.cpp
+  StaticImage.cpp
+  Generating Code...
+  Compiling...
+  Text.cpp
+  TileMap.cpp
+C:\Users\Usuari\Documents\GitHub\SuperMarioBros-NES\src\TileMap.cpp(381,12): warning C4101: 'rc': unreferenced local variable
+  Turret.cpp
+  Generating Code...
+LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
+  Vikings.vcxproj -> C:\Users\Usuari\Documents\GitHub\SuperMarioBros-NES\x64\Debug\MarioBrosNES_NES.exe

@@ -1,0 +1,5 @@
+﻿  Generating code
+  Previous IPDB not found, fall back to full compilation.
+  All 1033 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  Vikings.vcxproj -> C:\Users\Usuari\Documents\GitHub\SuperMarioBros-NES\x64\Release\MarioBrosNES_NES.exe
