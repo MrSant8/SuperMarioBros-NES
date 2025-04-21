@@ -40,7 +40,7 @@ After completing the game, players can restart it to experience an increase in d
 - **Spacebar:** 
   - **Jump:** Press to make Mario jump. Hold longer to jump higher.
 
-- **X Key (or equivalent):**
+- **SHIFT Key (or equivalent):**
   - **Run (if held down):** Makes Mario run faster. This is useful for jumping longer distances and defeating enemies.
 
 - **Z Key (or equivalent):**
@@ -81,6 +81,7 @@ After completing the game, players can restart it to experience an increase in d
 - Win Screen
 - UI
 - Timer
+- Sprint 
 - Teletransportation trough pipes
 
 ## Links
