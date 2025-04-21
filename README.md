@@ -87,4 +87,4 @@ After completing the game, players can restart it to experience an increase in d
 ## Links
 Link to the github.com page of the project: [Project](https://github.com/MrSant8/SuperMarioBros-NES/wiki)
 
-Link to a 1-minute maximum video (YouTube or Vimeo) showing all implemented features: [Video]()
+Link to a 1-minute maximum video (YouTube or Vimeo) showing all implemented features: [Video](https://youtu.be/5OvrUpMeehg)
