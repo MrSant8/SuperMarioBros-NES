@@ -1,6 +1,11 @@
-Link to the github.com page of the project: [Project](https://github.com/MrSant8/SuperMarioBros-NES/wikilo)
+#Super Mario Bros - NES
 
-Link to a 1-minute maximum video (YouTube or Vimeo) showing all implemented features: [Video]()
+## Description of the Game
+Super Mario Bros is a plataform video game desenvoluped by [Nintendo](https://es.wikipedia.org/wiki/Nintendo) in 1985. In it, Mario and his brother Lugi have to rescue Princess Peach, who has been kidnapped by Bowser, the Koopas' king. 
+To do so, they must journey through eight worlds filled with enemies, obstacles, and hidden shortcuts. Each level has different enemies, you can find coins, teleportation zones "_Warp Zones_" and the flagpole at the end, where the higher you jump the more points you earn.
+Players can collect ítems to aid them in their mission: the Super Mushroom increases Mario's size and durability, the Fire Flower allows him to throw fireballs, and the Starman grants temporary invincibility.Throughout the game, players face a impostor Bowser in each castle before reaching the final showdown with Bowser.
+After completing the game, players can restart it to experience an increase in difficulty, featuring faster enemies and level changes, providing a more difficult gameplay experience.
+
 
 ## Team members
 **Toni Llovera:**
@@ -21,13 +26,6 @@ Link to a 1-minute maximum video (YouTube or Vimeo) showing all implemented feat
 * **Github**: [Jana Puig](https://github.com/JanaPuig)
 
 * _Code/Design_
-
-## Description of the Game
-Super Mario Bros is a plataform video game desenvoluped by [Nintendo](https://es.wikipedia.org/wiki/Nintendo) in 1985. In it, Mario and his brother Lugi have to rescue Princess Peach, who has been kidnapped by Bowser, the Koopas' king. 
-To do so, they must journey through eight worlds filled with enemies, obstacles, and hidden shortcuts. Each level has different enemies, you can find coins, teleportation zones "_Warp Zones_" and the flagpole at the end, where the higher you jump the more points you earn.
-Players can collect ítems to aid them in their mission: the Super Mushroom increases Mario's size and durability, the Fire Flower allows him to throw fireballs, and the Starman grants temporary invincibility.Throughout the game, players face a impostor Bowser in each castle before reaching the final showdown with Bowser.
-After completing the game, players can restart it to experience an increase in difficulty, featuring faster enemies and level changes, providing a more difficult gameplay experience.
-
 
 ## Controls
 
@@ -84,3 +82,8 @@ After completing the game, players can restart it to experience an increase in d
 - UI
 - Timer
 - Teletransportation trough pipes
+
+## Links
+Link to the github.com page of the project: [Project](https://github.com/MrSant8/SuperMarioBros-NES/wikilo)
+
+Link to a 1-minute maximum video (YouTube or Vimeo) showing all implemented features: [Video]()
