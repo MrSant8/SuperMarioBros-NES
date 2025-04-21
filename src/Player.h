@@ -80,7 +80,9 @@ public:
     PlayerAnim GetAnimation();
     void SetAnimation(int id);
 
+public:
     State state;
+    bool playerisDead;
 
 private:
     // Direction
@@ -128,4 +130,5 @@ private:
 
     Sound jumpSound;
     Sound dieSound;
+
 };

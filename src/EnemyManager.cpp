@@ -176,7 +176,6 @@ void EnemyManager::CheckPlayerCollision(const AABB& playerHitbox, const Point& p
 			else
 			{
 				player->Die();
-				playerDead = true;
 				printf("Player died from enemy collision");
 			}
 		}

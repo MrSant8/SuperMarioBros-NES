@@ -271,9 +271,9 @@ void Scene::Update()
 	shots->Update(hitbox);
 	particles->Update();
 
-	if (enemies->playerDead || player->GetTime()<=0) {
-		//gameOver = true;
-		//return;
+	if (player->playerisDead || player->GetTime()<=0) {
+		gameOver = true;
+		return;
 	}
 
 	//Win

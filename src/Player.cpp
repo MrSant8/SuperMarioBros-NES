@@ -198,6 +198,7 @@ void Player::Update()
 		pos.y += dir.y;
 		dir.y += GRAVITY_FORCE;
 		dynamic_cast<Sprite*>(render)->Update();
+		playerisDead = true;
 		return;
 	}
 	MoveX();

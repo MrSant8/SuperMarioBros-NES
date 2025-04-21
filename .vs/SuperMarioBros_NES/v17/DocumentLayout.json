@@ -175,7 +175,7 @@
               "RelativeDocumentMoniker": "src\\Game.cpp",
               "ToolTip": "C:\\Users\\Usuari\\Documents\\GitHub\\SuperMarioBros-NES\\src\\Game.cpp",
               "RelativeToolTip": "src\\Game.cpp",
-              "ViewState": "AgIAAD8AAAAAAAAAAAAAAFMAAAAzAAAAAAAAAA==",
+              "ViewState": "AgIAAEIAAAAAAAAAAAAAAFwAAABLAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-03-17T07:43:37.722Z",
               "IsPinned": true,
@@ -192,8 +192,7 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAATAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2025-03-24T07:29:43.856Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
@@ -218,8 +217,7 @@
               "RelativeToolTip": "src\\Player.cpp",
               "ViewState": "AgIAAKsBAAAAAAAAAAAAAMABAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-03-17T07:45:55.345Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-17T07:45:55.345Z"
             },
             {
               "$type": "Document",
@@ -375,8 +373,7 @@
               "RelativeToolTip": "src\\Enemy.cpp",
               "ViewState": "AgIAABIAAAAAAAAAAAAAAC8AAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-03-27T21:35:45.682Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-27T21:35:45.682Z"
             },
             {
               "$type": "Document",
