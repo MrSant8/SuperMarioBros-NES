@@ -1,4 +1,4 @@
-#Super Mario Bros - NES
+###Super Mario Bros - NES
 
 ## Description of the Game
 Super Mario Bros is a plataform video game desenvoluped by [Nintendo](https://es.wikipedia.org/wiki/Nintendo) in 1985. In it, Mario and his brother Lugi have to rescue Princess Peach, who has been kidnapped by Bowser, the Koopas' king. 
