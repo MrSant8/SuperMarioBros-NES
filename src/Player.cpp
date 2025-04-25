@@ -252,6 +252,15 @@ void Player::MoveX()
 			if (state == State::WALKING) Stop();
 		}
 
+		if ((pos.x == 960 && pos.y == 447))
+		{
+			// Teleport to the specified position
+			pos.x = 922;
+			pos.y = 143;
+			teletransportation = false;
+			Stop(); // Reset player state
+			return;
+		}
 
 	}
 	else
@@ -299,14 +308,16 @@ void Player::MoveY()
 			else if (IsKeyDown(KEY_DOWN))
 			{
 				// Check for special teleportation positions
-				if ((pos.x == 740 && pos.y == 143) || (pos.x == 745 && pos.y == 143))
+				if (pos.x >= 734 && pos.x <= 754 && pos.y == 143)
 				{
 					// Teleport to the specified position
-					pos.x = 770;
+					pos.x = 770+16;
 					pos.y = 255;
+					teletransportation = true;
 					Stop(); // Reset player state
 					return;
 				}
+				
 				
 				//To climb up the ladder, we need to check the control point (x, y)
 				//To climb down the ladder, we need to check pixel below (x, y+1) instead

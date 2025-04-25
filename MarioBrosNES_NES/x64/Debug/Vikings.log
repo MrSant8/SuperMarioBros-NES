@@ -1,11 +1,5 @@
-﻿  EnemyManager.cpp
-C:\Users\Usuari\Documents\GitHub\SuperMarioBros-NES\src\EnemyManager.cpp(66,18): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-  Game.cpp
-  main.cpp
-  Player.cpp
-C:\Users\Usuari\Documents\GitHub\SuperMarioBros-NES\src\Player.cpp(144,23): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\Usuari\Documents\GitHub\SuperMarioBros-NES\src\Player.cpp(287,24): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
-C:\Users\Usuari\Documents\GitHub\SuperMarioBros-NES\src\Player.cpp(345,25): warning C4244: '+=': conversion from 'double' to 'int', possible loss of data
-  Scene.cpp
-  Generating Code...
-  Vikings.vcxproj -> C:\Users\Usuari\Documents\GitHub\SuperMarioBros-NES\x64\Debug\MarioBrosNES_NES.exe
+﻿  Player.cpp
+C:\Users\janaps\Documents\GitHub\SuperMarioBros-NES\src\Player.cpp(144,23): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\janaps\Documents\GitHub\SuperMarioBros-NES\src\Player.cpp(296,24): warning C4244: '+=': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\janaps\Documents\GitHub\SuperMarioBros-NES\src\Player.cpp(356,25): warning C4244: '+=': conversión de 'double' a 'int'; posible pérdida de datos
+  Vikings.vcxproj -> C:\Users\janaps\Documents\GitHub\SuperMarioBros-NES\x64\Debug\MarioBrosNES_NES.exe

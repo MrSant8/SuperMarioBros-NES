@@ -83,7 +83,7 @@ public:
 public:
     State state;
     bool playerisDead;
-
+    bool teletransportation = false;
 private:
     // Direction
     bool IsLookingRight() const;

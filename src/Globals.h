@@ -25,7 +25,7 @@ void log(const char file[], int line, const char* text, ...);
 #define MARGIN_GUI_Y	28
 #define TILE_SIZE		16
 #define LEVEL_WIDTH		211
-#define LEVEL_HEIGHT	30
+#define LEVEL_HEIGHT	31
 
 //Entities animation delay
 #define ANIM_DELAY		4
