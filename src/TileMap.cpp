@@ -254,6 +254,42 @@ bool TileMap::CollisionY(const Point& p, int distance) const
 	}
 	return false;
 }
+
+
+bool TileMap::TestCollisionFromBelow(const AABB& box, int* py, Point* collisionTilePos)
+{
+	Point p(box.pos.x, *py);
+	int tile_y = (p.y - 1) / TILE_SIZE; // Tile justo arriba del jugador
+
+	if (tile_y < 0) return false;
+
+	int tile_x = p.x / TILE_SIZE;
+
+	Tile tile = GetTileIndex(tile_x, tile_y);
+
+	if (IsTileSolid(tile)) // Podés filtrar por tipo específico si querés
+	{
+		if (collisionTilePos != nullptr)
+		{
+			collisionTilePos->x = tile_x;
+			collisionTilePos->y = tile_y;
+		}
+		*py = (tile_y + 1) * TILE_SIZE;
+		return true;
+	}
+	return false;
+}
+
+void TileMap::ActivateLaserAnimation(int tileX, int tileY)
+{
+	LOG("gdhf");
+	//laserVisible = true;
+	//laserTimer = 0.5f; // medio segundo
+	//laserPos = Vector2{ tileX * TILE_SIZE, tileY * TILE_SIZE };
+	//laser->SetPosition((int)laserPos.x, (int)laserPos.y);
+	//laser->SetAnimation(0); // reinicia la animación
+}
+
 bool TileMap::TestOnLadder(const AABB& box, int* px) const
 {
 	int left, right, bottom;

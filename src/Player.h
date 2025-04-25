@@ -131,4 +131,5 @@ private:
     Sound jumpSound;
     Sound dieSound;
 
+    TileMap* tilemap;
 };

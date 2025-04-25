@@ -141,6 +141,7 @@ void Player::StartWalkingRight()
 
 void Player::StartFalling()
 {
+	
 	dir.y = PLAYER_SPEED * 1.5f;
 	state = State::FALLING;
 	SetAnimation(IsLookingRight() ? (int)PlayerAnim::FALLING_RIGHT : (int)PlayerAnim::FALLING_LEFT);
@@ -153,6 +154,7 @@ void Player::StartJumping()
 	jump_delay = PLAYER_JUMP_DELAY;
 	SetAnimation(IsLookingRight() ? (int)PlayerAnim::JUMPING_RIGHT : (int)PlayerAnim::JUMPING_LEFT);
 	PlaySound(jumpSound);
+
 }
 
 void Player::StartClimbingUp()
@@ -203,6 +205,9 @@ void Player::Update()
 	}
 	MoveX();
 	MoveY();
+
+
+
 	dynamic_cast<Sprite*>(render)->Update();
 }
 void Player::MoveX()
@@ -285,6 +290,15 @@ void Player::MoveY()
 		{
 			pos.y += 16;
 			StartFalling(); // Stop jump and start falling
+
+			AABB hitbox = GetHitbox();
+			Point tileHit;
+			tilemap->ActivateLaserAnimation(tileHit.x, tileHit.y);
+
+			/*if (tilemap->TestCollisionFromBelow(hitbox, &hitbox.pos.y, &tileHit))
+			{
+			}*/
+
 		}
 	}
 	else if (state == State::CLIMBING)
@@ -336,6 +350,7 @@ void Player::MoveY()
 		}
 		else
 		{
+			
 			if (state != State::FALLING) StartFalling();
 		}
 	}

@@ -1,5 +1,3 @@
-﻿  Player.cpp
-C:\Users\janaps\Documents\GitHub\SuperMarioBros-NES\src\Player.cpp(144,23): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
-C:\Users\janaps\Documents\GitHub\SuperMarioBros-NES\src\Player.cpp(296,24): warning C4244: '+=': conversión de 'float' a 'int'; posible pérdida de datos
-C:\Users\janaps\Documents\GitHub\SuperMarioBros-NES\src\Player.cpp(356,25): warning C4244: '+=': conversión de 'double' a 'int'; posible pérdida de datos
+﻿  TileMap.cpp
+C:\Users\janaps\Documents\GitHub\SuperMarioBros-NES\src\TileMap.cpp(417,12): warning C4101: 'rc': variable local sin referencia
   Vikings.vcxproj -> C:\Users\janaps\Documents\GitHub\SuperMarioBros-NES\x64\Debug\MarioBrosNES_NES.exe

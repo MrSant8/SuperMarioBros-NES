@@ -83,6 +83,8 @@ public:
 
 	bool CollisionY(const Point& p, int distance) const;
 
+	bool TestCollisionFromBelow(const AABB& box, int* py, Point* collisionTilePos);
+	void ActivateLaserAnimation(int tileX, int tileY);
 private:
 	void InitTileDictionary();
 
@@ -93,7 +95,6 @@ private:
 	bool IsTileLaser(Tile tile) const;
 	bool CollisionX(const Point& p, int distance) const;
 	int GetLadderCenterPos(int pixel_x, int pixel_y) const;
-
 	//Tile map
 	Tile *map;
 
