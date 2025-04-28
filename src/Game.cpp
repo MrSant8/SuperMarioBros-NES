@@ -5,7 +5,7 @@
 
 Game::Game()
 {
-    state = GameState::MAIN_MENU;
+    state = GameState::PLAYING;
     scene = nullptr;
     img_menu = nullptr;
 
@@ -173,7 +173,7 @@ AppStatus Game::Update()
         {
             if (BeginPlay() != AppStatus::OK) return AppStatus::ERROR;
         }
-        else if (prev_frame == GameState::PLAYING && state == GameState::MAIN_MENU)
+        if (prev_frame == GameState::PLAYING && state == GameState::MAIN_MENU)
         {
             FinishPlay();
         }

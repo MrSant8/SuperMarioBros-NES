@@ -288,13 +288,15 @@ void Player::MoveY()
 
 		if (map->CollisionY(box.pos, box.width))
 		{
+			AABB hitbox = GetHitbox();
+			Point tileHit;
+			//tilemap->ActivateLaserAnimation(tileHit.x, tileHit.y);
+			map->TestCollisionFromBelow(hitbox, &hitbox.pos.y, &tileHit);
+
 			pos.y += 16;
 			StartFalling(); // Stop jump and start falling
 
-			AABB hitbox = GetHitbox();
-			Point tileHit;
-			tilemap->ActivateLaserAnimation(tileHit.x, tileHit.y);
-
+			
 			/*if (tilemap->TestCollisionFromBelow(hitbox, &hitbox.pos.y, &tileHit))
 			{
 			}*/

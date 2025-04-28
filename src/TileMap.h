@@ -108,5 +108,8 @@ private:
 	
 	//Tile sheet
 	const Texture2D *img_tiles;
+	float laserTimer;
+	Vector2 laserPos;
+
 };
 

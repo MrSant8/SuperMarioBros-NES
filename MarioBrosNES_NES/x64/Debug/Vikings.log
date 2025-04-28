@@ -1,3 +1,3 @@
 ﻿  TileMap.cpp
-C:\Users\janaps\Documents\GitHub\SuperMarioBros-NES\src\TileMap.cpp(417,12): warning C4101: 'rc': variable local sin referencia
+C:\Users\janaps\Documents\GitHub\SuperMarioBros-NES\src\TileMap.cpp(291,14): warning C4244: '-=': conversión de 'float' a 'int'; posible pérdida de datos
   Vikings.vcxproj -> C:\Users\janaps\Documents\GitHub\SuperMarioBros-NES\x64\Debug\MarioBrosNES_NES.exe
