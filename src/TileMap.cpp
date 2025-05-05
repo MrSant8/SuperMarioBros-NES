@@ -12,6 +12,12 @@ TileMap::TileMap()
 	img_tiles = nullptr;
 
 	InitTileDictionary();
+
+	laserActive=false;
+	laserX, laserY=0;
+
+	laserYOffset = 0.0f;
+	bajar = false;
 }
 TileMap::~TileMap()
 {
@@ -123,6 +129,24 @@ void TileMap::ClearObjectEntityPositions()
 void TileMap::Update()
 {
 	laser->Update();
+
+	if (laserActive) {
+		laserTimer--;
+		if (laserTimer <= 0) {
+			bajar = true;
+			laserActive = false;
+			laserTimer = 15;
+			laserYOffset = 0.0f;
+		}
+	}
+
+	// Si bajar está activo, bajamos progresivamente el láser
+	if (bajar) {
+		laserYOffset += 6.0f; // velocidad de bajada
+		if (laserYOffset >= 100.0f) { // límite de bajada
+			bajar = false; // detener la animación
+		}
+	}
 }
 Tile TileMap::GetTileIndex(int x, int y) const
 {
@@ -270,6 +294,9 @@ bool TileMap::TestCollisionFromBelow(const AABB& box, int* py, Point* collisionT
 
 	Tile tile = GetTileIndex(tile_x, tile_y);
 
+	int pixel_x = tile_x * TILE_SIZE;
+	int pixel_y = tile_y * TILE_SIZE;
+
 	if (IsTileSolid(tile) && tile != Tile::BLOCK_SQUARE1_TR) // Podés filtrar por tipo específico si querés
 	{
 		if (collisionTilePos != nullptr)
@@ -281,38 +308,18 @@ bool TileMap::TestCollisionFromBelow(const AABB& box, int* py, Point* collisionT
 
 		if (tile == Tile::BLOCK_SQUARE1_TL)
 		{
-			map[tile_y * width + tile_x] = Tile::AIR;
-			map[(tile_y - 1) * width + tile_x] = Tile::BLOCK_SQUARE1_TL;
-			
+			laserActive = true;
+			Laser.x = pixel_x;
+			Laser.y = pixel_y - 5;
 	
 
 		}
-
+		
 
 		
 		return true;
 	}
 	return false;
-}
-
-void TileMap::ActivateLaserAnimation(int tileX, int tileY)
-{
-	LOG("jkfj");
-	//Tile tile = GetTileIndex(tileX, tileY);
-
-	//if (IsTileSolid(tile) && tile != Tile::BLOCK_SQUARE1_TR) // Podés filtrar por tipo específico si querés
-	//{
-	//
-	//	if (tile == Tile::BLOCK_SQUARE1_TL)
-	//	{
-	//		
-	//		map[tile_y * width + tile_x] = Tile::AIR;
-	//		map[(tile_y - 1) * width + tile_x] = Tile::BLOCK_SQUARE1_TL;
-
-
-	//	}
-	//}
-	
 }
 
 bool TileMap::TestOnLadder(const AABB& box, int* px) const
@@ -441,13 +448,13 @@ void TileMap::Render()
 	Tile tile;
 	Rectangle rc;
 	Vector2 pos;
-
+	
 	for (int i = 0; i < height; ++i)
 	{
 		for (int j = 0; j < width; ++j)
 		{
 			tile = map[i * width + j];
-			if (IsTileSolid(tile) && tile != Tile::BLOCK_SQUARE1_TR)
+			if (IsTileSolid(tile) && tile != Tile::BLOCK_SQUARE1_TR && !laserActive)
 			{
 				pos.x = (float)j * TILE_SIZE;
 				pos.y = (float)i * TILE_SIZE;
@@ -461,6 +468,20 @@ void TileMap::Render()
 				{
 					laser->Draw((int)pos.x, (int)pos.y);
 				}
+			}
+
+			if (laserActive)
+			{
+				tile = Tile::BLOCK_SQUARE1_TL;
+				rc = dict_rect[(int)tile];
+				DrawTextureRec(*img_tiles, rc, Laser, WHITE);				
+			}
+			if(bajar) {
+				tile = Tile::BLOCK_SQUARE1_TL;
+
+				rc = dict_rect[(int)tile];
+				DrawTextureRec(*img_tiles, rc, { Laser.x, Laser.y + 5 }, WHITE);
+
 			}
 		}
 	}

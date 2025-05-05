@@ -84,7 +84,6 @@ public:
 	bool CollisionY(const Point& p, int distance) const;
 
 	bool TestCollisionFromBelow(const AABB& box, int* py, Point* collisionTilePos);
-	void ActivateLaserAnimation(int tileX, int tileY);
 private:
 	void InitTileDictionary();
 
@@ -108,8 +107,15 @@ private:
 	
 	//Tile sheet
 	const Texture2D *img_tiles;
-	float laserTimer;
 	Vector2 laserPos;
+
+	bool laserActive;
+	int laserX, laserY;
+	Vector2 Laser;
+
+	float laserYOffset = 0.0f;
+	bool bajar = false;
+	int laserTimer = 15;
 
 };
 

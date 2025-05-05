@@ -7,24 +7,24 @@
       "RelativeMoniker": "D:0:0:{3977A628-DA9D-4402-8F7A-65D0FDE48107}|Vikings.vcxproj|solutionrelative:src\\TileMap.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3977A628-DA9D-4402-8F7A-65D0FDE48107}|Vikings.vcxproj|C:\\Users\\janaps\\Documents\\GitHub\\SuperMarioBros-NES\\src\\Scene.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{3977A628-DA9D-4402-8F7A-65D0FDE48107}|Vikings.vcxproj|solutionrelative:src\\Scene.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3977A628-DA9D-4402-8F7A-65D0FDE48107}|Vikings.vcxproj|C:\\Users\\janaps\\Documents\\GitHub\\SuperMarioBros-NES\\src\\Player.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{3977A628-DA9D-4402-8F7A-65D0FDE48107}|Vikings.vcxproj|solutionrelative:src\\Player.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3977A628-DA9D-4402-8F7A-65D0FDE48107}|Vikings.vcxproj|C:\\Users\\janaps\\Documents\\GitHub\\SuperMarioBros-NES\\src\\Player.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{3977A628-DA9D-4402-8F7A-65D0FDE48107}|Vikings.vcxproj|solutionrelative:src\\Player.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{3977A628-DA9D-4402-8F7A-65D0FDE48107}|Vikings.vcxproj|C:\\Users\\janaps\\Documents\\GitHub\\SuperMarioBros-NES\\src\\TileMap.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{3977A628-DA9D-4402-8F7A-65D0FDE48107}|Vikings.vcxproj|solutionrelative:src\\TileMap.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3977A628-DA9D-4402-8F7A-65D0FDE48107}|Vikings.vcxproj|C:\\Users\\janaps\\Documents\\GitHub\\SuperMarioBros-NES\\src\\Scene.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{3977A628-DA9D-4402-8F7A-65D0FDE48107}|Vikings.vcxproj|solutionrelative:src\\Scene.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3977A628-DA9D-4402-8F7A-65D0FDE48107}|Vikings.vcxproj|C:\\Users\\janaps\\Documents\\GitHub\\SuperMarioBros-NES\\src\\Player.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{3977A628-DA9D-4402-8F7A-65D0FDE48107}|Vikings.vcxproj|solutionrelative:src\\Player.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3977A628-DA9D-4402-8F7A-65D0FDE48107}|Vikings.vcxproj|C:\\Users\\janaps\\Documents\\GitHub\\SuperMarioBros-NES\\src\\Scene.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{3977A628-DA9D-4402-8F7A-65D0FDE48107}|Vikings.vcxproj|solutionrelative:src\\Scene.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3977A628-DA9D-4402-8F7A-65D0FDE48107}|Vikings.vcxproj|C:\\Users\\janaps\\Documents\\GitHub\\SuperMarioBros-NES\\src\\Player.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{3977A628-DA9D-4402-8F7A-65D0FDE48107}|Vikings.vcxproj|solutionrelative:src\\Player.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3977A628-DA9D-4402-8F7A-65D0FDE48107}|Vikings.vcxproj|C:\\Users\\janaps\\Documents\\GitHub\\SuperMarioBros-NES\\src\\Game.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
@@ -123,7 +123,7 @@
               "RelativeDocumentMoniker": "src\\TileMap.cpp",
               "ToolTip": "C:\\Users\\janaps\\Documents\\GitHub\\SuperMarioBros-NES\\src\\TileMap.cpp",
               "RelativeToolTip": "src\\TileMap.cpp",
-              "ViewState": "AQIAAPQAAAAAAAAAAAAvwAkBAAAAAAAA",
+              "ViewState": "AQIAADwBAAAAAAAAAAAAAFIBAAAZAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-03-21T07:20:12.21Z",
               "IsPinned": true,
@@ -131,13 +131,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 2,
               "Title": "Scene.cpp",
               "DocumentMoniker": "C:\\Users\\janaps\\Documents\\GitHub\\SuperMarioBros-NES\\src\\Scene.cpp",
               "RelativeDocumentMoniker": "src\\Scene.cpp",
               "ToolTip": "C:\\Users\\janaps\\Documents\\GitHub\\SuperMarioBros-NES\\src\\Scene.cpp",
               "RelativeToolTip": "src\\Scene.cpp",
-              "ViewState": "AQIAABcBAAAAAAAAAAAAADABAAASAAAA",
+              "ViewState": "AQIAAIoAAAAAAAAAAADwv6MAAAB1AQAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-03-17T07:34:28.01Z",
               "IsPinned": true,
@@ -145,13 +145,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 1,
               "Title": "TileMap.h",
               "DocumentMoniker": "C:\\Users\\janaps\\Documents\\GitHub\\SuperMarioBros-NES\\src\\TileMap.h",
               "RelativeDocumentMoniker": "src\\TileMap.h",
               "ToolTip": "C:\\Users\\janaps\\Documents\\GitHub\\SuperMarioBros-NES\\src\\TileMap.h",
               "RelativeToolTip": "src\\TileMap.h",
-              "ViewState": "AQIAADIAAAAAAAAAAAAcwGUAAAAQAAAA",
+              "ViewState": "AQIAAEYAAAAAAAAAAADgv1YAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2025-03-21T07:24:09.812Z",
               "IsPinned": true,
@@ -159,7 +159,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "Scene.h",
               "DocumentMoniker": "C:\\Users\\janaps\\Documents\\GitHub\\SuperMarioBros-NES\\src\\Scene.h",
               "RelativeDocumentMoniker": "src\\Scene.h",
@@ -182,8 +182,7 @@
               "ViewState": "AQIAAPoAAAAAAAAAAAAAANUAAAAiAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-03-17T07:43:37.722Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
@@ -210,10 +209,6 @@
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-04-06T22:52:34.828Z",
               "IsPinned": true
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
             },
             {
               "$type": "Document",
@@ -247,7 +242,7 @@
               "RelativeDocumentMoniker": "src\\Player.cpp",
               "ToolTip": "C:\\Users\\janaps\\Documents\\GitHub\\SuperMarioBros-NES\\src\\Player.cpp",
               "RelativeToolTip": "src\\Player.cpp",
-              "ViewState": "AQIAAEUAAAAAAAAAAAAAACYBAAAAAAAA",
+              "ViewState": "AQIAAHUAAAAAAAAAAAAAAIcAAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-03-17T07:45:55.345Z",
               "EditorCaption": ""
@@ -262,8 +257,7 @@
               "RelativeToolTip": "src\\Globals.cpp",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-04-06T22:27:59.301Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-06T22:27:59.301Z"
             },
             {
               "$type": "Document",
@@ -275,12 +269,11 @@
               "RelativeToolTip": "src\\Globals.h",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAwAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-03-21T07:12:27.694Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-21T07:12:27.694Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
               "Title": "Player.h",
               "DocumentMoniker": "C:\\Users\\janaps\\Documents\\GitHub\\SuperMarioBros-NES\\src\\Player.h",
               "RelativeDocumentMoniker": "src\\Player.h",
@@ -288,8 +281,7 @@
               "RelativeToolTip": "src\\Player.h",
               "ViewState": "AQIAAC0AAAAAAAAAAAAAAEEAAAATAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-03-17T07:45:35.959Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-17T07:45:35.959Z"
             },
             {
               "$type": "Document",
@@ -301,8 +293,7 @@
               "RelativeToolTip": "src\\Game.h",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABoAAABPAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-04-06T22:58:04.932Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-06T22:58:04.932Z"
             },
             {
               "$type": "Document",
