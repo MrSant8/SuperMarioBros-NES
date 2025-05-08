@@ -212,12 +212,12 @@ AppStatus Scene::LoadLevel(int stage) {
 					obj = new Object(pos, ObjectType::CHILI);
 					objects.push_back(obj);
 				}
-				else if (tile == Tile::SLIME)
+				else if (tile == Tile::GOOMBA_TILE)
 				{
-					pos.x += (SLIME_FRAME_SIZE - SLIME_PHYSICAL_WIDTH) / 2;
-					hitbox = enemies->GetEnemyHitBox(pos, EnemyType::SLIME);
+					pos.x += (GOOMBA_FRAME_SIZE - GOOMBA_PHYSICAL_WIDTH) / 2;
+					hitbox = enemies->GetEnemyHitBox(pos, EnemyType::GOOMBA_ENEMY);
 					area = level->GetSweptAreaX(hitbox);
-					enemies->Add(pos, EnemyType::SLIME, area);
+					enemies->Add(pos, EnemyType::GOOMBA_ENEMY, area);
 				}
 				else if (tile == Tile::TURRET_LEFT)
 				{

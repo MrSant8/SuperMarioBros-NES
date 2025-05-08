@@ -1,8 +1,8 @@
 #pragma once
 #include "Enemy.h"
 
-#define SLIME_SPEED			1 // Asegúrate de que esto sea un valor flotante (float)
-#define SLIME_ANIM_DELAY	(4*ANIM_DELAY)
+#define GOOMBA_SPEED			1 // Asegúrate de que esto sea un valor flotante (float)
+#define GOOMBA_ANIM_DELAY	(4*ANIM_DELAY)
 
 #define SLIME_SHOT_OFFSET_X_LEFT	-14
 #define SLIME_SHOT_OFFSET_X_RIGHT	 26
@@ -13,8 +13,8 @@
 #define GRAVITY_FORCE  1
 
 
-enum class SlimeState { ROAMING, ATTACK };
-enum class SlimeAnim {
+enum class GoombaState { ROAMING, ATTACK };
+enum class GoombaAnim {
 	IDLE_LEFT, IDLE_RIGHT, WALKING_LEFT, WALKING_RIGHT,
 	ATTACK_LEFT, ATTACK_RIGHT, NUM_ANIMATIONS, DEAD
 };
@@ -26,19 +26,19 @@ struct Step
 	int anim;		// Representación gráfica
 };
 
-struct SlimeLimits {
+struct GoombaLimits {
 	int left;      // Limite izquierdo
 	int right;     // Limite derecho
 	float floor;   // El nivel de piso
 };
 
-extern SlimeLimits slime_limits[];
+extern GoombaLimits goombalimits[];
 
-class Slime : public Enemy
+class Goomba : public Enemy
 {
 public:
-	Slime(const Point& p, int width, int height, int frame_width, int frame_height);
-	~Slime();
+	Goomba(const Point& p, int width, int height, int frame_width, int frame_height);
+	~Goomba();
 
 	// Inicializa al enemigo con la dirección y área especificada
 	AppStatus Initialise(Look look, const AABB& area) override;
@@ -59,7 +59,7 @@ private:
 	void UpdateLook(int anim_id);
 
 	int attack_delay;	// Retraso entre ataques
-	SlimeState state;
+	GoombaState state;
 
 	int current_step;	// Paso actual del patrón
 	int current_frames;	// Número de frames en el paso actual

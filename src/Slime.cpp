@@ -2,22 +2,22 @@
 #include "Sprite.h"
 
 
-Slime::Slime(const Point& p, int width, int height, int frame_width, int frame_height) :
+Goomba::Goomba(const Point& p, int width, int height, int frame_width, int frame_height) :
 	Enemy(p, width, height, frame_width, frame_height)
 {
 	attack_delay = 0;
-	state = SlimeState::ROAMING;
+	state = GoombaState::ROAMING;
 
 	current_step = 0;
 	current_frames = 0;
 }
-Slime::~Slime()
+Goomba::~Goomba()
 {
 }
-AppStatus Slime::Initialise(Look look, const AABB& area)
+AppStatus Goomba::Initialise(Look look, const AABB& area)
 {
 	int i;
-	const int n = SLIME_FRAME_SIZE;
+	const int n = GOOMBA_FRAME_SIZE;
 
 	ResourceManager& data = ResourceManager::Instance();
 	render = new Sprite(data.GetTexture(Resource::IMG_ENEMIES));
@@ -28,24 +28,24 @@ AppStatus Slime::Initialise(Look look, const AABB& area)
 	}
 
 	Sprite* sprite = dynamic_cast<Sprite*>(render);
-	sprite->SetNumberAnimations((int)SlimeAnim::NUM_ANIMATIONS);
+	sprite->SetNumberAnimations((int)GoombaAnim::NUM_ANIMATIONS);
 
-	sprite->SetAnimationDelay((int)SlimeAnim::IDLE_RIGHT, SLIME_ANIM_DELAY);
-	sprite->AddKeyFrame((int)SlimeAnim::IDLE_RIGHT, { 0, 2 * n, n, n });
-	sprite->SetAnimationDelay((int)SlimeAnim::IDLE_LEFT, SLIME_ANIM_DELAY);
-	sprite->AddKeyFrame((int)SlimeAnim::IDLE_LEFT, { 0, 2 * n, -n, n });
+	sprite->SetAnimationDelay((int)GoombaAnim::IDLE_RIGHT, GOOMBA_ANIM_DELAY);
+	sprite->AddKeyFrame((int)GoombaAnim::IDLE_RIGHT, { 0, 2 * n, n, n });
+	sprite->SetAnimationDelay((int)GoombaAnim::IDLE_LEFT, GOOMBA_ANIM_DELAY);
+	sprite->AddKeyFrame((int)GoombaAnim::IDLE_LEFT, { 0, 2 * n, -n, n });
 
-	sprite->SetAnimationDelay((int)SlimeAnim::WALKING_RIGHT, SLIME_ANIM_DELAY);
+	sprite->SetAnimationDelay((int)GoombaAnim::WALKING_RIGHT, GOOMBA_ANIM_DELAY);
 	for (i = 0; i < 3; ++i)
-		sprite->AddKeyFrame((int)SlimeAnim::WALKING_RIGHT, { (float)i * n, 2 * n, n, n });
-	sprite->SetAnimationDelay((int)SlimeAnim::WALKING_LEFT, SLIME_ANIM_DELAY);
+		sprite->AddKeyFrame((int)GoombaAnim::WALKING_RIGHT, { (float)i * n, 2 * n, n, n });
+	sprite->SetAnimationDelay((int)GoombaAnim::WALKING_LEFT, GOOMBA_ANIM_DELAY);
 	for (i = 0; i < 3; ++i)
-		sprite->AddKeyFrame((int)SlimeAnim::WALKING_LEFT, { (float)i * n, 2 * n, -n, n });
-	sprite->AddKeyFrame((int)SlimeAnim::DEAD, { (float)i * n, 3 * n, n, n });
+		sprite->AddKeyFrame((int)GoombaAnim::WALKING_LEFT, { (float)i * n, 2 * n, -n, n });
+	sprite->AddKeyFrame((int)GoombaAnim::DEAD, { (float)i * n, 3 * n, n, n });
 
 	this->look = look;
-	if (look == Look::LEFT)        sprite->SetAnimation((int)SlimeAnim::IDLE_LEFT);
-	else if (look == Look::RIGHT) sprite->SetAnimation((int)SlimeAnim::IDLE_RIGHT);
+	if (look == Look::LEFT)        sprite->SetAnimation((int)GoombaAnim::IDLE_LEFT);
+	else if (look == Look::RIGHT) sprite->SetAnimation((int)GoombaAnim::IDLE_RIGHT);
 
 	visibility_area = area;
 
@@ -53,43 +53,43 @@ AppStatus Slime::Initialise(Look look, const AABB& area)
 
 	return AppStatus::OK;
 }
-void Slime::InitPattern()
+void Goomba::InitPattern()
 {
 	//Multiplying by 3 ensures sufficient time for displaying all 3 frames of the
 	//walking animation, resulting in smoother transitions and preventing the animation
 	//from appearing rushed or incomplete
-	const int n = SLIME_ANIM_DELAY * 3;
+	const int n = GOOMBA_ANIM_DELAY * 3;
 
-	pattern.push_back({ {0, 0}, 2 * n, (int)SlimeAnim::IDLE_RIGHT });
-	pattern.push_back({ {SLIME_SPEED, 0}, n, (int)SlimeAnim::WALKING_RIGHT });
-	pattern.push_back({ {0, 0}, n, (int)SlimeAnim::IDLE_RIGHT });
-	pattern.push_back({ {SLIME_SPEED, 0}, n, (int)SlimeAnim::WALKING_RIGHT });
-	pattern.push_back({ {0, 0}, n, (int)SlimeAnim::IDLE_RIGHT });
+	pattern.push_back({ {0, 0}, 2 * n, (int)GoombaAnim::IDLE_RIGHT });
+	pattern.push_back({ {GOOMBA_SPEED, 0}, n, (int)GoombaAnim::WALKING_RIGHT });
+	pattern.push_back({ {0, 0}, n, (int)GoombaAnim::IDLE_RIGHT });
+	pattern.push_back({ {GOOMBA_SPEED, 0}, n, (int)GoombaAnim::WALKING_RIGHT });
+	pattern.push_back({ {0, 0}, n, (int)GoombaAnim::IDLE_RIGHT });
 
-	pattern.push_back({ {0, 0}, 2 * n, (int)SlimeAnim::IDLE_LEFT });
-	pattern.push_back({ {-SLIME_SPEED, 0}, n, (int)SlimeAnim::WALKING_LEFT });
-	pattern.push_back({ {0, 0}, n, (int)SlimeAnim::IDLE_LEFT });
-	pattern.push_back({ {-SLIME_SPEED, 0}, n, (int)SlimeAnim::WALKING_LEFT });
-	pattern.push_back({ {0, 0}, n, (int)SlimeAnim::IDLE_LEFT });
+	pattern.push_back({ {0, 0}, 2 * n, (int)GoombaAnim::IDLE_LEFT });
+	pattern.push_back({ {-GOOMBA_SPEED, 0}, n, (int)GoombaAnim::WALKING_LEFT });
+	pattern.push_back({ {0, 0}, n, (int)GoombaAnim::IDLE_LEFT });
+	pattern.push_back({ {-GOOMBA_SPEED, 0}, n, (int)GoombaAnim::WALKING_LEFT });
+	pattern.push_back({ {0, 0}, n, (int)GoombaAnim::IDLE_LEFT });
 
 	current_step = 0;
 	current_frames = 0;
 }
 
-void Slime::SetLimits(int left, int right, float floor)
+void Goomba::SetLimits(int left, int right, float floor)
 {
 	limit_left = left;
 	limit_right = right;
 	position_foor = floor;
 }
 
-bool Slime::Update(const AABB& box)
+bool Goomba::Update(const AABB& box)
 {
 	Sprite* sprite = dynamic_cast<Sprite*>(render);
 	bool shoot = false;
 	int anim_id;
 
-	if (state == SlimeState::ROAMING)
+	if (state == GoombaState::ROAMING)
 	{
 		if (IsVisible(box))
 		{
@@ -98,8 +98,8 @@ bool Slime::Update(const AABB& box)
 			//we throw the shot. Wait for a frame before initiating the attack.
 			//attack_delay = SLIME_ANIM_DELAY;
 
-			if (look == Look::LEFT)	sprite->SetAnimation((int)SlimeAnim::WALKING_LEFT);
-			else					sprite->SetAnimation((int)SlimeAnim::WALKING_RIGHT);
+			if (look == Look::LEFT)	sprite->SetAnimation((int)GoombaAnim::WALKING_LEFT);
+			else					sprite->SetAnimation((int)GoombaAnim::WALKING_RIGHT);
 		}
 
 
@@ -124,16 +124,16 @@ bool Slime::Update(const AABB& box)
 
 			if (pos.x <= limit_left) {
 				look = Look::RIGHT;
-				sprite->SetAnimation((int)SlimeAnim::WALKING_RIGHT);
+				sprite->SetAnimation((int)GoombaAnim::WALKING_RIGHT);
 			}
 			else if (pos.x >= limit_right) {
 				look = Look::LEFT;
-				sprite->SetAnimation((int)SlimeAnim::WALKING_LEFT);
+				sprite->SetAnimation((int)GoombaAnim::WALKING_LEFT);
 			}
 		}
 		if (isDead())
 		{
-			sprite->SetAnimation((int)SlimeAnim::DEAD);
+			sprite->SetAnimation((int)GoombaAnim::DEAD);
 			return false;
 		}
 		sprite->Update();
@@ -141,14 +141,14 @@ bool Slime::Update(const AABB& box)
 		return shoot;
 	
 }
-void Slime::UpdateLook(int anim_id)
+void Goomba::UpdateLook(int anim_id)
 {
-	SlimeAnim anim = (SlimeAnim)anim_id;
-	look = (anim == SlimeAnim::IDLE_LEFT ||
-		anim == SlimeAnim::WALKING_LEFT ||
-		anim == SlimeAnim::WALKING_LEFT) ? Look::LEFT : Look::RIGHT;
+	GoombaAnim anim = (GoombaAnim)anim_id;
+	look = (anim == GoombaAnim::IDLE_LEFT ||
+		anim == GoombaAnim::WALKING_LEFT ||
+		anim == GoombaAnim::WALKING_LEFT) ? Look::LEFT : Look::RIGHT;
 }
-void Slime::GetShootingPosDir(Point* p, Point* d) const
+void Goomba::GetShootingPosDir(Point* p, Point* d) const
 {
 	/*if (look == Look::LEFT)
 	{

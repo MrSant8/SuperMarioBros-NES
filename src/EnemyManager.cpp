@@ -3,7 +3,7 @@
 #include "Turret.h"
 #include "Player.h"
 
-SlimeLimits slime_limits[] = {
+GoombaLimits goombalimits[] = {
 	
 	{1136, 1360, 208},
 	{1136, 1360, 208},
@@ -60,13 +60,13 @@ void EnemyManager::Add(const Point& pos, EnemyType type, const AABB& area, Look 
 {
 	Enemy *enemy;
 	
-	if(type == EnemyType::SLIME)
+	if(type == EnemyType::GOOMBA_ENEMY)
 	{
-		enemy = new Slime(pos, SLIME_PHYSICAL_WIDTH, SLIME_PHYSICAL_HEIGHT, SLIME_FRAME_SIZE, SLIME_FRAME_SIZE);
+		enemy = new Goomba(pos, GOOMBA_PHYSICAL_WIDTH, GOOMBA_PHYSICAL_HEIGHT, GOOMBA_FRAME_SIZE, GOOMBA_FRAME_SIZE);
 		int slimeIndex = enemies.size();
-		dynamic_cast<Slime*>(enemy)->SetLimits(slime_limits[slimeIndex].left,
-			slime_limits[slimeIndex].right,
-			slime_limits[slimeIndex].floor);
+		dynamic_cast<Goomba*>(enemy)->SetLimits(goombalimits[slimeIndex].left,
+			goombalimits[slimeIndex].right,
+			goombalimits[slimeIndex].floor);
 	}
 	else if(type == EnemyType::TURRET)
 	{
@@ -85,10 +85,10 @@ void EnemyManager::Add(const Point& pos, EnemyType type, const AABB& area, Look 
 AABB EnemyManager::GetEnemyHitBox(const Point& pos, EnemyType type) const
 {
 	int width, height;
-	if (type == EnemyType::SLIME)
+	if (type == EnemyType::GOOMBA_ENEMY)
 	{
-		width = SLIME_PHYSICAL_WIDTH;
-		height = SLIME_PHYSICAL_HEIGHT;
+		width = GOOMBA_PHYSICAL_WIDTH;
+		height = GOOMBA_PHYSICAL_HEIGHT;
 	}
 	else if (type == EnemyType::TURRET)
 	{
