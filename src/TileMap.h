@@ -36,7 +36,7 @@ enum class Tile {
 
 	//Intervals
 	SOLID_FIRST = BLOCK_SQUARE1_TR,
-	SOLID_LAST = BLOCK_SQUARE1_TR,
+	SOLID_LAST = BLOCK_BEAM_R,
 	OBJECT_FIRST = KEY_RED,
 	OBJECT_LAST = ITEM_CHILI,
 	ENTITY_FIRST = PLAYER,
@@ -91,7 +91,7 @@ private:
 	bool IsTileSolid(Tile tile) const;
 	bool IsTileLadderTop(Tile tile) const;
 	bool IsTileLadder(Tile tile) const;
-	bool IsTileLaser(Tile tile) const;
+	bool IsTileSorprise_block(Tile tile) const;
 	bool CollisionX(const Point& p, int distance) const;
 	int GetLadderCenterPos(int pixel_x, int pixel_y) const;
 	//Tile map
@@ -103,7 +103,7 @@ private:
 	//Dictionary of tile frames
 	std::unordered_map<int, Rectangle> dict_rect;
 
-	Sprite *laser;
+	Sprite *Sorprise_block;
 	
 	//Tile sheet
 	const Texture2D *img_tiles;
@@ -117,5 +117,6 @@ private:
 	bool bajar = false;
 	int laserTimer = 15;
 
+	int sorpriseBlockTimer = 5;
 };
 

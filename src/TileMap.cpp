@@ -8,7 +8,7 @@ TileMap::TileMap()
 	map = nullptr;
 	width = 0;
 	height = 0;
-	laser = nullptr;
+	Sorprise_block = nullptr;
 	img_tiles = nullptr;
 
 	InitTileDictionary();
@@ -26,11 +26,11 @@ TileMap::~TileMap()
 		delete[] map;
 		map = nullptr;
 	}
-	if (laser != nullptr)
+	if (Sorprise_block != nullptr)
 	{
-		laser->Release();
-		delete laser;
-		laser = nullptr;
+		Sorprise_block->Release();
+		delete Sorprise_block;
+		Sorprise_block = nullptr;
 	}
 }
 void TileMap::InitTileDictionary()
@@ -82,18 +82,18 @@ AppStatus TileMap::Initialise()
 	}
 	img_tiles = data.GetTexture(Resource::IMG_TILES);
 
-	laser = new Sprite(img_tiles);
-	if (laser == nullptr)
+	Sorprise_block = new Sprite(img_tiles);
+	if (Sorprise_block == nullptr)
 	{
 		LOG("Failed to allocate memory for laser sprite");
 		return AppStatus::ERROR;
 	}
-	laser->SetNumberAnimations(1);
-	laser->SetAnimationDelay(0, ANIM_DELAY);
-	laser->AddKeyFrame(0, dict_rect[(int)Tile::LASER_FRAME0]);
-	laser->AddKeyFrame(0, dict_rect[(int)Tile::LASER_FRAME1]);
-	laser->AddKeyFrame(0, dict_rect[(int)Tile::LASER_FRAME2]);
-	laser->SetAnimation(0);
+	Sorprise_block->SetNumberAnimations(1);
+	Sorprise_block->SetAnimationDelay(0, ANIM_DELAY);
+	Sorprise_block->AddKeyFrame(0, dict_rect[(int)Tile::LASER_FRAME0]);
+	Sorprise_block->AddKeyFrame(0, dict_rect[(int)Tile::LASER_FRAME1]);
+	Sorprise_block->AddKeyFrame(0, dict_rect[(int)Tile::LASER_FRAME2]);
+	Sorprise_block->SetAnimation(0);
 
 	return AppStatus::OK;
 }
@@ -128,7 +128,13 @@ void TileMap::ClearObjectEntityPositions()
 }
 void TileMap::Update()
 {
-	laser->Update();
+	sorpriseBlockTimer--;
+	if (sorpriseBlockTimer <= 0) 
+	{
+		Sorprise_block->Update();
+		sorpriseBlockTimer = 5;
+	}
+
 
 	if (laserActive) {
 		laserTimer--;
@@ -140,7 +146,7 @@ void TileMap::Update()
 		}
 	}
 
-	// Si bajar está activo, bajamos progresivamente el láser
+	// Si bajar está activo, bajamos progresivamente el bloque
 	if (bajar) {
 		laserYOffset += 6.0f; // velocidad de bajada
 		if (laserYOffset >= 100.0f) { // límite de bajada
@@ -172,6 +178,7 @@ bool TileMap::IsTileSolid(Tile tile) const
 	{
 	case Tile::BLOCK_SQUARE1_TR:
 	case Tile::BLOCK_SQUARE1_TL:
+	case Tile::LASER:
 
 		return true;
 	default:
@@ -208,7 +215,7 @@ bool TileMap::IsTileLadder(Tile tile) const
 {
 	return tile == Tile::LADDER_L || tile == Tile::LADDER_R;
 }
-bool TileMap::IsTileLaser(Tile tile) const
+bool TileMap::IsTileSorprise_block(Tile tile) const
 {
 	return tile == Tile::LASER || tile == Tile::LASER_L || tile == Tile::LASER_R;
 }
@@ -306,14 +313,16 @@ bool TileMap::TestCollisionFromBelow(const AABB& box, int* py, Point* collisionT
 		}
 		*py = (tile_y -1) * TILE_SIZE;
 
-		if (tile == Tile::BLOCK_SQUARE1_TL)
+		laserActive = true;
+		Laser.x = pixel_x;
+		Laser.y = pixel_y - 5;
+
+	/*	if (tile == Tile::BLOCK_SQUARE1_TL || tile == Tile::LASER)
 		{
-			laserActive = true;
-			Laser.x = pixel_x;
-			Laser.y = pixel_y - 5;
+			
 	
 
-		}
+		}*/
 		
 
 		
@@ -448,7 +457,7 @@ void TileMap::Render()
 	Tile tile;
 	Rectangle rc;
 	Vector2 pos;
-	
+
 	for (int i = 0; i < height; ++i)
 	{
 		for (int j = 0; j < width; ++j)
@@ -466,32 +475,44 @@ void TileMap::Render()
 				}
 				else
 				{
-					laser->Draw((int)pos.x, (int)pos.y);
+					Sorprise_block->Draw((int)pos.x, (int)pos.y);
 				}
 			}
 
-			if (laserActive)
-			{
-				tile = Tile::BLOCK_SQUARE1_TL;
-				rc = dict_rect[(int)tile];
-				DrawTextureRec(*img_tiles, rc, Laser, WHITE);				
+			if (laserActive) {
+				if (tile == Tile::BLOCK_SQUARE1_TL && tile != Tile::LASER) {
+					rc = dict_rect[(int)tile];
+					DrawTextureRec(*img_tiles, rc, Laser, WHITE);
+				}
+				if (tile == Tile::LASER && tile != Tile::BLOCK_SQUARE1_TL) {
+					rc = dict_rect[(int)tile];
+					DrawTextureRec(*img_tiles, { TILE_SIZE ,TILE_SIZE ,TILE_SIZE ,TILE_SIZE }, Laser, WHITE);
+				}
 			}
-			if(bajar) {
-				tile = Tile::BLOCK_SQUARE1_TL;
 
-				rc = dict_rect[(int)tile];
-				DrawTextureRec(*img_tiles, rc, { Laser.x, Laser.y + 5 }, WHITE);
+
+			if (bajar) {
+
+				if (tile == Tile::BLOCK_SQUARE1_TL && tile != Tile::LASER) {
+					rc = dict_rect[(int)tile];
+					DrawTextureRec(*img_tiles, rc, { Laser.x, Laser.y + 5 }, WHITE);
+				}
+				else if (tile == Tile::LASER && tile != Tile::BLOCK_SQUARE1_TL) {
+					rc = dict_rect[(int)tile];
+					DrawTextureRec(*img_tiles, { TILE_SIZE,TILE_SIZE, TILE_SIZE, TILE_SIZE }, { Laser.x, Laser.y + 5 }, WHITE);
+				}
 
 			}
 		}
 	}
+
 }
 void TileMap::Release()
 {
 	ResourceManager& data = ResourceManager::Instance(); 
 	data.ReleaseTexture(Resource::IMG_TILES);
 
-	laser->Release();
+	Sorprise_block->Release();
 
 	dict_rect.clear();
 }
