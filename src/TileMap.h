@@ -110,11 +110,13 @@ private:
 	Vector2 laserPos;
 
 	bool laserActive;
+	bool BlockActive;
 	int laserX, laserY;
 	Vector2 Laser;
 
 	float laserYOffset = 0.0f;
 	bool bajar = false;
+	bool bajarBlock = false;
 	int laserTimer = 15;
 
 	int sorpriseBlockTimer = 5;

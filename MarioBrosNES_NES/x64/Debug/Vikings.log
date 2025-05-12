@@ -1,4 +1,8 @@
 ﻿  TileMap.cpp
-C:\Users\janaps\Documents\GitHub\SuperMarioBros-NES\src\TileMap.cpp(317,13): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\janaps\Documents\GitHub\SuperMarioBros-NES\src\TileMap.cpp(318,21): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\janaps\Documents\GitHub\SuperMarioBros-NES\src\TileMap.cpp(340,14): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\janaps\Documents\GitHub\SuperMarioBros-NES\src\TileMap.cpp(341,22): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\janaps\Documents\GitHub\SuperMarioBros-NES\src\TileMap.cpp(353,14): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\janaps\Documents\GitHub\SuperMarioBros-NES\src\TileMap.cpp(354,22): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\janaps\Documents\GitHub\SuperMarioBros-NES\src\TileMap.cpp(492,17): warning C4244: 'inicializando': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\janaps\Documents\GitHub\SuperMarioBros-NES\src\TileMap.cpp(493,17): warning C4244: 'inicializando': conversión de 'float' a 'int'; posible pérdida de datos
   Vikings.vcxproj -> C:\Users\janaps\Documents\GitHub\SuperMarioBros-NES\x64\Debug\MarioBrosNES_NES.exe
