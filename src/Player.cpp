@@ -104,7 +104,7 @@ int Player::GetTime()
 	return time;
 }
 
-// Getters y Setters
+// Getters & Setters
 void Player::SetTileMap(TileMap* tilemap) { map = tilemap; }
 bool Player::IsLookingRight() const { return look == Look::RIGHT; }
 bool Player::IsLookingLeft() const { return look == Look::LEFT; }
@@ -117,7 +117,7 @@ bool Player::IsInSecondHalfTile() const { return pos.y % TILE_SIZE >= TILE_SIZE 
 void Player::SetAnimation(int id) { dynamic_cast<Sprite*>(render)->SetAnimation(id); }
 PlayerAnim Player::GetAnimation() { return (PlayerAnim)dynamic_cast<Sprite*>(render)->GetAnimation(); }
 
-// Cambios de estado y animación
+// State Change & Anim
 void Player::Stop()
 {
 	dir = { 0, 0 };
@@ -271,7 +271,6 @@ void Player::MoveX()
 	else
 	{
 		if (state == State::WALKING) Stop();
-
 	}
 
 

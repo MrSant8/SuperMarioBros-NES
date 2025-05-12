@@ -39,10 +39,6 @@ void Enemy::DrawVisibilityArea(const Color& col) const
 
 bool Enemy::isDead()
 {
-	//if (state != EnemyState::DEAD) {
-	//	state = EnemyState::DEAD;
-	//	return true;
-	//}
 	return state == EnemyState::DEAD;
 }
 

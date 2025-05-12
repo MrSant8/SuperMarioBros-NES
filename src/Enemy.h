@@ -7,13 +7,16 @@
 #define GOOMBA_PHYSICAL_WIDTH	16
 #define GOOMBA_PHYSICAL_HEIGHT	16
 
+#define KOOPA_FRAME_SIZE		32
+#define KOOPA_PHYSICAL_WIDTH	16
+#define KOOPA_PHYSICAL_HEIGHT	16
 //Representation model size: 32x32
 #define TURRET_FRAME_SIZE		16
 //Logical model size: 0x0
 #define TURRET_PHYSICAL_WIDTH	32
 #define TURRET_PHYSICAL_HEIGHT	26
 
-enum class EnemyType { GOOMBA_ENEMY, TURRET };
+enum class EnemyType { GOOMBA, TURRET, KOOPA };
 enum class EnemyState{ALIVE,DEAD};
 class Enemy :  public Entity
 {
@@ -37,8 +40,11 @@ public:
 
 	virtual EnemyState GetState() const;
 	virtual bool isDead();
-	bool StateSlime() {
-		return type == EnemyType::GOOMBA_ENEMY;
+	bool StateGoomba() {
+		return type == EnemyType::GOOMBA;
+	}
+	bool StateKoopa() {
+		return type == EnemyType::KOOPA;
 	}
 
 protected:

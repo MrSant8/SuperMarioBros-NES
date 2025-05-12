@@ -236,9 +236,9 @@ AppStatus Scene::LoadLevel(int stage) {
 				else if (tile == Tile::GOOMBA_TILE)
 				{
 					pos.x += (GOOMBA_FRAME_SIZE - GOOMBA_PHYSICAL_WIDTH) / 2;
-					hitbox = enemies->GetEnemyHitBox(pos, EnemyType::GOOMBA_ENEMY);
+					hitbox = enemies->GetEnemyHitBox(pos, EnemyType::GOOMBA);
 					area = level->GetSweptAreaX(hitbox);
-					enemies->Add(pos, EnemyType::GOOMBA_ENEMY, area);
+					enemies->Add(pos, EnemyType::GOOMBA, area);
 				}
 				else if (tile == Tile::TURRET_LEFT)
 				{

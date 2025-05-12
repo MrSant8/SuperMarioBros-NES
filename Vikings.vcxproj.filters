@@ -46,7 +46,7 @@
     <ClCompile Include="src\EnemyManager.cpp">
       <Filter>Entities\Enemies</Filter>
     </ClCompile>
-    <ClCompile Include="src\Slime.cpp">
+    <ClCompile Include="src\Goomba.cpp">
       <Filter>Entities\Enemies</Filter>
     </ClCompile>
     <ClCompile Include="src\Turret.cpp">
@@ -69,6 +69,9 @@
     </ClCompile>
     <ClCompile Include="src\FadeTransition.cpp">
       <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Koopa.cpp">
+      <Filter>Entities\Enemies</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -120,7 +123,7 @@
     <ClInclude Include="src\EnemyManager.h">
       <Filter>Entities\Enemies</Filter>
     </ClInclude>
-    <ClInclude Include="src\Slime.h">
+    <ClInclude Include="src\Goomba.h">
       <Filter>Entities\Enemies</Filter>
     </ClInclude>
     <ClInclude Include="src\Turret.h">
@@ -143,6 +146,9 @@
     </ClInclude>
     <ClInclude Include="src\FadeTransition.h">
       <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Koopa.h">
+      <Filter>Entities\Enemies</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

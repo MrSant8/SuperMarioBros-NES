@@ -1,5 +1,6 @@
 #include "EnemyManager.h"
-#include "Slime.h"
+#include "Goomba.h"
+#include "Koopa.h"
 #include "Turret.h"
 #include "Player.h"
 
@@ -60,7 +61,7 @@ void EnemyManager::Add(const Point& pos, EnemyType type, const AABB& area, Look 
 {
 	Enemy *enemy;
 	
-	if(type == EnemyType::GOOMBA_ENEMY)
+	if(type == EnemyType::GOOMBA)
 	{
 		enemy = new Goomba(pos, GOOMBA_PHYSICAL_WIDTH, GOOMBA_PHYSICAL_HEIGHT, GOOMBA_FRAME_SIZE, GOOMBA_FRAME_SIZE);
 		int slimeIndex = enemies.size();
@@ -71,6 +72,10 @@ void EnemyManager::Add(const Point& pos, EnemyType type, const AABB& area, Look 
 	else if(type == EnemyType::TURRET)
 	{
 		enemy = new Turret(pos, TURRET_PHYSICAL_WIDTH, TURRET_PHYSICAL_HEIGHT, TURRET_FRAME_SIZE, TURRET_FRAME_SIZE);
+	}
+	else if (type == EnemyType::KOOPA)
+	{
+		enemy = new Koopa(pos, KOOPA_PHYSICAL_WIDTH, KOOPA_PHYSICAL_HEIGHT, KOOPA_FRAME_SIZE, KOOPA_FRAME_SIZE);
 	}
 	else
 	{
@@ -85,7 +90,7 @@ void EnemyManager::Add(const Point& pos, EnemyType type, const AABB& area, Look 
 AABB EnemyManager::GetEnemyHitBox(const Point& pos, EnemyType type) const
 {
 	int width, height;
-	if (type == EnemyType::GOOMBA_ENEMY)
+	if (type == EnemyType::GOOMBA)
 	{
 		width = GOOMBA_PHYSICAL_WIDTH;
 		height = GOOMBA_PHYSICAL_HEIGHT;
@@ -95,11 +100,12 @@ AABB EnemyManager::GetEnemyHitBox(const Point& pos, EnemyType type) const
 		width = TURRET_PHYSICAL_WIDTH;
 		height = TURRET_PHYSICAL_HEIGHT;
 	}
-	else
+	else if (type == EnemyType::KOOPA)
 	{
-		LOG("Internal error while computing hitbox for an invalid enemy type");
-		return {};
+		width = KOOPA_PHYSICAL_WIDTH;
+		height = KOOPA_PHYSICAL_HEIGHT;
 	}
+
 	Point p(pos.x, pos.y - (height - 1));
 	AABB hitbox(p, width, height);
 	return hitbox;
@@ -164,7 +170,7 @@ void EnemyManager::CheckPlayerCollision(const AABB& playerHitbox, const Point& p
 			// If player is above the enemy and moving downward, kill the enemy
 			if (playerHitbox.pos.y + playerHitbox.height < (enemyHitbox.pos.y - 1) + enemyHitbox.height)
 			{
-				if (enemy->StateSlime())
+				if (enemy->StateGoomba() || enemy->StateKoopa())
 				{
 					enemy->isDead();
 					PlaySound(deadenemySound);
