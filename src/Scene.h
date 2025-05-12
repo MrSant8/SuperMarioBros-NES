@@ -58,4 +58,7 @@ private:
     float death_timer = 0;
     const Texture2D* backgroundImage;
     const Texture2D* coinnImage;
+
+    int* map = nullptr;
+
 };

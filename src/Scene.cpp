@@ -4,6 +4,7 @@
 
 Scene::Scene() :player(nullptr), level(nullptr), enemies(nullptr), shots(nullptr), particles(nullptr)
 {
+	camera={ 0 };
 	camera.target = { 0,0};				//Center of the screen
 	camera.offset = { 0, MARGIN_GUI_Y };	//Offset from the target (center of the screen)
 	camera.rotation = 0.0f;					//No rotation
@@ -139,7 +140,7 @@ AppStatus Scene::LoadLevel(int stage) {
 	int x, y, i;
 	Tile tile;
 	Point pos;
-	int* map = nullptr;
+	map = nullptr;
 	Object* obj;
 	AABB hitbox, area;
 
@@ -185,6 +186,26 @@ AppStatus Scene::LoadLevel(int stage) {
 
 	//Tile map
 	level->Load(map, LEVEL_WIDTH, LEVEL_HEIGHT);
+
+
+	//if (level->changeBlocK) {
+
+	//	for (int y = 0; y < LEVEL_HEIGHT; y++) {
+	//		for (int x = 0; x < LEVEL_WIDTH; x++) {
+	//			// Convertir las coordenadas (x, y) a un índice lineal en el mapa
+	//			int xCoord = level->laserTileX;
+	//			int yCoord = level->laserTileY;
+
+	//			int index = yCoord * LEVEL_WIDTH + xCoord;
+
+	//			// Comprobar si el valor es 70 y cambiarlo por 4
+	//			if (map[index] == 70) {
+	//				map[index] = 4;  // Cambiar el número en la posición (x, y)
+	//			}
+	//		}
+	//	}
+	//}
+
 
 	//Entities and objects
 	i = 0;
@@ -259,7 +280,7 @@ void Scene::Update()
 	}
 	//Debug levels instantly
 	if (IsKeyPressed(KEY_ONE))		LoadLevel(1);
-	else if (IsKeyPressed(KEY_TWO))	LoadLevel(2);
+	//else if (IsKeyPressed(KEY_TWO))	LoadLevel(2);
 
 	level->Update();
 	player->Update();
@@ -280,6 +301,11 @@ void Scene::Update()
 		gameOver = true;
 		return;
 	}
+
+	
+
+
+
 
 	//Win
 	Rectangle playerRect = { (float)player->GetHitbox().pos.x, (float)player->GetHitbox().pos.y, (float)player->GetHitbox().width, (float)player->GetHitbox().height};

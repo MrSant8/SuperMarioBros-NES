@@ -193,6 +193,18 @@ AppStatus Game::Update()
             if (introTimer >= 5.0f) {
                 introTimerStarted = false;
                 fade_transition.Set(GameState::INTRO, 60, GameState::MAIN_MENU, 60, dst);
+
+            }
+
+            if (IsKeyPressed(KEY_TWO))
+            {
+                introTimerStarted = false;
+
+                StopMusicStream(GroundMusic); //Music Stops
+                StopMusicStream(GameOverMusic);
+                StopMusicStream(WinMusic);
+                state = GameState::WORLD;
+
             }
             break;
        

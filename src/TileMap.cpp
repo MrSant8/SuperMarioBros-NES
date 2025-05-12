@@ -155,20 +155,20 @@ void TileMap::Update()
 			laserYOffset = 0.0f;
 		}
 	}
-	// Si bajar está activo, bajamos progresivamente el bloque
-	if (bajar) {
-		laserYOffset += 6.0f; // velocidad de bajada
-		if (laserYOffset >= 100.0f) { // límite de bajada
-			bajar = false; // detener la animación
-		}
-	}
+	//// Si bajar está activo, bajamos progresivamente el bloque
+	//if (bajar) {
+	//	laserYOffset += 6.0f; // velocidad de bajada
+	//	if (laserYOffset >= 100.0f) { // límite de bajada
+	//		//bajar = false; // detener la animación
+	//	}
+	//}
 
-	if (bajarBlock) {
-		laserYOffset += 6.0f; // velocidad de bajada
-		if (laserYOffset >= 100.0f) { // límite de bajada
-			bajarBlock = false; // detener la animación
-		}
-	}
+	//if (bajarBlock) {
+	//	laserYOffset += 6.0f; // velocidad de bajada
+	//	if (laserYOffset >= 100.0f) { // límite de bajada
+	//		//bajarBlock = false; // detener la animación
+	//	}
+	//}
 }
 Tile TileMap::GetTileIndex(int x, int y) const
 {
@@ -195,6 +195,7 @@ bool TileMap::IsTileSolid(Tile tile) const
 	case Tile::BLOCK_SQUARE1_TR:
 	case Tile::BLOCK_SQUARE1_TL:
 	case Tile::LASER:
+	case Tile::BLOCK_SQUARE1_BR:
 
 		return true;
 	default:
@@ -320,7 +321,7 @@ bool TileMap::TestCollisionFromBelow(const AABB& box, int* py, Point* collisionT
 	int pixel_x = tile_x * TILE_SIZE;
 	int pixel_y = tile_y * TILE_SIZE;
 
-	if (IsTileSolid(tile) && tile != Tile::BLOCK_SQUARE1_TR) // Podés filtrar por tipo específico si querés
+	if (IsTileSolid(tile) && tile != Tile::BLOCK_SQUARE1_TR && tile!= Tile::BLOCK_SQUARE1_BR) // Podés filtrar por tipo específico si querés
 	{
 	
 
@@ -353,6 +354,8 @@ bool TileMap::TestCollisionFromBelow(const AABB& box, int* py, Point* collisionT
 			Laser.x = pixel_x;
 			Laser.y = pixel_y - 5;
 		}
+
+		
 	
 		
 
@@ -485,13 +488,21 @@ AABB TileMap::GetSweptAreaX(const AABB& hitbox) const
 }
 void TileMap::Render()
 {
+	bool volver_position = false;
 	Tile tile;
 	Rectangle rc;
 	Vector2 pos;
 
-	int laserTileX = Laser.x / TILE_SIZE;
-	int laserTileY = Laser.y / TILE_SIZE;
+	laserTileX = Laser.x / TILE_SIZE;
+	laserTileY = Laser.y / TILE_SIZE;
 
+
+	if (bajarBlock && !changeBlock && laserTileX >= 0 && laserTileX < width && laserTileY >= 0 && laserTileY < height)
+
+	{
+		map[laserTileY * width + laserTileX] = Tile::BLOCK_SQUARE1_BR;
+		changeBlock = true;
+	}
 
 	for (int i = 0; i < height; ++i)
 	{
@@ -513,33 +524,33 @@ void TileMap::Render()
 				rc = dict_rect[(int)tile];
 
 				DrawTextureRec(*img_tiles, rc, { Laser.x, Laser.y + 5 }, WHITE);
-
 			}
 			
+
 			else if (BlockActive && i == laserTileY && j == laserTileX)
 			{
 
-				tile = Tile::LASER;
+				tile = Tile::BLOCK_SQUARE1_BR;
 				rc = dict_rect[(int)tile];
 
 				DrawTextureRec(*img_tiles, rc, Laser, WHITE);
 			}
 			else if (bajarBlock && i == laserTileY && j == laserTileX)
 			{
-				tile = Tile::LASER;
+				map[i * width + j] = Tile::BLOCK_SQUARE1_BR;
+				tile = Tile::BLOCK_SQUARE1_BR;
 				rc = dict_rect[(int)tile];
 
 				DrawTextureRec(*img_tiles, rc, { Laser.x, Laser.y + 5 }, WHITE);
-
+				changeBlock = false;
 			}
-
 
 			if (IsTileSolid(tile) && tile != Tile::BLOCK_SQUARE1_TR )
 			{
 				pos.x = (float)j * TILE_SIZE;
 				pos.y = (float)i * TILE_SIZE;
 
-				if ((tile != Tile::LASER && i != laserTileY && j != laserTileX) || (tile != Tile::LASER && i == laserTileY && j == laserTileX && !laserActive && !bajar))
+				if ((tile != Tile::LASER && i != laserTileY && j != laserTileX))
 				{
 					rc = dict_rect[(int)tile];
 					
@@ -547,9 +558,9 @@ void TileMap::Render()
 					
 					
 				}
-								
-				else if((tile==Tile::LASER && i != laserTileY && j != laserTileX) || (tile == Tile::LASER && i == laserTileY && j == laserTileX && !BlockActive && !bajarBlock))
+				else if(tile==Tile::LASER && i != laserTileY && j != laserTileX)
 				{
+					
 					rc = dict_rect[(int)tile];
 							
 
@@ -559,30 +570,6 @@ void TileMap::Render()
 				}
 			}
 
-			//if (laserActive) {
-			//	if (tile == Tile::BLOCK_SQUARE1_TL && tile != Tile::LASER) {
-			//		rc = dict_rect[(int)tile];
-			//		DrawTextureRec(*img_tiles, rc, Laser, WHITE);
-			//	}
-			//	/*if (tile == Tile::LASER && tile != Tile::BLOCK_SQUARE1_TL) {
-			//		rc = dict_rect[(int)tile];
-			//		DrawTextureRec(*img_tiles, { TILE_SIZE ,TILE_SIZE ,TILE_SIZE ,TILE_SIZE }, Laser, WHITE);
-			//	}*/
-			//}
-
-
-			//if (bajar) {
-
-			//	if (tile == Tile::BLOCK_SQUARE1_TL && tile != Tile::LASER) {
-			//		rc = dict_rect[(int)tile];
-			//		DrawTextureRec(*img_tiles, rc, { Laser.x, Laser.y + 5 }, WHITE);
-			//	}
-			//	/*else if (tile == Tile::LASER && tile != Tile::BLOCK_SQUARE1_TL) {
-			//		rc = dict_rect[(int)tile];
-			//		DrawTextureRec(*img_tiles, { TILE_SIZE,TILE_SIZE, TILE_SIZE, TILE_SIZE }, { Laser.x, Laser.y + 5 }, WHITE);
-			//	}*/
-
-			//}
 		}
 	}
 

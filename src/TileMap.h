@@ -120,5 +120,9 @@ private:
 	int laserTimer = 15;
 
 	int sorpriseBlockTimer = 5;
+
+public:
+	bool changeBlock = true;
+	int laserTileX, laserTileY;
 };
 
