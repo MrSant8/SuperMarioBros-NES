@@ -12,8 +12,7 @@ Koopa::Koopa(const Point& p, int width, int height, int frame_width, int frame_h
 }
 
 Koopa::~Koopa()
-{
-}
+{}
 
 AppStatus Koopa::Initialise(Look look, const AABB& area)
 {
@@ -81,8 +80,6 @@ bool Koopa::Update(const AABB& box)
 			if (look == Look::LEFT)	sprite->SetAnimation((int)KoopaAnim::WALKING_LEFT);
 			else					sprite->SetAnimation((int)KoopaAnim::WALKING_RIGHT);
 		}
-		float speed = 1;
-
 		if (pos.y == position_foor) {
 			pos.y = position_foor;
 			if (look == Look::LEFT)

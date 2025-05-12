@@ -29,6 +29,29 @@ GoombaLimits goombalimits[] = {
 	{2768-112, 2972- 160, 208},
 	{2768- 112, 2972- 160, 208},
 };
+KoopaLimits koopalimits[] = {
+	{1216, 1328, 208}, 
+	{1216, 1328, 208},
+
+	{448, 576, 208},   
+	{576, 640, 208},
+
+	{960, 1024, 208},   
+	{960, 1024, 208},
+
+	{1664, 1792, 208},  
+	{1664, 1792, 208},
+
+	{2048, 2112, 208},  
+	{2048, 2112, 208},
+
+	{2200, 2336, 208},   
+	{2200, 2336, 208},
+	{2200, 2336, 208},
+
+	{3000, 3136, 208},  
+	{3000, 3136, 208},
+};
 
 
 EnemyManager::EnemyManager()
@@ -76,6 +99,10 @@ void EnemyManager::Add(const Point& pos, EnemyType type, const AABB& area, Look 
 	else if (type == EnemyType::KOOPA)
 	{
 		enemy = new Koopa(pos, KOOPA_PHYSICAL_WIDTH, KOOPA_PHYSICAL_HEIGHT, KOOPA_FRAME_SIZE, KOOPA_FRAME_SIZE);
+		int koopaIndex = enemies.size();
+		dynamic_cast<Koopa*>(enemy)->SetLimits(koopalimits[koopaIndex].left,
+			koopalimits[koopaIndex].right,
+			koopalimits[koopaIndex].floor);
 	}
 	else
 	{

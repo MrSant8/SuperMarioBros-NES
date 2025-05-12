@@ -60,7 +60,7 @@ private:
 
 	int attack_delay;	// Retraso entre ataques
 	GoombaState state;
-
+	float speed = 1;
 	int current_step;	// Paso actual del patrón
 	int current_frames;	// Número de frames en el paso actual
 	std::vector<Step> pattern;

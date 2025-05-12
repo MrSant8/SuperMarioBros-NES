@@ -96,7 +96,7 @@ bool Goomba::Update(const AABB& box)
 			if (look == Look::LEFT)	sprite->SetAnimation((int)GoombaAnim::WALKING_LEFT);
 			else					sprite->SetAnimation((int)GoombaAnim::WALKING_RIGHT);
 		}
-		float speed = 1;
+
 		if (pos.y == position_foor) {
 			pos.y = position_foor; 
 			if (look == Look::LEFT)

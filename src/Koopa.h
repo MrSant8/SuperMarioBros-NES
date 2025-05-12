@@ -70,7 +70,7 @@ private:
 	std::vector<KoopaStep> pattern;
 	int limit_left;
 	int limit_right;
-
+	float speed = 1;
 	float vertical_speed = 0;
 	float MAX_FALL_SPEED = 5.0f;
 	float position_foor = 208;
