@@ -11,6 +11,7 @@ enum class Resource {
     IMG_TILES,
     IMG_ITEMS,
     IMG_ENEMIES,
+    IMG_ENEMIES_KOOPA,
     IMG_BACKGROUND,
     IMG_MENU_INTRO,
     IMG_GAMEOVER,

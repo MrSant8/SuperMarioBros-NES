@@ -20,7 +20,7 @@ AppStatus Koopa::Initialise(Look look, const AABB& area)
 	const int n = KOOPA_FRAME_SIZE;
 
 	ResourceManager& data = ResourceManager::Instance();
-	render = new Sprite(data.GetTexture(Resource::IMG_ENEMIES));
+	render = new Sprite(data.GetTexture(Resource::IMG_ENEMIES_KOOPA));
 
 	Sprite* sprite = dynamic_cast<Sprite*>(render);
 	sprite->SetNumberAnimations((int)KoopaAnim::NUM_ANIMATIONS);

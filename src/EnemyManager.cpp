@@ -71,6 +71,14 @@ AppStatus EnemyManager::Initialise()
 		return AppStatus::ERROR;
 	}
 
+	if (data.LoadTexture(Resource::IMG_ENEMIES_KOOPA, "images/enemies_KOOPA.png") != AppStatus::OK)
+	{
+		LOG("Failed to load enemies sprite texture");
+		return AppStatus::ERROR;
+	}
+
+
+
 	deadenemySound = LoadSound("Assets/Audio/Fx/Squish.wav");
 
 
