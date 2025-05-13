@@ -84,6 +84,7 @@ AppStatus Player::Initialise()
 
 	jumpSound = LoadSound("Assets/Audio/Fx/Jump.wav");
 	dieSound = LoadSound("Assets/Audio/Fx/Die.wav");
+	coinSound = LoadSound("Assets/Audio/Fx/Coin.wav")
 
 	return AppStatus::OK;
 }

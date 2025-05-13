@@ -130,6 +130,7 @@ private:
 
     Sound jumpSound;
     Sound dieSound;
+    Sound coinSound;
 
     TileMap* tilemap;
 };
