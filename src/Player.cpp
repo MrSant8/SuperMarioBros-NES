@@ -260,8 +260,8 @@ void Player::MoveX()
 		if ((pos.x == 960 && pos.y == 447))
 		{
 			// Teleport to the specified position
-			pos.x = 922;
-			pos.y = 143;
+			pos.x = 2614;
+			pos.y = 175;
 			teletransportation = false;
 			Stop(); // Reset player state
 			return;
