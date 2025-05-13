@@ -24,7 +24,7 @@ private:
 
     GameState state;
     Scene *scene;
-    const Texture2D *img_menu, *img_menu2, *img_gameOver, *img_win, *img_world;
+    const Texture2D *img_menu, *img_menu2, *img_gameOver, *img_win, *img_world, * img_world2lives, *img_world1lives;
 
     //To work with original game units and then scale the result
     RenderTexture2D target;

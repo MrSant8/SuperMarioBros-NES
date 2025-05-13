@@ -89,6 +89,21 @@ AppStatus Game::LoadResources()
     }
     img_world = data.GetTexture(Resource::IMG_WORLD);
 
+    if (data.LoadTexture(Resource::WORLD_2LIVES, "Assets/Textures/Hud/World_2lives.png") != AppStatus::OK)
+    {
+        return AppStatus::ERROR;
+    }
+    img_world2lives = data.GetTexture(Resource::WORLD_2LIVES);
+
+
+    if (data.LoadTexture(Resource::WORLD_1LIVES, "Assets/Textures/Hud/World_1lives.png") != AppStatus::OK)
+    {
+        return AppStatus::ERROR;
+    }
+    img_world1lives = data.GetTexture(Resource::WORLD_1LIVES);
+
+
+
     //Imagen game over
     if (data.LoadTexture(Resource::IMG_GAMEOVER, "Assets/Textures/Hud/Game over.png") != AppStatus::OK)
     {
@@ -257,6 +272,7 @@ AppStatus Game::Update()
                     }
                 }
                 break;
+
             case GameState::GAMEOVER:
                 StopMusicStream(GroundMusic);
                 PlayMusicStream(GameOverMusic);
@@ -302,6 +318,12 @@ void Game::Render()
         case GameState::WORLD:
             DrawTexture(*img_world, 0, 0, WHITE);
             break;
+        case GameState::WORLD_2LIVES:
+            DrawTexture(*img_world2lives, 0, 0, WHITE);
+            break;
+        case GameState::WORLD_1LIVES:
+            DrawTexture(*img_world1lives, 0, 0, WHITE);
+            break;
         case GameState::PLAYING:
             scene->Render();
             break;
@@ -335,6 +357,9 @@ void Game::UnloadResources()
     data.ReleaseTexture(Resource::IMG_GAMEOVER);
     data.ReleaseTexture(Resource::IMG_WIN);
     data.ReleaseTexture(Resource::IMG_WORLD);
+    data.ReleaseTexture(Resource::WORLD_2LIVES);
+    data.ReleaseTexture(Resource::WORLD_1LIVES);
+
 
     UnloadMusicStream(GroundMusic);
     UnloadMusicStream(GameOverMusic);

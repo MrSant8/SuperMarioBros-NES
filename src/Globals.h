@@ -7,7 +7,7 @@
 enum class AppStatus { OK = 0, ERROR, QUIT };
 
 //Game states
-enum class GameState { INTRO, MAIN_MENU, PLAYING, SETTINGS, CREDITS, GAMEOVER, WIN, WORLD };
+enum class GameState { INTRO, MAIN_MENU, PLAYING, SETTINGS, CREDITS, GAMEOVER, WIN, WORLD, WORLD_2LIVES, WORLD_1LIVES };
 
 //Main return values
 #define EXIT_SUCCESS	0

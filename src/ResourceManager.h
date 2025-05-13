@@ -16,6 +16,8 @@ enum class Resource {
     IMG_GAMEOVER,
     IMG_WIN,
     IMG_WORLD,
+    WORLD_2LIVES,
+    WORLD_1LIVES,
     IMG_COINHUD,
     IMG_FONT1
 };

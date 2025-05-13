@@ -302,10 +302,6 @@ void Scene::Update()
 		return;
 	}
 
-	
-
-
-
 
 	//Win
 	Rectangle playerRect = { (float)player->GetHitbox().pos.x, (float)player->GetHitbox().pos.y, (float)player->GetHitbox().width, (float)player->GetHitbox().height};
