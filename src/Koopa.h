@@ -1,7 +1,7 @@
 #pragma once
 #include "Enemy.h"
 
-#define KOOPA_SPEED			1 // Asegúrate de que esto sea un valor flotante (float)
+#define KOOPA_SPEED			1 
 #define KOOPA_ANIM_DELAY	(4*ANIM_DELAY)
 
 #define KOOPA_SHOT_OFFSET_X_LEFT	-14
