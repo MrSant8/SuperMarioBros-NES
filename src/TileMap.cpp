@@ -155,12 +155,11 @@ void TileMap::Update()
 			laserYOffset = 0.0f;
 		}
 	}
-	//// Si bajar está activo, bajamos progresivamente el bloque
+	////// Si bajar está activo, bajamos progresivamente el bloque
 	//if (bajar) {
 	//	laserYOffset += 6.0f; // velocidad de bajada
-	//	if (laserYOffset >= 100.0f) { // límite de bajada
-	//		//bajar = false; // detener la animación
-	//	}
+	//	
+
 	//}
 
 	//if (bajarBlock) {
@@ -325,8 +324,6 @@ bool TileMap::TestCollisionFromBelow(const AABB& box, int* py, Point* collisionT
 	{
 	
 
-	
-
 
 		if (tile == Tile::BLOCK_SQUARE1_TL) {
 			if (collisionTilePos != nullptr)
@@ -341,7 +338,11 @@ bool TileMap::TestCollisionFromBelow(const AABB& box, int* py, Point* collisionT
 			Laser.x = pixel_x;
 			Laser.y = pixel_y - 5;
 		}
+
 		if (tile == Tile::LASER) {
+			tile == Tile::BLOCK_SQUARE1_BR;
+			map[tile_y * width + tile_x] = Tile::BLOCK_SQUARE1_BR;
+
 			if (collisionTilePos != nullptr)
 			{
 				collisionTilePos->x = tile_x;
@@ -497,52 +498,47 @@ void TileMap::Render()
 	laserTileY = Laser.y / TILE_SIZE;
 
 
-	if (bajarBlock && !changeBlock && laserTileX >= 0 && laserTileX < width && laserTileY >= 0 && laserTileY < height)
-
-	{
-		map[laserTileY * width + laserTileX] = Tile::BLOCK_SQUARE1_BR;
-		changeBlock = true;
-	}
-
 	for (int i = 0; i < height; ++i)
 	{
 		for (int j = 0; j < width; ++j)
 		{
 			tile = map[i * width + j];
 
-			if (laserActive && i== laserTileY && j== laserTileX)
+			if (laserActive && i== laserTileY && j== laserTileX && tile != Tile::BLOCK_SQUARE1_BR && tile != Tile::LASER)
 			{
 				tile = Tile::BLOCK_SQUARE1_TL;
-				rc = dict_rect[(int)tile];
+				rc = dict_rect[(int)Tile::BLOCK_SQUARE1_TL];
 
 
 				DrawTextureRec(*img_tiles, rc, Laser, WHITE);
 			}
-			else if (bajar && i == laserTileY && j == laserTileX)
+			if (bajar && i == laserTileY && j == laserTileX && tile != Tile::BLOCK_SQUARE1_BR && tile != Tile::LASER)
 			{
 				tile = Tile::BLOCK_SQUARE1_TL;
-				rc = dict_rect[(int)tile];
+				rc = dict_rect[(int)Tile::BLOCK_SQUARE1_TL];
 
 				DrawTextureRec(*img_tiles, rc, { Laser.x, Laser.y + 5 }, WHITE);
+
 			}
 			
 
-			else if (BlockActive && i == laserTileY && j == laserTileX)
+			if (BlockActive && i == laserTileY && j == laserTileX && (tile == Tile::BLOCK_SQUARE1_TL))
 			{
+				map[laserTileY * width + j] = Tile::BLOCK_SQUARE1_BR;
 
-				tile = Tile::BLOCK_SQUARE1_BR;
-				rc = dict_rect[(int)tile];
+				rc = dict_rect[(int)Tile::BLOCK_SQUARE1_BR];
+
 
 				DrawTextureRec(*img_tiles, rc, Laser, WHITE);
 			}
-			else if (bajarBlock && i == laserTileY && j == laserTileX)
+			if (bajarBlock && i == laserTileY && j == laserTileX && tile != Tile::BLOCK_SQUARE1_TL)
 			{
-				map[i * width + j] = Tile::BLOCK_SQUARE1_BR;
-				tile = Tile::BLOCK_SQUARE1_BR;
-				rc = dict_rect[(int)tile];
+	/*			laserTileY = laserTileY + 1;
+				map[laserTileY * width + j] = Tile::BLOCK_SQUARE1_BR;*/
+
+				rc = dict_rect[(int)Tile::BLOCK_SQUARE1_BR];
 
 				DrawTextureRec(*img_tiles, rc, { Laser.x, Laser.y + 5 }, WHITE);
-				changeBlock = false;
 			}
 
 			if (IsTileSolid(tile) && tile != Tile::BLOCK_SQUARE1_TR )
@@ -550,7 +546,7 @@ void TileMap::Render()
 				pos.x = (float)j * TILE_SIZE;
 				pos.y = (float)i * TILE_SIZE;
 
-				if ((tile != Tile::LASER && i != laserTileY && j != laserTileX))
+				if ((tile != Tile::LASER && i != laserTileY && j != laserTileX) )
 				{
 					rc = dict_rect[(int)tile];
 					
@@ -558,16 +554,18 @@ void TileMap::Render()
 					
 					
 				}
+		
 				else if(tile==Tile::LASER && i != laserTileY && j != laserTileX)
 				{
 					
 					rc = dict_rect[(int)tile];
-							
 
 					Sorprise_block->Draw((int)pos.x, (int)pos.y);
 
 					
 				}
+			
+
 			}
 
 		}

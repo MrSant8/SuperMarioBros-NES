@@ -56,6 +56,8 @@ public:
 
 	void Update();
 	void Render();
+	void Blocksorprise();
+	void Blockone();
 	void Release();
 
 	bool IsTileObject(Tile tile) const;
