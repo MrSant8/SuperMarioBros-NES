@@ -155,19 +155,7 @@ void TileMap::Update()
 			laserYOffset = 0.0f;
 		}
 	}
-	////// Si bajar está activo, bajamos progresivamente el bloque
-	//if (bajar) {
-	//	laserYOffset += 6.0f; // velocidad de bajada
-	//	
-
-	//}
-
-	//if (bajarBlock) {
-	//	laserYOffset += 6.0f; // velocidad de bajada
-	//	if (laserYOffset >= 100.0f) { // límite de bajada
-	//		//bajarBlock = false; // detener la animación
-	//	}
-	//}
+	
 }
 Tile TileMap::GetTileIndex(int x, int y) const
 {
@@ -504,10 +492,12 @@ void TileMap::Render()
 		{
 			tile = map[i * width + j];
 
-			if (laserActive && i== laserTileY && j== laserTileX && tile != Tile::BLOCK_SQUARE1_BR && tile != Tile::LASER)
+			if (laserActive && i == laserTileY && j == laserTileX && tile != Tile::BLOCK_SQUARE1_BR && tile != Tile::LASER)
 			{
 				tile = Tile::BLOCK_SQUARE1_TL;
-				rc = dict_rect[(int)Tile::BLOCK_SQUARE1_TL];
+
+				map[(laserTileY + 1) * width + j] = Tile::BLOCK_SQUARE1_TL;
+				rc = dict_rect[(int)tile];
 
 
 				DrawTextureRec(*img_tiles, rc, Laser, WHITE);
@@ -515,31 +505,33 @@ void TileMap::Render()
 			if (bajar && i == laserTileY && j == laserTileX && tile != Tile::BLOCK_SQUARE1_BR && tile != Tile::LASER)
 			{
 				tile = Tile::BLOCK_SQUARE1_TL;
-				rc = dict_rect[(int)Tile::BLOCK_SQUARE1_TL];
+				rc = dict_rect[(int)tile];
 
 				DrawTextureRec(*img_tiles, rc, { Laser.x, Laser.y + 5 }, WHITE);
 
 			}
 			
-
-			if (BlockActive && i == laserTileY && j == laserTileX && (tile == Tile::BLOCK_SQUARE1_TL))
+			
+				
+			if (BlockActive && i == laserTileY && j == laserTileX)
 			{
-				map[laserTileY * width + j] = Tile::BLOCK_SQUARE1_BR;
+				map[(laserTileY+1) * width + j] = Tile::BLOCK_SQUARE1_BR;
 
 				rc = dict_rect[(int)Tile::BLOCK_SQUARE1_BR];
 
 
 				DrawTextureRec(*img_tiles, rc, Laser, WHITE);
 			}
-			if (bajarBlock && i == laserTileY && j == laserTileX && tile != Tile::BLOCK_SQUARE1_TL)
+			if (bajarBlock && i == laserTileY && j == laserTileX)
 			{
-	/*			laserTileY = laserTileY + 1;
-				map[laserTileY * width + j] = Tile::BLOCK_SQUARE1_BR;*/
-
 				rc = dict_rect[(int)Tile::BLOCK_SQUARE1_BR];
 
 				DrawTextureRec(*img_tiles, rc, { Laser.x, Laser.y + 5 }, WHITE);
 			}
+			
+
+				
+			
 
 			if (IsTileSolid(tile) && tile != Tile::BLOCK_SQUARE1_TR )
 			{
@@ -551,7 +543,6 @@ void TileMap::Render()
 					rc = dict_rect[(int)tile];
 					
 					DrawTextureRec(*img_tiles, rc, pos, WHITE);
-					
 					
 				}
 		

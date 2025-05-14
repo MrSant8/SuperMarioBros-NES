@@ -140,7 +140,7 @@
               "RelativeDocumentMoniker": "src\\TileMap.cpp",
               "ToolTip": "C:\\Users\\Usuari\\Documents\\GitHub\\SuperMarioBros-NES\\src\\TileMap.cpp",
               "RelativeToolTip": "src\\TileMap.cpp",
-              "ViewState": "AgIAACECAAAAAAAAAAAAADoCAAADAAAAAAAAAA==",
+              "ViewState": "AgIAABQCAAAAAAAAAAAAAB8CAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-03-21T07:20:12.21Z",
               "IsPinned": true,
@@ -171,8 +171,7 @@
               "ViewState": "AgIAAGoAAAAAAAAAAAAAADoAAAATAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2025-03-21T07:24:09.812Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
@@ -236,8 +235,7 @@
               "RelativeToolTip": "..\\..\\..\\..\\..\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.42.34433\\include\\xmemory",
               "ViewState": "AgIAAFIAAAAAAAAAAAAAwGUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2025-05-14T14:57:23.126Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-14T14:57:23.126Z"
             },
             {
               "$type": "Document",
@@ -261,8 +259,7 @@
               "RelativeToolTip": "src\\Goomba.cpp",
               "ViewState": "AgIAAHEAAAAAAAAAAAAuwHgAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-05-13T19:58:55.369Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-13T19:58:55.369Z"
             },
             {
               "$type": "Document",
