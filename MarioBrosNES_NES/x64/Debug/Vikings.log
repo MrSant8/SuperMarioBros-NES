@@ -1,2 +1,25 @@
-﻿  Scene.cpp
+﻿  EnemyManager.cpp
+C:\Users\Usuari\Documents\GitHub\SuperMarioBros-NES\src\EnemyManager.cpp(80,18): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Usuari\Documents\GitHub\SuperMarioBros-NES\src\EnemyManager.cpp(92,18): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Usuari\Documents\GitHub\SuperMarioBros-NES\src\EnemyManager.cpp(206,37): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Usuari\Documents\GitHub\SuperMarioBros-NES\src\EnemyManager.cpp(207,40): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  Game.cpp
+  main.cpp
+  Player.cpp
+C:\Users\Usuari\Documents\GitHub\SuperMarioBros-NES\src\Player.cpp(154,23): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Usuari\Documents\GitHub\SuperMarioBros-NES\src\Player.cpp(372,24): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Usuari\Documents\GitHub\SuperMarioBros-NES\src\Player.cpp(433,25): warning C4244: '+=': conversion from 'double' to 'int', possible loss of data
+  Scene.cpp
+  ShotManager.cpp
+  TileMap.cpp
+C:\Users\Usuari\Documents\GitHub\SuperMarioBros-NES\src\TileMap.cpp(361,14): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Usuari\Documents\GitHub\SuperMarioBros-NES\src\TileMap.cpp(362,22): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Usuari\Documents\GitHub\SuperMarioBros-NES\src\TileMap.cpp(371,22): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Usuari\Documents\GitHub\SuperMarioBros-NES\src\TileMap.cpp(372,22): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Usuari\Documents\GitHub\SuperMarioBros-NES\src\TileMap.cpp(382,9): warning C4553: '==': result of expression not used; did you intend '='?
+C:\Users\Usuari\Documents\GitHub\SuperMarioBros-NES\src\TileMap.cpp(394,14): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Usuari\Documents\GitHub\SuperMarioBros-NES\src\TileMap.cpp(395,22): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Usuari\Documents\GitHub\SuperMarioBros-NES\src\TileMap.cpp(534,23): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Usuari\Documents\GitHub\SuperMarioBros-NES\src\TileMap.cpp(535,23): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  Generating Code...
   Vikings.vcxproj -> C:\Users\Usuari\Documents\GitHub\SuperMarioBros-NES\x64\Debug\MarioBrosNES_NES.exe

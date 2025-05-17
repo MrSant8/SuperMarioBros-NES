@@ -277,7 +277,7 @@ void Scene::Update()
 	shots->Update(hitbox);
 	particles->Update();
 
-	if (player->playerisDead || player->GetTime()<=0) {
+	if (player->playerisDead || player->GetTime()<=0 && level->disappear==false) {
 		gameOver = true;
 		return;
 	}
@@ -293,6 +293,14 @@ void Scene::Update()
 		level->LowerFlag = true;
 
 		return;
+	}
+
+	if (level->disappear) {
+		player->IncrScore(player->GetTime() * 50);
+		if (player->GetTime() <= 0) {
+			win = true;
+			return;
+		}
 	}
 
 	//Win

@@ -61,6 +61,7 @@ AppStatus EnemyManager::Initialise()
 
 
 	deadenemySound = LoadSound("Assets/Audio/Fx/Squish.wav");
+	marioFont = LoadFont("Assets/Font/super-mario-bros-nes.ttf");
 
 
 	return AppStatus::OK;
@@ -128,6 +129,16 @@ AABB EnemyManager::GetEnemyHitBox(const Point& pos, EnemyType type) const
 }
 void EnemyManager::Update(const AABB& player_hitbox)
 {
+	for (auto& score : floatingScores) {
+		score.y -= 0.5f; // Movimiento hacia arriba
+		score.lifetime--;
+	}
+
+	// Eliminar los numeros
+	floatingScores.erase(std::remove_if(floatingScores.begin(), floatingScores.end(), [](FloatingScore& s) {
+		return s.lifetime <= 0;
+		}), floatingScores.end());
+
 	bool shoot;
 
 	for (auto it = enemies.begin(); it != enemies.end(); )
@@ -152,6 +163,10 @@ void EnemyManager::Draw() const
 {
 	for (const Enemy* enemy : enemies)
 		enemy->Draw();
+
+	for (const auto& score : floatingScores) {
+		DrawTextEx(marioFont, TextFormat("%d", score.value), { score.x, score.y }, 9, 1, WHITE);
+	}
 }
 void EnemyManager::DrawDebug() const
 {
@@ -186,6 +201,17 @@ void EnemyManager::CheckPlayerCollision(const AABB& playerHitbox, const Point& p
 			// If player is above the enemy and moving downward, kill the enemy
 			if (playerHitbox.pos.y + playerHitbox.height < (enemyHitbox.pos.y - 1) + enemyHitbox.height)
 			{
+				// Puntuation
+				FloatingScore score;
+				score.x = enemy->GetHitbox().pos.x;
+				score.y = enemy->GetHitbox().pos.y - 10;
+				score.value = 100;
+				score.lifetime = 30;
+				floatingScores.push_back(score);
+
+				// **Sumar puntos al marcador de Mario**
+				player->IncrScore(100);
+
 				if (enemy->StateGoomba() || enemy->StateKoopa())
 				{
 					enemy->isDead();
