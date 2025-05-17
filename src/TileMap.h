@@ -155,5 +155,6 @@ public:
 	bool bigMario = false;
 
 	mutable bool playerDead;
+	mutable bool disappear;
 };
 

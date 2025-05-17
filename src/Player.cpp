@@ -104,7 +104,8 @@ int Player::GetScore() { return score; }
 int Player::GetTime()
 {
 	timeCounter += GetFrameTime();
-	if (timeCounter >= 1.0f)
+	float timeReductionRate = map->disappear ? 5.0f : 1.0f;
+	if (timeCounter >= 1.0f / timeReductionRate)
 	{
 		time = std::max(0, time - 1);
 		timeCounter = 0.0f;
@@ -203,6 +204,11 @@ void Player::ChangeAnimLeft()
 }
 void Player::Update()
 {
+	if (map->disappear) {
+		pos.x = 4000;
+		return;
+	}
+
 	if (state == State::DEAD || map->playerDead)
 	{
 		pos.y += dir.y;

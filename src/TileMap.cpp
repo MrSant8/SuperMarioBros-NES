@@ -205,6 +205,7 @@ bool TileMap::IsTileSolid(Tile tile) const
 	case Tile::LASER:
 	case Tile::BLOCK_SQUARE1_BR:
 	case Tile::BLOCK_SQUARE2_TR:
+	case Tile::BLOCK_SQUARE2_BL:
 
 		return true;
 	default:
@@ -269,7 +270,9 @@ bool TileMap::TestCollisionGround(const AABB& box, int *py) const
 		if (tile==Tile::BLOCK_SQUARE2_TR) {
 			playerDead = true; // Marcar que el jugador ha muerto
 		}
-
+		if (tile == Tile::BLOCK_SQUARE2_BL) {
+			disappear = true; // Marcar que el jugador ha muerto
+		}
 		*py = tile_y * TILE_SIZE - 1;
 		
 		
@@ -622,7 +625,7 @@ void TileMap::Render()
 			}
 
 
-			if (IsTileSolid(tile) && tile != Tile::BLOCK_SQUARE1_TR && tile!= Tile::BLOCK_SQUARE2_TR)
+			if (IsTileSolid(tile) && tile != Tile::BLOCK_SQUARE1_TR && tile!= Tile::BLOCK_SQUARE2_TR && tile!=Tile::BLOCK_SQUARE2_BL)
 			{
 				pos.x = (float)j * TILE_SIZE;
 				pos.y = (float)i * TILE_SIZE;
