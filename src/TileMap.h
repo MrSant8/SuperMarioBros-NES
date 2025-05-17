@@ -5,6 +5,12 @@
 #include "AABB.h"
 #include "Globals.h"
 #include <unordered_map>
+#include <vector>
+
+struct BlockFragment {
+	float x, y, vx, vy;
+	int lifetime;
+};
 
 enum class Tile {
 
@@ -131,11 +137,20 @@ private:
 	const float bajarVelocidad = 2.0f;  // píxeles por frame (ajustá esto para más o menos rapidez)
 
 
+	float dropSpeed = 2.0f;  // Velocidad de caída en píxeles/frame
+	float dropYOffset = 0.0f; // Offset temporal Y para el bloque que cae
+	bool isDropping = false; // Si está cayendo
+	bool romperse;
+
+	std::vector<BlockFragment> fragments;
+
 public:
 	bool changeBlock = true;
 	int laserTileX, laserTileY;
 
 	bool LowerFlag = false;
 	bool flagFullyLowered = false;
+	bool bigMario = false;
+
 };
 
