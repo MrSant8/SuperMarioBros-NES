@@ -143,6 +143,8 @@ private:
 	bool romperse;
 
 	std::vector<BlockFragment> fragments;
+	Sound Break;
+
 
 public:
 	bool changeBlock = true;
@@ -152,5 +154,6 @@ public:
 	bool flagFullyLowered = false;
 	bool bigMario = false;
 
+	mutable bool playerDead;
 };
 

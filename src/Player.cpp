@@ -203,7 +203,7 @@ void Player::ChangeAnimLeft()
 }
 void Player::Update()
 {
-	if (state == State::DEAD)
+	if (state == State::DEAD || map->playerDead)
 	{
 		pos.y += dir.y;
 		dir.y += GRAVITY_FORCE;

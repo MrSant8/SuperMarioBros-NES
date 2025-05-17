@@ -95,6 +95,8 @@ AppStatus TileMap::Initialise()
 	surpriseBlock->AddKeyFrame(0, dict_rect[(int)Tile::LASER_FRAME2]);
 	surpriseBlock->SetAnimation(0);
 
+	Break = LoadSound("Assets/Audio/Fx/Break.wav");
+
 	return AppStatus::OK;
 }
 AppStatus TileMap::Load(int data[], int w, int h)
@@ -202,6 +204,7 @@ bool TileMap::IsTileSolid(Tile tile) const
 	case Tile::BLOCK_SQUARE1_TL:
 	case Tile::LASER:
 	case Tile::BLOCK_SQUARE1_BR:
+	case Tile::BLOCK_SQUARE2_TR:
 
 		return true;
 	default:
@@ -261,13 +264,23 @@ bool TileMap::TestCollisionGround(const AABB& box, int *py) const
 	{
 		tile_y = p.y / TILE_SIZE;
 
+		Tile tile = GetTileIndex(p.x / TILE_SIZE, tile_y);
+
+		if (tile==Tile::BLOCK_SQUARE2_TR) {
+			playerDead = true; // Marcar que el jugador ha muerto
+		}
+
 		*py = tile_y * TILE_SIZE - 1;
+		
+		
 		return true;
 	}
 
 
 	return false;
 }
+
+
 bool TileMap::TestFalling(const AABB& box) const
 {
 	return !CollisionY(box.pos + Point(0, box.height), box.width);
@@ -359,6 +372,8 @@ bool TileMap::TestCollisionFromBelow(const AABB& box, int* py, Point* collisionT
 				frag.lifetime = 30; //  Duration before disappearing
 				fragments.push_back(frag);
 			}
+
+			PlaySound(Break);
 		}
 		if (tile == Tile::LASER) {
 			tile == Tile::BLOCK_SQUARE1_BR;
@@ -607,7 +622,7 @@ void TileMap::Render()
 			}
 
 
-			if (IsTileSolid(tile) && tile != Tile::BLOCK_SQUARE1_TR)
+			if (IsTileSolid(tile) && tile != Tile::BLOCK_SQUARE1_TR && tile!= Tile::BLOCK_SQUARE2_TR)
 			{
 				pos.x = (float)j * TILE_SIZE;
 				pos.y = (float)i * TILE_SIZE;
@@ -639,10 +654,6 @@ void TileMap::Render()
 
 
 }
-
-	
-	
-
 
 void TileMap::Release()
 {
