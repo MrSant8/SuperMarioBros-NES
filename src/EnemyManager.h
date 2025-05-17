@@ -2,7 +2,17 @@
 #include "Enemy.h"
 #include "ShotManager.h"
 #include "Player.h"
+#include "Text.h"
+
+
 class Player;
+
+struct FloatingScore {
+	float x, y;
+	int value;
+	int lifetime;
+};
+
 class EnemyManager
 {
 public:
@@ -51,5 +61,10 @@ private:
 	//This class does not own the object, it only holds a reference to it
 	ShotManager *shots;
 	Enemy* enemy;
+
+	std::vector<FloatingScore> floatingScores;
+
+	Font marioFont;
+
 };
 
