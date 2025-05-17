@@ -80,11 +80,18 @@ AppStatus Player::Initialise()
 	sprite->SetAnimationDelay((int)PlayerAnim::DEAD, ANIM_DELAY);
 	sprite->AddKeyFrame((int)PlayerAnim::DEAD, { n, 0, n, n });
 
+	sprite->SetAnimationDelay((int)PlayerAnim::FLAG_LEFT, ANIM_DELAY);
+	sprite->AddKeyFrame((int)PlayerAnim::FLAG_LEFT, { n*2, 0, n, n });
+
+	sprite->SetAnimationDelay((int)PlayerAnim::FLAG_RIGHT, ANIM_DELAY);
+	sprite->AddKeyFrame((int)PlayerAnim::FLAG_RIGHT, { n * 3, 0, n, n });
+
 	sprite->SetAnimation((int)PlayerAnim::IDLE_RIGHT);
 
 	jumpSound = LoadSound("Assets/Audio/Fx/Jump.wav");
 	dieSound = LoadSound("Assets/Audio/Fx/Die.wav");
 	coinSound = LoadSound("Assets/Audio/Fx/Coin.wav");
+	flagSound = LoadSound("Assets/Audio/Fx/Flagpole.wav");
 
 	return AppStatus::OK;
 }
@@ -204,8 +211,53 @@ void Player::Update()
 		playerisDead = true;
 		return;
 	}
-	MoveX();
+
+
+	if (map->LowerFlag && !map->flagFullyLowered)
+	{
+		pos.x = 3153;
+		if (pos.y > 191) {
+			pos.y = 191;
+		}
+
+		if (state != State::FLAG) // Change to FLAG state only once
+		{
+			state = State::FLAG;
+			if (IsLookingRight())
+				SetAnimation((int)PlayerAnim::FLAG_RIGHT);
+			else
+				SetAnimation((int)PlayerAnim::FLAG_LEFT);
+		}
+
+		// Play sound only once
+		if (!flagSoundPlayed) {
+			PlaySound(flagSound);
+			flagSoundPlayed = true;
+		}
+	}
+	else {
+		if (state == State::FLAG)
+		{
+			pos.x = 3157;
+			if (pos.y > 191) {
+				pos.y = 191;
+			}
+
+			// Fix: assign state properly instead of comparing
+			state != State::FLAG;
+
+			if (IsLookingRight())
+				SetAnimation((int)PlayerAnim::FLAG_LEFT);
+			else
+				SetAnimation((int)PlayerAnim::FLAG_RIGHT);
+		}
+		else {
+			MoveX();
+		}
+	}
+
 	MoveY();
+
 
 	if (IsKeyDown(KEY_THREE)) {
 		pos.x = 2575;

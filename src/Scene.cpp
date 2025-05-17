@@ -297,7 +297,7 @@ void Scene::Update()
 	DrawRectangleRec(BajarBanderaRect, GREEN);
 	if (CheckCollisionRecs(playerRect, BajarBanderaRect))
 	{
-		level->BajarBandera = true;
+		level->LowerFlag = true;
 
 		return;
 	}

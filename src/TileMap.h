@@ -135,6 +135,7 @@ public:
 	bool changeBlock = true;
 	int laserTileX, laserTileY;
 
-	bool BajarBandera = false;
+	bool LowerFlag = false;
+	bool flagFullyLowered = false;
 };
 

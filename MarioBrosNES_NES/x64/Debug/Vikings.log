@@ -1,10 +1,5 @@
-﻿  TileMap.cpp
-C:\Users\Usuari\Documents\GitHub\SuperMarioBros-NES\src\TileMap.cpp(326,14): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\Usuari\Documents\GitHub\SuperMarioBros-NES\src\TileMap.cpp(327,22): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\Usuari\Documents\GitHub\SuperMarioBros-NES\src\TileMap.cpp(331,9): warning C4553: '==': result of expression not used; did you intend '='?
-C:\Users\Usuari\Documents\GitHub\SuperMarioBros-NES\src\TileMap.cpp(343,14): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\Usuari\Documents\GitHub\SuperMarioBros-NES\src\TileMap.cpp(344,22): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\Usuari\Documents\GitHub\SuperMarioBros-NES\src\TileMap.cpp(481,23): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\Usuari\Documents\GitHub\SuperMarioBros-NES\src\TileMap.cpp(482,23): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\Usuari\Documents\GitHub\SuperMarioBros-NES\src\TileMap.cpp(485,6): warning C4101: 'nuevaposY': unreferenced local variable
+﻿  main.cpp
+  Scene.cpp
+  ShotManager.cpp
+  Generating Code...
   Vikings.vcxproj -> C:\Users\Usuari\Documents\GitHub\SuperMarioBros-NES\x64\Debug\MarioBrosNES_NES.exe

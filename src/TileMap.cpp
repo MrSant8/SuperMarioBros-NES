@@ -479,9 +479,9 @@ void TileMap::Render()
 
 	laserTileX = Laser.x / TILE_SIZE;
 	laserTileY = Laser.y / TILE_SIZE;
+	bool flagLowered = false;
 
-	bool bandera_bajada = false;
-	int nuevaposY;
+	
 	for (int i = 0; i < height; ++i)
 	{
 		for (int j = 0; j < width; ++j)
@@ -526,36 +526,47 @@ void TileMap::Render()
 				DrawTextureRec(*img_tiles, rc, { Laser.x, Laser.y + 5 }, WHITE);
 			}
 			
-			
-			if (BajarBandera && tile == Tile::BLOCK_SQUARE2_TL && !bandera_bajada)
+			static int flagDescentTimer = 0;
+
+			if (LowerFlag && tile == Tile::BLOCK_SQUARE2_TL && !flagLowered)
 			{
-				for (int k = 0; k < 8; ++k) { // Bajar nueve tiles
+				if (flagDescentTimer % 10 == 0) // Controls the speed of the descent
+				{
+					int newY = i + 1;
 
-					int nuevaY = i + k; // Desplazamiento en Y
-					int anteriorY = nuevaY - 1;
+					if (newY < 12)
+					{
+						// Only update tile if it's not already a flag tile
+						if (map[newY * width + j] != Tile::BLOCK_SQUARE2_TL)
+						{
+							map[i * width + j] = Tile::AIR;
+							map[newY * width + j] = Tile::BLOCK_SQUARE2_TL;
 
-					if (nuevaY < 12) { 
-						if (k < 3) {
-							map[(anteriorY)*width + j] = Tile::AIR;
+							pos.x = (float)j * TILE_SIZE;
+							pos.y = (float)newY * TILE_SIZE;
 						}
-						
-						map[nuevaY * width + j] = Tile::BLOCK_SQUARE2_TL;
-						pos.x = (float)j * TILE_SIZE;
-						pos.y = (float)nuevaY * TILE_SIZE;
-						rc = dict_rect[(int)tile];
-
-
-						DrawTextureRec(*img_tiles, rc, { pos.x, pos.y }, WHITE);
 					}
-
-					
-
+					else
+					{
+						flagLowered = true;
+						LowerFlag = true;     // Triggers the player animation
+						flagFullyLowered = true;
+					}
 				}
-				bandera_bajada = true;
 
+				flagDescentTimer++;
 			}
 
-			if (!BajarBandera && tile == Tile::BLOCK_SQUARE2_TL)
+			//Dinujar siempre textura
+			if (tile == Tile::BLOCK_SQUARE2_TL)
+			{
+				pos.x = (float)j * TILE_SIZE;
+				pos.y = (float)i * TILE_SIZE;
+				rc = dict_rect[(int)tile];
+				DrawTextureRec(*img_tiles, rc, { pos.x, pos.y }, WHITE);
+			}
+
+			/*if (!BajarBandera && tile == Tile::BLOCK_SQUARE2_TL)
 			{
 				pos.x = (float)j * TILE_SIZE;
 				pos.y = (float)i * TILE_SIZE;
@@ -564,7 +575,7 @@ void TileMap::Render()
 				DrawTextureRec(*img_tiles, rc, { pos.x,pos.y }, WHITE);
 
 
-			}
+			}*/
 
 			if (IsTileSolid(tile) && tile != Tile::BLOCK_SQUARE1_TR )
 			{

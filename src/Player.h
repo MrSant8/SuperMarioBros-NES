@@ -28,7 +28,7 @@
 
 // Logic States
 enum class State {
-    IDLE, WALKING, JUMPING, FALLING, CLIMBING, DEAD
+    IDLE, WALKING, JUMPING, FALLING, CLIMBING, DEAD, FLAG
 };
 
 // Animation States
@@ -41,6 +41,7 @@ enum class PlayerAnim {
     CLIMBING, CLIMBING_PRE_TOP, CLIMBING_TOP,
     SHOCK_LEFT, SHOCK_RIGHT,
     DEAD,
+    FLAG_LEFT,FLAG_RIGHT,
     TELEPORT_LEFT, TELEPORT_RIGHT,
     NUM_ANIMATIONS
 };
@@ -131,6 +132,10 @@ private:
     Sound jumpSound;
     Sound dieSound;
     Sound coinSound;
+    Sound flagSound;
 
     TileMap* tilemap;
+
+    bool flagSoundPlayed = false;
+
 };
