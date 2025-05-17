@@ -525,7 +525,7 @@ void Player::StartDeath()
 	if (!deathStarted)
 	{
 		state = State::DEAD;
-		dir.y = -PLAYER_JUMP_FORCE * 0.6f; // o un valor como -5.0f
+		dir.y = -7.0f; 
 		SetAnimation((int)PlayerAnim::DEAD);
 		PlaySound(dieSound);
 		deathStarted = true;
