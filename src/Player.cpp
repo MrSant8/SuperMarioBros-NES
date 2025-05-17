@@ -26,11 +26,6 @@ AppStatus Player::Initialise()
 	}
 
 	render = new Sprite(data.GetTexture(Resource::IMG_PLAYER));
-	if (!render)
-	{
-		LOG("Failed to allocate memory for player sprite");
-		return AppStatus::ERROR;
-	}
 
 	Sprite* sprite = dynamic_cast<Sprite*>(render);
 	sprite->SetNumberAnimations((int)PlayerAnim::NUM_ANIMATIONS);
@@ -92,10 +87,10 @@ AppStatus Player::Initialise()
 	dieSound = LoadSound("Assets/Audio/Fx/Die.wav");
 	coinSound = LoadSound("Assets/Audio/Fx/Coin.wav");
 	flagSound = LoadSound("Assets/Audio/Fx/Flagpole.wav");
+	powerUpSound = LoadSound("Assets/Audio/Fx/Powerup");
 
 	return AppStatus::OK;
 }
-
 // Score y tiempo
 void Player::InitScore() { score = 0; }
 void Player::IncrScore(int n) { score += n; }
@@ -263,7 +258,6 @@ void Player::Update()
 	}
 
 	MoveY();
-
 
 	if (IsKeyDown(KEY_THREE)) {
 		pos.x = 2575;
@@ -535,4 +529,17 @@ void Player::Release()
 	ResourceManager& data = ResourceManager::Instance();
 	data.ReleaseTexture(Resource::IMG_PLAYER);
 	render->Release();
+}
+void Player::MushroomPower() {
+	map->canBreak = true;
+	isBigMario = true;
+}
+void Player::FlowerPower() {
+	map->canBreak = true;
+	isFireMario = true;
+
+}
+void Player::StarPower() {
+	map->canBreak = true;
+	isStarMario = true;
 }

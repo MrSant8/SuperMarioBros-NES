@@ -66,6 +66,12 @@ public:
     void DrawDebug(const Color& col) const;
     void Release();
 
+    void MushroomPower();
+
+    void FlowerPower();
+
+    void StarPower();
+
     Vector2 GetPosition() const {
         return Vector2{ static_cast<float>(pos.x), 0.0f };
     }
@@ -85,6 +91,12 @@ public:
     State state;
     bool playerisDead;
     bool teletransportation = false;
+
+    Sound jumpSound;
+    Sound dieSound;
+    Sound coinSound;
+    Sound flagSound;
+    Sound powerUpSound;
 private:
     // Direction
     bool IsLookingRight() const;
@@ -129,13 +141,13 @@ private:
 
     bool move_camera = false;
 
-    Sound jumpSound;
-    Sound dieSound;
-    Sound coinSound;
-    Sound flagSound;
+
 
     TileMap* tilemap;
 
     bool flagSoundPlayed = false;
 
+    bool isBigMario = false;
+    bool isFireMario = false;
+    bool isStarMario = false;
 };

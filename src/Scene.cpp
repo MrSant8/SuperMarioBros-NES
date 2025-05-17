@@ -362,17 +362,24 @@ void Scene::CheckObjectCollisions()
 			// Detectar el tipo de objeto
 			if ((*it)->GetType() == ObjectType::MUSHROOM)
 			{
-				printf("mushroom\n");
+				PlaySound(player->powerUpSound);
+				player->MushroomPower();
 			}
 			// Detectar el tipo de objeto
 			else if ((*it)->GetType() == ObjectType::FLOWER)
 			{
-				printf("flower\n");
+				PlaySound(player->powerUpSound);
+				player->FlowerPower();
 			}
 			// Detectar el tipo de objeto
 			else if ((*it)->GetType() == ObjectType::STAR)
 			{
-				printf("star\n");
+				PlaySound(player->powerUpSound);
+				player->StarPower();
+			}
+			else if ((*it)->GetType() == ObjectType::COIN)
+			{
+				PlaySound(player->coinSound);
 			}
 			player->IncrScore((*it)->Points());
 

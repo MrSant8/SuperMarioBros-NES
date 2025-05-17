@@ -150,7 +150,7 @@ public:
 
 	bool LowerFlag = false;
 	bool flagFullyLowered = false;
-	bool bigMario = false;
+	bool canBreak = false;
 
 	mutable bool playerDead;
 	mutable bool disappear;

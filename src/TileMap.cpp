@@ -161,7 +161,7 @@ void TileMap::Update()
 	}
 
 	if (IsKeyDown(KEY_FOUR)) {
-		bigMario = true;
+		canBreak = true;
 	}
 
 	for (auto& frag : fragments) {
@@ -348,7 +348,7 @@ bool TileMap::TestCollisionFromBelow(const AABB& box, int* py, Point* collisionT
 	if (IsTileSolid(tile) && tile != Tile::BLOCK_SQUARE1_TR && tile!= Tile::BLOCK_SQUARE1_BR) // Podés filtrar por tipo específico si querés
 	{
 	
-		if (tile == Tile::BLOCK_SQUARE1_TL && !bigMario) {
+		if (tile == Tile::BLOCK_SQUARE1_TL && !canBreak) {
 			if (collisionTilePos != nullptr)
 			{
 				collisionTilePos->x = tile_x;
@@ -362,7 +362,7 @@ bool TileMap::TestCollisionFromBelow(const AABB& box, int* py, Point* collisionT
 			Laser.y = pixel_y - 5;
 		}
 
-		if (tile == Tile::BLOCK_SQUARE1_TL && bigMario) 
+		if (tile == Tile::BLOCK_SQUARE1_TL && canBreak) 
 		{
 			map[tile_y * width + tile_x] = Tile::EMPTY; // Remove the block
 
@@ -540,7 +540,7 @@ void TileMap::Render()
 		{
 			tile = map[i * width + j];
 
-			if (laserActive && i == laserTileY && j == laserTileX && !bigMario)
+			if (laserActive && i == laserTileY && j == laserTileX && !canBreak)
 			{
 				dropBlock = false;
 
@@ -552,7 +552,7 @@ void TileMap::Render()
 
 				DrawTextureRec(*img_tiles, rc, Laser, WHITE);
 			}
-			if (dropLaser && i == laserTileY && j == laserTileX && !bigMario)
+			if (dropLaser && i == laserTileY && j == laserTileX && !canBreak)
 			{
 				tile = Tile::BLOCK_SQUARE1_TL;
 				rc = dict_rect[(int)tile];
