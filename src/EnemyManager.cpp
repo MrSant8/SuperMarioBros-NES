@@ -199,18 +199,19 @@ void EnemyManager::CheckPlayerCollision(const AABB& playerHitbox, const Point& p
 		if (CheckCollisionRecs(playerRect, enemyRect))
 		{
 			// If player is above the enemy and moving downward, kill the enemy
-			if (playerHitbox.pos.y + playerHitbox.height < (enemyHitbox.pos.y - 1) + enemyHitbox.height)
+			if (playerHitbox.pos.y + playerHitbox.height < (enemyHitbox.pos.y - 1) + enemyHitbox.height || player->isStarMario)
 			{
+				player->Bounce();
+
 				// Puntuation
 				FloatingScore score;
 				score.x = enemy->GetHitbox().pos.x;
 				score.y = enemy->GetHitbox().pos.y - 10;
-				score.value = 100;
+
 				score.lifetime = 30;
 				floatingScores.push_back(score);
 
-				// **Sumar puntos al marcador de Mario**
-				player->IncrScore(100);
+				player->IncrScore(score.value);
 
 				if (enemy->StateGoomba() || enemy->StateKoopa())
 				{
@@ -221,6 +222,7 @@ void EnemyManager::CheckPlayerCollision(const AABB& playerHitbox, const Point& p
 					continue;
 				}
 			}
+
 			else
 			{
 				player->StartDeath();
