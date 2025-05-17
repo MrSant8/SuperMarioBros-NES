@@ -216,7 +216,7 @@ bool TileMap::IsTileLadderTop(Tile tile) const
 	{
 	case Tile::GOOMBA_TILE:
 	case Tile::BLOCK_SQUARE2_TL:
-	case Tile::BLOCK_SQUARE2_TR:
+	case Tile::BLOCK_VERT2_T:
 
 	/*case Tile::BLOCK_SQUARE2_TL:
 	case Tile::BLOCK_VERT2_T:
@@ -377,9 +377,6 @@ bool TileMap::TestCollisionFromBelow(const AABB& box, int* py, Point* collisionT
 			Laser.y = pixel_y - 5;
 		}
 
-		for (auto& frag : fragments) {
-			DrawTextureRec(*img_tiles, dict_rect[(int)Tile::BLOCK_SQUARE2_TR], { frag.x, frag.y }, WHITE);
-		}
 
 
 		return true;
@@ -547,22 +544,8 @@ void TileMap::Render()
 			}
 
 			//BigMario
-
-			//if (laserActive && i == laserTileY && j == laserTileX && bigMario)
-			//{
-			//	dropBlock = false;
-
-			//	tile = Tile::BLOCK_SQUARE2_TR;
-
-			//	map[(laserTileY + 1) * width + j] = Tile::BLOCK_SQUARE2_TR;
-			//	rc = dict_rect[(int)Tile::BLOCK_SQUARE2_TR];
-
-
-			//	DrawTextureRec(*img_tiles, rc, { Laser.x, Laser.y +10}, WHITE);
-			//}
-
 			for (auto& frag : fragments) {
-				DrawTextureRec(*img_tiles, dict_rect[(int)Tile::BLOCK_SQUARE2_TR], { frag.x, frag.y }, WHITE);
+				DrawTextureRec(*img_tiles, dict_rect[(int)Tile::BLOCK_VERT2_T], { frag.x, frag.y }, WHITE);
 			}
 
 
