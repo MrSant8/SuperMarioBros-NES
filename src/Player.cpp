@@ -207,7 +207,9 @@ void Player::Update()
 	MoveX();
 	MoveY();
 
-
+	if (IsKeyDown(KEY_THREE)) {
+		pos.x = 2575;
+	}
 
 	dynamic_cast<Sprite*>(render)->Update();
 }

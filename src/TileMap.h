@@ -87,6 +87,7 @@ public:
 	bool CollisionY(const Point& p, int distance) const;
 
 	bool TestCollisionFromBelow(const AABB& box, int* py, Point* collisionTilePos);
+
 private:
 	void InitTileDictionary();
 
@@ -106,7 +107,7 @@ private:
 	//Dictionary of tile frames
 	std::unordered_map<int, Rectangle> dict_rect;
 
-	Sprite *Sorprise_block;
+	Sprite * surpriseBlock;
 	
 	//Tile sheet
 	const Texture2D *img_tiles;
@@ -118,14 +119,22 @@ private:
 	Vector2 Laser;
 
 	float laserYOffset = 0.0f;
-	bool bajar = false;
-	bool bajarBlock = false;
+	bool dropLaser = false;
+	bool dropBlock = false;
 	int laserTimer = 15;
 
-	int sorpriseBlockTimer = 5;
+	int surpriseBlockTimer = 5;
+
+
+
+	float bajarOffset = 0.0f;
+	const float bajarVelocidad = 2.0f;  // píxeles por frame (ajustá esto para más o menos rapidez)
+
 
 public:
 	bool changeBlock = true;
 	int laserTileX, laserTileY;
+
+	bool BajarBandera = false;
 };
 
