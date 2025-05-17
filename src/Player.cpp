@@ -244,7 +244,7 @@ void Player::Update()
 			}
 
 			// Fix: assign state properly instead of comparing
-			state != State::FLAG;
+			state = State::IDLE;
 
 			if (IsLookingRight())
 				SetAnimation((int)PlayerAnim::FLAG_LEFT);

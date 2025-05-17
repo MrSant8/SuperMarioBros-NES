@@ -1,5 +1,5 @@
-﻿  main.cpp
-  Scene.cpp
-  ShotManager.cpp
-  Generating Code...
+﻿  Player.cpp
+C:\Users\Usuari\Documents\GitHub\SuperMarioBros-NES\src\Player.cpp(153,23): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Usuari\Documents\GitHub\SuperMarioBros-NES\src\Player.cpp(366,24): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Usuari\Documents\GitHub\SuperMarioBros-NES\src\Player.cpp(427,25): warning C4244: '+=': conversion from 'double' to 'int', possible loss of data
   Vikings.vcxproj -> C:\Users\Usuari\Documents\GitHub\SuperMarioBros-NES\x64\Debug\MarioBrosNES_NES.exe

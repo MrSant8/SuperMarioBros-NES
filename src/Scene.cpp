@@ -275,7 +275,7 @@ void Scene::Update()
 
 
 	if(player->teletransportation)  camera.target = Vector2{ 770-16, 255+16};
-	else if (player->GetPosition().x > 64.0f) camera.target = Vector2{ player->GetPosition().x - 64.0f, player->GetPosition().y };
+	else if (player->GetPosition().x > 64.0f && player->GetPosition().x < 3165.0f) camera.target = Vector2{ player->GetPosition().x - 64.0f, player->GetPosition().y };
 
 
 	hitbox = player->GetHitbox();

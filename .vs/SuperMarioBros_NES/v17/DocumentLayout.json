@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\Usuari\\Documents\\GitHub\\SuperMarioBros-NES\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{3977A628-DA9D-4402-8F7A-65D0FDE48107}|Vikings.vcxproj|C:\\Users\\Usuari\\Documents\\GitHub\\SuperMarioBros-NES\\src\\Scene.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{3977A628-DA9D-4402-8F7A-65D0FDE48107}|Vikings.vcxproj|solutionrelative:src\\Scene.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{3977A628-DA9D-4402-8F7A-65D0FDE48107}|Vikings.vcxproj|C:\\Users\\Usuari\\Documents\\GitHub\\SuperMarioBros-NES\\src\\Player.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{3977A628-DA9D-4402-8F7A-65D0FDE48107}|Vikings.vcxproj|solutionrelative:src\\Player.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3977A628-DA9D-4402-8F7A-65D0FDE48107}|Vikings.vcxproj|C:\\Users\\Usuari\\Documents\\GitHub\\SuperMarioBros-NES\\src\\Scene.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{3977A628-DA9D-4402-8F7A-65D0FDE48107}|Vikings.vcxproj|solutionrelative:src\\Scene.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3977A628-DA9D-4402-8F7A-65D0FDE48107}|Vikings.vcxproj|C:\\Users\\Usuari\\Documents\\GitHub\\SuperMarioBros-NES\\src\\TileMap.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
@@ -134,7 +134,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 317,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 11,
           "Children": [
             {
               "$type": "Document",
@@ -147,18 +147,17 @@
               "ViewState": "AgIAANUBAAAAAAAAAAAAwOYBAAAhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-03-21T07:20:12.21Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Scene.cpp",
               "DocumentMoniker": "C:\\Users\\Usuari\\Documents\\GitHub\\SuperMarioBros-NES\\src\\Scene.cpp",
               "RelativeDocumentMoniker": "src\\Scene.cpp",
               "ToolTip": "C:\\Users\\Usuari\\Documents\\GitHub\\SuperMarioBros-NES\\src\\Scene.cpp",
               "RelativeToolTip": "src\\Scene.cpp",
-              "ViewState": "AgIAAIMBAAAAAAAAAAAjwJgBAAAwAAAAAAAAAA==",
+              "ViewState": "AgIAAAIBAAAAAAAAAAAjwBUBAABLAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-03-17T07:34:28.01Z",
               "IsPinned": true,
@@ -175,8 +174,7 @@
               "ViewState": "AgIAAH0AAAAAAAAAAAAAAIkAAAAYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2025-03-21T07:24:09.812Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
@@ -189,8 +187,7 @@
               "ViewState": "AgIAACoAAAAAAAAAAAAAACcAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2025-03-17T07:48:07.395Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
@@ -281,13 +278,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "Player.cpp",
               "DocumentMoniker": "C:\\Users\\Usuari\\Documents\\GitHub\\SuperMarioBros-NES\\src\\Player.cpp",
               "RelativeDocumentMoniker": "src\\Player.cpp",
               "ToolTip": "C:\\Users\\Usuari\\Documents\\GitHub\\SuperMarioBros-NES\\src\\Player.cpp",
               "RelativeToolTip": "src\\Player.cpp",
-              "ViewState": "AgIAAMIAAAAAAAAAAAAAwAQBAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAOkAAAAAAAAAAAAAwO8AAAADAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-03-17T07:45:55.345Z",
               "EditorCaption": ""
@@ -386,8 +383,7 @@
               "RelativeToolTip": "src\\Player.h",
               "ViewState": "AgIAAHQAAAAAAAAAAADwv4sAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-03-17T07:45:35.959Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-17T07:45:35.959Z"
             },
             {
               "$type": "Document",
