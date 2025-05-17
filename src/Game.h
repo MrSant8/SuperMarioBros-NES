@@ -35,8 +35,6 @@ private:
 
     //Music
     Music GroundMusic, GameOverMusic, WinMusic;
-
-
     //Wold variables
     int time;
     float timeCounter;

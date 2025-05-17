@@ -223,7 +223,7 @@ void EnemyManager::CheckPlayerCollision(const AABB& playerHitbox, const Point& p
 			}
 			else
 			{
-				player->Die();
+				player->StartDeath();
 				printf("Player died from enemy collision");
 			}
 		}

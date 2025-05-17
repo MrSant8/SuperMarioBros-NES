@@ -5,6 +5,7 @@
 #include "Enemy.h"
 #include "EnemyManager.h"
 
+
 // Visual Model: 16x16
 #define PLAYER_FRAME_SIZE        32
 
@@ -16,16 +17,17 @@
 #define PLAYER_SPEED             2
 #define PLAYER_SPEED_BOOST       4
 #define PLAYER_LADDER_SPEED      1
-
 // Ladder Animation
 #define ANIM_LADDER_DELAY        (2 * ANIM_DELAY)
 
 // Force & Gravity
 #define PLAYER_JUMP_FORCE        10
 #define PLAYER_JUMP_DELAY        2
+#define BOUNCE_FORCE             4
 #define PLAYER_LEVITATING_SPEED  4
 #define GRAVITY_FORCE            1
 
+#define DEATH_DURATION           2.5
 // Logic States
 enum class State {
     IDLE, WALKING, JUMPING, FALLING, CLIMBING, DEAD, FLAG
@@ -59,13 +61,16 @@ public:
     void InitScore();
     void IncrScore(int n);
     int GetScore();
+    void UpdateTime(float deltaTime);
     int GetTime();
 
-    void Die();
+    void StartDeath();
+
     void Update();
     void DrawDebug(const Color& col) const;
     void Release();
 
+    void Bounce();
     void MushroomPower();
 
     void FlowerPower();
@@ -91,12 +96,15 @@ public:
     State state;
     bool playerisDead;
     bool teletransportation = false;
-
+    bool stopMusic = false;
     Sound jumpSound;
     Sound dieSound;
     Sound coinSound;
     Sound flagSound;
     Sound powerUpSound;
+
+    float deathTimer = 0.0f;
+    bool deathStarted = false;
 private:
     // Direction
     bool IsLookingRight() const;
@@ -140,8 +148,6 @@ private:
     float timeCounter = 0.0f;
 
     bool move_camera = false;
-
-
 
     TileMap* tilemap;
 

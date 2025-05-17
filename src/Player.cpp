@@ -96,17 +96,21 @@ void Player::InitScore() { score = 0; }
 void Player::IncrScore(int n) { score += n; }
 int Player::GetScore() { return score; }
 
-int Player::GetTime()
+void Player::UpdateTime(float deltaTime)
 {
-	timeCounter += GetFrameTime();
+	timeCounter += deltaTime;
 	float timeReductionRate = map->disappear ? 5.0f : 1.0f;
 	if (timeCounter >= 1.0f / timeReductionRate)
 	{
 		time = std::max(0, time - 1);
 		timeCounter = 0.0f;
 	}
+}
+int Player::GetTime()
+{
 	return time;
 }
+
 
 // Getters & Setters
 void Player::SetTileMap(TileMap* tilemap) { map = tilemap; }
@@ -199,17 +203,23 @@ void Player::ChangeAnimLeft()
 }
 void Player::Update()
 {
+	UpdateTime(GetFrameTime());
 	if (map->disappear) {
 		pos.x = 4000;
 		return;
 	}
 
-	if (state == State::DEAD || map->playerDead)
+	if (state == State::DEAD)
 	{
 		pos.y += dir.y;
 		dir.y += GRAVITY_FORCE;
 		dynamic_cast<Sprite*>(render)->Update();
-		playerisDead = true;
+
+		deathTimer += GetFrameTime();
+		if (deathTimer >= DEATH_DURATION)
+		{
+			playerisDead = true;
+		}
 		return;
 	}
 
@@ -510,13 +520,19 @@ void Player::LogicClimbing()
 		if (GetAnimation() != PlayerAnim::CLIMBING)	SetAnimation((int)PlayerAnim::CLIMBING);
 	}
 }
-void Player::Die()
+void Player::StartDeath()
 {
-	state = State::DEAD;
-	SetAnimation((int)PlayerAnim::DEAD);
-	dir = { 0, -PLAYER_JUMP_FORCE }; 
-	PlaySound(dieSound);
+	if (!deathStarted)
+	{
+		state = State::DEAD;
+		dir.y = -PLAYER_JUMP_FORCE * 0.6f; // o un valor como -5.0f
+		SetAnimation((int)PlayerAnim::DEAD);
+		PlaySound(dieSound);
+		deathStarted = true;
+		deathTimer = 0.0f;
+	}
 }
+
 void Player::DrawDebug(const Color& col) const
 {	
 	Entity::DrawHitbox(pos.x, pos.y, width, height, col);
@@ -529,6 +545,11 @@ void Player::Release()
 	ResourceManager& data = ResourceManager::Instance();
 	data.ReleaseTexture(Resource::IMG_PLAYER);
 	render->Release();
+}
+void Player::Bounce() {
+	dir.y = -BOUNCE_FORCE;
+	state = State::JUMPING;
+	SetAnimation(IsLookingRight() ? (int)PlayerAnim::JUMPING_RIGHT : (int)PlayerAnim::JUMPING_LEFT);
 }
 void Player::MushroomPower() {
 	map->canBreak = true;

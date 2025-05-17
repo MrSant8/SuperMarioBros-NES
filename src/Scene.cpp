@@ -362,20 +362,21 @@ void Scene::CheckObjectCollisions()
 			// Detectar el tipo de objeto
 			if ((*it)->GetType() == ObjectType::MUSHROOM)
 			{
-				PlaySound(player->powerUpSound);
 				player->MushroomPower();
+				PlaySound(player->powerUpSound);
 			}
 			// Detectar el tipo de objeto
 			else if ((*it)->GetType() == ObjectType::FLOWER)
 			{
-				PlaySound(player->powerUpSound);
 				player->FlowerPower();
+				PlaySound(player->powerUpSound);
 			}
 			// Detectar el tipo de objeto
 			else if ((*it)->GetType() == ObjectType::STAR)
 			{
-				PlaySound(player->powerUpSound);
+
 				player->StarPower();
+				PlaySound(player->powerUpSound);
 			}
 			else if ((*it)->GetType() == ObjectType::COIN)
 			{
@@ -439,6 +440,4 @@ void Scene::RenderGUI() const
 
 	DrawTextEx(marioFont, "MARIO", { 15, 5 }, 9, 1, WHITE);
 	DrawTextEx(marioFont, TextFormat("%06d", player->GetScore()), { 15, 15 }, 9, 1, WHITE);
-
-
 }
