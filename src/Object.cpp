@@ -10,8 +10,10 @@ Object::Object(const Point& p, ObjectType t) :
 	const int n = TILE_SIZE;
 	switch (type)
 	{
-		case ObjectType::APPLE: rc = {4*n, 3*n, n, n}; break;
-		case ObjectType::CHILI: rc = {5*n, 3*n, n, n}; break;
+		case ObjectType::COIN: rc = {4*n, 3*n, n, n}; break;
+		case ObjectType::MUSHROOM: rc = {5* n, 3*n, n, n}; break;
+		case ObjectType::FLOWER: rc = { 6 * n, 3 * n, n, n }; break;
+		case ObjectType::STAR: rc = { 7 * n, 3 * n, n, n }; break;
 
 		default: LOG("Internal error: object creation of invalid type");
 	}
@@ -28,11 +30,8 @@ void Object::DrawDebug(const Color& col) const
 }
 int Object::Points() const
 {
-	if (type == ObjectType::APPLE)		return POINTS_APPLE;
-	else if (type == ObjectType::CHILI)	return POINTS_CHILI;
-	else
-	{
-		LOG("Internal error: object type invalid when giving points");
-		return 0;
-	}
+	if (type == ObjectType::COIN)		return POINTS_COIN;
+	else if (type == ObjectType::MUSHROOM)	return POINTS_POWER_UP;
+	else if (type == ObjectType::FLOWER)	return POINTS_POWER_UP;
+	else if (type == ObjectType::STAR)	return POINTS_POWER_UP;
 }

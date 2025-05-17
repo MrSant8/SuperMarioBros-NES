@@ -19,7 +19,7 @@ AppStatus Player::Initialise()
 	const int n = PLAYER_FRAME_SIZE;
 	ResourceManager& data = ResourceManager::Instance();
 
-	if (data.LoadTexture(Resource::IMG_PLAYER, "images/eric.png") != AppStatus::OK)
+	if (data.LoadTexture(Resource::IMG_PLAYER, "Assets/Textures/playerSprites.png") != AppStatus::OK)
 	{
 		LOG("Failed to load player sprite texture");
 		return AppStatus::ERROR;

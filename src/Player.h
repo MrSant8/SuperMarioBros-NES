@@ -5,7 +5,7 @@
 #include "Enemy.h"
 #include "EnemyManager.h"
 
-// Visual Model: 32x32
+// Visual Model: 16x16
 #define PLAYER_FRAME_SIZE        32
 
 // Physics Model: 12x28
