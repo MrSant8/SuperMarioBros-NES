@@ -22,6 +22,8 @@ public:
     void Release();
 
     bool gameOver = false;
+    bool mariolive2 = false;
+    bool mariolive1 = false;
     bool win = false;
 
 private:
@@ -60,5 +62,5 @@ private:
     const Texture2D* coinnImage;
 
     int* map = nullptr;
-
+    int life = 3;
 };

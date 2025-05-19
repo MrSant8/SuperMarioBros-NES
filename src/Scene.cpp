@@ -278,7 +278,17 @@ void Scene::Update()
 	particles->Update();
 
 	if (player->playerisDead || player->GetTime()<=0 && level->disappear==false) {
-		gameOver = true;
+		life--;
+		LOG("%d", life);
+		if (life == 1) {
+			mariolive1 = true;
+		}
+		else if (life == 2) {
+			mariolive2 = true;
+		}
+		else {
+			gameOver = true;
+		}
 		return;
 	}
 
@@ -440,4 +450,6 @@ void Scene::RenderGUI() const
 
 	DrawTextEx(marioFont, "MARIO", { 15, 5 }, 9, 1, WHITE);
 	DrawTextEx(marioFont, TextFormat("%06d", player->GetScore()), { 15, 15 }, 9, 1, WHITE);
+
+
 }

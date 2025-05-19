@@ -83,25 +83,14 @@ AppStatus Game::LoadResources()
     }
     img_menu = data.GetTexture(Resource::IMG_MENU);
 
+   
     if (data.LoadTexture(Resource::IMG_WORLD, "Assets/Textures/Hud/World.png") != AppStatus::OK)
     {
         return AppStatus::ERROR;
     }
     img_world = data.GetTexture(Resource::IMG_WORLD);
 
-    if (data.LoadTexture(Resource::WORLD_2LIVES, "Assets/Textures/Hud/World_2lives.png") != AppStatus::OK)
-    {
-        return AppStatus::ERROR;
-    }
-    img_world2lives = data.GetTexture(Resource::WORLD_2LIVES);
-
-
-    if (data.LoadTexture(Resource::WORLD_1LIVES, "Assets/Textures/Hud/World_1lives.png") != AppStatus::OK)
-    {
-        return AppStatus::ERROR;
-    }
-    img_world1lives = data.GetTexture(Resource::WORLD_1LIVES);
-
+   
 
 
     //Imagen game over
@@ -110,6 +99,19 @@ AppStatus Game::LoadResources()
         return AppStatus::ERROR;
     }
     img_gameOver = data.GetTexture(Resource::IMG_GAMEOVER);
+
+    if (data.LoadTexture(Resource::WORLD_1LIVES, "Assets/Textures/Hud/World_1lives.png") != AppStatus::OK)
+    {
+        return AppStatus::ERROR;
+    }
+    img_world1lives = data.GetTexture(Resource::WORLD_1LIVES);
+
+
+    if (data.LoadTexture(Resource::WORLD_2LIVES, "Assets/Textures/Hud/World_2lives.png") != AppStatus::OK)
+    {
+        return AppStatus::ERROR;
+    }
+    img_world2lives = data.GetTexture(Resource::WORLD_2LIVES);
 
     //Imagen wikn
     if (data.LoadTexture(Resource::IMG_WIN, "Assets/Textures/Hud/Finish game.png") != AppStatus::OK)
@@ -266,6 +268,14 @@ AppStatus Game::Update()
                     {
                         state = GameState::GAMEOVER;
                     }
+                    if (scene->mariolive2)
+                    {
+                        state = GameState::WORLD_2LIVES;
+                    }
+                    if (scene->mariolive1)
+                    {
+                        state = GameState::WORLD_1LIVES;
+                    }
                     if (scene->win)
                     {
                         state = GameState::WIN;
@@ -284,6 +294,33 @@ AppStatus Game::Update()
                     state = GameState::MAIN_MENU;
                 }
                 break;
+
+            case GameState::WORLD_2LIVES:
+                StopMusicStream(GroundMusic);
+                PlayMusicStream(GameOverMusic);
+
+                UpdateMusicStream(GameOverMusic);
+                scene->mariolive2 = false;
+                if (IsKeyPressed(KEY_SPACE))
+                {
+
+                    state = GameState::PLAYING;
+                }
+                break;
+
+            case GameState::WORLD_1LIVES:
+                StopMusicStream(GroundMusic);
+                PlayMusicStream(GameOverMusic);
+
+                UpdateMusicStream(GameOverMusic);
+                scene->mariolive1 = false;
+                if (IsKeyPressed(KEY_SPACE))
+                {
+                    state = GameState::PLAYING;
+                }
+                break;
+
+
             case GameState::WIN:
                 StopMusicStream(GroundMusic);
                 PlayMusicStream(WinMusic);
