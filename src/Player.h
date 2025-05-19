@@ -105,6 +105,9 @@ public:
 
     float deathTimer = 0.0f;
     bool deathStarted = false;
+
+    bool isStarMario = false;
+
 private:
     // Direction
     bool IsLookingRight() const;
@@ -155,5 +158,4 @@ private:
 
     bool isBigMario = false;
     bool isFireMario = false;
-    bool isStarMario = false;
 };
