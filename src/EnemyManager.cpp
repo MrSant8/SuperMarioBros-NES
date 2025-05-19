@@ -210,6 +210,7 @@ void EnemyManager::CheckPlayerCollision(const AABB& playerHitbox, const Point& p
 
 				score.lifetime = 30;
 				floatingScores.push_back(score);
+				score.value = 100;
 
 				player->IncrScore(100);
 

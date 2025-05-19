@@ -154,6 +154,7 @@ private:
 
     TileMap* tilemap;
 
+    bool walkingcastle = false;
     bool flagSoundPlayed = false;
 
     bool isBigMario = false;

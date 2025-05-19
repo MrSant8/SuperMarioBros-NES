@@ -205,11 +205,12 @@ void Player::Update()
 {
 	UpdateTime(GetFrameTime());
 	if (map->disappear) {
+		walkingcastle = false;
 		pos.x = 4000;
 		return;
 	}
 
-	if (state == State::DEAD)
+	if (state == State::DEAD || map->playerDead)
 	{
 		pos.y += dir.y;
 		dir.y += GRAVITY_FORCE;
@@ -257,16 +258,27 @@ void Player::Update()
 			// Fix: assign state properly instead of comparing
 			state = State::IDLE;
 
+			
 			if (IsLookingRight())
 				SetAnimation((int)PlayerAnim::FLAG_LEFT);
 			else
 				SetAnimation((int)PlayerAnim::FLAG_RIGHT);
 		}
 		else {
+
 			MoveX();
 		}
 	}
 
+	if (walkingcastle) 
+	{
+		pos.x += PLAYER_SPEED;
+
+		look = Look::RIGHT;
+		SetAnimation((int)PlayerAnim::WALKING_RIGHT);
+		dynamic_cast<Sprite*>(render)->Update();
+
+	}
 	MoveY();
 
 	if (IsKeyDown(KEY_THREE)) {
