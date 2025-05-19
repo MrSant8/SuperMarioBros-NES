@@ -1,6 +1,62 @@
-﻿  Player.cpp
+﻿  AABB.cpp
+  Enemy.cpp
+  EnemyManager.cpp
+C:\Users\janaps\Documents\GitHub\SuperMarioBros-NES\src\EnemyManager.cpp(80,18): warning C4267: 'inicializando': conversión de 'size_t' a 'int'; posible pérdida de datos
+C:\Users\janaps\Documents\GitHub\SuperMarioBros-NES\src\EnemyManager.cpp(92,18): warning C4267: 'inicializando': conversión de 'size_t' a 'int'; posible pérdida de datos
+C:\Users\janaps\Documents\GitHub\SuperMarioBros-NES\src\EnemyManager.cpp(208,37): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\janaps\Documents\GitHub\SuperMarioBros-NES\src\EnemyManager.cpp(209,40): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+  Entity.cpp
+  FadeTransition.cpp
+C:\Users\janaps\Documents\GitHub\SuperMarioBros-NES\src\FadeTransition.cpp(93,59): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\janaps\Documents\GitHub\SuperMarioBros-NES\src\FadeTransition.cpp(93,47): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\janaps\Documents\GitHub\SuperMarioBros-NES\src\FadeTransition.cpp(93,39): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\janaps\Documents\GitHub\SuperMarioBros-NES\src\FadeTransition.cpp(93,31): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\janaps\Documents\GitHub\SuperMarioBros-NES\src\FadeTransition.cpp(101,59): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\janaps\Documents\GitHub\SuperMarioBros-NES\src\FadeTransition.cpp(101,47): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\janaps\Documents\GitHub\SuperMarioBros-NES\src\FadeTransition.cpp(101,39): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\janaps\Documents\GitHub\SuperMarioBros-NES\src\FadeTransition.cpp(101,31): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
+  Game.cpp
+  Globals.cpp
+  Koopa.cpp
+C:\Users\janaps\Documents\GitHub\SuperMarioBros-NES\src\Koopa.cpp(84,12): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\janaps\Documents\GitHub\SuperMarioBros-NES\src\Koopa.cpp(87,14): warning C4244: '-=': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\janaps\Documents\GitHub\SuperMarioBros-NES\src\Koopa.cpp(90,14): warning C4244: '+=': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\janaps\Documents\GitHub\SuperMarioBros-NES\src\Koopa.cpp(74,6): warning C4101: 'anim_id': variable local sin referencia
+  main.cpp
+  Object.cpp
+  Particle.cpp
+  ParticleManager.cpp
+  Player.cpp
 C:\Users\janaps\Documents\GitHub\SuperMarioBros-NES\src\Player.cpp(153,23): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
 C:\Users\janaps\Documents\GitHub\SuperMarioBros-NES\src\Player.cpp(388,24): warning C4244: '+=': conversión de 'float' a 'int'; posible pérdida de datos
 C:\Users\janaps\Documents\GitHub\SuperMarioBros-NES\src\Player.cpp(449,25): warning C4244: '+=': conversión de 'double' a 'int'; posible pérdida de datos
 C:\Users\janaps\Documents\GitHub\SuperMarioBros-NES\src\Player.cpp(540,11): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
+  RenderComponent.cpp
+  ResourceManager.cpp
+  Scene.cpp
+  Shot.cpp
+  ShotManager.cpp
+  Goomba.cpp
+C:\Users\janaps\Documents\GitHub\SuperMarioBros-NES\src\Goomba.cpp(101,12): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\janaps\Documents\GitHub\SuperMarioBros-NES\src\Goomba.cpp(104,14): warning C4244: '-=': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\janaps\Documents\GitHub\SuperMarioBros-NES\src\Goomba.cpp(107,14): warning C4244: '+=': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\janaps\Documents\GitHub\SuperMarioBros-NES\src\Goomba.cpp(90,6): warning C4101: 'anim_id': variable local sin referencia
+  Sprite.cpp
+  Generando código...
+C:\Users\janaps\Documents\GitHub\SuperMarioBros-NES\src\Object.cpp(37,1): warning C4715: 'Object::Points': no todas las rutas de acceso de control devuelven un valor
+  Compilando...
+  StaticImage.cpp
+  Text.cpp
+  TileMap.cpp
+C:\Users\janaps\Documents\GitHub\SuperMarioBros-NES\src\TileMap.cpp(361,14): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\janaps\Documents\GitHub\SuperMarioBros-NES\src\TileMap.cpp(362,22): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\janaps\Documents\GitHub\SuperMarioBros-NES\src\TileMap.cpp(371,22): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\janaps\Documents\GitHub\SuperMarioBros-NES\src\TileMap.cpp(372,22): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\janaps\Documents\GitHub\SuperMarioBros-NES\src\TileMap.cpp(382,9): warning C4553: "==": el resultado de la expresión no se usa. ¿Quiso decir "="?
+C:\Users\janaps\Documents\GitHub\SuperMarioBros-NES\src\TileMap.cpp(394,14): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\janaps\Documents\GitHub\SuperMarioBros-NES\src\TileMap.cpp(395,22): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\janaps\Documents\GitHub\SuperMarioBros-NES\src\TileMap.cpp(534,23): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\janaps\Documents\GitHub\SuperMarioBros-NES\src\TileMap.cpp(535,23): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
+  Turret.cpp
+  Generando código...
   Vikings.vcxproj -> C:\Users\janaps\Documents\GitHub\SuperMarioBros-NES\x64\Debug\MarioBrosNES_NES.exe
