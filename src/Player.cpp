@@ -203,6 +203,7 @@ void Player::ChangeAnimLeft()
 }
 void Player::Update()
 {
+	
 	UpdateTime(GetFrameTime());
 	if (map->disappear) {
 		walkingcastle = false;
@@ -263,6 +264,8 @@ void Player::Update()
 				SetAnimation((int)PlayerAnim::FLAG_LEFT);
 			else
 				SetAnimation((int)PlayerAnim::FLAG_RIGHT);
+
+			walkingcastle = true;
 		}
 		else {
 
@@ -270,13 +273,22 @@ void Player::Update()
 		}
 	}
 
+
 	if (walkingcastle) 
 	{
-		pos.x += PLAYER_SPEED;
 
-		look = Look::RIGHT;
-		SetAnimation((int)PlayerAnim::WALKING_RIGHT);
-		dynamic_cast<Sprite*>(render)->Update();
+		timee--;
+		if (timee <= 0) {
+
+			look = Look::RIGHT;
+			state = State::WALKING;
+			pos.x += PLAYER_SPEED;
+			StartWalkingRight();
+			dynamic_cast<Sprite*>(render)->SetAutomaticMode();
+
+		/*	MoveX();*/
+		}
+		
 
 	}
 	MoveY();

@@ -296,7 +296,7 @@ void Scene::Update()
 	}
 
 	if (level->disappear) {
-		player->IncrScore(player->GetTime() * 50);
+		player->IncrScore(player->GetTime() * 10);
 		if (player->GetTime() <= 0) {
 			win = true;
 			return;

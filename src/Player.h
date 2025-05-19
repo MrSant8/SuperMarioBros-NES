@@ -156,7 +156,9 @@ private:
 
     bool walkingcastle = false;
     bool flagSoundPlayed = false;
-
+    bool active = false;
     bool isBigMario = false;
     bool isFireMario = false;
+
+    int timee = 50;
 };
