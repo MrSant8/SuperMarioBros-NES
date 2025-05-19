@@ -30,7 +30,7 @@ GoombaLimits goombalimits[] = {
 	{2768- 112, 2972- 160, 208},
 };
 KoopaLimits koopalimits[] = {
-	{480, 580, 208}, 
+	{1428, 1794, 208}, 
 	
 };
 
