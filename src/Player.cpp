@@ -267,10 +267,7 @@ void Player::Update()
 
 			walkingcastle = true;
 		}
-		else {
-
-			MoveX();
-		}
+		
 	}
 
 
@@ -279,16 +276,13 @@ void Player::Update()
 
 		timee--;
 		if (timee <= 0) {
-
-			look = Look::RIGHT;
-			state = State::WALKING;
-			pos.x += PLAYER_SPEED;
-			StartWalkingRight();
-			dynamic_cast<Sprite*>(render)->SetAutomaticMode();
-
-		/*	MoveX();*/
+			MoveX();
 		}
 		
+
+	}
+	else {
+		MoveX();
 
 	}
 	MoveY();
@@ -330,7 +324,7 @@ void Player::MoveX()
 		}
 
 	}
-	else if (IsKeyDown(KEY_RIGHT))
+	else if (IsKeyDown(KEY_RIGHT)|| walkingcastle)
 	{
 		pos.x += current_speed;
 		if (state == State::IDLE) StartWalkingRight();

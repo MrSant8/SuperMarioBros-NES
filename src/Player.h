@@ -160,5 +160,5 @@ private:
     bool isBigMario = false;
     bool isFireMario = false;
 
-    int timee = 50;
+    int timee = 100;
 };
