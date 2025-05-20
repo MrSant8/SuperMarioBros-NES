@@ -195,18 +195,18 @@ void EnemyManager::CheckPlayerCollision(const AABB& playerHitbox, const Point& p
 		Rectangle playerRect = { (float)playerHitbox.pos.x, (float)playerHitbox.pos.y, (float)playerHitbox.width, (float)playerHitbox.height };
 		Rectangle enemyRect = { (float)enemyHitbox.pos.x, (float)enemyHitbox.pos.y, (float)enemyHitbox.width, (float)enemyHitbox.height };
 
-		// Check if there is a collision
-		if (CheckCollisionRecs(playerRect, enemyRect) && player->deathStarted ==false)
+		if (CheckCollisionRecs(playerRect, enemyRect) && !player->deathStarted)
 		{
 			float playerBottom = playerHitbox.pos.y + playerHitbox.height;
 			float enemyTop = enemyHitbox.pos.y;
 			float verticalDifference = playerBottom - enemyTop;
 
-			bool hitFromAbove = (verticalDifference >= 0 && verticalDifference < 10 && player->GetVelocity().y > 1.0f);
+			bool hitFromAbove = (verticalDifference >= 0 && verticalDifference < 10 && player->GetVelocity().y > 0);
 
-			if (hitFromAbove || player->isStarMario  )
+			if (hitFromAbove || player->isStarMario)
 			{
-				player->Bounce();
+				if (!player->isStarMario)
+					player->Bounce();
 
 				FloatingScore score;
 				score.x = enemy->GetHitbox().pos.x;
@@ -219,7 +219,7 @@ void EnemyManager::CheckPlayerCollision(const AABB& playerHitbox, const Point& p
 
 				if (enemy->StateGoomba() || enemy->StateKoopa())
 				{
-					enemy->isDead();
+					enemy->isDead(); 
 					PlaySound(deadenemySound);
 					delete enemy;
 					it = enemies.erase(it);
@@ -227,9 +227,19 @@ void EnemyManager::CheckPlayerCollision(const AABB& playerHitbox, const Point& p
 				}
 			}
 			else
-			{
-				player->StartDeath();
-				printf("Player died from enemy collision\n");
+			{	//TODO:: AÑADIR SONIDOS DE QUITAR PODER
+				if (player->isBigMario)
+				{
+					player->isBigMario = false;
+				}
+				else if (player->isFireMario) {
+					player->isFireMario = false;
+					player->isBigMario = true;
+				}
+				else
+				{
+					player->StartDeath();
+				}
 			}
 		}
 		++it;

@@ -203,7 +203,9 @@ void Player::ChangeAnimLeft()
 }
 void Player::Update()
 {
-	
+	if (isStarMario) {
+		StarPower();
+	}
 	UpdateTime(GetFrameTime());
 	if (map->disappear) {
 		walkingcastle = false;
@@ -561,7 +563,7 @@ void Player::DrawDebug(const Color& col) const
 void Player::Release()
 {
 	ResourceManager& data = ResourceManager::Instance();
-	data.ReleaseTexture(Resource::IMG_PLAYER);
+	data.ReleaseTexture(Resource::IMG_PLAYER); 
 	render->Release();
 }
 void Player::Bounce() {
@@ -572,16 +574,36 @@ void Player::Bounce() {
 void Player::MushroomPower() {
 	map->canBreak = true;
 	isBigMario = true;
+	//TODO:: ANIM BIG MARIO
 }
 void Player::FlowerPower() {
 	map->canBreak = true;
 	isFireMario = true;
-
+	//TODO:: ANIM FIRE MARIO & FIREBALL LOGIC
 }
 void Player::StarPower() {
-	map->canBreak = true;
-	isStarMario = true;
+	if (!isStarMario) {
+		//TODO:: AÑADIR MUSICA DE STAR POWER Y PARAR LA NORMAL
+		isStarMario = true;
+		map->canBreak = true;
+		starPowerTimer = 0.0f; 
+	}
+	starPowerTimer += GetFrameTime(); 
+	if (starPowerTimer >= maxStarPowerTime) {
+		isStarMario = false;
+		//TODO:: EFECTO DE SONIDO PERDER PODER
+		//TODO:: PARAR MUSICA STAR POWER Y REANUDAR LA NORMAL
+		if (isBigMario || isFireMario)
+		{
+			map->canBreak = true;
+		}
+		else {
+			map->canBreak = false;
+		}
+		starPowerTimer = 0.0f;
+	}
 }
+
 Vector2 Player::GetVelocity() const {
 	return { (float)dir.x, (float)dir.y };
 }
