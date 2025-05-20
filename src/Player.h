@@ -91,7 +91,7 @@ public:
 
     PlayerAnim GetAnimation();
     void SetAnimation(int id);
-
+    Vector2 GetVelocity() const;
 public:
     State state;
     bool playerisDead;
@@ -138,6 +138,8 @@ private:
     // Ladders Logic
     bool IsInFirstHalfTile() const;
     bool IsInSecondHalfTile() const;
+
+
 
     Look look;
     int jump_delay = 0;
