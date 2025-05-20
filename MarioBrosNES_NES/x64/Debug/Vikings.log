@@ -1,2 +1,8 @@
-﻿  Game.cpp
-  Vikings.vcxproj -> C:\Users\janaps\Documents\GitHub\SuperMarioBros-NES\x64\Debug\MarioBrosNES_NES.exe
+﻿  Player.cpp
+C:\Users\sergi\Desktop\Github Proyectos\Release\SuperMarioBros-NES\src\Player.cpp(171,23): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\sergi\Desktop\Github Proyectos\Release\SuperMarioBros-NES\src\Player.cpp(412,24): warning C4244: '+=': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\sergi\Desktop\Github Proyectos\Release\SuperMarioBros-NES\src\Player.cpp(473,25): warning C4244: '+=': conversión de 'double' a 'int'; posible pérdida de datos
+C:\Users\sergi\Desktop\Github Proyectos\Release\SuperMarioBros-NES\src\Player.cpp(564,11): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
+  LINK : no se encontró C:\Users\sergi\Desktop\Github Proyectos\Release\SuperMarioBros-NES\x64\Debug\MarioBrosNES_NES.exe o no lo generó el último vínculo incremental; ejecutando vínculo completo
+LINK : warning LNK4098: la biblioteca predeterminada'MSVCRT' entra en conflicto con otras bibliotecas; use la biblioteca /NODEFAULTLIB:biblioteca
+  Vikings.vcxproj -> C:\Users\sergi\Desktop\Github Proyectos\Release\SuperMarioBros-NES\x64\Debug\MarioBrosNES_NES.exe

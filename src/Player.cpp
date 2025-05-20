@@ -9,7 +9,18 @@
 // Constructor
 Player::Player(const Point& p, State s, Look view) :
 	Entity(p, PLAYER_PHYSICAL_WIDTH, PLAYER_PHYSICAL_HEIGHT, PLAYER_FRAME_SIZE, PLAYER_FRAME_SIZE),
-	state(s), look(view), jump_delay(PLAYER_JUMP_DELAY), map(nullptr), score(0) {}
+	state(s),
+	look(view),
+	jump_delay(PLAYER_JUMP_DELAY),
+	map(nullptr),
+	score(0),
+	playerisDead(false),
+	tilemap(nullptr),
+	jumpSound{0},
+	dieSound{0},
+	coinSound{0},
+	flagSound{0},
+	powerUpSound{0} {}
 
 Player::~Player() {}
 
@@ -31,10 +42,17 @@ AppStatus Player::Initialise()
 	sprite->SetNumberAnimations((int)PlayerAnim::NUM_ANIMATIONS);
 
 	// Animaciones básicas
+	sprite->SetAnimationDelay((int)PlayerAnim::IDLE_RIGHT_BIG, ANIM_DELAY);
+	sprite->AddKeyFrame((int)PlayerAnim::IDLE_RIGHT_BIG, { 0, 32, n, n }); // Big Mario is 32 pixels below small Mario
+	sprite->SetAnimationDelay((int)PlayerAnim::IDLE_LEFT_BIG, ANIM_DELAY);
+	sprite->AddKeyFrame((int)PlayerAnim::IDLE_LEFT_BIG, { 0, 32, -n, n }); // Negative width for left-facing
+
 	sprite->SetAnimationDelay((int)PlayerAnim::IDLE_RIGHT, ANIM_DELAY);
 	sprite->AddKeyFrame((int)PlayerAnim::IDLE_RIGHT, { 0, 0, n, n });
 	sprite->SetAnimationDelay((int)PlayerAnim::IDLE_LEFT, ANIM_DELAY);
 	sprite->AddKeyFrame((int)PlayerAnim::IDLE_LEFT, { 0, 0, -n, n });
+
+
 
 	sprite->SetAnimationDelay((int)PlayerAnim::WALKING_RIGHT, ANIM_DELAY);
 	for (int i = 0; i < 8; ++i)
@@ -572,6 +590,12 @@ void Player::Bounce() {
 void Player::MushroomPower() {
 	map->canBreak = true;
 	isBigMario = true;
+	// Double the player's physical size
+	width *= 2;
+	height *= 2;
+	// Change to big Mario animation
+	SetAnimation(IsLookingRight() ? (int)PlayerAnim::IDLE_RIGHT_BIG : (int)PlayerAnim::IDLE_LEFT_BIG);
+	PlaySound(powerUpSound);
 }
 void Player::FlowerPower() {
 	map->canBreak = true;
