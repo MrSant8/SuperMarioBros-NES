@@ -195,39 +195,51 @@ void EnemyManager::CheckPlayerCollision(const AABB& playerHitbox, const Point& p
 		Rectangle playerRect = { (float)playerHitbox.pos.x, (float)playerHitbox.pos.y, (float)playerHitbox.width, (float)playerHitbox.height };
 		Rectangle enemyRect = { (float)enemyHitbox.pos.x, (float)enemyHitbox.pos.y, (float)enemyHitbox.width, (float)enemyHitbox.height };
 
-		// Check if there is a collision
-		if (CheckCollisionRecs(playerRect, enemyRect))
+		if (CheckCollisionRecs(playerRect, enemyRect) && !player->deathStarted)
 		{
-			// If player is above the enemy and moving downward, kill the enemy
-			if (playerHitbox.pos.y + playerHitbox.height < (enemyHitbox.pos.y - 1) + enemyHitbox.height || player->isStarMario)
-			{
-				player->Bounce();
+			float playerBottom = playerHitbox.pos.y + playerHitbox.height;
+			float enemyTop = enemyHitbox.pos.y;
+			float verticalDifference = playerBottom - enemyTop;
 
-				// Puntuation
+			bool hitFromAbove = (verticalDifference >= 0 && verticalDifference < 10 && player->GetVelocity().y > 0);
+
+			if (hitFromAbove || player->isStarMario)
+			{
+				if (!player->isStarMario)
+					player->Bounce();
+
 				FloatingScore score;
 				score.x = enemy->GetHitbox().pos.x;
 				score.y = enemy->GetHitbox().pos.y - 10;
-
 				score.lifetime = 30;
-				floatingScores.push_back(score);
 				score.value = 100;
+				floatingScores.push_back(score);
 
 				player->IncrScore(100);
 
 				if (enemy->StateGoomba() || enemy->StateKoopa())
 				{
-					enemy->isDead();
+					enemy->isDead(); 
 					PlaySound(deadenemySound);
 					delete enemy;
 					it = enemies.erase(it);
 					continue;
 				}
 			}
-
 			else
-			{
-				player->StartDeath();
-				printf("Player died from enemy collision");
+			{	//TODO:: AÑADIR SONIDOS DE QUITAR PODER
+				if (player->isBigMario)
+				{
+					player->isBigMario = false;
+				}
+				else if (player->isFireMario) {
+					player->isFireMario = false;
+					player->isBigMario = true;
+				}
+				else
+				{
+					player->StartDeath();
+				}
 			}
 		}
 		++it;

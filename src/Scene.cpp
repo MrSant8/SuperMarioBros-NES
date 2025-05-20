@@ -254,7 +254,6 @@ void Scene::Update()
 	Point p1, p2;
 	AABB hitbox;
 
-	//Switch between the different debug modes: off, on (sprites & hitboxes), on (hitboxes) 
 	if (IsKeyPressed(KEY_F1))
 	{
 		debug = (DebugMode)(((int)debug + 1) % (int)DebugMode::SIZE);
@@ -301,7 +300,6 @@ void Scene::Update()
 	if (CheckCollisionRecs(playerRect, BajarBanderaRect))
 	{
 		level->LowerFlag = true;
-
 		return;
 	}
 
@@ -373,20 +371,19 @@ void Scene::CheckObjectCollisions()
 			if ((*it)->GetType() == ObjectType::MUSHROOM)
 			{
 				player->MushroomPower();
-				PlaySound(player->powerUpSound);
+				PlaySound(player->powerUpSound); //TODO:: POWER UP SOUNDS NOT WORKING?
 			}
 			// Detectar el tipo de objeto
 			else if ((*it)->GetType() == ObjectType::FLOWER)
 			{
 				player->FlowerPower();
-				PlaySound(player->powerUpSound);
+				PlaySound(player->powerUpSound); //TODO:: POWER UP SOUNDS NOT WORKING?
 			}
 			// Detectar el tipo de objeto
 			else if ((*it)->GetType() == ObjectType::STAR)
 			{
-
 				player->StarPower();
-				PlaySound(player->powerUpSound);
+				PlaySound(player->powerUpSound); //TODO:: POWER UP SOUNDS NOT WORKING?
 			}
 			else if ((*it)->GetType() == ObjectType::COIN)
 			{
@@ -394,14 +391,11 @@ void Scene::CheckObjectCollisions()
 			}
 			player->IncrScore((*it)->Points());
 
-			//Delete the object
 			delete* it;
-			//Erase the object from the vector and get the iterator to the next valid element
 			it = objects.erase(it);
 		}
 		else
 		{
-			//Move to the next object
 			++it;
 		}
 	}

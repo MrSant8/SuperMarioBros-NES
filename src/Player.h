@@ -91,22 +91,35 @@ public:
 
     PlayerAnim GetAnimation();
     void SetAnimation(int id);
-
+    Vector2 GetVelocity() const;
 public:
     State state;
-    bool playerisDead;
+
     bool teletransportation = false;
-    bool stopMusic = false;
+
+    //Sounds
     Sound jumpSound;
     Sound dieSound;
     Sound coinSound;
     Sound flagSound;
     Sound powerUpSound;
+    bool stopMusic = false;
 
+    //Death
     float deathTimer = 0.0f;
     bool deathStarted = false;
+    bool playerisDead;
 
+    //Star Power 
     bool isStarMario = false;
+    float starPowerTimer = 0.0f;
+    const float maxStarPowerTime = 10.0f; 
+
+    //Mushroom Power
+    bool isBigMario = false;
+
+    //Fire Power
+    bool isFireMario = false;
 
 private:
     // Direction
@@ -157,8 +170,6 @@ private:
     bool walkingcastle = false;
     bool flagSoundPlayed = false;
     bool active = false;
-    bool isBigMario = false;
-    bool isFireMario = false;
 
     int timee = 100;
 };
