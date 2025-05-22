@@ -53,7 +53,6 @@ AppStatus Player::Initialise()
 	sprite->AddKeyFrame((int)PlayerAnim::IDLE_LEFT, { 0, 0, -n, n });
 
 
-
 	sprite->SetAnimationDelay((int)PlayerAnim::WALKING_RIGHT, ANIM_DELAY);
 	for (int i = 0; i < 8; ++i)
 		sprite->AddKeyFrame((int)PlayerAnim::WALKING_RIGHT, { (float)i * n, 4 * n, n, n });
@@ -148,21 +147,21 @@ void Player::Stop()
 {
 	dir = { 0, 0 };
 	state = State::IDLE;
-	SetAnimation(IsLookingRight() ? (int)PlayerAnim::IDLE_RIGHT : (int)PlayerAnim::IDLE_LEFT);
+	SetAnimationByState();
 }
 
 void Player::StartWalkingLeft()
 {
 	state = State::WALKING;
 	look = Look::LEFT;
-	SetAnimation((int)PlayerAnim::WALKING_LEFT);
+	SetAnimationByState();
 }
 
 void Player::StartWalkingRight()
 {
 	state = State::WALKING;
 	look = Look::RIGHT;
-	SetAnimation((int)PlayerAnim::WALKING_RIGHT);
+	SetAnimationByState();
 }
 
 void Player::StartFalling()
@@ -170,7 +169,7 @@ void Player::StartFalling()
 	
 	dir.y = PLAYER_SPEED * 1.5f;
 	state = State::FALLING;
-	SetAnimation(IsLookingRight() ? (int)PlayerAnim::FALLING_RIGHT : (int)PlayerAnim::FALLING_LEFT);
+	SetAnimationByState();
 }
 
 void Player::StartJumping()
@@ -178,7 +177,7 @@ void Player::StartJumping()
 	dir.y = -PLAYER_JUMP_FORCE;
 	state = State::JUMPING;
 	jump_delay = PLAYER_JUMP_DELAY;
-	SetAnimation(IsLookingRight() ? (int)PlayerAnim::JUMPING_RIGHT : (int)PlayerAnim::JUMPING_LEFT);
+	SetAnimationByState();
 	PlaySound(jumpSound);
 
 }
@@ -186,42 +185,23 @@ void Player::StartJumping()
 void Player::StartClimbingUp()
 {
 	state = State::CLIMBING;
-	SetAnimation((int)PlayerAnim::CLIMBING);
+	SetAnimationByState();
 	dynamic_cast<Sprite*>(render)->SetManualMode();
 }
 
 void Player::StartClimbingDown()
 {
 	state = State::CLIMBING;
-	SetAnimation((int)PlayerAnim::CLIMBING_TOP);
+	SetAnimationByState();
 	dynamic_cast<Sprite*>(render)->SetManualMode();
-}
-void Player::ChangeAnimRight()
-{
-	look = Look::RIGHT;
-	switch (state)
-	{
-	case State::IDLE:	SetAnimation((int)PlayerAnim::IDLE_RIGHT); break;
-	case State::WALKING:	SetAnimation((int)PlayerAnim::WALKING_RIGHT); break;
-	case State::JUMPING:	SetAnimation((int)PlayerAnim::JUMPING_RIGHT); break;
-	case State::FALLING:	SetAnimation((int)PlayerAnim::FALLING_RIGHT); break;
-	}
-}
-
-void Player::ChangeAnimLeft()
-{
-	look = Look::LEFT;
-	switch (state)
-	{
-	case State::IDLE:	SetAnimation((int)PlayerAnim::IDLE_LEFT); break;
-	case State::WALKING:	SetAnimation((int)PlayerAnim::WALKING_LEFT); break;
-	case State::JUMPING:	SetAnimation((int)PlayerAnim::JUMPING_LEFT); break;
-	case State::FALLING:	SetAnimation((int)PlayerAnim::FALLING_LEFT); break;
-	}
 }
 void Player::Update()
 {
-	
+	if (invincibleTimer > 0.0f) {
+		invincibleTimer -= GetFrameTime(); 
+	}
+	SetAnimationByState();
+	ChangeColliderSize();
 	UpdateTime(GetFrameTime());
 	if (map->disappear) {
 		walkingcastle = false;
@@ -255,9 +235,9 @@ void Player::Update()
 		{
 			state = State::FLAG;
 			if (IsLookingRight())
-				SetAnimation((int)PlayerAnim::FLAG_RIGHT);
+				SetAnimationByState();
 			else
-				SetAnimation((int)PlayerAnim::FLAG_LEFT);
+				SetAnimationByState();
 		}
 
 		// Play sound only once
@@ -279,9 +259,9 @@ void Player::Update()
 
 			
 			if (IsLookingRight())
-				SetAnimation((int)PlayerAnim::FLAG_LEFT);
+				SetAnimationByState();
 			else
-				SetAnimation((int)PlayerAnim::FLAG_RIGHT);
+				SetAnimationByState();
 
 			walkingcastle = true;
 		}
@@ -327,7 +307,7 @@ void Player::MoveX()
 			if (state == State::IDLE) StartWalkingLeft();
 			else
 			{
-				if (IsLookingRight()) ChangeAnimLeft();
+				if (IsLookingRight()) SetAnimationByState();
 			}
 
 			box = GetHitbox();
@@ -348,7 +328,7 @@ void Player::MoveX()
 		if (state == State::IDLE) StartWalkingRight();
 		else
 		{
-			if (IsLookingLeft()) ChangeAnimRight();
+			if (IsLookingLeft()) SetAnimationByState();
 		}
 
 		box = GetHitbox();
@@ -395,11 +375,6 @@ void Player::MoveY()
 
 			pos.y += 16;
 			StartFalling(); // Stop jump and start falling
-
-			
-			/*if (tilemap->TestCollisionFromBelow(hitbox, &hitbox.pos.y, &tileHit))
-			{
-			}*/
 
 		}
 	}
@@ -485,18 +460,18 @@ void Player::LogicJumping()
 			//Jumping is represented with 3 different states
 			if (IsAscending())
 			{
-				if (IsLookingRight())	SetAnimation((int)PlayerAnim::JUMPING_RIGHT);
-				else					SetAnimation((int)PlayerAnim::JUMPING_LEFT);
+				if (IsLookingRight())	SetAnimationByState();
+				else					SetAnimationByState();
 			}
 			else if (IsLevitating())
 			{
-				if (IsLookingRight())	SetAnimation((int)PlayerAnim::LEVITATING_RIGHT);
-				else					SetAnimation((int)PlayerAnim::LEVITATING_LEFT);
+				if (IsLookingRight())	SetAnimationByState();
+				else					SetAnimationByState();
 			}
 			else if (IsDescending())
 			{
-				if (IsLookingRight())	SetAnimation((int)PlayerAnim::FALLING_RIGHT);
-				else					SetAnimation((int)PlayerAnim::FALLING_LEFT);
+				if (IsLookingRight())	SetAnimationByState();
+				else					SetAnimationByState();
 			}
 		}
 		//We check ground collision when jumping down
@@ -534,8 +509,8 @@ void Player::LogicClimbing()
 	box = GetHitbox();
 	if (map->TestOnLadderTop(box, &tmp))
 	{
-		if (IsInSecondHalfTile())		SetAnimation((int)PlayerAnim::CLIMBING_PRE_TOP);
-		else if (IsInFirstHalfTile())	SetAnimation((int)PlayerAnim::CLIMBING_TOP);
+		if (IsInSecondHalfTile())		SetAnimationByState();
+		else if (IsInFirstHalfTile())	SetAnimationByState();
 		else					LOG("Internal error, tile should be a LADDER_TOP, coord: (%d,%d)", box.pos.x, box.pos.y);
 	}
 	else if (map->TestCollisionGround(box, &pos.y))
@@ -553,7 +528,7 @@ void Player::LogicClimbing()
 	}
 	else
 	{
-		if (GetAnimation() != PlayerAnim::CLIMBING)	SetAnimation((int)PlayerAnim::CLIMBING);
+		if (GetAnimation() != PlayerAnim::CLIMBING) SetAnimationByState();
 	}
 }
 void Player::StartDeath()
@@ -585,16 +560,11 @@ void Player::Release()
 void Player::Bounce() {
 	dir.y = -BOUNCE_FORCE;
 	state = State::JUMPING;
-	SetAnimation(IsLookingRight() ? (int)PlayerAnim::JUMPING_RIGHT : (int)PlayerAnim::JUMPING_LEFT);
+	SetAnimationByState();
 }
 void Player::MushroomPower() {
 	map->canBreak = true;
 	isBigMario = true;
-	// Double the player's physical size
-	width *= 2;
-	height *= 2;
-	// Change to big Mario animation
-	SetAnimation(IsLookingRight() ? (int)PlayerAnim::IDLE_RIGHT_BIG : (int)PlayerAnim::IDLE_LEFT_BIG);
 	PlaySound(powerUpSound);
 }
 void Player::FlowerPower() {
@@ -609,4 +579,44 @@ void Player::StarPower() {
 
 Vector2 Player::GetVelocity() const {
 	return { (float)dir.x, (float)dir.y };
+}
+void Player::SetAnimationByState()
+{
+	PlayerAnim anim;
+
+	if (look == Look::RIGHT)
+	{
+		switch (state)
+		{
+		case State::IDLE: anim = isBigMario ? PlayerAnim::IDLE_RIGHT_BIG : PlayerAnim::IDLE_RIGHT; break;
+		case State::WALKING: anim = PlayerAnim::WALKING_RIGHT; break;
+		case State::JUMPING: anim = PlayerAnim::JUMPING_RIGHT; break;
+		case State::FALLING: anim = PlayerAnim::FALLING_RIGHT; break;
+		default: return;
+		}
+	}
+	else
+	{
+		switch (state)
+		{
+		case State::IDLE: anim = isBigMario ? PlayerAnim::IDLE_LEFT_BIG : PlayerAnim::IDLE_LEFT; break;
+		case State::WALKING: anim = PlayerAnim::WALKING_LEFT; break;
+		case State::JUMPING: anim = PlayerAnim::JUMPING_LEFT; break;
+		case State::FALLING: anim = PlayerAnim::FALLING_LEFT; break;
+		default: return;
+		}
+	}
+
+	SetAnimation((int)anim);
+}
+void Player::ChangeColliderSize()
+{
+	if (isBigMario || isFireMario)
+	{
+		height = 32;
+	}
+	else
+	{
+		height = 16;
+	}
 }

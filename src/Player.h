@@ -36,15 +36,15 @@ enum class State {
 // Animation States
 enum class PlayerAnim {
     IDLE_LEFT, IDLE_RIGHT, IDLE_RIGHT_BIG, IDLE_LEFT_BIG,
-    WALKING_LEFT, WALKING_RIGHT,
-    JUMPING_LEFT, JUMPING_RIGHT,
-    LEVITATING_LEFT, LEVITATING_RIGHT,
-    FALLING_LEFT, FALLING_RIGHT,
+    WALKING_LEFT, WALKING_RIGHT, WALKING_LEFT_BIG, WALKING_RIGHT_BIG,
+    JUMPING_LEFT, JUMPING_RIGHT, JUMPING_LEFT_BIG, JUMPING_RIGHT_BIG,
+    LEVITATING_LEFT, LEVITATING_RIGHT, LEVITATING_LEFT_BIG, LEVITATING_RIGHT_BIG,
+    FALLING_LEFT, FALLING_RIGHT, FALLING_LEFT_BIG, FALLING_RIGHT_BIG,
     CLIMBING, CLIMBING_PRE_TOP, CLIMBING_TOP,
     SHOCK_LEFT, SHOCK_RIGHT,
     DEAD,
-    FLAG_LEFT,FLAG_RIGHT,
-    TELEPORT_LEFT, TELEPORT_RIGHT,
+    FLAG_LEFT,FLAG_RIGHT, FLAG_LEFT_BIG, FLAG_RIGHT_BIG,
+    TELEPORT_LEFT, TELEPORT_RIGHT, TELEPORT_LEFT_BIG, TELEPORT_RIGHT_BIG,
     NUM_ANIMATIONS
 };
 
@@ -92,6 +92,10 @@ public:
     PlayerAnim GetAnimation();
     void SetAnimation(int id);
     Vector2 GetVelocity() const;
+    void SetAnimationByState();
+    void ChangeColliderSize();
+    bool IsInvincible() const { return invincibleTimer > 0.0f; }
+    void SetInvincible(float duration) { invincibleTimer = duration; }
 public:
     State state;
 
@@ -121,6 +125,7 @@ public:
     //Fire Power
     bool isFireMario = false;
 
+    float invincibleTimer = 0.0f;
 private:
     // Direction
     bool IsLookingRight() const;
@@ -140,8 +145,6 @@ private:
     void StartJumping();
     void StartClimbingUp();
     void StartClimbingDown();
-    void ChangeAnimRight();
-    void ChangeAnimLeft();
 
     // Jump States
     bool IsAscending() const;

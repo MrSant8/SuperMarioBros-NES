@@ -226,21 +226,25 @@ void EnemyManager::CheckPlayerCollision(const AABB& playerHitbox, const Point& p
 					continue;
 				}
 			}
-			else
-			{	//TODO:: AÑADIR SONIDOS DE QUITAR PODER
-				if (player->isBigMario)
-				{
-					player->isBigMario = false;
-				}
-				else if (player->isFireMario) {
+			else if (!player->IsInvincible())
+			{
+				// TODO:: AÑADIR SONIDOS DE QUITAR PODER
+
+				if (player->isFireMario) {
 					player->isFireMario = false;
 					player->isBigMario = true;
+					player->SetInvincible(2.0f); 
+
 				}
-				else
-				{
+				else if (player->isBigMario) {
+					player->isBigMario = false;
+					player->SetInvincible(2.0f);
+				}
+				else {
 					player->StartDeath();
 				}
 			}
+
 		}
 		++it;
 	}

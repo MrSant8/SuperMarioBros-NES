@@ -68,6 +68,7 @@ Point Entity::GetRenderingPosition() const
 void Entity::Draw() const
 {
 	Point p = GetRenderingPosition();
+
 	render->Draw(p.x, p.y);
 }
 void Entity::DrawTint(const Color& col) const
