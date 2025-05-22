@@ -25,6 +25,7 @@ public:
     bool mariolive2 = false;
     bool mariolive1 = false;
     bool win = false;
+    int life = 3;
 
 private:
     AppStatus LoadLevel(int stage);
@@ -62,5 +63,4 @@ private:
     const Texture2D* coinnImage;
 
     int* map = nullptr;
-    int life = 3;
 };

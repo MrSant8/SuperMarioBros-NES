@@ -290,8 +290,7 @@ AppStatus Game::Update()
                 UpdateMusicStream(GameOverMusic);
                 if (IsKeyPressed(KEY_SPACE))
                 {
-                    
-                    state = GameState::MAIN_MENU;
+                   state = GameState::MAIN_MENU;
                 }
                 break;
 
@@ -303,7 +302,9 @@ AppStatus Game::Update()
                 scene->mariolive2 = false;
                 if (IsKeyPressed(KEY_SPACE))
                 {
-
+                    FinishPlay();
+                    if (BeginPlay() != AppStatus::OK) return AppStatus::ERROR;
+                    scene->life = 2;
                     state = GameState::PLAYING;
                 }
                 break;
@@ -316,6 +317,9 @@ AppStatus Game::Update()
                 scene->mariolive1 = false;
                 if (IsKeyPressed(KEY_SPACE))
                 {
+                    FinishPlay();
+                    if (BeginPlay() != AppStatus::OK) return AppStatus::ERROR;
+                    scene->life = 1;
                     state = GameState::PLAYING;
                 }
                 break;

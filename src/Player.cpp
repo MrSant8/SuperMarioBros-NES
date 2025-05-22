@@ -606,3 +606,7 @@ void Player::StarPower() {
 	map->canBreak = true;
 	isStarMario = true;
 }
+
+Vector2 Player::GetVelocity() const {
+	return { (float)dir.x, (float)dir.y };
+}
