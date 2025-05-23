@@ -228,16 +228,15 @@ void EnemyManager::CheckPlayerCollision(const AABB& playerHitbox, const Point& p
 			}
 			else if (!player->IsInvincible())
 			{
-				// TODO:: AÑADIR SONIDOS DE QUITAR PODER
-
 				if (player->isFireMario) {
+					PlaySound(player->pipeSound);
 					player->isFireMario = false;
 					player->isBigMario = true;
 					player->SetInvincible(2.0f); 
-
 				}
 				else if (player->isBigMario) {
 					player->isBigMario = false;
+					PlaySound(player->pipeSound);
 					player->SetInvincible(2.0f);
 				}
 				else {

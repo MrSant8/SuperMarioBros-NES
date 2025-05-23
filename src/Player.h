@@ -107,6 +107,7 @@ public:
     Sound coinSound;
     Sound flagSound;
     Sound powerUpSound;
+    Sound pipeSound;
     bool stopMusic = false;
 
     //Death

@@ -110,7 +110,8 @@ AppStatus Player::Initialise()
 	dieSound = LoadSound("Assets/Audio/Fx/Die.wav");
 	coinSound = LoadSound("Assets/Audio/Fx/Coin.wav");
 	flagSound = LoadSound("Assets/Audio/Fx/Flagpole.wav");
-	powerUpSound = LoadSound("Assets/Audio/Fx/Powerup");
+	powerUpSound = LoadSound("Assets/Audio/Fx/Powerup.wav");
+	pipeSound = LoadSound("Assets/Audio/Fx/Pipe.wav");
 
 	return AppStatus::OK;
 }
@@ -203,6 +204,9 @@ void Player::StartClimbingDown()
 }
 void Player::Update()
 {
+	if (isStarMario) {
+		StarPower();
+	}
 	if (invincibleTimer > 0.0f) {
 		invincibleTimer -= GetFrameTime(); 
 	}
@@ -589,15 +593,34 @@ void Player::MushroomPower() {
 	map->canBreak = true;
 	isBigMario = true;
 	PlaySound(powerUpSound);
+	//TODO:: ANIM BIG MARIO
 }
 void Player::FlowerPower() {
 	map->canBreak = true;
 	isFireMario = true;
-
+	//TODO:: ANIM FIRE MARIO & FIREBALL LOGIC
 }
 void Player::StarPower() {
-	map->canBreak = true;
-	isStarMario = true;
+	if (!isStarMario) {
+		//TODO:: AÑADIR MUSICA DE STAR POWER Y PARAR LA NORMAL
+		isStarMario = true;
+		map->canBreak = true;
+		starPowerTimer = 0.0f;
+	}
+	starPowerTimer += GetFrameTime();
+	if (starPowerTimer >= maxStarPowerTime) {
+		isStarMario = false;
+		PlaySound(pipeSound);
+		//TODO:: PARAR MUSICA STAR POWER Y REANUDAR LA NORMAL
+		if (isBigMario || isFireMario)
+		{
+			map->canBreak = true;
+		}
+		else {
+			map->canBreak = false;
+		}
+		starPowerTimer = 0.0f;
+	}
 }
 
 Vector2 Player::GetVelocity() const {
