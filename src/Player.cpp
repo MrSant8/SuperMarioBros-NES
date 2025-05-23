@@ -98,6 +98,12 @@ AppStatus Player::Initialise()
 	sprite->SetAnimationDelay((int)PlayerAnim::FLAG_RIGHT, ANIM_DELAY);
 	sprite->AddKeyFrame((int)PlayerAnim::FLAG_RIGHT, { n * 3, 0, n, n });
 
+	sprite->SetAnimationDelay((int)PlayerAnim::FLAG_LEFT_BIG, ANIM_DELAY);
+	sprite->AddKeyFrame((int)PlayerAnim::FLAG_LEFT_BIG, { n * 2, n, n, n });
+
+	sprite->SetAnimationDelay((int)PlayerAnim::FLAG_RIGHT_BIG, ANIM_DELAY);
+	sprite->AddKeyFrame((int)PlayerAnim::FLAG_RIGHT_BIG, { n * 3, n, n, n });
+
 	sprite->SetAnimation((int)PlayerAnim::IDLE_RIGHT);
 
 	jumpSound = LoadSound("Assets/Audio/Fx/Jump.wav");
@@ -200,9 +206,7 @@ void Player::Update()
 	if (invincibleTimer > 0.0f) {
 		invincibleTimer -= GetFrameTime(); 
 	}
-	SetAnimationByState();
-	ChangeColliderSize();
-	UpdateTime(GetFrameTime());
+
 	if (map->disappear) {
 		walkingcastle = false;
 		pos.x = 4000;
@@ -256,12 +260,29 @@ void Player::Update()
 
 			// Fix: assign state properly instead of comparing
 			state = State::IDLE;
-
+			PlayerAnim anim;
 			
-			if (IsLookingRight())
-				SetAnimationByState();
-			else
-				SetAnimationByState();
+			if (IsLookingRight()) {
+				if (isBigMario) {
+					SetAnimation((int)PlayerAnim::FLAG_LEFT_BIG);
+				}
+				else {
+					SetAnimation((int)PlayerAnim::FLAG_LEFT);
+				}
+
+			}
+				
+
+
+			else {
+				if (isBigMario) {
+					SetAnimation((int)PlayerAnim::FLAG_RIGHT_BIG);
+				}
+				else {
+					SetAnimation((int)PlayerAnim::FLAG_RIGHT);
+				}
+			}
+
 
 			walkingcastle = true;
 		}
@@ -281,7 +302,9 @@ void Player::Update()
 	}
 	else {
 		MoveX();
-
+		//SetAnimationByState();
+		ChangeColliderSize();
+		UpdateTime(GetFrameTime());
 	}
 	MoveY();
 
@@ -583,7 +606,7 @@ Vector2 Player::GetVelocity() const {
 void Player::SetAnimationByState()
 {
 	PlayerAnim anim;
-
+	
 	if (look == Look::RIGHT)
 	{
 		switch (state)
@@ -592,6 +615,7 @@ void Player::SetAnimationByState()
 		case State::WALKING: anim = PlayerAnim::WALKING_RIGHT; break;
 		case State::JUMPING: anim = PlayerAnim::JUMPING_RIGHT; break;
 		case State::FALLING: anim = PlayerAnim::FALLING_RIGHT; break;
+		case State::FLAG: anim = isBigMario ? PlayerAnim::FLAG_RIGHT_BIG : PlayerAnim::FLAG_RIGHT; break;
 		default: return;
 		}
 	}
@@ -603,11 +627,17 @@ void Player::SetAnimationByState()
 		case State::WALKING: anim = PlayerAnim::WALKING_LEFT; break;
 		case State::JUMPING: anim = PlayerAnim::JUMPING_LEFT; break;
 		case State::FALLING: anim = PlayerAnim::FALLING_LEFT; break;
+		case State::FLAG: anim = isBigMario ? PlayerAnim::FLAG_LEFT_BIG : PlayerAnim::FLAG_LEFT; break;
+
 		default: return;
 		}
 	}
 
 	SetAnimation((int)anim);
+
+	
+	
+
 }
 void Player::ChangeColliderSize()
 {

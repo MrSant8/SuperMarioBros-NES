@@ -1,2 +1,18 @@
-﻿  Scene.cpp
-  Vikings.vcxproj -> C:\Users\Usuari\Documents\GitHub\SuperMarioBros-NES\x64\Debug\MarioBrosNES_NES.exe
+﻿  EnemyManager.cpp
+C:\Users\janaps\Documents\GitHub\SuperMarioBros-NES\src\EnemyManager.cpp(80,18): warning C4267: 'inicializando': conversión de 'size_t' a 'int'; posible pérdida de datos
+C:\Users\janaps\Documents\GitHub\SuperMarioBros-NES\src\EnemyManager.cpp(92,18): warning C4267: 'inicializando': conversión de 'size_t' a 'int'; posible pérdida de datos
+C:\Users\janaps\Documents\GitHub\SuperMarioBros-NES\src\EnemyManager.cpp(200,23): warning C4244: 'inicializando': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\janaps\Documents\GitHub\SuperMarioBros-NES\src\EnemyManager.cpp(201,19): warning C4244: 'inicializando': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\janaps\Documents\GitHub\SuperMarioBros-NES\src\EnemyManager.cpp(212,37): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\janaps\Documents\GitHub\SuperMarioBros-NES\src\EnemyManager.cpp(213,40): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+  Game.cpp
+  Player.cpp
+C:\Users\janaps\Documents\GitHub\SuperMarioBros-NES\src\Player.cpp(176,23): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\janaps\Documents\GitHub\SuperMarioBros-NES\src\Player.cpp(263,15): warning C4101: 'anim': variable local sin referencia
+C:\Users\janaps\Documents\GitHub\SuperMarioBros-NES\src\Player.cpp(410,24): warning C4244: '+=': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\janaps\Documents\GitHub\SuperMarioBros-NES\src\Player.cpp(471,25): warning C4244: '+=': conversión de 'double' a 'int'; posible pérdida de datos
+C:\Users\janaps\Documents\GitHub\SuperMarioBros-NES\src\Player.cpp(562,11): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
+  Scene.cpp
+  main.cpp
+  Generando código...
+  Vikings.vcxproj -> C:\Users\janaps\Documents\GitHub\SuperMarioBros-NES\x64\Debug\MarioBrosNES_NES.exe
