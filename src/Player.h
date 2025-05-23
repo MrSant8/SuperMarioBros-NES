@@ -39,7 +39,7 @@ enum class PlayerAnim {
     WALKING_LEFT, WALKING_RIGHT, WALKING_LEFT_BIG, WALKING_RIGHT_BIG,
     JUMPING_LEFT, JUMPING_RIGHT, JUMPING_LEFT_BIG, JUMPING_RIGHT_BIG,
     LEVITATING_LEFT, LEVITATING_RIGHT, LEVITATING_LEFT_BIG, LEVITATING_RIGHT_BIG,
-    FALLING_LEFT, FALLING_RIGHT, FALLING_LEFT_BIG, FALLING_RIGHT_BIG,
+    FALLING_LEFT, FALLING_RIGHT, FALLING_LEFT_BIG, FALLING_RIGHT_BIG, WALKING_RIGHT_LEFT, WALKING_RIGHT_RIGHT,
     CLIMBING, CLIMBING_PRE_TOP, CLIMBING_TOP,
     SHOCK_LEFT, SHOCK_RIGHT,
     DEAD,
@@ -77,6 +77,8 @@ public:
 
     void StarPower();
 
+    void DeactivatePowerUps();
+
     Vector2 GetPosition() const {
         return Vector2{ static_cast<float>(pos.x), 0.0f };
     }
@@ -107,6 +109,8 @@ public:
     Sound coinSound;
     Sound flagSound;
     Sound powerUpSound;
+    Sound powerUpStar;
+    Sound powerUpFlower;
     bool stopMusic = false;
 
     //Death

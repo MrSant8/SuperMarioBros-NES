@@ -52,7 +52,7 @@ AppStatus Player::Initialise()
 	sprite->SetAnimationDelay((int)PlayerAnim::IDLE_LEFT, ANIM_DELAY);
 	sprite->AddKeyFrame((int)PlayerAnim::IDLE_LEFT, { 0, 0, -n, n });
 
-
+// Walk mario low
 	sprite->SetAnimationDelay((int)PlayerAnim::WALKING_RIGHT, ANIM_DELAY);
 	for (int i = 0; i < 8; ++i)
 		sprite->AddKeyFrame((int)PlayerAnim::WALKING_RIGHT, { (float)i * n, 4 * n, n, n });
@@ -60,6 +60,24 @@ AppStatus Player::Initialise()
 	sprite->SetAnimationDelay((int)PlayerAnim::WALKING_LEFT, ANIM_DELAY);
 	for (int i = 0; i < 8; ++i)
 		sprite->AddKeyFrame((int)PlayerAnim::WALKING_LEFT, { (float)i * n, 4 * n, -n, n });
+
+
+// i * n = 0  --- 4*n = 0
+// 
+// 
+// 
+// 0 ------------------ 0
+// Walk mario big
+	// Walk mario low
+
+	sprite->SetAnimationDelay((int)PlayerAnim::WALKING_RIGHT_BIG, ANIM_DELAY);
+	for (int i = 0; i < 8; ++i)
+		sprite->AddKeyFrame((int)PlayerAnim::WALKING_RIGHT_BIG, { (float)i * n, 6 * n, n, n });
+
+
+	sprite->SetAnimationDelay((int)PlayerAnim::WALKING_RIGHT_LEFT, ANIM_DELAY);
+	for (int i = 0; i < 8; ++i)
+		sprite->AddKeyFrame((int)PlayerAnim::WALKING_RIGHT_LEFT, { (float)i * n, 6 * n, -n, n });
 
 	sprite->SetAnimationDelay((int)PlayerAnim::FALLING_RIGHT, ANIM_DELAY);
 	sprite->AddKeyFrame((int)PlayerAnim::FALLING_RIGHT, { 2 * n, 5 * n, n, n });
@@ -110,7 +128,9 @@ AppStatus Player::Initialise()
 	dieSound = LoadSound("Assets/Audio/Fx/Die.wav");
 	coinSound = LoadSound("Assets/Audio/Fx/Coin.wav");
 	flagSound = LoadSound("Assets/Audio/Fx/Flagpole.wav");
-	powerUpSound = LoadSound("Assets/Audio/Fx/Powerup");
+	powerUpSound = LoadSound("Assets/Audio/Fx/Powerup.wav");
+	powerUpStar = LoadSound("Assets/Audio/Fx/Powerup.wav");
+	powerUpFlower = LoadSound("Assets/Audio/Fx/Powerup.wav");
 
 	return AppStatus::OK;
 }
@@ -554,6 +574,23 @@ void Player::LogicClimbing()
 		if (GetAnimation() != PlayerAnim::CLIMBING) SetAnimationByState();
 	}
 }
+void Player::DeactivatePowerUps()
+{
+	if (isBigMario) {
+		LOG("Mushroom Power-Up Deactivated");
+		isBigMario = false;
+	}
+	if (isFireMario) {
+		LOG("Flower Power-Up Deactivated");
+		isFireMario = false;
+	}
+	if (isStarMario) {
+		LOG("Star Power-Up Deactivated");
+		isStarMario = false;
+	}
+	map->canBreak = false;
+}
+
 void Player::StartDeath()
 {
 	if (!deathStarted)
@@ -562,6 +599,7 @@ void Player::StartDeath()
 		dir.y = -7.0f; 
 		SetAnimation((int)PlayerAnim::DEAD);
 		PlaySound(dieSound);
+		DeactivatePowerUps();
 		deathStarted = true;
 		deathTimer = 0.0f;
 	}
@@ -589,15 +627,21 @@ void Player::MushroomPower() {
 	map->canBreak = true;
 	isBigMario = true;
 	PlaySound(powerUpSound);
+	LOG("Mushroom Power-Up Activated - Playing powerUpSound");
 }
+
 void Player::FlowerPower() {
 	map->canBreak = true;
 	isFireMario = true;
-
+	PlaySound(powerUpFlower);
+	LOG("Flower Power-Up Activated - Playing powerUpSound");
 }
+
 void Player::StarPower() {
 	map->canBreak = true;
 	isStarMario = true;
+	PlaySound(powerUpStar);
+	LOG("Star Power-Up Activated - Playing powerUpSound");
 }
 
 Vector2 Player::GetVelocity() const {
