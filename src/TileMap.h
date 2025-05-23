@@ -62,7 +62,7 @@ public:
 	void Render();
 	void Release();
 
-	void ItemAppear();
+	void ItemAppear(Point ItemPos);
 
 	bool IsTileObject(Tile tile) const;
 	bool IsTileEntity(Tile tile) const;

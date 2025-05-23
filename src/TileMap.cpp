@@ -2,6 +2,7 @@
 #include "Globals.h"
 #include "ResourceManager.h"
 #include <cstring>
+#include "Object.h"
 
 TileMap::TileMap()
 {
@@ -388,7 +389,8 @@ bool TileMap::TestCollisionFromBelow(const AABB& box, int* py, Point* collisionT
 
 			Laser.x = pixel_x;
 			Laser.y = pixel_y - 5;
-			ItemAppear();
+			Point ItemSpawn(Laser.x, Laser.y);
+			ItemAppear(ItemSpawn);
 		}
 
 		return true;
@@ -657,10 +659,18 @@ void TileMap::Release()
 
 	dict_rect.clear();
 }
-void TileMap::ItemAppear()
+void TileMap::ItemAppear(Point ItemPos)
 {
 	if (!BlockActive) return;
-
+	int r = rand() % 4;
+	ObjectType type;
+	switch (r) {
+	case 0: type = ObjectType::COIN; break;
+	case 1: type = ObjectType::MUSHROOM; break;
+	case 2: type = ObjectType::FLOWER; break;
+	case 3: type = ObjectType::STAR; break;
+	}
+	Object* obj = new Object(ItemPos, type);
 	//TODO --- QUE APAREZCAN LOS OBJETOS
 	PlaySound(powerUpAppears);
 	//SI ES COIN, PlaySound(Coin);

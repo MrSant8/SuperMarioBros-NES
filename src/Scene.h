@@ -26,7 +26,7 @@ public:
     bool mariolive1 = false;
     bool win = false;
     int life = 3;
-
+    std::vector<Object*> objects;
 private:
     AppStatus LoadLevel(int stage);
 
@@ -43,7 +43,7 @@ private:
     TileMap* level;
 
     //Dynamic objects of the level: items and collectables
-    std::vector<Object*> objects;
+
 
     //Enemies present in the level
     EnemyManager* enemies;
