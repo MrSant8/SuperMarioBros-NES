@@ -21,7 +21,8 @@ public:
 	int Points() const;
 
 	ObjectType GetType() const { return type; }
-private:
 	ObjectType type;
+private:
+
 };
 

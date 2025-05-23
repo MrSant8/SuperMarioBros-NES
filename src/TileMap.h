@@ -60,9 +60,9 @@ public:
 
 	void Update();
 	void Render();
-	void Blocksorprise();
-	void Blockone();
 	void Release();
+
+	void ItemAppear(Point ItemPos);
 
 	bool IsTileObject(Tile tile) const;
 	bool IsTileEntity(Tile tile) const;
@@ -129,8 +129,6 @@ private:
 
 	int surpriseBlockTimer = 5;
 
-
-
 	float bajarOffset = 0.0f;
 	const float bajarVelocidad = 2.0f;  // píxeles por frame (ajustá esto para más o menos rapidez)
 
@@ -142,6 +140,7 @@ private:
 
 	std::vector<BlockFragment> fragments;
 	Sound Break;
+	Sound powerUpAppears;
 
 
 public:

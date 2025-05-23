@@ -2,6 +2,7 @@
 #include "Globals.h"
 #include "ResourceManager.h"
 #include <cstring>
+#include "Object.h"
 
 TileMap::TileMap()
 {
@@ -96,6 +97,7 @@ AppStatus TileMap::Initialise()
 	surpriseBlock->SetAnimation(0);
 
 	Break = LoadSound("Assets/Audio/Fx/Break.wav");
+	powerUpAppears = LoadSound("Assets/Audio/Fx/powerUpAppears.wav");
 
 	return AppStatus::OK;
 }
@@ -274,12 +276,8 @@ bool TileMap::TestCollisionGround(const AABB& box, int *py) const
 			disappear = true; // Marcar que el jugador ha muerto
 		}
 		*py = tile_y * TILE_SIZE - 1;
-		
-		
 		return true;
 	}
-
-
 	return false;
 }
 
@@ -325,16 +323,14 @@ bool TileMap::CollisionY(const Point& p, int distance) const
 		////One solid tile is sufficient
 		if (IsTileSolid(tile)) // También verificará `BLOCK_SQUARE1_TR`
 			return true;
-
 	}
 	return false;
 }
 
-
 bool TileMap::TestCollisionFromBelow(const AABB& box, int* py, Point* collisionTilePos)
 {
 	Point p(box.pos.x, *py);
-	int tile_y = (p.y - 1) / TILE_SIZE; // Tile justo arriba del jugador
+	int tile_y = (p.y - 1) / TILE_SIZE;
 
 	if (tile_y < 0) return false;
 
@@ -345,7 +341,7 @@ bool TileMap::TestCollisionFromBelow(const AABB& box, int* py, Point* collisionT
 	int pixel_x = tile_x * TILE_SIZE;
 	int pixel_y = tile_y * TILE_SIZE;
 
-	if (IsTileSolid(tile) && tile != Tile::BLOCK_SQUARE1_TR && tile!= Tile::BLOCK_SQUARE1_BR) // Podés filtrar por tipo específico si querés
+	if (IsTileSolid(tile) && tile != Tile::BLOCK_SQUARE1_TR && tile!= Tile::BLOCK_SQUARE1_BR)
 	{
 	
 		if (tile == Tile::BLOCK_SQUARE1_TL && !canBreak) {
@@ -379,8 +375,8 @@ bool TileMap::TestCollisionFromBelow(const AABB& box, int* py, Point* collisionT
 			PlaySound(Break);
 		}
 		if (tile == Tile::LASER) {
-			tile == Tile::BLOCK_SQUARE1_BR;
-			map[tile_y * width + tile_x] = Tile::BLOCK_SQUARE1_BR;
+			tile = Tile::BLOCK_SQUARE1_BR;
+			map[tile_y * width + tile_x] = tile;
 
 			if (collisionTilePos != nullptr)
 			{
@@ -393,9 +389,9 @@ bool TileMap::TestCollisionFromBelow(const AABB& box, int* py, Point* collisionT
 
 			Laser.x = pixel_x;
 			Laser.y = pixel_y - 5;
+			Point ItemSpawn(Laser.x, Laser.y);
+			ItemAppear(ItemSpawn);
 		}
-
-
 
 		return true;
 	}
@@ -648,14 +644,10 @@ void TileMap::Render()
 
 
 				}
-
-
 			}
 
 		}
 	}
-
-
 }
 
 void TileMap::Release()
@@ -667,4 +659,22 @@ void TileMap::Release()
 
 	dict_rect.clear();
 }
+void TileMap::ItemAppear(Point ItemPos)
+{
+	if (!BlockActive) return;
+	int r = rand() % 4;
+	ObjectType type;
+	switch (r) {
+	case 0: type = ObjectType::COIN; break;
+	case 1: type = ObjectType::MUSHROOM; break;
+	case 2: type = ObjectType::FLOWER; break;
+	case 3: type = ObjectType::STAR; break;
+	}
+	Object* obj = new Object(ItemPos, type);
+	//TODO --- QUE APAREZCAN LOS OBJETOS
+	PlaySound(powerUpAppears);
+	//SI ES COIN, PlaySound(Coin);
+
+}
+
 

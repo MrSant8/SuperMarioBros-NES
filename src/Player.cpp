@@ -694,10 +694,6 @@ void Player::SetAnimationByState()
 	}
 
 	SetAnimation((int)anim);
-
-	
-	
-
 }
 void Player::ChangeColliderSize()
 {
