@@ -1,8 +1,8 @@
 #pragma once
 #include "Globals.h"
 #include "Scene.h"
-#include "FadeTransition.h"
-
+#include "FadeTransition.h">
+#include "Player.h"
 
 class Game
 {
@@ -23,6 +23,7 @@ private:
     void UnloadResources();
 
     GameState state;
+    Player* player;
     Scene *scene;
     const Texture2D *img_menu, *img_menu2, *img_gameOver, *img_win, *img_world, * img_world2lives, *img_world1lives;
 
@@ -34,7 +35,7 @@ private:
     FadeTransition fade_transition;
 
     //Music
-    Music GroundMusic, GameOverMusic, WinMusic;
+    Music GroundMusic, GameOverMusic, WinMusic, starMusic;
     //Wold variables
     int time;
     float timeCounter;

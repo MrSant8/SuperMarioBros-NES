@@ -21,12 +21,15 @@ public:
     void Render();
     void Release();
 
+    Player* GetPlayer() const { return player; }
+
     bool gameOver = false;
     bool mariolive2 = false;
     bool mariolive1 = false;
     bool win = false;
     int life = 3;
     std::vector<Object*> objects;
+
 private:
     AppStatus LoadLevel(int stage);
 
@@ -37,8 +40,8 @@ private:
 
     void RenderGUI() const;
 
-    Player* player;
 
+    Player* player;
     //Level structure that contains all the static tiles
     TileMap* level;
 

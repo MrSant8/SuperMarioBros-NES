@@ -139,6 +139,12 @@ AppStatus Game::LoadResources()
         LOG("Failed to load game music");
         return AppStatus::ERROR;
     }
+    starMusic = LoadMusicStream("Assets/Audio/Music/StarPowerMusic.wav");
+    if (starMusic.stream.buffer == nullptr)
+    {
+        LOG("Failed to load game starMusic");
+        return AppStatus::ERROR;
+    }
 
     return AppStatus::OK;
 }
@@ -260,9 +266,29 @@ AppStatus Game::Update()
                 }
                 else
                 {
+                    
                     //Game logic
                     scene->Update();
                     UpdateMusicStream(GroundMusic);
+                    UpdateMusicStream(starMusic);
+                    if (scene && scene->GetPlayer()) {
+                        Player* player = scene->GetPlayer();  // accede al player desde la escena
+
+                        if (!player->isStarMario) {
+                            StopMusicStream(starMusic);
+                            if (!IsMusicStreamPlaying(GroundMusic)) {
+                                PlayMusicStream(GroundMusic);
+
+                            }
+                        }
+                        else {
+                            StopMusicStream(GroundMusic);
+                            if (!IsMusicStreamPlaying(starMusic)) {
+                                PlayMusicStream(starMusic);
+                                UpdateMusicStream(starMusic);
+                            }
+                        }
+                    }
 
                     if (scene->gameOver) 
                     {
