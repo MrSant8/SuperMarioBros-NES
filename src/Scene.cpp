@@ -376,7 +376,7 @@ void Scene::CheckObjectCollisions()
 			// Detectar el tipo de objeto
 			else if ((*it)->GetType() == ObjectType::FLOWER)
 			{
-				player->FlowerPower();
+				player->FirePower();
 				PlaySound(player->powerUpSound); //TODO:: POWER UP SOUNDS NOT WORKING?
 			}
 			// Detectar el tipo de objeto

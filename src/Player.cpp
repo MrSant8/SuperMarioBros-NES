@@ -130,6 +130,7 @@ AppStatus Player::Initialise()
 	flagSound = LoadSound("Assets/Audio/Fx/Flagpole.wav");
 	powerUpSound = LoadSound("Assets/Audio/Fx/Powerup.wav");
 	pipeSound = LoadSound("Assets/Audio/Fx/Pipe.wav");
+	fireballSound = LoadSound("Assets/Audio/Fx/fireBall.wav");
 
 	return AppStatus::OK;
 }
@@ -225,6 +226,17 @@ void Player::Update()
 	if (isStarMario) {
 		StarPower();
 	}
+
+	//Fire Shot
+	if (isFireMario && fireCooldown <= 0.0f && activeFireballs < MAX_FIREBALLS && IsKeyPressed(KEY_LEFT_CONTROL)) {
+		ShootFireball();
+		fireCooldown = FIRE_RATE;
+	}
+	if (fireCooldown > 0.0f) {
+		fireCooldown -= GetFrameTime();
+	}
+
+	//Hit Cooldown
 	if (invincibleTimer > 0.0f) {
 		invincibleTimer -= GetFrameTime(); 
 	}
@@ -342,8 +354,8 @@ void Player::MoveX()
 	int prev_x = pos.x;
 	int current_speed = IsKeyDown(KEY_LEFT_SHIFT) || IsKeyDown(KEY_RIGHT_SHIFT) ? PLAYER_SPEED_BOOST : PLAYER_SPEED;
 
-	//We can only go up and down while climbing
-	if (state == State::CLIMBING)			return;
+	// We can only go up and down while climbing
+	if (state == State::CLIMBING) return;
 
 	if (IsKeyDown(KEY_LEFT) && !IsKeyDown(KEY_RIGHT))
 	{
@@ -367,7 +379,7 @@ void Player::MoveX()
 		}
 
 	}
-	else if (IsKeyDown(KEY_RIGHT)|| walkingcastle)
+	else if (IsKeyDown(KEY_RIGHT) || walkingcastle)
 	{
 		pos.x += current_speed;
 		if (state == State::IDLE) StartWalkingRight();
@@ -398,9 +410,8 @@ void Player::MoveX()
 	{
 		if (state == State::WALKING) Stop();
 	}
-
-
 }
+
 void Player::MoveY()
 {
 	AABB box;
@@ -579,15 +590,12 @@ void Player::LogicClimbing()
 void Player::DeactivatePowerUps()
 {
 	if (isBigMario) {
-		LOG("Mushroom Power-Up Deactivated");
 		isBigMario = false;
 	}
 	if (isFireMario) {
-		LOG("Flower Power-Up Deactivated");
 		isFireMario = false;
 	}
 	if (isStarMario) {
-		LOG("Star Power-Up Deactivated");
 		isStarMario = false;
 	}
 	map->canBreak = false;
@@ -631,7 +639,7 @@ void Player::MushroomPower() {
 	//TODO:: ANIM BIG MARIO
 }
 
-void Player::FlowerPower() {
+void Player::FirePower() {
 	map->canBreak = true;
 	isFireMario = true;
 	//TODO:: ANIM FIRE MARIO & FIREBALL LOGIC
@@ -646,7 +654,7 @@ void Player::StarPower() {
 	}
 	starPowerTimer += GetFrameTime();
 	if (starPowerTimer >= maxStarPowerTime) {
-		isStarMario = false;
+		isStarMario = false; 
 		PlaySound(pipeSound);
 		//TODO:: PARAR MUSICA STAR POWER Y REANUDAR LA NORMAL
 		if (isBigMario || isFireMario)
@@ -705,4 +713,8 @@ void Player::ChangeColliderSize()
 	{
 		height = 16;
 	}
+}
+void Player::ShootFireball()
+{
+    PlaySound(fireballSound); // si tienes uno
 }

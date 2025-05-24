@@ -23,7 +23,7 @@
 // Force & Gravity
 #define PLAYER_JUMP_FORCE        10
 #define PLAYER_JUMP_DELAY        2
-#define BOUNCE_FORCE             4
+#define BOUNCE_FORCE             3
 #define PLAYER_LEVITATING_SPEED  4
 #define GRAVITY_FORCE            1
 
@@ -73,7 +73,7 @@ public:
     void Bounce();
     void MushroomPower();
 
-    void FlowerPower();
+    void FirePower();
 
     void StarPower();
 
@@ -96,9 +96,11 @@ public:
     Vector2 GetVelocity() const;
     void SetAnimationByState();
     void ChangeColliderSize();
+    void ShootFireball();
     bool IsInvincible() const { return invincibleTimer > 0.0f; }
     void SetInvincible(float duration) { invincibleTimer = duration; }
 public:
+
     State state;
 
     bool teletransportation = false;
@@ -110,6 +112,8 @@ public:
     Sound flagSound;
     Sound powerUpSound;
     Sound pipeSound;
+    Sound fireballSound;
+
     bool stopMusic = false;
 
     //Death
@@ -127,6 +131,10 @@ public:
 
     //Fire Power
     bool isFireMario = false;
+    float fireCooldown = 0.0f;
+    const float FIRE_RATE = 0.3f; 
+    int activeFireballs = 0;
+    const int MAX_FIREBALLS = 2;
 
     float invincibleTimer = 0.0f;
 private:
