@@ -1,7 +1,4 @@
-Project executed on 23-05-2025 at 15:46:59.
+Project executed on 25-05-2025 at 00:13:36.
 main.cpp(13): Application start
-Player.cpp(640): Star Power-Up Activated - Playing powerUpSound
-Player.cpp(634): Flower Power-Up Activated - Playing powerUpSound
-Player.cpp(628): Mushroom Power-Up Activated - Playing powerUpSound
 main.cpp(34): Application finish
 main.cpp(37): Bye :)

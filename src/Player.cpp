@@ -62,22 +62,19 @@ AppStatus Player::Initialise()
 		sprite->AddKeyFrame((int)PlayerAnim::WALKING_LEFT, { (float)i * n, 4 * n, -n, n });
 
 
-// i * n = 0  --- 4*n = 0
-// 
-// 
-// 
-// 0 ------------------ 0
-// Walk mario big
-	// Walk mario low
 
+// Walk mario big
 	sprite->SetAnimationDelay((int)PlayerAnim::WALKING_RIGHT_BIG, ANIM_DELAY);
 	for (int i = 0; i < 8; ++i)
 		sprite->AddKeyFrame((int)PlayerAnim::WALKING_RIGHT_BIG, { (float)i * n, 6 * n, n, n });
 
-
-	sprite->SetAnimationDelay((int)PlayerAnim::WALKING_RIGHT_LEFT, ANIM_DELAY);
+	sprite->SetAnimationDelay((int)PlayerAnim::WALKING_LEFT_BIG, ANIM_DELAY);
 	for (int i = 0; i < 8; ++i)
-		sprite->AddKeyFrame((int)PlayerAnim::WALKING_RIGHT_LEFT, { (float)i * n, 6 * n, -n, n });
+		sprite->AddKeyFrame((int)PlayerAnim::WALKING_LEFT_BIG, { (float)i * n, 6 * n, -n, n });
+// Walk mario big
+
+
+
 
 	sprite->SetAnimationDelay((int)PlayerAnim::FALLING_RIGHT, ANIM_DELAY);
 	sprite->AddKeyFrame((int)PlayerAnim::FALLING_RIGHT, { 2 * n, 5 * n, n, n });
@@ -364,7 +361,10 @@ void Player::MoveX()
 			if (state == State::IDLE) StartWalkingLeft();
 			else
 			{
-				if (IsLookingRight()) SetAnimationByState();
+				if (IsLookingRight()) {
+					look = Look::LEFT;
+					SetAnimationByState();
+				}
 			}
 
 			box = GetHitbox();
@@ -385,7 +385,10 @@ void Player::MoveX()
 		if (state == State::IDLE) StartWalkingRight();
 		else
 		{
-			if (IsLookingLeft()) SetAnimationByState();
+			if (IsLookingLeft()) {
+				look = Look::RIGHT;
+				SetAnimationByState();
+			}
 		}
 
 		box = GetHitbox();
@@ -680,7 +683,7 @@ void Player::SetAnimationByState()
 		switch (state)
 		{
 		case State::IDLE: anim = isBigMario ? PlayerAnim::IDLE_RIGHT_BIG : PlayerAnim::IDLE_RIGHT; break;
-		case State::WALKING: anim = PlayerAnim::WALKING_RIGHT; break;
+		case State::WALKING: anim = isBigMario ? PlayerAnim::WALKING_RIGHT_BIG : PlayerAnim::WALKING_RIGHT; break;
 		case State::JUMPING: anim = PlayerAnim::JUMPING_RIGHT; break;
 		case State::FALLING: anim = PlayerAnim::FALLING_RIGHT; break;
 		case State::FLAG: anim = isBigMario ? PlayerAnim::FLAG_RIGHT_BIG : PlayerAnim::FLAG_RIGHT; break;
@@ -692,7 +695,7 @@ void Player::SetAnimationByState()
 		switch (state)
 		{
 		case State::IDLE: anim = isBigMario ? PlayerAnim::IDLE_LEFT_BIG : PlayerAnim::IDLE_LEFT; break;
-		case State::WALKING: anim = PlayerAnim::WALKING_LEFT; break;
+		case State::WALKING: anim = isBigMario ? PlayerAnim::WALKING_LEFT_BIG : PlayerAnim::WALKING_LEFT; break;
 		case State::JUMPING: anim = PlayerAnim::JUMPING_LEFT; break;
 		case State::FALLING: anim = PlayerAnim::FALLING_LEFT; break;
 		case State::FLAG: anim = isBigMario ? PlayerAnim::FLAG_LEFT_BIG : PlayerAnim::FLAG_LEFT; break;

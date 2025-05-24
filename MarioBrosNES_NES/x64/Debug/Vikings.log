@@ -1,7 +1,7 @@
 ﻿  Player.cpp
-C:\Users\sergi\Desktop\Github Proyectos\Release\SuperMarioBros-NES\src\Player.cpp(194,23): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
-C:\Users\sergi\Desktop\Github Proyectos\Release\SuperMarioBros-NES\src\Player.cpp(281,15): warning C4101: 'anim': variable local sin referencia
-C:\Users\sergi\Desktop\Github Proyectos\Release\SuperMarioBros-NES\src\Player.cpp(428,24): warning C4244: '+=': conversión de 'float' a 'int'; posible pérdida de datos
-C:\Users\sergi\Desktop\Github Proyectos\Release\SuperMarioBros-NES\src\Player.cpp(489,25): warning C4244: '+=': conversión de 'double' a 'int'; posible pérdida de datos
-C:\Users\sergi\Desktop\Github Proyectos\Release\SuperMarioBros-NES\src\Player.cpp(597,11): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\sergi\Desktop\Github Proyectos\Release\SuperMarioBros-NES\src\Player.cpp(193,23): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\sergi\Desktop\Github Proyectos\Release\SuperMarioBros-NES\src\Player.cpp(294,15): warning C4101: 'anim': variable local sin referencia
+C:\Users\sergi\Desktop\Github Proyectos\Release\SuperMarioBros-NES\src\Player.cpp(446,24): warning C4244: '+=': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\sergi\Desktop\Github Proyectos\Release\SuperMarioBros-NES\src\Player.cpp(507,25): warning C4244: '+=': conversión de 'double' a 'int'; posible pérdida de datos
+C:\Users\sergi\Desktop\Github Proyectos\Release\SuperMarioBros-NES\src\Player.cpp(612,11): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
   Vikings.vcxproj -> C:\Users\sergi\Desktop\Github Proyectos\Release\SuperMarioBros-NES\x64\Debug\MarioBrosNES_NES.exe
