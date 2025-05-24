@@ -361,7 +361,10 @@ void Player::MoveX()
 			if (state == State::IDLE) StartWalkingLeft();
 			else
 			{
-				if (IsLookingRight()) SetAnimationByState();
+				if (IsLookingRight()) {
+					look = Look::LEFT;
+					SetAnimationByState();
+				}
 			}
 
 			box = GetHitbox();
@@ -382,7 +385,10 @@ void Player::MoveX()
 		if (state == State::IDLE) StartWalkingRight();
 		else
 		{
-			if (IsLookingLeft()) SetAnimationByState();
+			if (IsLookingLeft()) {
+				look = Look::RIGHT;
+				SetAnimationByState();
+			}
 		}
 
 		box = GetHitbox();
