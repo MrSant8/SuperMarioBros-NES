@@ -469,18 +469,7 @@ void Player::Update()
 		}
 
 		// Fix: assign state properly instead of comparing
-		state = State::IDLE;
-
-		if (useBigFire)
-			SetAnimation((int)(look == Look::LEFT ? PlayerAnim::FLAG_RIGHT_FIRE : PlayerAnim::FLAG_LEFT_FIRE));
-		else if (useBig)
-			SetAnimation((int)(look == Look::LEFT ? PlayerAnim::FLAG_RIGHT_BIG : PlayerAnim::FLAG_LEFT_BIG));
-		else if (useSmallStar)
-			SetAnimation((int)(look == Look::LEFT ? PlayerAnim::FLAG_RIGHT_STAR : PlayerAnim::FLAG_LEFT_STAR));
-		else if (useSmallFire)
-			SetAnimation((int)(look == Look::LEFT ? PlayerAnim::FLAG_RIGHT_FIRE_SMALL : PlayerAnim::FLAG_LEFT_FIRE_SMALL));
-		else
-			SetAnimation((int)(look == Look::LEFT ? PlayerAnim::FLAG_RIGHT : PlayerAnim::FLAG_LEFT));
+		state = State::FLAG;
 
 		walkingcastle = true;
 		
@@ -818,6 +807,7 @@ Vector2 Player::GetVelocity() const {
 }
 void Player::SetAnimationByState()
 {
+	useBigStar = useBigFire = useBig = useSmallStar = useSmallFire = false;
 	// Prioridad: Star > Fire > Big > Small
 	if (isStarMario && isBigMario) {
 		useBigStar = true;
@@ -933,7 +923,9 @@ void Player::SetAnimationByState()
 		break;
 
 	case State::FLAG:
-		if (useBigFire)
+		if (useBigStar)
+			sprite->SetAnimation((int)(look == Look::RIGHT ? PlayerAnim::FLAG_RIGHT_STAR_BIG : PlayerAnim::FLAG_LEFT_STAR_BIG));
+		else if (useBigFire)
 			sprite->SetAnimation((int)(look == Look::RIGHT ? PlayerAnim::FLAG_RIGHT_FIRE : PlayerAnim::FLAG_LEFT_FIRE));
 		else if (useBig)
 			sprite->SetAnimation((int)(look == Look::RIGHT ? PlayerAnim::FLAG_RIGHT_BIG : PlayerAnim::FLAG_LEFT_BIG));
@@ -944,7 +936,6 @@ void Player::SetAnimationByState()
 		else
 			sprite->SetAnimation((int)(look == Look::RIGHT ? PlayerAnim::FLAG_RIGHT : PlayerAnim::FLAG_LEFT));
 		break;
-
 	default:
 		break;
 	}

@@ -384,19 +384,19 @@ void Scene::CheckObjectCollisions()
 			if ((*it)->GetType() == ObjectType::MUSHROOM)
 			{
 				player->MushroomPower();
-				PlaySound(player->powerUpSound); //TODO:: POWER UP SOUNDS NOT WORKING?
+				PlaySound(player->powerUpSound);
 			}
 			// Detectar el tipo de objeto
 			else if ((*it)->GetType() == ObjectType::FLOWER)
 			{
 				player->FirePower();
-				PlaySound(player->powerUpSound); //TODO:: POWER UP SOUNDS NOT WORKING?
+				PlaySound(player->powerUpSound);
 			}
 			// Detectar el tipo de objeto
 			else if ((*it)->GetType() == ObjectType::STAR)
 			{
 				player->StarPower();
-				PlaySound(player->powerUpSound); //TODO:: POWER UP SOUNDS NOT WORKING?
+				PlaySound(player->powerUpSound);
 			}
 			else if ((*it)->GetType() == ObjectType::COIN)
 			{
