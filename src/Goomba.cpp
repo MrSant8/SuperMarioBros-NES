@@ -128,7 +128,6 @@ bool Goomba::Update(const AABB& box)
 			return false;
 		}
 		sprite->Update();
-
 		return shoot;
 	
 }

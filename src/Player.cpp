@@ -601,11 +601,11 @@ void Player::MoveY()
 				// Check for special teleportation positions
 				if (pos.x >= 734 && pos.x <= 754 && pos.y == 143)
 				{
-					// Teleport to the specified position
 					pos.x = 770+16;
 					pos.y = 255;
 					teletransportation = true;
-					Stop(); // Reset player state
+					PlaySound(pipeSound);
+					Stop();
 					return;
 				}
 				box = GetHitbox();

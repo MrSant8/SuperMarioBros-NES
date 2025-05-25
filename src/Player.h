@@ -116,6 +116,7 @@ public:
     Sound powerUpSound;
     Sound pipeSound;
     Sound fireballSound;
+    Sound flagPole;
 
     bool stopMusic = false;
 
