@@ -63,7 +63,7 @@ public:
     int GetScore();
     void UpdateTime(float deltaTime);
     int GetTime();
-
+    void DecrTime(int amount); 
     void StartDeath();
 
     void Update();
@@ -100,6 +100,9 @@ public:
     bool IsInvincible() const { return invincibleTimer > 0.0f; }
     void SetInvincible(float duration) { invincibleTimer = duration; }
 public:
+
+    bool convertingTimeToScore = false;
+    int timeToScoreCounter = 0; 
 
     State state;
 

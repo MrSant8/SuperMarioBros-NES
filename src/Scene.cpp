@@ -304,13 +304,26 @@ void Scene::Update()
 	}
 
 	if (level->disappear) {
-		player->IncrScore(player->GetTime() * 10);
-		if (player->GetTime() <= 0) {
-			win = true;
-			return;
-		}
+		player->convertingTimeToScore = true;
 	}
 
+	if (player->convertingTimeToScore) {
+		player->timeToScoreCounter++;
+
+		if (player->timeToScoreCounter >= 1) {
+			player->timeToScoreCounter = 0;
+
+			if (player->GetTime() > 0) {
+				player->DecrTime(1);           
+				player->IncrScore(2);          
+			}
+			else {
+				player->convertingTimeToScore = false;
+				win = true;
+				return;
+			}
+		}
+	}
 	//Win
 	//Rectangle winRect = { (float)3152, (float)176, (float)16, (float)16 };
 
