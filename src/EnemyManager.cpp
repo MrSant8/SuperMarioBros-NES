@@ -231,7 +231,6 @@ void EnemyManager::CheckPlayerCollision(const AABB& playerHitbox, const Point& p
 				if (player->isFireMario) {
 					PlaySound(player->pipeSound);
 					player->isFireMario = false;
-					player->isBigMario = true;
 					player->SetInvincible(2.0f); 
 				}
 				else if (player->isBigMario) {

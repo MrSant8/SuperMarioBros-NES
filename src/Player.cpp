@@ -44,9 +44,9 @@ AppStatus Player::Initialise()
 	// ----------- BIG MARIO ANIMATIONS ------------------------//
 	// Idle
 	sprite->SetAnimationDelay((int)PlayerAnim::IDLE_RIGHT_BIG, ANIM_DELAY);
-	sprite->AddKeyFrame((int)PlayerAnim::IDLE_RIGHT_BIG, { 0, 32, n, n }); // Big Mario is 32 pixels below small Mario
+	sprite->AddKeyFrame((int)PlayerAnim::IDLE_RIGHT_BIG, { 0, 32, n, n }); 
 	sprite->SetAnimationDelay((int)PlayerAnim::IDLE_LEFT_BIG, ANIM_DELAY);
-	sprite->AddKeyFrame((int)PlayerAnim::IDLE_LEFT_BIG, { 0, 32, -n, n }); // Negative width for left-facing
+	sprite->AddKeyFrame((int)PlayerAnim::IDLE_LEFT_BIG, { 0, 32, -n, n });
 
 	// Walk
 	sprite->SetAnimationDelay((int)PlayerAnim::WALKING_RIGHT_BIG, ANIM_DELAY);
@@ -388,9 +388,11 @@ void Player::Update()
 {
 	if (IsKeyDown(KEY_DOWN) && isBigMario && state != State::JUMPING && state != State::FALLING && state != State::CLIMBING) {
 		state = State::CROUCHING;
+		ChangeColliderSize();
 	}
 	else if (IsKeyUp(KEY_DOWN) && isBigMario && state != State::JUMPING && state != State::FALLING && state != State::CLIMBING)
 		{
+			ChangeColliderSize();
 			state = State::IDLE;
 		}
 	if (isStarMario) {
@@ -964,7 +966,7 @@ void Player::ChangeColliderSize()
 	{
 		height = 32;
 	}
-	else if (isBigMario && isCrouching)
+	else if ( (isBigMario&&isFireMario||isStarMario) && isCrouching || isBigMario && isCrouching)
 	{
 		height = 22;
 	}
