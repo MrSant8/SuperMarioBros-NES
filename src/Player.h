@@ -199,4 +199,11 @@ private:
     bool lastUseBig = false;
     bool lastUseSmallStar = false;
     bool lastUseSmallFire = false;
+
+    //POWER UPS
+    bool useBigStar = false;
+    bool useBigFire = false;
+    bool useSmallFire = false;
+    bool useBig = false;
+    bool useSmallStar = false;
 };

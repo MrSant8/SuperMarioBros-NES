@@ -77,7 +77,7 @@ AppStatus Player::Initialise()
 	sprite->SetAnimationDelay((int)PlayerAnim::FLAG_LEFT_BIG, ANIM_DELAY);
 	sprite->AddKeyFrame((int)PlayerAnim::FLAG_LEFT_BIG, { n * 2, n, n, n });
 	sprite->SetAnimationDelay((int)PlayerAnim::FLAG_RIGHT_BIG, ANIM_DELAY);
-	sprite->AddKeyFrame((int)PlayerAnim::FLAG_RIGHT_BIG, { n * 2, n, -n, n });
+	sprite->AddKeyFrame((int)PlayerAnim::FLAG_RIGHT_BIG, { n * 15, n*4, n, n });
 
 
 	// ----------- FIRE MARIO ANIMATIONS -------------------------//
@@ -113,7 +113,7 @@ AppStatus Player::Initialise()
 	sprite->AddKeyFrame((int)PlayerAnim::CROUCH_FIRE_RIGHT, { n * 7, 2 *n, n, n });
 	// Flag
 	sprite->SetAnimationDelay((int)PlayerAnim::FLAG_LEFT_FIRE, ANIM_DELAY);
-	sprite->AddKeyFrame((int)PlayerAnim::FLAG_LEFT_FIRE, { n * 4, n, -n, n });
+	sprite->AddKeyFrame((int)PlayerAnim::FLAG_LEFT_FIRE, { n * 8, n*4, n, n });
 	sprite->SetAnimationDelay((int)PlayerAnim::FLAG_RIGHT_FIRE, ANIM_DELAY);
 	sprite->AddKeyFrame((int)PlayerAnim::FLAG_RIGHT_FIRE, { n * 4, n, n, n });
 
@@ -435,7 +435,7 @@ void Player::Update()
 
 	if (map->LowerFlag && !map->flagFullyLowered)
 	{
-		pos.x = 3153;
+		pos.x = 3155;
 		if (pos.y > 191) {
 			pos.y = 191;
 		}
@@ -455,37 +455,29 @@ void Player::Update()
 			flagSoundPlayed = true;
 		}
 	}
-	else {
-		if (state == State::FLAG)
-		{
-			pos.x = 3157;
-			if (pos.y > 191) {
-				pos.y = 191;
-			}
-
-			// Fix: assign state properly instead of comparing
-			state = State::IDLE;
-			PlayerAnim anim;
-
-			if (IsLookingRight()) {
-				if (isBigMario) {
-					SetAnimation((int)PlayerAnim::FLAG_LEFT_BIG);
-				}
-				else {
-					SetAnimation((int)PlayerAnim::FLAG_LEFT);
-				}
-
-			}
-			else {
-				if (isBigMario) {
-					SetAnimation((int)PlayerAnim::FLAG_RIGHT_BIG);
-				}
-				else {
-					SetAnimation((int)PlayerAnim::FLAG_RIGHT);
-				}
-			}
-			walkingcastle = true;
+	else if(map->LowerFlag && map->flagFullyLowered && !walkingcastle) {
+		
+		pos.x = 3157;
+		if (pos.y > 191) {
+			pos.y = 191;
 		}
+
+		// Fix: assign state properly instead of comparing
+		state = State::IDLE;
+
+		if (useBigFire)
+			SetAnimation((int)(look == Look::LEFT ? PlayerAnim::FLAG_RIGHT_FIRE : PlayerAnim::FLAG_LEFT_FIRE));
+		else if (useBig)
+			SetAnimation((int)(look == Look::LEFT ? PlayerAnim::FLAG_RIGHT_BIG : PlayerAnim::FLAG_LEFT_BIG));
+		else if (useSmallStar)
+			SetAnimation((int)(look == Look::LEFT ? PlayerAnim::FLAG_RIGHT_STAR : PlayerAnim::FLAG_LEFT_STAR));
+		else if (useSmallFire)
+			SetAnimation((int)(look == Look::LEFT ? PlayerAnim::FLAG_RIGHT_FIRE_SMALL : PlayerAnim::FLAG_LEFT_FIRE_SMALL));
+		else
+			SetAnimation((int)(look == Look::LEFT ? PlayerAnim::FLAG_RIGHT : PlayerAnim::FLAG_LEFT));
+
+		walkingcastle = true;
+		
 	}
 	if (walkingcastle)
 	{
@@ -820,12 +812,6 @@ Vector2 Player::GetVelocity() const {
 }
 void Player::SetAnimationByState()
 {
-	bool useBigStar = false;
-	bool useBigFire = false;
-	bool useSmallFire = false;
-	bool useBig = false;
-	bool useSmallStar = false;
-
 	// Prioridad: Star > Fire > Big > Small
 	if (isStarMario && isBigMario) {
 		useBigStar = true;
