@@ -41,18 +41,179 @@ AppStatus Player::Initialise()
 	Sprite* sprite = dynamic_cast<Sprite*>(render);
 	sprite->SetNumberAnimations((int)PlayerAnim::NUM_ANIMATIONS);
 
-	// Animaciones básicas
+	// ----------- BIG MARIO ANIMATIONS ------------------------//
+	// Idle
 	sprite->SetAnimationDelay((int)PlayerAnim::IDLE_RIGHT_BIG, ANIM_DELAY);
 	sprite->AddKeyFrame((int)PlayerAnim::IDLE_RIGHT_BIG, { 0, 32, n, n }); // Big Mario is 32 pixels below small Mario
 	sprite->SetAnimationDelay((int)PlayerAnim::IDLE_LEFT_BIG, ANIM_DELAY);
 	sprite->AddKeyFrame((int)PlayerAnim::IDLE_LEFT_BIG, { 0, 32, -n, n }); // Negative width for left-facing
 
+	// Walk
+	sprite->SetAnimationDelay((int)PlayerAnim::WALKING_RIGHT_BIG, ANIM_DELAY);
+	for (int i = 0; i < 8; ++i)
+		sprite->AddKeyFrame((int)PlayerAnim::WALKING_RIGHT_BIG, { (float)i * n, 6 * n, n, n });
+	sprite->SetAnimationDelay((int)PlayerAnim::WALKING_LEFT_BIG, ANIM_DELAY);
+	for (int i = 0; i < 8; ++i)
+		sprite->AddKeyFrame((int)PlayerAnim::WALKING_LEFT_BIG, { (float)i * n, 6 * n, -n, n });
+
+	// Jump
+	sprite->SetAnimationDelay((int)PlayerAnim::JUMPING_RIGHT_BIG, ANIM_DELAY);
+	sprite->AddKeyFrame((int)PlayerAnim::JUMPING_RIGHT_BIG, { 32, 32, n, n }); 
+	sprite->SetAnimationDelay((int)PlayerAnim::JUMPING_LEFT_BIG, ANIM_DELAY);
+	sprite->AddKeyFrame((int)PlayerAnim::JUMPING_LEFT_BIG, { 32, 32, -n, n });
+
+	// Fall
+	sprite->SetAnimationDelay((int)PlayerAnim::FALLING_RIGHT_BIG, ANIM_DELAY);
+	sprite->AddKeyFrame((int)PlayerAnim::FALLING_RIGHT_BIG, { 32, 32, n, n });
+	sprite->SetAnimationDelay((int)PlayerAnim::FALLING_LEFT_BIG, ANIM_DELAY);
+	sprite->AddKeyFrame((int)PlayerAnim::FALLING_LEFT_BIG, { 32, 32, -n, n });
+
+	//Crouch
+	sprite->SetAnimationDelay((int)PlayerAnim::CROUCH_BIG_LEFT, ANIM_DELAY);
+	sprite->AddKeyFrame((int)PlayerAnim::CROUCH_BIG_LEFT, { n * 3, n, -n, n });
+	sprite->SetAnimationDelay((int)PlayerAnim::CROUCH_BIG_RIGHT, ANIM_DELAY);
+	sprite->AddKeyFrame((int)PlayerAnim::CROUCH_BIG_RIGHT, { n * 3, n, n, n });
+	// Flag
+	sprite->SetAnimationDelay((int)PlayerAnim::FLAG_LEFT_BIG, ANIM_DELAY);
+	sprite->AddKeyFrame((int)PlayerAnim::FLAG_LEFT_BIG, { n * 2, n, n, n });
+	sprite->SetAnimationDelay((int)PlayerAnim::FLAG_RIGHT_BIG, ANIM_DELAY);
+	sprite->AddKeyFrame((int)PlayerAnim::FLAG_RIGHT_BIG, { n * 2, n, -n, n });
+
+
+	// ----------- FIRE MARIO ANIMATIONS -------------------------//
+	// Idle 
+	sprite->SetAnimationDelay((int)PlayerAnim::IDLE_RIGHT_FIRE, ANIM_DELAY);
+	sprite->AddKeyFrame((int)PlayerAnim::IDLE_RIGHT_FIRE, { 0, 2 * n, n, n });
+	sprite->SetAnimationDelay((int)PlayerAnim::IDLE_LEFT_FIRE, ANIM_DELAY);
+	sprite->AddKeyFrame((int)PlayerAnim::IDLE_LEFT_FIRE, { 0, 2*n, -n, n }); 
+
+	// Walk
+	sprite->SetAnimationDelay((int)PlayerAnim::WALKING_RIGHT_FIRE, ANIM_DELAY);
+	for (int i = 0; i < 5; ++i)
+		sprite->AddKeyFrame((int)PlayerAnim::WALKING_RIGHT_FIRE, { (float)i * n, 2 * n, n, n });
+	sprite->SetAnimationDelay((int)PlayerAnim::WALKING_LEFT_FIRE, ANIM_DELAY);
+	for (int i = 0; i < 5; ++i)
+		sprite->AddKeyFrame((int)PlayerAnim::WALKING_LEFT_FIRE, { (float)i * n, 2 * n, -n, n });
+
+	// Jump
+	sprite->SetAnimationDelay((int)PlayerAnim::JUMPING_RIGHT_FIRE, ANIM_DELAY);
+	sprite->AddKeyFrame((int)PlayerAnim::JUMPING_RIGHT_FIRE, { 6 * n, 2 * n, n, n });
+	sprite->SetAnimationDelay((int)PlayerAnim::JUMPING_LEFT_FIRE, ANIM_DELAY);
+	sprite->AddKeyFrame((int)PlayerAnim::JUMPING_LEFT_FIRE, { 6 * n, 2 * n, -n, n });
+
+	// Fall
+	sprite->SetAnimationDelay((int)PlayerAnim::FALLING_RIGHT_FIRE, ANIM_DELAY);
+	sprite->AddKeyFrame((int)PlayerAnim::FALLING_RIGHT_FIRE, { 6 * n, 2 * n, n, n });
+	sprite->SetAnimationDelay((int)PlayerAnim::FALLING_LEFT_FIRE, ANIM_DELAY);
+	sprite->AddKeyFrame((int)PlayerAnim::FALLING_LEFT_FIRE, { 6 * n, 2 * n, -n, n });
+	// Crouch
+	sprite->SetAnimationDelay((int)PlayerAnim::CROUCH_FIRE_LEFT, ANIM_DELAY);
+	sprite->AddKeyFrame((int)PlayerAnim::CROUCH_FIRE_LEFT, { n * 7, 2*n, -n, n });
+	sprite->SetAnimationDelay((int)PlayerAnim::CROUCH_FIRE_RIGHT, ANIM_DELAY);
+	sprite->AddKeyFrame((int)PlayerAnim::CROUCH_FIRE_RIGHT, { n * 7, 2 *n, n, n });
+	// Flag
+	sprite->SetAnimationDelay((int)PlayerAnim::FLAG_LEFT_FIRE, ANIM_DELAY);
+	sprite->AddKeyFrame((int)PlayerAnim::FLAG_LEFT_FIRE, { n * 4, n, -n, n });
+	sprite->SetAnimationDelay((int)PlayerAnim::FLAG_RIGHT_FIRE, ANIM_DELAY);
+	sprite->AddKeyFrame((int)PlayerAnim::FLAG_RIGHT_FIRE, { n * 4, n, n, n });
+
+	// ----------- BIG STAR MARIO ANIMATIONS -------------------------//
+	// Idle 
+	sprite->SetAnimationDelay((int)PlayerAnim::IDLE_RIGHT_STAR_BIG, ANIM_DELAY);
+	for (int i = 0; i < 3; ++i)
+		sprite->AddKeyFrame((int)PlayerAnim::IDLE_RIGHT_STAR_BIG, { (float)i * n, 3 * n, n, n });
+	sprite->SetAnimationDelay((int)PlayerAnim::IDLE_LEFT_STAR_BIG, ANIM_DELAY);
+	for (int i = 0; i < 3; ++i)
+		sprite->AddKeyFrame((int)PlayerAnim::IDLE_LEFT_STAR_BIG, { (float)i * n, 3 * n, -n, n });
+
+	// Walk
+	sprite->SetAnimationDelay((int)PlayerAnim::WALKING_RIGHT_STAR_BIG, ANIM_DELAY);
+	for (int i = 4; i < 15; ++i)
+		sprite->AddKeyFrame((int)PlayerAnim::WALKING_RIGHT_STAR_BIG, { (float)i * n, 3 * n, n, n });
+	sprite->SetAnimationDelay((int)PlayerAnim::WALKING_LEFT_STAR_BIG, ANIM_DELAY);
+	for (int i = 4; i < 15; ++i)
+		sprite->AddKeyFrame((int)PlayerAnim::WALKING_LEFT_STAR_BIG, { (float)i * n, 3 * n, -n, n });
+
+	// Jump
+	sprite->SetAnimationDelay((int)PlayerAnim::JUMPING_RIGHT_STAR_BIG, ANIM_DELAY);
+	for (int i = 16; i < 19; ++i)
+		sprite->AddKeyFrame((int)PlayerAnim::JUMPING_RIGHT_STAR_BIG, { (float)i * n, 3 * n, n, n });
+	sprite->SetAnimationDelay((int)PlayerAnim::JUMPING_LEFT_STAR_BIG, ANIM_DELAY);
+	for (int i = 16; i < 19; ++i)
+		sprite->AddKeyFrame((int)PlayerAnim::JUMPING_LEFT_STAR_BIG, { (float)i * n, 3 * n, -n, n });
+
+	// Fall
+	sprite->SetAnimationDelay((int)PlayerAnim::FALLING_RIGHT_STAR_BIG, ANIM_DELAY);
+	for (int i = 16; i < 19; ++i)
+		sprite->AddKeyFrame((int)PlayerAnim::FALLING_RIGHT_STAR_BIG, { (float)i * n, 3 * n, n, n });
+	sprite->SetAnimationDelay((int)PlayerAnim::FALLING_LEFT_STAR_BIG, ANIM_DELAY);
+	for (int i = 16; i < 19; ++i)
+		sprite->AddKeyFrame((int)PlayerAnim::FALLING_LEFT_STAR_BIG, { (float)i * n, 3 * n, -n, n });
+
+	// Crouch
+	sprite->SetAnimationDelay((int)PlayerAnim::CROUCH_STAR_RIGHT, ANIM_DELAY);
+	for (int i = 8; i < 11; ++i)
+		sprite->AddKeyFrame((int)PlayerAnim::CROUCH_STAR_RIGHT, { (float)i * n, 2 * n, n, n });
+	sprite->SetAnimationDelay((int)PlayerAnim::CROUCH_STAR_LEFT, ANIM_DELAY);
+	for (int i = 8; i < 11; ++i)
+		sprite->AddKeyFrame((int)PlayerAnim::CROUCH_STAR_LEFT, { (float)i * n, 2 * n, -n, n });
+
+	// Flag
+	sprite->SetAnimationDelay((int)PlayerAnim::FLAG_RIGHT_STAR_BIG, ANIM_DELAY);
+	for (int i = 12; i < 15; ++i)
+		sprite->AddKeyFrame((int)PlayerAnim::FLAG_RIGHT_STAR_BIG, { (float)i * n, 4 * n, n, n });
+	sprite->SetAnimationDelay((int)PlayerAnim::FLAG_LEFT_STAR_BIG, ANIM_DELAY);
+	for (int i = 12; i < 15; ++i)
+		sprite->AddKeyFrame((int)PlayerAnim::FLAG_LEFT_STAR_BIG, { (float)i * n, 4 * n, -n, n });
+
+	// ----------- SMALL STAR MARIO ANIMATIONS -------------------------//
+	// Idle 
+	sprite->SetAnimationDelay((int)PlayerAnim::IDLE_RIGHT_STAR, ANIM_DELAY);
+	for (int i = 4; i < 7; ++i)
+		sprite->AddKeyFrame((int)PlayerAnim::IDLE_RIGHT_STAR, { (float)i * n, 0, n, n });
+	sprite->SetAnimationDelay((int)PlayerAnim::IDLE_LEFT_STAR, ANIM_DELAY);
+	for (int i = 4; i < 7; ++i)
+		sprite->AddKeyFrame((int)PlayerAnim::IDLE_LEFT_STAR, { (float)i * n, 0, -n, n });
+
+	// Walk
+	sprite->SetAnimationDelay((int)PlayerAnim::WALKING_RIGHT_STAR, ANIM_DELAY);
+	for (int i = 8; i < 19; ++i)
+		sprite->AddKeyFrame((int)PlayerAnim::WALKING_RIGHT_STAR, { (float)i * n, 0, n, n });
+	sprite->SetAnimationDelay((int)PlayerAnim::WALKING_LEFT_STAR, ANIM_DELAY);
+	for (int i = 8; i < 19; ++i)
+		sprite->AddKeyFrame((int)PlayerAnim::WALKING_LEFT_STAR, { (float)i * n, 0, -n, n });
+
+	// Jump
+	sprite->SetAnimationDelay((int)PlayerAnim::JUMPING_RIGHT_STAR, ANIM_DELAY);
+	for (int i = 5; i < 8; ++i)
+		sprite->AddKeyFrame((int)PlayerAnim::JUMPING_RIGHT_STAR, { (float)i * n, n, n, n });
+	sprite->SetAnimationDelay((int)PlayerAnim::JUMPING_LEFT_STAR, ANIM_DELAY);
+	for (int i = 5; i < 8; ++i)
+		sprite->AddKeyFrame((int)PlayerAnim::JUMPING_LEFT_STAR, { (float)i * n, n, -n, n });
+
+	// Fall
+	sprite->SetAnimationDelay((int)PlayerAnim::FALLING_RIGHT_STAR, ANIM_DELAY);
+	for (int i = 5; i < 8; ++i)
+		sprite->AddKeyFrame((int)PlayerAnim::FALLING_RIGHT_STAR, { (float)i * n, n, n, n });
+	sprite->SetAnimationDelay((int)PlayerAnim::FALLING_LEFT_STAR, ANIM_DELAY);
+	for (int i = 5; i < 8; ++i)
+		sprite->AddKeyFrame((int)PlayerAnim::FALLING_LEFT_STAR, { (float)i * n, n, -n, n });
+
+	// Flag
+	sprite->SetAnimationDelay((int)PlayerAnim::JUMPING_RIGHT_STAR, ANIM_DELAY);
+	for (int i = 9; i < 12; ++i)
+		sprite->AddKeyFrame((int)PlayerAnim::JUMPING_RIGHT_STAR, { (float)i * n, n, n, n });
+	sprite->SetAnimationDelay((int)PlayerAnim::JUMPING_LEFT_STAR, ANIM_DELAY);
+	for (int i = 9; i < 12; ++i)
+		sprite->AddKeyFrame((int)PlayerAnim::JUMPING_LEFT_STAR, { (float)i * n, n, -n, n });
+
+	// ----------- SMALL MARIO ANIMATIONS ------------------------//
 	sprite->SetAnimationDelay((int)PlayerAnim::IDLE_RIGHT, ANIM_DELAY);
 	sprite->AddKeyFrame((int)PlayerAnim::IDLE_RIGHT, { 0, 0, n, n });
 	sprite->SetAnimationDelay((int)PlayerAnim::IDLE_LEFT, ANIM_DELAY);
 	sprite->AddKeyFrame((int)PlayerAnim::IDLE_LEFT, { 0, 0, -n, n });
 
-// Walk mario low
+	// Walk
 	sprite->SetAnimationDelay((int)PlayerAnim::WALKING_RIGHT, ANIM_DELAY);
 	for (int i = 0; i < 8; ++i)
 		sprite->AddKeyFrame((int)PlayerAnim::WALKING_RIGHT, { (float)i * n, 4 * n, n, n });
@@ -62,32 +223,16 @@ AppStatus Player::Initialise()
 		sprite->AddKeyFrame((int)PlayerAnim::WALKING_LEFT, { (float)i * n, 4 * n, -n, n });
 
 
-
-// Walk mario big
-	sprite->SetAnimationDelay((int)PlayerAnim::WALKING_RIGHT_BIG, ANIM_DELAY);
-	for (int i = 0; i < 8; ++i)
-		sprite->AddKeyFrame((int)PlayerAnim::WALKING_RIGHT_BIG, { (float)i * n, 6 * n, n, n });
-
-	sprite->SetAnimationDelay((int)PlayerAnim::WALKING_LEFT_BIG, ANIM_DELAY);
-	for (int i = 0; i < 8; ++i)
-		sprite->AddKeyFrame((int)PlayerAnim::WALKING_LEFT_BIG, { (float)i * n, 6 * n, -n, n });
-// Walk mario big
-
-
-
-
 	sprite->SetAnimationDelay((int)PlayerAnim::FALLING_RIGHT, ANIM_DELAY);
-	sprite->AddKeyFrame((int)PlayerAnim::FALLING_RIGHT, { 2 * n, 5 * n, n, n });
-	sprite->AddKeyFrame((int)PlayerAnim::FALLING_RIGHT, { 3 * n, 5 * n, n, n });
+	sprite->AddKeyFrame((int)PlayerAnim::FALLING_RIGHT, {n, 5 * n, n, n });
 
 	sprite->SetAnimationDelay((int)PlayerAnim::FALLING_LEFT, ANIM_DELAY);
-	sprite->AddKeyFrame((int)PlayerAnim::FALLING_LEFT, { 2 * n, 5 * n, -n, n });
-	sprite->AddKeyFrame((int)PlayerAnim::FALLING_LEFT, { 3 * n, 5 * n, -n, n });
+	sprite->AddKeyFrame((int)PlayerAnim::FALLING_LEFT, {n, 5 * n, -n, n });
 
 	sprite->SetAnimationDelay((int)PlayerAnim::JUMPING_RIGHT, ANIM_DELAY);
-	sprite->AddKeyFrame((int)PlayerAnim::JUMPING_RIGHT, { 0, 5 * n, n, n });
+	sprite->AddKeyFrame((int)PlayerAnim::JUMPING_RIGHT, { n, 5 * n, n, n });
 	sprite->SetAnimationDelay((int)PlayerAnim::JUMPING_LEFT, ANIM_DELAY);
-	sprite->AddKeyFrame((int)PlayerAnim::JUMPING_LEFT, { 0, 5 * n, -n, n });
+	sprite->AddKeyFrame((int)PlayerAnim::JUMPING_LEFT, { n, 5 * n, -n, n });
 
 	sprite->SetAnimationDelay((int)PlayerAnim::LEVITATING_RIGHT, ANIM_DELAY);
 	sprite->AddKeyFrame((int)PlayerAnim::LEVITATING_RIGHT, { n, 5 * n, n, n });
@@ -113,14 +258,9 @@ AppStatus Player::Initialise()
 	sprite->SetAnimationDelay((int)PlayerAnim::FLAG_RIGHT, ANIM_DELAY);
 	sprite->AddKeyFrame((int)PlayerAnim::FLAG_RIGHT, { n * 3, 0, n, n });
 
-	sprite->SetAnimationDelay((int)PlayerAnim::FLAG_LEFT_BIG, ANIM_DELAY);
-	sprite->AddKeyFrame((int)PlayerAnim::FLAG_LEFT_BIG, { n * 2, n, n, n });
-
-	sprite->SetAnimationDelay((int)PlayerAnim::FLAG_RIGHT_BIG, ANIM_DELAY);
-	sprite->AddKeyFrame((int)PlayerAnim::FLAG_RIGHT_BIG, { n * 3, n, n, n });
-
 	sprite->SetAnimation((int)PlayerAnim::IDLE_RIGHT);
 
+	//Sounds
 	jumpSound = LoadSound("Assets/Audio/Fx/Jump.wav");
 	dieSound = LoadSound("Assets/Audio/Fx/Die.wav");
 	coinSound = LoadSound("Assets/Audio/Fx/Coin.wav");
@@ -220,6 +360,14 @@ void Player::StartClimbingDown()
 }
 void Player::Update()
 {
+	if (IsKeyDown(KEY_DOWN) && isBigMario && state != State::JUMPING && state != State::FALLING && state != State::CLIMBING) {
+		state = State::CROUCHING;
+	}
+	else if (IsKeyUp(KEY_DOWN) && isBigMario && state != State::JUMPING && state != State::FALLING && state != State::CLIMBING)
+		{
+			state = State::IDLE;
+		}
+	SetAnimationByState();
 	if (isStarMario) {
 		StarPower();
 	}
@@ -235,7 +383,7 @@ void Player::Update()
 
 	//Hit Cooldown
 	if (invincibleTimer > 0.0f) {
-		invincibleTimer -= GetFrameTime(); 
+		invincibleTimer -= GetFrameTime();
 	}
 
 	if (map->disappear) {
@@ -292,7 +440,7 @@ void Player::Update()
 			// Fix: assign state properly instead of comparing
 			state = State::IDLE;
 			PlayerAnim anim;
-			
+
 			if (IsLookingRight()) {
 				if (isBigMario) {
 					SetAnimation((int)PlayerAnim::FLAG_LEFT_BIG);
@@ -302,9 +450,6 @@ void Player::Update()
 				}
 
 			}
-				
-
-
 			else {
 				if (isBigMario) {
 					SetAnimation((int)PlayerAnim::FLAG_RIGHT_BIG);
@@ -313,27 +458,19 @@ void Player::Update()
 					SetAnimation((int)PlayerAnim::FLAG_RIGHT);
 				}
 			}
-
-
 			walkingcastle = true;
 		}
-		
 	}
-
-
-	if (walkingcastle) 
+	if (walkingcastle)
 	{
 
 		timee--;
 		if (timee <= 0) {
 			MoveX();
 		}
-		
-
 	}
 	else {
 		MoveX();
-		//SetAnimationByState();
 		ChangeColliderSize();
 		UpdateTime(GetFrameTime());
 	}
@@ -353,7 +490,7 @@ void Player::MoveX()
 
 	// We can only go up and down while climbing
 	if (state == State::CLIMBING) return;
-
+	
 	if (IsKeyDown(KEY_LEFT) && !IsKeyDown(KEY_RIGHT))
 	{
 		if ((pos.x - current_speed) > 0) {
@@ -413,6 +550,7 @@ void Player::MoveX()
 	{
 		if (state == State::WALKING) Stop();
 	}
+	SetAnimationByState();
 }
 
 void Player::MoveY()
@@ -486,7 +624,6 @@ void Player::MoveY()
 		}
 		else
 		{
-			
 			if (state != State::FALLING) StartFalling();
 		}
 	}
@@ -563,8 +700,6 @@ void Player::LogicClimbing()
 		sprite->PrevFrame();
 	}
 
-	//It is important to first check LadderTop due to its condition as a collision ground.
-	//By doing so, we ensure that we don't stop climbing down immediately after starting the descent.
 	box = GetHitbox();
 	if (map->TestOnLadderTop(box, &tmp))
 	{
@@ -676,41 +811,104 @@ Vector2 Player::GetVelocity() const {
 }
 void Player::SetAnimationByState()
 {
-	PlayerAnim anim;
-	
-	if (look == Look::RIGHT)
-	{
-		switch (state)
-		{
-		case State::IDLE: anim = isBigMario ? PlayerAnim::IDLE_RIGHT_BIG : PlayerAnim::IDLE_RIGHT; break;
-		case State::WALKING: anim = isBigMario ? PlayerAnim::WALKING_RIGHT_BIG : PlayerAnim::WALKING_RIGHT; break;
-		case State::JUMPING: anim = PlayerAnim::JUMPING_RIGHT; break;
-		case State::FALLING: anim = PlayerAnim::FALLING_RIGHT; break;
-		case State::FLAG: anim = isBigMario ? PlayerAnim::FLAG_RIGHT_BIG : PlayerAnim::FLAG_RIGHT; break;
-		default: return;
-		}
-	}
-	else
-	{
-		switch (state)
-		{
-		case State::IDLE: anim = isBigMario ? PlayerAnim::IDLE_LEFT_BIG : PlayerAnim::IDLE_LEFT; break;
-		case State::WALKING: anim = isBigMario ? PlayerAnim::WALKING_LEFT_BIG : PlayerAnim::WALKING_LEFT; break;
-		case State::JUMPING: anim = PlayerAnim::JUMPING_LEFT; break;
-		case State::FALLING: anim = PlayerAnim::FALLING_LEFT; break;
-		case State::FLAG: anim = isBigMario ? PlayerAnim::FLAG_LEFT_BIG : PlayerAnim::FLAG_LEFT; break;
+	Sprite* sprite = dynamic_cast<Sprite*>(render);
 
-		default: return;
-		}
+	if (playerisDead) {
+		sprite->SetAnimation((int)PlayerAnim::DEAD);
+		return;
 	}
 
-	SetAnimation((int)anim);
+	// Prioridad: Star > Fire > Big > Small
+	bool bigStar = isStarMario && isBigMario;
+	bool bigFire = isFireMario && !isStarMario && isBigMario;
+	bool big = isBigMario && !isFireMario && !isStarMario;
+	bool smallStar = isStarMario && !isBigMario && !isFireMario;
+
+	switch (state)
+	{
+	case State::IDLE:
+		if (bigStar)
+			sprite->SetAnimation((int)(look == Look::RIGHT ? PlayerAnim::IDLE_RIGHT_STAR_BIG : PlayerAnim::IDLE_LEFT_STAR_BIG));
+		else if (bigFire)
+			sprite->SetAnimation((int)(look == Look::RIGHT ? PlayerAnim::IDLE_RIGHT_FIRE : PlayerAnim::IDLE_LEFT_FIRE));
+		else if (big)
+			sprite->SetAnimation((int)(look == Look::RIGHT ? PlayerAnim::IDLE_RIGHT_BIG : PlayerAnim::IDLE_LEFT_BIG));
+		else if (smallStar)
+			sprite->SetAnimation((int)(look == Look::RIGHT ? PlayerAnim::IDLE_RIGHT_STAR : PlayerAnim::IDLE_LEFT_STAR));
+		else
+			sprite->SetAnimation((int)(look == Look::RIGHT ? PlayerAnim::IDLE_RIGHT : PlayerAnim::IDLE_LEFT));
+		break;
+
+	case State::WALKING:
+		if (bigStar)
+			sprite->SetAnimation((int)(look == Look::RIGHT ? PlayerAnim::WALKING_RIGHT_STAR_BIG : PlayerAnim::WALKING_LEFT_STAR_BIG));
+		else if (bigFire)
+			sprite->SetAnimation((int)(look == Look::RIGHT ? PlayerAnim::WALKING_RIGHT_FIRE : PlayerAnim::WALKING_LEFT_FIRE));
+		else if (big)
+			sprite->SetAnimation((int)(look == Look::RIGHT ? PlayerAnim::WALKING_RIGHT_BIG : PlayerAnim::WALKING_LEFT_BIG));
+		else if (smallStar)
+			sprite->SetAnimation((int)(look == Look::RIGHT ? PlayerAnim::WALKING_RIGHT_STAR : PlayerAnim::WALKING_LEFT_STAR));
+		else
+			sprite->SetAnimation((int)(look == Look::RIGHT ? PlayerAnim::WALKING_RIGHT : PlayerAnim::WALKING_LEFT));
+		break;
+
+	case State::JUMPING:
+		if (bigStar)
+			sprite->SetAnimation((int)(look == Look::RIGHT ? PlayerAnim::JUMPING_RIGHT_STAR_BIG : PlayerAnim::JUMPING_LEFT_STAR_BIG));
+		else if (bigFire)
+			sprite->SetAnimation((int)(look == Look::RIGHT ? PlayerAnim::JUMPING_RIGHT_FIRE : PlayerAnim::JUMPING_LEFT_FIRE));
+		else if (big)
+			sprite->SetAnimation((int)(look == Look::RIGHT ? PlayerAnim::JUMPING_RIGHT_BIG : PlayerAnim::JUMPING_LEFT_BIG));
+		else if (smallStar)
+			sprite->SetAnimation((int)(look == Look::RIGHT ? PlayerAnim::JUMPING_RIGHT_STAR : PlayerAnim::JUMPING_LEFT_STAR));
+		else
+			sprite->SetAnimation((int)(look == Look::RIGHT ? PlayerAnim::JUMPING_RIGHT : PlayerAnim::JUMPING_LEFT));
+		break;
+
+	case State::FALLING:
+		if (bigStar)
+			sprite->SetAnimation((int)(look == Look::RIGHT ? PlayerAnim::FALLING_RIGHT_STAR_BIG : PlayerAnim::FALLING_LEFT_STAR_BIG));
+		else if (bigFire)
+			sprite->SetAnimation((int)(look == Look::RIGHT ? PlayerAnim::FALLING_RIGHT_FIRE : PlayerAnim::FALLING_LEFT_FIRE));
+		else if (big)
+			sprite->SetAnimation((int)(look == Look::RIGHT ? PlayerAnim::FALLING_RIGHT_BIG : PlayerAnim::FALLING_LEFT_BIG));
+		else if (smallStar)
+			sprite->SetAnimation((int)(look == Look::RIGHT ? PlayerAnim::FALLING_RIGHT_STAR : PlayerAnim::FALLING_LEFT_STAR));
+		else
+			sprite->SetAnimation((int)(look == Look::RIGHT ? PlayerAnim::FALLING_RIGHT : PlayerAnim::FALLING_LEFT));
+		break;
+
+	case State::CROUCHING:
+		if (bigFire)
+			sprite->SetAnimation((int)(look == Look::RIGHT ? PlayerAnim::CROUCH_FIRE_RIGHT : PlayerAnim::CROUCH_FIRE_LEFT));
+		else if (big)
+			sprite->SetAnimation((int)(look == Look::RIGHT ? PlayerAnim::CROUCH_BIG_RIGHT : PlayerAnim::CROUCH_BIG_LEFT));
+		break;
+
+	case State::FLAG:
+		if (bigFire)
+			sprite->SetAnimation((int)(look == Look::RIGHT ? PlayerAnim::FLAG_RIGHT_FIRE : PlayerAnim::FLAG_LEFT_FIRE));
+		else if (big)
+			sprite->SetAnimation((int)(look == Look::RIGHT ? PlayerAnim::FLAG_RIGHT_BIG : PlayerAnim::FLAG_LEFT_BIG));
+		else if (smallStar)
+			sprite->SetAnimation((int)(look == Look::RIGHT ? PlayerAnim::FLAG_RIGHT_STAR : PlayerAnim::FLAG_LEFT_STAR));
+		else
+			sprite->SetAnimation((int)(look == Look::RIGHT ? PlayerAnim::FLAG_RIGHT : PlayerAnim::FLAG_LEFT));
+		break;
+
+	default:
+		break;
+	}
 }
 void Player::ChangeColliderSize()
 {
 	if (isBigMario || isFireMario)
 	{
 		height = 32;
+	}
+	else if (isBigMario && isCrouching)
+	{
+		height = 22;
 	}
 	else
 	{
