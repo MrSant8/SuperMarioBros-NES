@@ -324,6 +324,12 @@ int Player::GetTime()
 	return time;
 }
 
+void Player::DecrTime(int amount)
+{
+	time -= amount;
+	if (time < 0) time = 0;
+}
+
 
 // Getters & Setters
 void Player::SetTileMap(TileMap* tilemap) { map = tilemap; }
