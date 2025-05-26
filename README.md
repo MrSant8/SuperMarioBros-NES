@@ -43,7 +43,7 @@ After completing the game, players can restart it to experience an increase in d
 - **SHIFT Key (or equivalent):**
   - **Run (if held down):** Makes Mario run faster. This is useful for jumping longer distances and defeating enemies.
 
-- **Z Key (or equivalent):**
+- **Left Control Key (or equivalent):**
   - **Fire (if powered up):** Shoot fireballs when Mario has the Fire Flower.
 
 - **P Key:** 
@@ -73,13 +73,23 @@ After completing the game, players can restart it to experience an increase in d
 ## List of features implemented
 - World 1-1 map & collisions
 - Enemy Goomba
+- Enemy Koopa>
+- Mario Bounce when enemy killed
+- Mario Power Up Animations
+- Power Up Items (Mushroom, Fire Flower, Starman)
+- Starman music
+- Destroy Blocks & Fx
+- Down the flag animation & Fx
+- Surprise Block & Fx
+- Lives System
+- Power Up Fx & Power Down Fx
 - Mario Animations
 - All World 1-1 SFX
 - World 1-1 music
 - Start Screen & Menu
 - Game Over Screen
 - Win Screen
-- UI
+- UI Changes
 - Timer
 - Sprint 
 - Teletransportation trough pipes
