@@ -38,12 +38,8 @@ public:
 private:
 	std::array<Shot, MAX_SHOTS> shots;
 
-	//Reference to the TileMap object
-	//This class does not own the object, it only holds a reference to it
 	TileMap *map;
 
-	//Reference to the TileMap object
-	//This class does not own the object, it only holds a reference to it
 	ParticleManager *particles;
 };
 

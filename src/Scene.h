@@ -29,7 +29,8 @@ public:
     bool win = false;
     int life = 3;
     std::vector<Object*> objects;
-
+    Player* player;
+    ShotManager* shots;
 private:
     AppStatus LoadLevel(int stage);
 
@@ -41,18 +42,14 @@ private:
     void RenderGUI() const;
 
 
-    Player* player;
+
     //Level structure that contains all the static tiles
     TileMap* level;
 
     //Dynamic objects of the level: items and collectables
 
-
     //Enemies present in the level
     EnemyManager* enemies;
-
-    //Shots thrown by enemies
-    ShotManager* shots;
 
     //Particles generated from entities interactions
     ParticleManager* particles;

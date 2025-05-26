@@ -341,6 +341,10 @@ bool Player::IsDescending() const { return dir.y > PLAYER_LEVITATING_SPEED; }
 bool Player::IsInFirstHalfTile() const { return pos.y % TILE_SIZE < TILE_SIZE / 2; }
 bool Player::IsInSecondHalfTile() const { return pos.y % TILE_SIZE >= TILE_SIZE / 2; }
 
+void Player::SetEnemyManager(EnemyManager* enemyMgr) {
+	enemyManager = enemyMgr;
+}
+
 void Player::SetAnimation(int id) { dynamic_cast<Sprite*>(render)->SetAnimation(id); }
 PlayerAnim Player::GetAnimation() { return (PlayerAnim)dynamic_cast<Sprite*>(render)->GetAnimation(); }
 
@@ -446,19 +450,15 @@ void Player::Update()
 			pos.y = 191;
 		}
 
-		if (state != State::FLAG) // Change to FLAG state only once
+		if (state != State::FLAG)
 		{
 			state = State::FLAG;
-			if (IsLookingRight())
-				SetAnimationByState();
-			else
-				SetAnimationByState();
-		}
+			SetAnimationByState();
 
-		// Play sound only once
-		if (!flagSoundPlayed) {
-			PlaySound(flagSound);
-			flagSoundPlayed = true;
+			if (!flagSoundPlayed) {
+				PlaySound(flagSound);
+				flagSoundPlayed = true;
+			}
 		}
 	}
 	else if(map->LowerFlag && map->flagFullyLowered && !walkingcastle) {
@@ -960,5 +960,22 @@ void Player::ChangeColliderSize()
 }
 void Player::ShootFireball()
 {
-    PlaySound(fireballSound); // si tienes uno
+	if (!shotManager) return;
+
+	PlaySound(fireballSound);
+
+	Point fireballPos = { pos.x, pos.y + height / 2 };
+	Point fireballDir;
+
+	if (look == Look::RIGHT) {
+		fireballDir = { 1, 0 };
+		fireballPos.x += 12; // ajusta para que salga desde la mano derecha
+	}
+	else {
+		fireballDir = { -1, 0 };
+		fireballPos.x -= 12; // ajusta para que salga desde la mano izquierda
+	}
+
+	shotManager->Add(fireballPos, fireballDir);
+	activeFireballs++; // Aumenta el contador
 }

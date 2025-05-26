@@ -126,6 +126,8 @@ AppStatus Scene::Init() {
 	shots->SetTileMap(level);
 	// Assign the particle manager reference to the shot manager to add particles when shots collide
 	shots->SetParticleManager(particles);
+
+	player->SetShotManager(shots);
 	// Assign the shot manager reference to the enemy manager so enemies can add shots
 	enemies->SetShotManager(shots);
 

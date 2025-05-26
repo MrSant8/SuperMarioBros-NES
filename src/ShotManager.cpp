@@ -49,6 +49,7 @@ void ShotManager::Update(const AABB& player_hitbox)
 	
 	for (Shot& shot : shots)
 	{
+
 		if (shot.IsAlive())
 		{
 			//Update position
@@ -64,12 +65,13 @@ void ShotManager::Update(const AABB& player_hitbox)
 			if(!hit) hit = box.TestAABB(player_hitbox);
 
 			if(hit)
-			{
+			{ 
 				shot.SetAlive(false);
 				Point p;
 				p.x = box.pos.x - (TILE_SIZE-SHOT_PHYSICAL_WIDTH)/2;
 				p.y = box.pos.y - (TILE_SIZE-SHOT_PHYSICAL_HEIGHT)/2;
 				particles->Add(p);
+				player->activeFireballs--; // Disminuye el contador
 			}
 		}
 	}
@@ -86,3 +88,4 @@ void ShotManager::DrawDebug(const Color& col) const
 	for (const Shot& shot : shots)
 		if (shot.IsAlive()) shot.DrawHitbox(col);
 }
+

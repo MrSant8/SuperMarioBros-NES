@@ -4,7 +4,7 @@
 #include "TileMap.h"
 #include "Enemy.h"
 #include "EnemyManager.h"
-
+#include "ShotManager.h"
 
 // Visual Model: 16x16
 #define PLAYER_FRAME_SIZE        32
@@ -103,6 +103,7 @@ public:
     void ShootFireball();
     bool IsInvincible() const { return invincibleTimer > 0.0f; }
     void SetInvincible(float duration) { invincibleTimer = duration; }
+    void SetShotManager(ShotManager* manager) { this->shotManager = manager; }
 public:
 
     bool convertingTimeToScore = false;
@@ -177,12 +178,14 @@ private:
     bool IsInFirstHalfTile() const;
     bool IsInSecondHalfTile() const;
 
+    void SetEnemyManager(EnemyManager* enemyMgr);
     Look look;
     int jump_delay = 0;
 
     TileMap* map = nullptr;          
     EnemyManager* enemyManager = nullptr;
     Enemy* enemy = nullptr;
+    ShotManager* shotManager = nullptr;
 
     int score = 0;
     int time = 400;
