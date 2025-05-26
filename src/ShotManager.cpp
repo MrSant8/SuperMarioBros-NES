@@ -71,7 +71,6 @@ void ShotManager::Update(const AABB& player_hitbox)
 				p.x = box.pos.x - (TILE_SIZE-SHOT_PHYSICAL_WIDTH)/2;
 				p.y = box.pos.y - (TILE_SIZE-SHOT_PHYSICAL_HEIGHT)/2;
 				particles->Add(p);
-				player->activeFireballs--; // Disminuye el contador
 			}
 		}
 	}

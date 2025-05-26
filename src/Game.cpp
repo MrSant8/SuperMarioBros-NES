@@ -133,13 +133,19 @@ AppStatus Game::LoadResources()
         LOG("Failed to load game music");
         return AppStatus::ERROR;
     }    
-    WinMusic = LoadMusicStream("Assets/Audio/Music/smb_stage_clear.wav");
+    WinMusic = LoadMusicStream("Assets/Audio/Music/smb_world_clear.wav");
     if (WinMusic.stream.buffer == nullptr)
     {
         LOG("Failed to load game music");
         return AppStatus::ERROR;
     }
     starMusic = LoadMusicStream("Assets/Audio/Music/StarPowerMusic.wav");
+    if (starMusic.stream.buffer == nullptr)
+    {
+        LOG("Failed to load game starMusic");
+        return AppStatus::ERROR;
+    }
+    passLevelMusic = LoadMusicStream("Assets/Audio/Music/smb_stage_clear.wav");
     if (starMusic.stream.buffer == nullptr)
     {
         LOG("Failed to load game starMusic");
@@ -235,6 +241,7 @@ AppStatus Game::Update()
             if (IsKeyPressed(KEY_ESCAPE)) return AppStatus::QUIT;
             if (IsKeyPressed(KEY_SPACE))
             {
+
                 StopMusicStream(GroundMusic); //Music Stops
                 StopMusicStream(GameOverMusic);
                 StopMusicStream(WinMusic);
@@ -263,29 +270,37 @@ AppStatus Game::Update()
                 {
                     //"state = GameState::MAIN_MENU;" but not until halfway through the transition
                     fade_transition.Set(GameState::PLAYING, 60, GameState::MAIN_MENU, 60, dst);
+                                    passLevelMusicPlayed = false;
                 }
                 else
                 {
-                    
                     //Game logic
                     scene->Update();
                     UpdateMusicStream(GroundMusic);
                     UpdateMusicStream(starMusic);
+                    UpdateMusicStream(passLevelMusic);
+                   
                     if (scene && scene->GetPlayer()) {
                         Player* player = scene->GetPlayer();  // accede al player desde la escena
 
-                        if (!player->isStarMario) {
+                        if (player->playEndLevelMusic) {
+                            StopMusicStream(GroundMusic);
+                            StopMusicStream(starMusic);
+                            if (!passLevelMusicPlayed) {
+                                PlayMusicStream(passLevelMusic);
+                                passLevelMusicPlayed = true;
+                            }
+                        }
+                        else if (!player->isStarMario) {
                             StopMusicStream(starMusic);
                             if (!IsMusicStreamPlaying(GroundMusic)) {
                                 PlayMusicStream(GroundMusic);
-
                             }
                         }
                         else {
                             StopMusicStream(GroundMusic);
                             if (!IsMusicStreamPlaying(starMusic)) {
                                 PlayMusicStream(starMusic);
-                                UpdateMusicStream(starMusic);
                             }
                         }
                     }
@@ -352,7 +367,7 @@ AppStatus Game::Update()
 
 
             case GameState::WIN:
-                StopMusicStream(GroundMusic);
+                StopMusicStream(passLevelMusic);
                 PlayMusicStream(WinMusic);
                 UpdateMusicStream(WinMusic);
                 if (IsKeyPressed(KEY_SPACE))

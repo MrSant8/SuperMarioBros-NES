@@ -146,6 +146,10 @@ public:
     const int MAX_FIREBALLS = 2;
 
     float invincibleTimer = 0.0f;
+
+    bool flagSoundPlayed = false;
+    bool playEndLevelMusic = false;
+    bool walkingcastle = false;
 private:
     // Coins
     int coins = 0;
@@ -195,8 +199,8 @@ private:
 
     TileMap* tilemap;
 
-    bool walkingcastle = false;
-    bool flagSoundPlayed = false;
+
+
     bool active = false;
     bool isCrouching = false;
     int timee = 100;

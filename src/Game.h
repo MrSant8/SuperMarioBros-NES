@@ -35,7 +35,7 @@ private:
     FadeTransition fade_transition;
 
     //Music
-    Music GroundMusic, GameOverMusic, WinMusic, starMusic;
+    Music GroundMusic, GameOverMusic, WinMusic, starMusic, passLevelMusic;
     //Wold variables
     int time;
     float timeCounter;
@@ -45,4 +45,6 @@ private:
     //Intro variables
     float introTimer = 0.0f;
     bool introTimerStarted = false;
+
+    bool passLevelMusicPlayed = false;
 };

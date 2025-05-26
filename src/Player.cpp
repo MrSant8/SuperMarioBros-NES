@@ -442,9 +442,9 @@ void Player::Update()
 		return;
 	}
 
-
 	if (map->LowerFlag && !map->flagFullyLowered)
 	{
+		playEndLevelMusic = false;
 		pos.x = 3155;
 		if (pos.y > 191) {
 			pos.y = 191;
@@ -457,22 +457,24 @@ void Player::Update()
 
 			if (!flagSoundPlayed) {
 				PlaySound(flagSound);
+
 				flagSoundPlayed = true;
 			}
 		}
 	}
-	else if(map->LowerFlag && map->flagFullyLowered && !walkingcastle) {
-		
+	else if (map->LowerFlag && map->flagFullyLowered && !walkingcastle) {
 		pos.x = 3157;
 		if (pos.y > 191) {
 			pos.y = 191;
 		}
 
-		// Fix: assign state properly instead of comparing
 		state = State::FLAG;
 
+		if (!playEndLevelMusic) { 
+			playEndLevelMusic = true;
+		}
+
 		walkingcastle = true;
-		
 	}
 	if (walkingcastle)
 	{
