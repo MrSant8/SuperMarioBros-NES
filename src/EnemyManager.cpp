@@ -177,7 +177,7 @@ void EnemyManager::Draw() const
 		enemy->Draw();
 
 	for (const auto& score : floatingScores) {
-		DrawTextEx(marioFont, TextFormat("%d", 100), { score.x, score.y }, 9, 1, WHITE);
+		DrawTextEx(marioFont, TextFormat("%d", score.value), { score.x, score.y }, 9, 1, WHITE);
 	}
 }
 void EnemyManager::DrawDebug() const
