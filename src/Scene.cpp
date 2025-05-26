@@ -388,6 +388,7 @@ void Scene::CheckObjectCollisions()
 			else if ((*it)->GetType() == ObjectType::COIN)
 			{
 				PlaySound(player->coinSound);
+				player->IncrCoins();
 			}
 			player->IncrScore((*it)->Points());
 
@@ -440,10 +441,8 @@ void Scene::RenderGUI() const
 
 	DrawTexture(*coinnImage, -5, -10, WHITE);
 	DrawTextEx(marioFont, "X", { 93, 15 }, 9, 1, WHITE);
-	DrawTextEx(marioFont, "00", { 103, 15 }, 9, 1, WHITE);
+	DrawTextEx(marioFont, TextFormat("%02d", player->GetCoins()), { 103, 15 }, 9, 1, WHITE);
 
 	DrawTextEx(marioFont, "MARIO", { 15, 5 }, 9, 1, WHITE);
 	DrawTextEx(marioFont, TextFormat("%06d", player->GetScore()), { 15, 15 }, 9, 1, WHITE);
-
-
 }

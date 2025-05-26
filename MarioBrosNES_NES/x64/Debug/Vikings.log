@@ -1,7 +1,27 @@
-﻿  Player.cpp
-C:\Users\sergi\Desktop\Github Proyectos\Release\SuperMarioBros-NES\src\Player.cpp(193,23): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
-C:\Users\sergi\Desktop\Github Proyectos\Release\SuperMarioBros-NES\src\Player.cpp(294,15): warning C4101: 'anim': variable local sin referencia
-C:\Users\sergi\Desktop\Github Proyectos\Release\SuperMarioBros-NES\src\Player.cpp(446,24): warning C4244: '+=': conversión de 'float' a 'int'; posible pérdida de datos
-C:\Users\sergi\Desktop\Github Proyectos\Release\SuperMarioBros-NES\src\Player.cpp(507,25): warning C4244: '+=': conversión de 'double' a 'int'; posible pérdida de datos
-C:\Users\sergi\Desktop\Github Proyectos\Release\SuperMarioBros-NES\src\Player.cpp(612,11): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
+﻿  EnemyManager.cpp
+C:\Users\sergi\Desktop\Github Proyectos\Release\SuperMarioBros-NES\src\EnemyManager.cpp(80,18): warning C4267: 'inicializando': conversión de 'size_t' a 'int'; posible pérdida de datos
+C:\Users\sergi\Desktop\Github Proyectos\Release\SuperMarioBros-NES\src\EnemyManager.cpp(92,18): warning C4267: 'inicializando': conversión de 'size_t' a 'int'; posible pérdida de datos
+C:\Users\sergi\Desktop\Github Proyectos\Release\SuperMarioBros-NES\src\EnemyManager.cpp(200,23): warning C4244: 'inicializando': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\sergi\Desktop\Github Proyectos\Release\SuperMarioBros-NES\src\EnemyManager.cpp(201,19): warning C4244: 'inicializando': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\sergi\Desktop\Github Proyectos\Release\SuperMarioBros-NES\src\EnemyManager.cpp(212,37): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\sergi\Desktop\Github Proyectos\Release\SuperMarioBros-NES\src\EnemyManager.cpp(213,40): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+  Fireball.cpp
+C:\Users\sergi\Desktop\Github Proyectos\Release\SuperMarioBros-NES\src\Fireball.cpp(31,18): warning C4244: '+=': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\sergi\Desktop\Github Proyectos\Release\SuperMarioBros-NES\src\Fireball.cpp(33,14): warning C4244: '+=': conversión de 'float' a 'int'; posible pérdida de datos
+  Game.cpp
+C:\Users\sergi\Desktop\Github Proyectos\Release\SuperMarioBros-NES\src\Game.h(4,10): warning C4067: símbolos (token) inesperados después de la directiva del preprocesador; se esperaba una nueva línea
+  (compilando archivo de origen "src/Game.cpp")
+  
+  Player.cpp
+C:\Users\sergi\Desktop\Github Proyectos\Release\SuperMarioBros-NES\src\Player.cpp(363,23): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\sergi\Desktop\Github Proyectos\Release\SuperMarioBros-NES\src\Player.cpp(468,15): warning C4101: 'anim': variable local sin referencia
+C:\Users\sergi\Desktop\Github Proyectos\Release\SuperMarioBros-NES\src\Player.cpp(600,24): warning C4244: '+=': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\sergi\Desktop\Github Proyectos\Release\SuperMarioBros-NES\src\Player.cpp(656,25): warning C4244: '+=': conversión de 'double' a 'int'; posible pérdida de datos
+C:\Users\sergi\Desktop\Github Proyectos\Release\SuperMarioBros-NES\src\Player.cpp(759,11): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
+  Scene.cpp
+  main.cpp
+C:\Users\sergi\Desktop\Github Proyectos\Release\SuperMarioBros-NES\src\Game.h(4,10): warning C4067: símbolos (token) inesperados después de la directiva del preprocesador; se esperaba una nueva línea
+  (compilando archivo de origen "src/main.cpp")
+  
+  Generando código...
   Vikings.vcxproj -> C:\Users\sergi\Desktop\Github Proyectos\Release\SuperMarioBros-NES\x64\Debug\MarioBrosNES_NES.exe
