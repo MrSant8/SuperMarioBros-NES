@@ -572,7 +572,7 @@ void Player::MoveY()
 		{
 			AABB hitbox = GetHitbox();
 			Point tileHit;
-			//tilemap->ActivateLaserAnimation(tileHit.x, tileHit.y);
+
 			map->TestCollisionFromBelow(hitbox, &hitbox.pos.y, &tileHit);
 
 			pos.y += 16;
@@ -980,4 +980,9 @@ void Player::ShootFireball()
 
 	shotManager->Add(fireballPos, fireballDir);
 	activeFireballs++; // Aumenta el contador
+}
+
+void Player::SetShotManager(ShotManager* manager)
+{
+	this->shotManager = manager;
 }

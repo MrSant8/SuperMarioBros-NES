@@ -103,7 +103,7 @@ public:
     void ShootFireball();
     bool IsInvincible() const { return invincibleTimer > 0.0f; }
     void SetInvincible(float duration) { invincibleTimer = duration; }
-    void SetShotManager(ShotManager* manager) { this->shotManager = manager; }
+    void SetShotManager(ShotManager* manager);
 public:
 
     bool convertingTimeToScore = false;

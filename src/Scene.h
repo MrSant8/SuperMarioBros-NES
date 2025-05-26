@@ -20,7 +20,7 @@ public:
     void Update();
     void Render();
     void Release();
-
+    Player* player;
     Player* GetPlayer() const { return player; }
 
     bool gameOver = false;
@@ -29,8 +29,9 @@ public:
     bool win = false;
     int life = 3;
     std::vector<Object*> objects;
-    Player* player;
+
     ShotManager* shots;
+
 private:
     AppStatus LoadLevel(int stage);
 
@@ -40,9 +41,6 @@ private:
     void RenderObjectsDebug(const Color& col) const;
 
     void RenderGUI() const;
-
-
-
     //Level structure that contains all the static tiles
     TileMap* level;
 
