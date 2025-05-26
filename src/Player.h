@@ -52,6 +52,10 @@ class EnemyManager;
 
 class Player : public Entity {
 public:
+    // Coins
+    void IncrCoins() { coins++; }
+    int GetCoins() const { return coins; }
+
     Player(const Point& p, State s, Look view);
     ~Player();
 
@@ -142,6 +146,9 @@ public:
 
     float invincibleTimer = 0.0f;
 private:
+    // Coins
+    int coins = 0;
+
     // Direction
     bool IsLookingRight() const;
     bool IsLookingLeft() const;

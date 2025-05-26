@@ -41,7 +41,7 @@ AppStatus Goomba::Initialise(Look look, const AABB& area)
 	sprite->SetAnimationDelay((int)GoombaAnim::WALKING_LEFT, GOOMBA_ANIM_DELAY);
 	for (i = 0; i < 3; ++i)
 		sprite->AddKeyFrame((int)GoombaAnim::WALKING_LEFT, { (float)i * n, 2 * n, -n, n });
-	sprite->AddKeyFrame((int)GoombaAnim::DEAD, { (float)i * n, 3 * n, n, n });
+	sprite->AddKeyFrame((int)GoombaAnim::DEAD, { 2 * n, 3 * n, n, n });
 
 	this->look = look;
 	if (look == Look::LEFT)        sprite->SetAnimation((int)GoombaAnim::IDLE_LEFT);
