@@ -73,7 +73,7 @@ After completing the game, players can restart it to experience an increase in d
 ## List of features implemented
 - World 1-1 map & collisions
 - Enemy Goomba
-- Enemy Koopa>
+- Enemy Koopa
 - Mario Bounce when enemy killed
 - Mario Power Up Animations
 - Power Up Items (Mushroom, Fire Flower, Starman)
