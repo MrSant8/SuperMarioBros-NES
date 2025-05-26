@@ -138,8 +138,6 @@ void TileMap::Update()
 		surpriseBlock->Update();
 		surpriseBlockTimer = 5;
 	}
-
-
 	if (laserActive) {
 		laserTimer--;
 		if (laserTimer <= 0) {
@@ -148,10 +146,7 @@ void TileMap::Update()
 			laserTimer = 15;
 			laserYOffset = 0.0f;
 		}
-		
 	}
-
-
 	if (BlockActive) {
 		laserTimer--;
 		if (laserTimer <= 0) {
@@ -161,11 +156,9 @@ void TileMap::Update()
 			laserYOffset = 0.0f;
 		}
 	}
-
 	if (IsKeyDown(KEY_FOUR)) {
 		canBreak = true;
 	}
-
 	for (auto& frag : fragments) {
 		frag.x += frag.vx;
 		frag.y += frag.vy;
@@ -177,8 +170,6 @@ void TileMap::Update()
 	fragments.erase(std::remove_if(fragments.begin(), fragments.end(), [](BlockFragment& f) {
 		return f.lifetime <= 0;
 		}), fragments.end());
-
-
 }
 Tile TileMap::GetTileIndex(int x, int y) const
 {
@@ -213,8 +204,6 @@ bool TileMap::IsTileSolid(Tile tile) const
 	default:
 		return false;
 	}
-
-	//return Tile::SOLID_FIRST <= tile && tile <= Tile::SOLID_LAST;
 }
 bool TileMap::IsTileLadderTop(Tile tile) const
 {
@@ -224,23 +213,10 @@ bool TileMap::IsTileLadderTop(Tile tile) const
 	case Tile::BLOCK_SQUARE2_TL:
 	case Tile::BLOCK_VERT2_T:
 
-	/*case Tile::BLOCK_SQUARE2_TL:
-	case Tile::BLOCK_VERT2_T:
-	case Tile::BLOCK_VERT2_B:
-	case Tile::BLOCK_HORIZ2_L:
-	case Tile::BLOCK_HORIZ2_R:
-	case Tile::BLOCK_BLUE:
-	case Tile::BLOCK_HORIZ3_L:
-	case Tile::BLOCK_HORIZ3_M:
-	case Tile::BLOCK_HORIZ3_R:
-	case Tile::BLOCK_BEAM_L:
-	case Tile::BLOCK_BEAM_R:*/
 		return true;
 	default:
 		return false;
 	}
-
-	//return tile == Tile::LADDER_TOP_L || tile == Tile::LADDER_TOP_R;
 }
 bool TileMap::IsTileLadder(Tile tile) const
 {
@@ -341,9 +317,8 @@ bool TileMap::TestCollisionFromBelow(const AABB& box, int* py, Point* collisionT
 	int pixel_x = tile_x * TILE_SIZE;
 	int pixel_y = tile_y * TILE_SIZE;
 
-	if (IsTileSolid(tile) && tile != Tile::BLOCK_SQUARE1_TR && tile!= Tile::BLOCK_SQUARE1_BR)
+	if (IsTileSolid(tile) && tile != Tile::BLOCK_SQUARE1_TR && tile != Tile::BLOCK_SQUARE1_BR)
 	{
-	
 		if (tile == Tile::BLOCK_SQUARE1_TL && !canBreak) {
 			if (collisionTilePos != nullptr)
 			{
@@ -358,7 +333,7 @@ bool TileMap::TestCollisionFromBelow(const AABB& box, int* py, Point* collisionT
 			Laser.y = pixel_y - 5;
 		}
 
-		if (tile == Tile::BLOCK_SQUARE1_TL && canBreak) 
+		if (tile == Tile::BLOCK_SQUARE1_TL && canBreak)
 		{
 			map[tile_y * width + tile_x] = Tile::EMPTY; // Remove the block
 
@@ -368,12 +343,17 @@ bool TileMap::TestCollisionFromBelow(const AABB& box, int* py, Point* collisionT
 				frag.y = pixel_y + (k / 2) * 8; // Small vertical displacement
 				frag.vx = (k % 2 == 0) ? -2.0f : 2.0f; // Movement left/right
 				frag.vy = (k / 2 == 0) ? -5.0f : -3.0f; // Upward launch with variation
-				frag.lifetime = 30; //  Duration before disappearing
+				frag.lifetime = 30; // Duration before disappearing
 				fragments.push_back(frag);
 			}
 
 			PlaySound(Break);
+
+			// Generar un ítem aleatorio
+			Point ItemSpawn(Laser.x, Laser.y);
+			ItemAppear(ItemSpawn); // Llama a la función para que aparezca el ítem
 		}
+
 		if (tile == Tile::LASER) {
 			tile = Tile::BLOCK_SQUARE1_BR;
 			map[tile_y * width + tile_x] = tile;
@@ -390,13 +370,14 @@ bool TileMap::TestCollisionFromBelow(const AABB& box, int* py, Point* collisionT
 			Laser.x = pixel_x;
 			Laser.y = pixel_y - 5;
 			Point ItemSpawn(Laser.x, Laser.y);
-			ItemAppear(ItemSpawn);
+			ItemAppear(ItemSpawn); // Llama a la función para que aparezca el ítem
 		}
 
 		return true;
 	}
 	return false;
 }
+
 
 bool TileMap::TestOnLadder(const AABB& box, int* px) const
 {
@@ -672,9 +653,13 @@ void TileMap::ItemAppear(Point ItemPos)
 	}
 	Object* obj = new Object(ItemPos, type);
 	//TODO --- QUE APAREZCAN LOS OBJETOS
-	PlaySound(powerUpAppears);
-	//SI ES COIN, PlaySound(Coin);
-
+	if (type == ObjectType::COIN)
+	{
+	
+	}
+	else {
+		PlaySound(powerUpAppears);
+	}
 }
 
 

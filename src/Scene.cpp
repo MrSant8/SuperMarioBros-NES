@@ -133,6 +133,7 @@ AppStatus Scene::Init() {
 
 	marioFont = LoadFont("Assets/Font/super-mario-bros-nes.ttf");
 
+	enemies->SetScene(this);
 
 	return AppStatus::OK;
 }

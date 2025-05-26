@@ -7,6 +7,8 @@
 
 class Player;
 
+class Scene;
+
 struct FloatingScore {
 	float x, y;
 	int value;
@@ -47,7 +49,7 @@ public:
 	{
 		return enemies;
 	}
-
+	void SetScene(Scene* scene);
 	void CheckPlayerCollision(const AABB& playerHitbox, const Point& playerDir, Player* player);
 
 public:
@@ -61,10 +63,10 @@ private:
 	//This class does not own the object, it only holds a reference to it
 	ShotManager *shots;
 	Enemy* enemy;
-
+	Scene* scene;
 	std::vector<FloatingScore> floatingScores;
 
 	Font marioFont;
-
+	bool flagPointsAdded = false;
 };
 

@@ -3,7 +3,7 @@
 #include "Koopa.h"
 #include "Turret.h"
 #include "Player.h"
-
+#include "Scene.h"
 GoombaLimits goombalimits[] = {
 	
 	{1136, 1360, 208},
@@ -133,7 +133,19 @@ void EnemyManager::Update(const AABB& player_hitbox)
 		score.y -= 0.5f; // Movimiento hacia arriba
 		score.lifetime--;
 	}
+	Player* player = scene->GetPlayer();
+	if (player->flagSoundPlayed && !flagPointsAdded)
+	{
+		FloatingScore score;
+		score.x = player->GetHitbox().pos.x;
+		score.y = player->GetHitbox().pos.y - 10;
+		score.lifetime = 30;
+		score.value = 500;
+		floatingScores.push_back(score);
 
+		player->IncrScore(500);
+		flagPointsAdded = true;
+	}
 	// Eliminar los numeros
 	floatingScores.erase(std::remove_if(floatingScores.begin(), floatingScores.end(), [](FloatingScore& s) {
 		return s.lifetime <= 0;
@@ -183,6 +195,10 @@ void EnemyManager::Release()
 	enemies.clear();
 }
 
+void EnemyManager::SetScene(Scene* scene)
+{
+	this->scene = scene;
+}
 void EnemyManager::CheckPlayerCollision(const AABB& playerHitbox, const Point& playerDir, Player* player)
 {
 	updatelist();
