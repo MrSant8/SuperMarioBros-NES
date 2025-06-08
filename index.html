@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Super Mario Bros NES - University Remake</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      background: #111;
+      color: #f5f5f5;
+      font-family: 'Press Start 2P', monospace;
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(90deg, #3a5aff, #7dcfff);
+      text-align: center;
+      padding: 40px 20px;
+      box-shadow: 0 4px 8px #000;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2em;
+      color: #fff;
+      text-shadow: 2px 2px 0 #000;
+    }
+
+    header p {
+      font-size: 0.9em;
+      color: #ffe66d;
+    }
+
+    section {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    h2 {
+      color: #fca311;
+      border-left: 6px solid #fca311;
+      padding-left: 10px;
+      margin-top: 40px;
+      text-shadow: 1px 1px 0 #000;
+    }
+
+    p, li {
+      font-size: 0.85em;
+    }
+
+    ul {
+      padding-left: 20px;
+    }
+
+    a {
+      color: #00f4bf;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .image-section {
+      text-align: center;
+      margin: 20px 0;
+    }
+
+    .button {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 12px 24px;
+      background-color: #ffcc00;
+      color: #000;
+      text-decoration: none;
+      border: 3px solid #000;
+      border-radius: 0;
+      box-shadow: 3px 3px 0 #000;
+    }
+
+    .button:hover {
+      background-color: #ffe066;
+    }
+
+    footer {
+      background-color: #000;
+      color: #ccc;
+      text-align: center;
+      padding: 20px;
+      margin-top: 60px;
+      font-size: 0.7em;
+      border-top: 2px solid #333;
+    }
+    .team-cards {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin-top: 20px;
+}
+
+.card {
+  background-color: #222;
+  border: 3px solid #fca311;
+  box-shadow: 4px 4px 0 #000;
+  border-radius: 12px;
+  width: 260px;
+  text-align: center;
+  padding: 20px;
+  transition: transform 0.2s ease;
+}
+
+.card:hover {
+  transform: scale(1.03);
+}
+
+.card img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 3px solid #fff;
+  object-fit: cover;
+  margin-bottom: 15px;
+}
+
+.card h3 {
+  margin: 0 0 10px 0;
+  font-size: 1em;
+  color: #ffe066;
+}
+
+.card p {
+  font-size: 0.8em;
+  margin-bottom: 10px;
+}
+
+.card a {
+  color: #00f4bf;
+  text-decoration: none;
+  font-weight: bold;
+}
+.assets-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin-top: 20px;
+}
+
+.grid-audio {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.grid-audio button {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 10px;
+  padding: 10px;
+  background-color: #ffe066;
+  border: 2px solid #000;
+  color: #000;
+  cursor: pointer;
+  text-align: center;
+  border-radius: 6px;
+  box-shadow: 2px 2px 0 #000;
+}
+
+.grid-audio button:hover {
+  background-color: #ffd43b;
+}
+.hud-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.hud-gallery img {
+  width: 100%;
+  border: 2px solid #fff;
+  background: #000;
+  border-radius: 8px;
+  box-shadow: 2px 2px 0 #000;
+  transition: transform 0.2s ease;
+}
+
+.hud-gallery img:hover {
+  transform: scale(1.05);
+}
+
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Super Mario Bros NES</h1>
+    <p>UPC - Remake Project – 2025</p>
+  </header>
+
+  <section>
+    <h2>🎮 Description</h2>
+    <p>Super Mario Bros is a plataform video game desenvoluped by Nintendo in 1985. In it, Mario and his brother Lugi have to rescue Princess Peach, who has been kidnapped by Bowser, the Koopas' king. To do so, they must journey through eight worlds filled with enemies, obstacles, and hidden shortcuts. Each level has different enemies, you can find coins, teleportation zones "Warp Zones" and the flagpole at the end, where the higher you jump the more points you earn.
+
+Players can collect ítems to aid them in their mission: the Super Mushroom increases Mario's size and durability, the Fire Flower allows him to throw fireballs, and the Starman grants temporary invincibility.Throughout the game, players face a impostor Bowser in each castle before reaching the final showdown with Bowser.
+
+After completing the game, players can restart it to experience an increase in difficulty, featuring faster enemies and level changes, providing a more difficult gameplay experience.</p>
+  </section>
+
+  <section>
+    <h2>🗺️ World 1-1 Map</h2>
+    <div class="image-section">
+      <p><em>      <img src="images/SuperMarioBrosMap1-1.png" alt="Goomba Sprite" width="1050" />
+</em></p>
+    </div>
+  </section>
+
+  <section>
+  <h2>💥 Power-Ups</h2>
+  <div class="team-cards">
+
+    <div class="card">
+      <img src="images/mushroom.png" alt="Super Mushroom" style="width: 130px; height: auto; max-height: 160px; border-radius: 12px; object-fit: contain;" />
+      <h3>Super Mushroom</h3>
+      <p>Makes Mario bigger and stronger.</p>
+    </div>
+
+    <div class="card">
+      <img src="images/fireflower.png" alt="Fire Flower" style="width: 130px; height: auto; max-height: 160px; border-radius: 12px; object-fit: contain;" />
+      <h3>Fire Flower</h3>
+      <p>Lets Mario shoot fireballs.</p>
+    </div>
+
+    <div class="card">
+      <img src="images/star.png" alt="Starman" style="width: 130px; height: auto; max-height: 160px; border-radius: 12px; object-fit: contain;" />
+      <h3>Starman</h3>
+      <p>Grants invincibility for a few seconds.</p>
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <h2>🧱 Interactable Objects</h2>
+  <div class="team-cards">
+
+    <div class="card">
+      <img src="images/brick.png" alt="Brick Block" style="width: 130px; height: auto; max-height: 160px; border-radius: 12px; object-fit: contain;"/>
+      <h3>Brick Block</h3>
+      <p>Can be broken by Super Mario or contain hidden items.</p>
+    </div>
+
+    <div class="card">
+      <img src="images/question.png" alt="? Block" style="width: 130px; height: auto; max-height: 160px; border-radius: 12px; object-fit: contain;"/>
+      <h3>Question Block</h3>
+      <p>Contains coins or power-ups. Activated by hitting it from below.</p>
+    </div>
+
+    <div class="card">
+      <img src="images/flagpole.png" alt="Flagpole" style="width: 130px; height: auto; max-height: 160px; border-radius: 12px; object-fit: contain;"/>
+      <h3>Flagpole</h3>
+      <p>Marks the end of the level. The higher you reach, the more points you get.</p>
+    </div>
+
+    <div class="card">
+      <img src="images/pipe.png" alt="Warp Pipe" style="width: 130px; height: auto; max-height: 160px; border-radius: 12px; object-fit: contain;"/>
+      <h3>Warp Pipe</h3>
+      <p>Used to transport Mario between areas or to hidden levels.</p>
+    </div>
+
+    <div class="card">
+      <img src="images/coin.png" alt="Coin" style="width: 130px; height: auto; max-height: 160px; border-radius: 12px; object-fit: contain;"/>
+      <h3>Coin</h3>
+      <p>Collect 100 coins to earn an extra life.</p>
+    </div>
+
+  </div>
+</section>
+
+
+<section>
+  <h2>🧍 Sprites – Mario</h2>
+  <div class="team-cards">
+
+<div class="card">
+  <img src="images/mario.png" alt="Mario" style="width: 130px; height: auto; max-height: 160px; border-radius: 12px; object-fit: contain;" />
+  <h3>Mario</h3>
+  <p>Main character. Runs, jumps, breaks blocks.</p>
+</div>
+
+
+  </div>
+</section>
+
+
+<section>
+  <h2>👾 Enemies</h2>
+  <div class="team-cards">
+
+    <div class="card">
+      <img src="images/goomba.png" alt="Goomba" style="width: 130px; height: auto; max-height: 160px; border-radius: 12px; object-fit: contain;"/>
+      <h3>Goomba</h3>
+      <p>Basic walking enemy. Dies with one jump.</p>
+    </div>
+
+    <div class="card">
+      <img src="images/koopa.png" alt="Koopa Troopa" />
+      <h3>Koopa Troopa</h3>
+      <p>Withdraws into its shell when jumped on. Can be kicked.</p>
+    </div>
+  </div>
+</section>
+
+
+<section>
+  <h2>🎨 Assets Used</h2>
+
+  <div class="card">
+    <h3>🧩 Sprite Sheet</h3>
+    <p>Full sprite sheet used in-game:</p>
+<img src="images/assetsused.png" alt="Sprite Sheet" style="
+  width: 100%;
+  max-height: 300px;
+  object-fit: contain;
+  background: #000;
+  border: 3px solid #fff;
+  border-radius: 12px;
+  padding: 6px;
+  box-sizing: border-box;
+" />
+  </div>
+
+  <div class="card">
+    <h3>🔤 Font</h3>
+    <p>Font used: <strong>Press Start 2P</strong></p>
+    <img src="images/font.png" alt="Font Preview" style="width:100%; max-height:120px; object-fit: contain; border: 1px solid #fff; background: #000; padding: 5px;" />
+    <p style="margin-top:10px;">Available as <code>pressstart2p.ttf</code></p>
+    <a class="button" href="fonts/pressstart2p.ttf" download>⬇️ Download TTF</a>
+  </div>
+
+  <div class="assets-grid">
+
+    <!-- FX Sounds -->
+    <div class="card">
+      <h3>🎮 FX Sounds</h3>
+      <div class="grid-audio">
+        <button onclick="playSound('music_game/Fx/1up.wav')">1up</button>
+        <button onclick="playSound('music_game/Fx/Beep.wav')">Beep</button>
+        <button onclick="playSound('music_game/Fx/Big Jump.wav')">Big Jump</button>
+        <button onclick="playSound('music_game/Fx/Bowser Die.wav')">Bowser Die</button>
+        <button onclick="playSound('music_game/Fx/Break.wav')">Break</button>
+        <button onclick="playSound('music_game/Fx/Bump.wav')">Bump</button>
+        <button onclick="playSound('music_game/Fx/Coin.wav')">Coin</button>
+        <button onclick="playSound('music_game/Fx/Die.wav')">Die</button>
+        <button onclick="playSound('music_game/Fx/Enemy Fire.wav')">Enemy Fire</button>
+        <button onclick="playSound('music_game/Fx/Fire Ball.wav')">Fire Ball</button>
+        <button onclick="playSound('music_game/Fx/fireBall.wav')">fireBall</button>
+        <button onclick="playSound('music_game/Fx/Flagpole.wav')">Flagpole</button>
+        <button onclick="playSound('music_game/Fx/Game Over.wav')">Game Over</button>
+        <button onclick="playSound('music_game/Fx/Item.wav')">Item</button>
+        <button onclick="playSound('music_game/Fx/Jump.wav')">Jump</button>
+        <button onclick="playSound('music_game/Fx/Kick.wav')">Kick</button>
+        <button onclick="playSound('music_game/Fx/Pause.wav')">Pause</button>
+        <button onclick="playSound('music_game/Fx/Pipe.wav')">Pipe</button>
+        <button onclick="playSound('music_game/Fx/Powerup.wav')">Powerup</button>
+        <button onclick="playSound('music_game/Fx/powerUpAppears.wav')">Appears</button>
+        <button onclick="playSound('music_game/Fx/Skid.wav')">Skid</button>
+        <button onclick="playSound('music_game/Fx/smb_stomp.wav')">Stomp</button>
+        <button onclick="playSound('music_game/Fx/Squish.wav')">Squish</button>
+        <button onclick="playSound('music_game/Fx/Thwomp.wav')">Thwomp</button>
+        <button onclick="playSound('music_game/Fx/Vine.wav')">Vine</button>
+        <button onclick="playSound('music_game/Fx/Warp.wav')">Warp</button>
+      </div>
+    </div>
+
+    <!-- Music Tracks -->
+    <div class="card">
+      <h3>🎵 Music Tracks</h3>
+      <div class="grid-audio">
+        <button onclick="playSound('music_game/Music/Game Over.wav')">Game Over</button>
+        <button onclick="playSound('music_game/Music/GroundTheme.mp3')">Ground Theme</button>
+        <button onclick="playSound('music_game/Music/GroundThemeHurry.wav')">Theme Hurry</button>
+        <button onclick="playSound('music_game/Music/smb_stage_clear.wav')">Stage Clear</button>
+        <button onclick="playSound('music_game/Music/smb_world_clear.wav')">World Clear</button>
+        <button onclick="playSound('music_game/Music/StarPowerMusic.wav')">Star Power</button>
+        <button onclick="playSound('music_game/Music/World2Theme.wav')">World 2</button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<section>
+  <h2>📊 HUD & UI</h2>
+  <p>Recreation of the original NES interface, including:</p>
+  <ul>
+    <li>Top bar with <strong>score</strong>, <strong>coins</strong>, <strong>lives</strong>, <strong>world</strong> and <strong>time</strong></li>
+    <li>Custom intro and credit screens</li>
+    <li>Game over, world clear, time up, and princess scenes</li>
+  </ul>
+
+  <div class="hud-gallery">
+    <img src="images/Start game.png" alt="Start Screen" />
+    <img src="images/World_1lives.png" alt="World 1 - 1 life" />
+    <img src="images/World_2lives.png" alt="World 1 - 2 lives" />
+    <img src="images/World.png" alt="World 1 - 3 lives" />
+    <img src="images/Princess_.png" alt="Princess Scene" />
+    <img src="images/Game over.png" alt="Game Over" />
+    <img src="images/Finish game.png" alt="Finish Screen" />
+    <img src="images/Time Up.png" alt="Time Up" />
+    <img src="images/menuFinalIntroNames.png" alt="Credits" />
+  </div>
+</section>
+
+
+  <section>
+    <h2>🛠️ Project Structure</h2>
+    <ul>
+      <li><strong>Wiki:</strong> 20%</li>
+      <li><strong>Alpha:</strong> 50%</li>
+      <li><strong>Prototype:</strong> 30%</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>📽️ Trailer</h2>
+    <a class="button" href="https://www.youtube.com/tu-video" target="_blank">▶️ Watch Trailer</a>
+  </section>
+
+  <section>
+    <h2>⬇️ Releases</h2>
+    <a class="button" href="https://github.com/MrSant8/SuperMarioBros-NES/releases" target="_blank">⬇️ View Releases</a>
+  </section>
+
+<section>
+  <h2>👥 Team</h2>
+  <div class="team-cards">
+
+    <div class="card">
+      <img src="images/llovera.png" alt="Toni Llovera" />
+      <h3>Toni Llovera</h3>
+      <p>Lead Design, Artist, Programmer</p>
+      <a href="https://github.com/ToniLlovera" target="_blank">GitHub</a>
+    </div>
+
+    <div class="card">
+      <img src="images/sergi.png" alt="Sergi Santiago" />
+      <h3>Sergi Santiago</h3>
+      <p>Lead Artist, Programmer, Dessign</p>
+      <a href="https://github.com/MrSant8" target="_blank">GitHub</a>
+    </div>
+
+    <div class="card">
+      <img src="images/jana.png" alt="Jana Puig" />
+      <h3>Jana Puig</h3>
+      <p>Lead Programmer, Artist, Design</p>
+      <a href="https://github.com/JanaPuig" target="_blank">GitHub</a>
+    </div>
+
+  </div>
+</section>
+
+
+  <footer>
+    <p>Super Mario Bros NES – Universitat 2025 | Projecte educatiu</p>
+  </footer>
+
+<script>
+  let currentAudio = null;
+
+  function playSound(src) {
+    if (currentAudio) {
+      currentAudio.pause();
+    }
+    currentAudio = new Audio(src);
+    currentAudio.play();
+  }
+
+</script>
+</body>
+</html>
